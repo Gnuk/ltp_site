@@ -415,10 +415,12 @@ function verifierChamps()
 	return retourMessage($message_erreur,$message);
 }
 
-// Fonction permettant de vérifier si une adresse mail est valide ou non
-// E : L'adresse mail entrée par l'utilisateur dans le formulaire.
-// S : Un booléen qui dit si l'adresse est valide (true) ou non (false).
-
+/**
+* Fonction permettant de vérifier si le pseudo est valide ou non
+* @param string $pseudoVerif L'adresse mail entrée par l'utilisateur dans le formulaire.
+* @return boolean Un booléen qui dit si le pseudo est valide (true) ou non (false).
+* @deprecated
+*/
 function verifierPseudo($pseudoVerif)
 {
 	$Syntaxe='#^[\w_-]{3,32}$#';
@@ -432,10 +434,12 @@ function verifierPseudo($pseudoVerif)
 	}
 }
 
-// Fonction permettant de vérifier si une adresse mail est valide ou non
-// E : L'adresse mail entrée par l'utilisateur dans le formulaire.
-// S : Un booléen qui dit si l'adresse est valide (true) ou non (false).
-
+/**
+* Fonction permettant de vérifier si une adresse mail est valide ou non
+* @param string $adresse L'adresse mail entrée par l'utilisateur dans le formulaire.
+* @return boolean Un booléen qui dit si l'adresse est valide (true) ou non (false).
+* @deprecated
+*/
 function verifierAdresseMail($adresse)
 {
 	$Syntaxe='#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#';
@@ -458,10 +462,12 @@ function verifierAdresseMail($adresse)
 //###############-----------------------------FONCTION--POUR--GENERER--UN--NOUVEAU--MDP------------------------------###############//
 //##################################################################################################################################//
 
-// Fonction permettant vérifier les informations de l'internaute pour la génération d'un nouveau mot de passe
-// E : L'adresse mail et le pseudo entrés par l'utilisateur dans le formulaire.
-// S : Un message d'erreur en fonction des données entrées dans les différents champs.
-
+/**
+* Fonction permettant vérifier les informations de l'internaute pour la génération d'un nouveau mot de passe
+* @return boolean
+* @return string Un message d'erreur en fonction des données entrées dans les différents champs.
+* @deprecated
+*/
 function genererMDP()
 {
 	$message_erreur = true;
@@ -503,11 +509,12 @@ function genererMDP()
 //###############-------------------------FONCTIONS--D'ENVOIE--DE--MESSAGES--ELECTRONIQUES---------------------------###############//
 //##################################################################################################################################//
 
-// Fonction permettant de d'envoyer un message à l'utilisateur ayant oublié son mot de passe
-// E : L'adresse mail et le pseudo entrés par l'utilisateur dans le formulaire.
-// S : Un message d'erreur ou non lors de l'envoie du mail.
-
-
+/**
+* Fonction permettant de d'envoyer un message à l'utilisateur ayant oublié son mot de passe
+* @return boolean
+* @return string Un message d'erreur ou non lors de l'envoie du mail.
+* @deprecated
+*/
 function envoieMDP()
 {
 	ini_set('SMTP','smtp.club-internet.fr');
@@ -583,10 +590,12 @@ function envoieMDP()
 	return array($message_erreur,$message);
 }
 
-// Fonction permettant d'envoyer un mail à l'utilisateur pour qu'il valide son inscription
-// E : L'adresse mail et le pseudo entrés par l'utilisateur dans le formulaire.
-// S : Un message d'erreur ou non lors de l'envoie du mail.
-
+/**
+* Fonction permettant d'envoyer un mail à l'utilisateur pour qu'il valide son inscription
+* @return boolean
+* @return string Un message d'erreur ou non lors de l'envoie du mail.
+* @deprecated
+*/
 function envoieCourriel()
 {
 	ini_set('SMTP','smtp.club-internet.fr');
@@ -689,10 +698,11 @@ function envoieCourriel()
 //###############--------------------------FONCTIONS--UTILISEES--POUR--L'IMAGE--ANTI-ROBOTS--------------------------###############//
 //##################################################################################################################################//
 
-// Fonction permettant de formatter l'adresse ip de l'utilisateur au format : XXX.XXX.XXX.XXX
-// E : Aucune (on utilise une variable d'environnement de php pour obtenir l'adresse ip du client).
-// S : L'adresse IP formatter.
-
+/**
+* Fonction permettant de formatter l'adresse ip de l'utilisateur au format : XXX.XXX.XXX.XXX
+* @return string L'adresse IP formatter.
+* @deprecated
+*/
 function adresseIP()
 {
 	list($aIP1,$aIP2,$aIP3,$aIP4) = preg_split('[\.]', $_SERVER['REMOTE_ADDR']);
@@ -709,11 +719,13 @@ function adresseIP()
 	return $adresseIP = preg_replace("[\.]","", $adresseIP,1);
 }
 
-// Fonction permettant de tester l'intégrité du fichier "verif.txt" ainsi que de le créer s'il n'existe pas
-// Si le fichier "verif.txt" dépasse 100 lignes (2700 octets) il est alors recréé (afin d'éviter que le serveur travaille avec de trop gros fichiers).
-// Cette fonction gère l'écriture et le réécriture simultanée de plusieurs codes correspond aux adresses ip 
-// E : $chaine variable de type chaine de caractère correspond au code de l'image générée.
-
+/**
+* Fonction permettant de tester l'intégrité du fichier "verif.txt" ainsi que de le créer s'il n'existe pas
+* Si le fichier "verif.txt" dépasse 100 lignes (2700 octets) il est alors recréé (afin d'éviter que le serveur travaille avec de trop gros fichiers).
+* Cette fonction gère l'écriture et le réécriture simultanée de plusieurs codes correspond aux adresses ip 
+* @param string $chaine L'image générée.
+* @deprecated
+*/
 function testVerifIP($chaine)
 {
 	if (!file_exists("verif.txt"))
@@ -734,6 +746,11 @@ function testVerifIP($chaine)
 	}
 }
 
+/**
+* creerVerifIP
+* @param string $chaine
+* @deprecated
+*/
 function creerVerifIP($chaine)
 {
 	if(!$fp = fopen("verif.txt",'w')){exit;}
@@ -744,11 +761,11 @@ function creerVerifIP($chaine)
 	}
 }
 
-// Fonction permettant d'écrire l'adresse ip de l'utilisateur ainsi que le code correspond
-// Cette fonction gère l'écriture et le réécriture simultanée de plusieurs codes correspond aux adresses ip 
-// E : $chaine variable de type chaine de caractère correspond au code de l'image générée.
-// S : Ecrire de l'adresse ip ainsi que du code dans le fichier "verif.txt".
-
+/**
+* Fonction permettant d'écrire l'adresse ip de l'utilisateur ainsi que le code correspond
+* Cette fonction gère l'écriture et le réécriture simultanée de plusieurs codes correspond aux adresses ip 
+* @param string $chaine variable de type chaine de caractère correspond au code de l'image générée.
+*/
 function ecrireVerifIP($chaine)
 {
 	if(!$fp = fopen("verif.txt",'r+')){exit;}
@@ -776,10 +793,11 @@ function ecrireVerifIP($chaine)
 	fclose($fp);
 }
 
-// Fonction permettant de vérifier si le code rentré par l'utilisateur est correct par rapport à l'image
-// E : $chaine variable de type chaine de caractère correspond au code rentré par l'utilisateur.
-// S : $code un booléen qui dit si le code est valide (true) ou non (false)..
-
+/**
+* Fonction permettant de vérifier si le code rentré par l'utilisateur est correct par rapport à l'image
+* @param string $chaine variable de type chaine de caractère correspond au code rentré par l'utilisateur.
+* @return boolean $code un booléen qui dit si le code est valide (true) ou non (false)..
+*/
 function lireVerifIP($chaine)
 {
 	if(!$fp = fopen("verif.txt",'r')){exit;}

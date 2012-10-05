@@ -1,0 +1,32 @@
+/* Feuille de style principale du site LocalizeTeaPot */
+
+body
+{
+	color:#333333;
+	font-family:sans-serif;
+	font-size:75%;
+	line-height:1.5;
+	width : 75%;
+	margin : auto;
+}
+
+div#carte
+{
+/* 	background-color: yellow; */
+}
+
+iframe#carteOSM
+{
+	border-style: none;
+}
+
+p#droitsAuteurs
+{
+	text-align: right;
+}
+
+/* CSS Liens du site */
+a.menu{ color: black; text-decoration: none; }
+a.menu:hover{ color: white; text-decoration: none; }
+a { color: blue; text-decoration: none; }
+a:hover{ color: orange; text-decoration: none; }

@@ -1,0 +1,5 @@
+# Ignorer les fichiers de sauvegarde
+*~
+*.bak
+# Ignorer la configuration personnalisée
+/config.php

@@ -765,6 +765,7 @@ function creerVerifIP($chaine)
 * Fonction permettant d'écrire l'adresse ip de l'utilisateur ainsi que le code correspond
 * Cette fonction gère l'écriture et le réécriture simultanée de plusieurs codes correspond aux adresses ip 
 * @param string $chaine variable de type chaine de caractère correspond au code de l'image générée.
+* @deprecated
 */
 function ecrireVerifIP($chaine)
 {
@@ -797,6 +798,7 @@ function ecrireVerifIP($chaine)
 * Fonction permettant de vérifier si le code rentré par l'utilisateur est correct par rapport à l'image
 * @param string $chaine variable de type chaine de caractère correspond au code rentré par l'utilisateur.
 * @return boolean $code un booléen qui dit si le code est valide (true) ou non (false)..
+* @deprecated
 */
 function lireVerifIP($chaine)
 {

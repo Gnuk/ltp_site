@@ -3,4 +3,5 @@
 	define('LINK_LIB', LINK_ROOT . LINK_R .'lib/');
 	define('LINKR_STYLES', LINK_R .'styles/');
 	define('LINK_STYLES', LINK_ROOT . LINKR_STYLES);
+	define('LINK_CLASS', LINK_ROOT . LINK_R . 'class/');
 ?>

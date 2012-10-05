@@ -1,7 +1,10 @@
 <?php
 
-// Connection à la BDD
-// E : le nom de la base de données
+/**
+* Connexion à la Base de donnée
+* @param string $nameDB Nom de la base de donnée
+* @deprecated
+*/
 function connexion_DB($name_DB)
 {
 	$host = "localhost";  
@@ -13,17 +16,21 @@ function connexion_DB($name_DB)
 	mysql_select_db($bdd) or die("Erreur de connexion a la base de donnees");
 }
 
-// Déconnection de la BDD
+/**
+* Déconnection de la BDD
+*/
 function deconnexion_DB()
 {
 	mysql_close();
 }
 
-// Fonction qui exécute une requète SQL. Si la requête ne passe pas, elle renvoie le message d'erreur MySQL
-// E : $strSQL qui est une chaîne SQL
-// S : $result qui correspond aux enregistrements correspondants
-
-function requete_SQL($strSQL)
+/**
+* Fonction qui exécute une requète SQL. Si la requête ne passe pas, elle renvoie le message d'erreur MySQL
+* @param string $strSQL Chaîne SQL
+* @result mysql_query $result Correspond aux enregistrements correspondants
+* @deprecated
+*/
+function requeteSQL($strSQL)
 {
 	$result = mysql_query($strSQL);
 	if (!$result)
@@ -37,10 +44,13 @@ function requete_SQL($strSQL)
 }
 
 
-// Fonction permettant formater le message affiché à l'internaute
-// E : Un booléen pour dire si c'est un message d'erreur (true) ou si c'est un message de réussite (false). Et une variable contenant le message à afficher.
-// S : Le message formaté.
-
+/**
+* Fonction permettant formater le message affiché à l'internaute
+* @param boolean $message_erreur Erreur ou non.
+* @param string $message Une variable contenant le message à afficher.
+* @return string $retour Le message formaté.
+* @deprecated
+*/
 function retourMessage($message_erreur,$message)
 {
 	if($message_erreur == true)
@@ -54,10 +64,12 @@ function retourMessage($message_erreur,$message)
 	return $retour;
 }
 
-// Fonction permettant de générer une chaine de caractères alpha-numérique aléatoire
-// E : $longueur la taille de la chaine de caractères à générer.
-// S : $chaine la chaine de caractères alpha-numérique générée aléatoirement.
-
+/**
+* Fonction permettant de générer une chaine de caractères alpha-numérique aléatoire
+* @param int $longueur La taille de la chaine de caractères à générer.
+* @return string $chaine La chaine de caractères alpha-numérique générée aléatoirement.
+* @deprecated
+*/
 function alea($longueur)
 {
 	$list = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -71,11 +83,13 @@ function alea($longueur)
 	return $chaine;
 }
 
-// Fonction permettant de découper un temps en secondes au format JJ HH:MM:SS
-// Cette fonction est utilisée pour l'affichage des comptes non validés
-// E : Le temps en secondes.
-// S : Le temps au format JJ HH:MM:SS.
-
+/**
+* Fonction permettant de découper un temps en secondes au format JJj HHh:MMm:SSs
+* Cette fonction est utilisée pour l'affichage des comptes non validés
+* @param int $t Le temps en secondes.
+* @param string $heure Le temps au format JJj HHh:MMm:SSs.
+* @deprecated
+*/
 function affichageHeure($t)
 {
 	$s = $t%60;
@@ -85,6 +99,11 @@ function affichageHeure($t)
 	return $heure = $d.'j '.$h.'h:'.$m.'m:'.$s.'s';
 }
 
+/**
+* Affiche le menu
+* @return string $inscription
+* @deprecated
+*/
 function afficheMenu()
 {
 	if(!isset($_SESSION['login']))
@@ -95,7 +114,7 @@ function afficheMenu()
 	else
 	{
 		$strSQL = 'SELECT `statut` FROM `utilisateur` WHERE `pseudo` = "'.$_SESSION['login'].'"';
-		$resultat = requete_SQL($strSQL);
+		$resultat = requeteSQL($strSQL);
 		$tabl_result = mysql_fetch_array($resultat);
 		if($tabl_result['statut'] == 42)
 		{
@@ -113,10 +132,10 @@ function afficheMenu()
 //###############----------------------FONCTIONS--POUR--LA--PARTIE--ADMINISTRATION--DU--SITE-------------------------###############//
 //##################################################################################################################################//
 
-// Fonction permettant d'afficher les comptes non validés avec l'adresse mail
-// E : Aucune (on récupère les données enregistrés dans la base de données).
-// S : On affiche le résultat sous la forme d'un tableau.
-
+/**
+* Fonction permettant d'afficher les comptes non validés avec l'adresse mail
+* @deprecated
+*/
 function affichageCompteNonValide()
 {
 	echo '<div><form name="form" method="post">';
@@ -129,7 +148,7 @@ function affichageCompteNonValide()
 	}
 	
 	$strSQL = 'SELECT `pseudo`, `adresse_mail`, `adresse_ip`, `statut`, `date_creation`, `id_utilisateur` FROM `utilisateur` WHERE `compte_valide`=False ';
-	$resultat = requete_SQL($strSQL);
+	$resultat = requeteSQL($strSQL);
 	$i = 0;
 	
 	if(isset($_GET['checked']))
@@ -197,11 +216,10 @@ function affichageCompteNonValide()
 //###############-------------------FONCTIONS--POUR--LA--CONNEXION/DECONNEXION--D'UN--UTILISATEUR--------------------###############//
 //##################################################################################################################################//
 
-// Fonction permettant d'afficher soit le formulaire de connection (pour l'internaute venant d'arriver sur la page), soit un bouton de déconnection
-// pour l'utilisateur déjà connecté.
-// E : Aucune (on teste si une variable de session a été, donc si il y a eu un connection).
-// S : Aucune (on affiche le résultat).
-
+/**
+* Fonction permettant d'afficher soit le formulaire de connection (pour l'internaute venant d'arriver sur la page), soit un bouton de déconnection pour l'utilisateur déjà connecté.
+* @deprecated
+*/
 function connect()
 {
 	if(isset($_SESSION['login']))
@@ -225,16 +243,18 @@ function connect()
 	return $connect;
 }
 
-// Fonction permettant de vérifier les identifiants d'un utilisateur
-// E : Aucune (on récupère les données envoyées par la méthode post du formulaire).
-// S : L'utilisateur accède au contenu qui lui est destiné en fonction de son statut si les identifiants sont corrects, ou on affiche un message d'erreur.
-
+/**
+* Fonction permettant de vérifier les identifiants d'un utilisateur
+* @see retourMessage
+* @return string L'utilisateur accède au contenu qui lui est destiné en fonction de son statut si les identifiants sont corrects, ou on affiche un message d'erreur.
+* @deprecated
+*/
 function verifierConnexion()
 {
 	$pseudo = mysql_real_escape_string($_POST['pseudo']);
 	$password = mysql_real_escape_string($_POST['password']);
 	$strSQL = 'SELECT `pseudo`, `password`, `date_connexion`, `statut`, `essais`, `compte_valide` FROM `utilisateur` WHERE `pseudo` = "'.$pseudo.'"';
-	$resultat = requete_SQL($strSQL);
+	$resultat = requeteSQL($strSQL);
 	$tabl_result = mysql_fetch_array($resultat);
 	
 	if(!empty($pseudo) && $pseudo == $tabl_result['pseudo'] && $password == $tabl_result['password'] && $tabl_result['compte_valide'] == true && ($tabl_result['statut'] == 1 || $tabl_result['statut'] == 42))
@@ -273,10 +293,13 @@ function verifierConnexion()
 	return retourMessage($message_erreur,$message);
 }
 
-// Fonction permettant de déconnecter un utilisateur
-// E : Aucune.
-// S : Destruction de la session de l'utilisateur.
-
+/**
+* Fonction permettant de déconnecter un utilisateur
+* @see retourMessage
+* @return Destruction de la session de l'utilisateur.
+* @deprecated
+* @warning Peut-on remplacer @session_destroy() par session_destroy() ?
+*/
 function deconnexion()
 {
 	unset($_SESSION);
@@ -296,15 +319,17 @@ function deconnexion()
 //###############--------------------------FONCTIONS--POUR--L'INSCRIPTION--D'UN--UTILISATEUR-------------------------###############//
 //##################################################################################################################################//
 
-// Fonction permettant de valider l'inscription de l'utilisateur grâce à son identifiant et au code généré lors de l'envoie du mail
-// E : Aucune (on récupère les données de notre base de données avec les données de l'utilisateur).
-// S : Ecriture d'un booléen (true) dans la base de données si les informations sont justes et création d'un dossier pour l'utilisateur
-//     (le dossier prendra comme nom celui de l'utilisateur), sinon on affiche un message d'erreur.
-
+/**
+* Fonction permettant de valider l'inscription de l'utilisateur grâce à son identifiant et au code généré lors de l'envoie du mail
+* @see retourMessage
+* @return boolean Écriture d'un booléen (true) dans la base de données si les informations sont justes et création d'un dossier pour l'utilisateur (le dossier prendra comme nom celui de l'utilisateur)
+* @return string Sinon on affiche un message d'erreur.
+* @deprecated
+*/
 function validationIncription()
 {
 	$strSQL = 'SELECT `pseudo`, `id_utilisateur`, `code_validation`, `compte_valide` FROM `utilisateur` WHERE `id_utilisateur` = "'.$_GET['id'].'"';
-	$resultat = requete_SQL($strSQL);
+	$resultat = requeteSQL($strSQL);
 	$tabl_result = mysql_fetch_array($resultat);
 	if($tabl_result['id_utilisateur'] == $_GET['id'] && $tabl_result['code_validation'] == $_GET['code'] && $tabl_result['compte_valide'] == False)
 	{
@@ -322,10 +347,11 @@ function validationIncription()
 	return retourMessage($message_erreur,$message);
 }
 
-// Fonction permettant de vérifier les différents champs rentrés par l'utilisateur
-// E : Aucune (on récupère les données envoyées par la méthode post du formulaire).
-// S : Ecriture des informations dans la base de données (si les champs rentrés par l'utilisateur sont valides sinon on retourne un message d'erreur).
-
+/**
+* Fonction permettant de vérifier les différents champs rentrés par l'utilisateur
+* @return  Écriture des informations dans la base de données (si les champs rentrés par l'utilisateur sont valides sinon on retourne un message d'erreur).
+* @deprecated
+*/
 function verifierChamps()
 {
 	$message_erreur = true;
@@ -335,10 +361,10 @@ function verifierChamps()
 	$inscrip_adresse = mysql_real_escape_string($_POST['adresse']);
 	$saisieCodeVerif = mysql_real_escape_string($_POST['saisieCodeVerif']);
 	$strSQL  = 'SELECT COUNT(*) AS `nombre` FROM `utilisateur` WHERE `pseudo` = "'.$pseudo.'"';
-	$resultat = requete_SQL($strSQL);
+	$resultat = requeteSQL($strSQL);
 	$tabl_pseudo = mysql_fetch_array($resultat);
 	$strSQL  = 'SELECT COUNT(*) AS `nombre` FROM `utilisateur` WHERE `adresse_mail` = "'.$inscrip_adresse.'"';
-	$resultat = requete_SQL($strSQL);
+	$resultat = requeteSQL($strSQL);
 	$tabl_adresse = mysql_fetch_array($resultat);
 	if(strlen($pseudo) >= 3 && strlen($pseudo) <= 32){
 	$pseudoVerif = verifierPseudo($pseudo);
@@ -442,13 +468,13 @@ function genererMDP()
 	$pseudo = mysql_real_escape_string($_POST['recup_pseudo']);
 	$adresse_recup = mysql_real_escape_string($_POST['recup_adresse']);
 	$strSQL  = 'SELECT COUNT(*) AS `nombre` FROM `utilisateur` WHERE `pseudo` = "'.$pseudo.'"';
-	$resultat = requete_SQL($strSQL);
+	$resultat = requeteSQL($strSQL);
 	$tabl_pseudo = mysql_fetch_array($resultat);
 	$strSQL  = 'SELECT COUNT(*) AS `nombre` FROM `utilisateur` WHERE `adresse_mail` = "'.$adresse_recup.'"';
-	$resultat = requete_SQL($strSQL);
+	$resultat = requeteSQL($strSQL);
 	$tabl_adresse = mysql_fetch_array($resultat);
 	$strSQL  = 'SELECT `pseudo`, `adresse_mail` FROM `utilisateur` WHERE `pseudo` = "'.$pseudo.'"';
-	$resultat = requete_SQL($strSQL);
+	$resultat = requeteSQL($strSQL);
 	$tabl_result = mysql_fetch_array($resultat);
 	if(!empty($pseudo))
 	{
@@ -488,7 +514,7 @@ function envoieMDP()
 	$code = alea(12);
 	
 	$strSQL = 'SELECT `pseudo`, `adresse_mail`, `id_utilisateur`, `adresse_ip` FROM `utilisateur` WHERE `pseudo` = "'.$_POST['recup_pseudo'].'"';
-	$resultat = requete_SQL($strSQL);
+	$resultat = requeteSQL($strSQL);
 	$tabl_result = mysql_fetch_array($resultat);
 	
 	$destinataire = $tabl_result['adresse_mail'];
@@ -567,7 +593,7 @@ function envoieCourriel()
 	$code = alea(32);
 
 	$strSQL = 'SELECT `pseudo`, `adresse_mail`, `id_utilisateur` FROM `utilisateur` WHERE `pseudo` = "'.$_POST['inscription_pseudo'].'"';
-	$resultat = requete_SQL($strSQL);
+	$resultat = requeteSQL($strSQL);
 	$tabl_result = mysql_fetch_array($resultat);
 	
 	//On remplace en français l'écriture des mois anglais 

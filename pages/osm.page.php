@@ -1,3 +1,6 @@
+<?php
+	if(Page::haveRights()){
+?>
 <html><body>
   <div id="mapdiv"></div>
   <script src="lib/openlayers/OpenLayers.js"></script>
@@ -32,3 +35,9 @@
     map.setCenter (center, zoom);
   </script>
 </body></html>
+<?php
+	}
+	else{
+		Page::showDefault();
+	}
+?>

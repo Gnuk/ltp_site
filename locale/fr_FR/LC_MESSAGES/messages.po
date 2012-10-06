@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-05 09:33+0100\n"
-"PO-Revision-Date: 2012-10-05 09:33+0100\n"
+"POT-Creation-Date: 2012-10-06 13:40+0100\n"
+"PO-Revision-Date: 2012-10-06 13:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: Open Team Map\n"
 "MIME-Version: 1.0\n"
@@ -13,32 +13,61 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: /home/anthony/Dropbox/site_ltp\n"
+"X-Poedit-SearchPath-0: ./../../..\n"
 
-#: /home/anthony/Dropbox/site_ltp/index.php:11
+#: ../../../config/class/debug.class.php:69
+msgid "Débogage"
+msgstr "LocalizeTeaPot"
+
+#: ../../../config/class/debug.class.php:83
+msgid "Erreur"
+msgstr "Erreur"
+
+#: ../../../config/class/debug.class.php:86
+msgid "Avertissement"
+msgstr "Avertissement"
+
+#: ../../../config/class/debug.class.php:89
+msgid "Indication"
+msgstr "Indication"
+
+#: ../../../config/class/debug.class.php:92
+msgid "Débogage non identifié"
+msgstr "Débogage non identifié"
+
+#: ../../../config/class/page.class.php:18
+#: ../../../config/class/page.class.php:21
+msgid "Erreur 404"
+msgstr "Erreur 404"
+
+#: ../../../config/class/page.class.php:23
+msgid "Veuillez créer une page error404.html à la racine"
+msgstr "Veuillez créer une page error404.html à la racine"
+
+#: ../../../pages/home.page.php:7
 msgid "LocalizeTeaPot"
-msgstr ""
+msgstr "LocalizeTeaPot"
 
-#: /home/anthony/Dropbox/site_ltp/index.php:17
+#: ../../../pages/home.page.php:13
 msgid "Identifiant :"
-msgstr ""
+msgstr "Identifiant :"
 
-#: /home/anthony/Dropbox/site_ltp/index.php:18
+#: ../../../pages/home.page.php:14
 msgid "Mot de passe :"
-msgstr ""
+msgstr "Mot de passe :"
 
-#: /home/anthony/Dropbox/site_ltp/index.php:19
+#: ../../../pages/home.page.php:15
 msgid "Connexion"
-msgstr ""
+msgstr "Connexion"
 
-#: /home/anthony/Dropbox/site_ltp/index.php:21
+#: ../../../pages/home.page.php:17
 msgid "Mot de passe oublié ?"
-msgstr ""
+msgstr "Mot de passe oublié ?"
 
-#: /home/anthony/Dropbox/site_ltp/index.php:21
+#: ../../../pages/home.page.php:17
 msgid "Inscription"
-msgstr ""
+msgstr "Inscription"
 
-#: /home/anthony/Dropbox/site_ltp/index.php:25
+#: ../../../pages/home.page.php:21
 msgid "© 2012 M1 STIC Informatique. Tous droits réservés."
-msgstr ""
+msgstr "© 2012 M1 STIC Informatique. Tous droits réservés."

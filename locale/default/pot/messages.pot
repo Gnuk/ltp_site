@@ -2,72 +2,72 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-06 13:38+0100\n"
+"POT-Creation-Date: 2012-10-06 13:40+0100\n"
 "PO-Revision-Date: 2012-10-06 13:40+0100\n"
 "Last-Translator: \n"
-"Language-Team: Open Team MAP\n"
+"Language-Team: Open Team Map\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: T_;T_ngettext:1,2\n"
 "X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ./../../..\n"
 
 #: ../../../config/class/debug.class.php:69
 msgid "Débogage"
-msgstr "Debug"
+msgstr ""
 
 #: ../../../config/class/debug.class.php:83
 msgid "Erreur"
-msgstr "Error"
+msgstr ""
 
 #: ../../../config/class/debug.class.php:86
 msgid "Avertissement"
-msgstr "Warning"
+msgstr ""
 
 #: ../../../config/class/debug.class.php:89
 msgid "Indication"
-msgstr "Notice"
+msgstr ""
 
 #: ../../../config/class/debug.class.php:92
 msgid "Débogage non identifié"
-msgstr "Debugging unidentified"
+msgstr ""
 
 #: ../../../config/class/page.class.php:18
 #: ../../../config/class/page.class.php:21
 msgid "Erreur 404"
-msgstr "Error 404"
+msgstr ""
 
 #: ../../../config/class/page.class.php:23
 msgid "Veuillez créer une page error404.html à la racine"
-msgstr "Please create error404.html in the root website directory"
+msgstr ""
 
 #: ../../../pages/home.page.php:7
 msgid "LocalizeTeaPot"
-msgstr "LocalizeTeaPot"
+msgstr ""
 
 #: ../../../pages/home.page.php:13
 msgid "Identifiant :"
-msgstr "Login :"
+msgstr ""
 
 #: ../../../pages/home.page.php:14
 msgid "Mot de passe :"
-msgstr "Password :"
+msgstr ""
 
 #: ../../../pages/home.page.php:15
 msgid "Connexion"
-msgstr "Connection"
+msgstr ""
 
 #: ../../../pages/home.page.php:17
 msgid "Mot de passe oublié ?"
-msgstr "Forget password ?"
+msgstr ""
 
 #: ../../../pages/home.page.php:17
 msgid "Inscription"
-msgstr "Subscribe"
+msgstr ""
 
 #: ../../../pages/home.page.php:21
 msgid "© 2012 M1 STIC Informatique. Tous droits réservés."
-msgstr "© 2012 M1 STIC Informatique. All rights reserved."
+msgstr ""

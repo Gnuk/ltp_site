@@ -1,5 +1,9 @@
 <?php
 class Config{
+	/**
+	* Récupère le langage du navigateur
+	* @return Le langage au format des LOCALES (voir librairie gettext)
+	*/
 	private static function getLanguage(){
 		$language_info = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 		$lang = explode('-',$language_info[0]);
@@ -7,6 +11,9 @@ class Config{
 		return $locale;
 	}
 	
+	/**
+	* Définit les LOCALES pour le site
+	*/
 	public static function setLocales(){
 		# Define constants
 		define('DEFAULT_ENCODING', 'UTF-8');

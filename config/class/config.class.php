@@ -38,6 +38,13 @@ class Config{
 	}
 	
 	/**
+	* Affiche la Locale de votre langue
+	*/
+	public static function showLocale(){
+		echo self::getLanguageFromClient();
+	}
+	
+	/**
 	* Récupère le langage du navigateur
 	* @return Le langage au format des LOCALES (voir librairie gettext)
 	*/

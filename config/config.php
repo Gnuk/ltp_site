@@ -1,5 +1,4 @@
 <?php
-
 	# Affichage des erreurs
 	error_reporting(E_ALL);
 
@@ -18,5 +17,5 @@
 			require_once(LINK_CONFIG . 'class/' . $file);
 		}
 	}
-	Config::setLocales();
+	Config::setConfig();
 ?>

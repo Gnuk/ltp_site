@@ -9,9 +9,13 @@ require_once(Module::getLink('osm') . 'marker.class.php');
 class ModOsm{
 	private $divName;
 	private $marker = array();
+	private $defaultLonLat;
+	private $defaultZoom;
 	
-	public function __construct($divName='mod_osm_map'){
+	public function __construct($divName='mod_osm_map', $defaultLonLat = '5.8714950, 45.6', $defaultZoom = 11){
 		$this->divName = $divName;
+		$this->defaultLonLat = $defaultLonLat;
+		$this->defaultZoom = $defaultZoom;
 	}
 	
 	public function addMarker($marker){
@@ -67,9 +71,19 @@ class ModOsm{
 
 		markers.addMarker(marker);
 	}
-	var center = new OpenLayers.LonLat(5.8714950, 45.6).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-	var zoom=11;
+<?php
+	if(!empty($this->marker)){
+?>
+	var bounds = markers.getDataExtent();
+	map.zoomToExtent(bounds);
+<?php
+	}
+	else{
+?>
+	var center = new OpenLayers.LonLat(<?php echo $this->defaultLonLat; ?>).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+	var zoom=<?php echo $this->defaultZoom;?>;
 	map.setCenter (center, zoom);
+<?php } ?>
 </script>
 <?php
 	}

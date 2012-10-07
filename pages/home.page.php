@@ -25,6 +25,14 @@
 			</p>
 		</div>
 	</body>
+	<?php
+		Module::load('osm');
+		$osm = new ModOsm('carte');
+		$marker = new ModOsmMarker('friends', 'Amis');
+		$marker->add(5.92 ,45.57, 'José', 'Description de José');
+		$marker->add(5.8714950, 45.6470858, 'Hugues', 'Description de Hugues');
+		$osm->addMarker($marker);
+	?>
 </html>
 <?php
 	}

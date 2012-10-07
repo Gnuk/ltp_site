@@ -23,8 +23,6 @@
 		<div id="mapdiv"></div>
 		<script src="lib/openlayers/OpenLayers.js"></script>
 		<script>
-			var fromProjection = new OpenLayers.Projection("EPSG:4326");
-			var toProjection = new OpenLayers.Projection("EPSG:900913");
 			var options = {
 				controls: [
 				new OpenLayers.Control.Navigation(),

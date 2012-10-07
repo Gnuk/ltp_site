@@ -6,17 +6,14 @@
 * @see ModOsm
 */
 class ModOsmMarker{
-	private $name;
 	private $alias;
 	private $marker = array();
 	
 	/**
 	* Constructeur
-	* @param string $name Le nom du layer de marqueurs
-	* @param string $name L'alias du layer de marqueurs
+	* @param string $alias L'alias du layer de marqueurs
 	*/
-	public function __construct($name, $alias){
-		$this->name=$name;
+	public function __construct($alias){
 		$this->alias=$alias;
 	}
 	
@@ -27,15 +24,13 @@ class ModOsmMarker{
 	* @param string $title Le titre du point
 	* @param string $description La description du point
 	*/
-	public function add($lon, $lat, $title=null, $description=null){
-		$this->marker[]['lon'] = $lon;
-		$this->marker[]['lat'] = $lat;
-		if(isset($title)){
-			$this->marker[]['title'] = $title;
+	public function add($lon, $lat, $html=null){
+		$marker['lon'] = $lon;
+		$marker['lat'] = $lat;
+		if(isset($html)){
+			$marker['html'] = $html;
 		}
-		if(isset($title)){
-			$this->marker[]['description'] = $description;
-		}
+		$this->marker[] = $marker;
 	}
 	
 	/**
@@ -43,7 +38,33 @@ class ModOsmMarker{
 	* @todo Implémenter la méthode
 	*/
 	public function show(){
-		# Unimplemented method
+?>
+	markers = new OpenLayers.Layer.Markers("<?php echo $this->alias; ?>");
+	map.addLayer(markers);
+<?php
+ 		foreach($this->marker as $number => $marker){
+			if(isset($marker['html'])){
+
+?>	addMarker(new OpenLayers.LonLat(<?php echo $marker['lon'] . ',' . $marker['lat'];?>).transform(
+		new OpenLayers.Projection("EPSG:4326"), 
+		map.getProjectionObject() 
+	), AutoSizeAnchored, '<?php
+				if(isset($marker['html'])){
+?><?php echo $marker['html']; ?><?php
+				}
+?>');
+<?php
+			}
+			else{
+?>
+	position = new OpenLayers.LonLat(<?php echo $marker['lon'] . ',' . $marker['lat'];?>).transform(
+		new OpenLayers.Projection("EPSG:4326"), 
+		map.getProjectionObject()
+	);
+	markers.addMarker(new OpenLayers.Marker(position));
+<?php
+			}
+ 		}
 	}
 }
 ?>

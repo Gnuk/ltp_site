@@ -8,6 +8,17 @@
 		<link rel="stylesheet" href="styles/style.css" />
 		<link rel="shortcut icon" href="images/icone.png" />
 		<title><?php echo T_('LocalizeTeaPot');?></title>
+		<style>
+			.olPopup{
+				box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
+			}
+			.olPopup, .olPopupContent{
+				border-radius: 10px;
+			}
+			.olPopupContent{
+				
+			}
+		</style>
 	</head>
 	
 	<body>
@@ -18,21 +29,26 @@
 			<input type="submit" value="<?php echo T_('Connexion');?>" name="boutonConnexion" class="submit" id="connexion" />
 		</form>
 		<span id="recupInscrip" ><a href="index.php?page=recupMDP" ><?php echo T_('Mot de passe oublié ?');?></a> - <a href="index.php?page=inscription" ><?php echo T_('Inscription');?></a></span>
-		<div id="carte">
-			<iframe id="carteOSM" width="425" height="350" src="http://www.openstreetmap.org/export/embed.html?bbox=5.6528,45.5355,6.0689,45.7594&amp;layer=mapnik"></iframe>
+		<div id="carte" style=" width:425; height:350;">
+<!--			<iframe id="carteOSM" width="425" height="350" src="http://www.openstreetmap.org/export/embed.html?bbox=5.6528,45.5355,6.0689,45.7594&amp;layer=mapnik"></iframe>
 			<p id="droitsAuteurs">
 				<?php echo T_('© 2012 M1 STIC Informatique. Tous droits réservés.'); ?>
-			</p>
+			</p>-->
 		</div>
+		<?php
+			Module::load('osm');
+			$osm = new ModOsm('carte');
+			$marker = new ModOsmMarker('Amis');
+			$marker->add(5.92 ,45.57, '<h1>José</h1>');
+			$marker->add(5.8714950, 45.6470858, '<h1>Hugues</h1>');
+			$osm->addMarker($marker);
+			$mark2 = new ModOsmMarker('Love');
+			$mark2->add(5.93 ,45.57);
+			$mark2->add(5.88, 45.6470858);
+			$osm->addMarker($mark2);
+			$osm->show();
+		?>
 	</body>
-	<?php
-		Module::load('osm');
-		$osm = new ModOsm('carte');
-		$marker = new ModOsmMarker('friends', 'Amis');
-		$marker->add(5.92 ,45.57, 'José', 'Description de José');
-		$marker->add(5.8714950, 45.6470858, 'Hugues', 'Description de Hugues');
-		$osm->addMarker($marker);
-	?>
 </html>
 <?php
 	}

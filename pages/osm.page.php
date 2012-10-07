@@ -43,19 +43,56 @@
 			map = new OpenLayers.Map("mapdiv", options);
 			map.addLayer(new OpenLayers.Layer.OSM());
 			
-		
-			var position1 = addPosition( 5.92 ,45.57 );
-			var position2 = addPosition( 5.8714950, 45.6470858 );
-			var center = addPosition( 5.8714950, 45.6 );
-		
-			var zoom=12;
-		
-			var markers = new OpenLayers.Layer.Markers( "<?php echo T_("Amis"); ?>" );
+			AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, { 'autoSize': true});
+
+			markers = new OpenLayers.Layer.Markers("zibo");
 			map.addLayer(markers);
+
+			var longlat, popupClass, popupContentHTML;
+
+			longlat = new OpenLayers.LonLat(-55,20);
+			popupClass = AutoSizeAnchored;
+			popupContentHTML = 'Salut, ça va ?';
+			addMarker(longlat, popupClass, popupContentHTML);
+
+			function addMarker(ll, popupClass, popupContentHTML, closeBox, overflow) {
+						var feature = new OpenLayers.Feature(markers, ll); 
+						feature.closeBox = closeBox;
+						feature.popupClass = popupClass;
+						feature.data.popupContentHTML = popupContentHTML;
+						feature.data.overflow = (overflow) ? "auto" : "hidden";
+								
+						var marker = feature.createMarker();
+
+						var markerClick = function (evt) {
+							if (this.popup == null) {
+								this.popup = this.createPopup(this.closeBox);
+								map.addPopup(this.popup);
+								this.popup.show();
+							} else {
+								this.popup.toggle();
+							}
+							currentPopup = this.popup;
+							OpenLayers.Event.stop(evt);
+						};
+						marker.events.register("mousedown", feature, markerClick);
+
+						markers.addMarker(marker);
+			}
 		
-			markers.addMarker(new OpenLayers.Marker(position1, getIcon()));
-			markers.addMarker(new OpenLayers.Marker(position2, getIcon()));
-		
+// 			var position1 = addPosition( 5.92 ,45.57 );
+// 			var position2 = addPosition( 5.8714950, 45.6470858 );
+ 			var center = addPosition( 5.8714950, 45.6 );
+// 		
+ 			var zoom=12;
+// 		
+// 			var markers = new OpenLayers.Layer.Markers( "<?php echo T_("Amis"); ?>" );
+// 			map.addLayer(markers);
+// 		
+// 			markers.addMarker(new OpenLayers.Marker(position1, getIcon()));
+// 			markers.addMarker(new OpenLayers.Marker(position2, getIcon()));
+// 			
+// 		
 			map.setCenter (center, zoom);
 		</script>
 	</body>

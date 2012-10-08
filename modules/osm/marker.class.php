@@ -21,8 +21,7 @@ class ModOsmMarker{
 	* Ajoute un marqueur
 	* @param int $lon La longitude
 	* @param int $lat La lattitude
-	* @param string $title Le titre du point
-	* @param string $description La description du point
+	* @param string $html Le code html à ajouter dans la popup du point
 	*/
 	public function add($lon, $lat, $html=null){
 		$marker['lon'] = $lon;
@@ -35,7 +34,6 @@ class ModOsmMarker{
 	
 	/**
 	* Affiche le marqueur
-	* @todo Implémenter la méthode
 	*/
 	public function show(){
 ?>

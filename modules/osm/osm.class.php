@@ -25,6 +25,7 @@ class ModOsm{
 	public function show(){
 ?>
 <script src="<?php echo LINKR_LIB; ?>openlayers/OpenLayers.js"></script>
+<script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
 <script>
 	var options = {
 		controls: [
@@ -40,7 +41,9 @@ class ModOsm{
 		return new OpenLayers.Icon('<?php echo LINKR_IMAGES . 'marker.png';?>',size,offset);
 	}
 	map = new OpenLayers.Map("<?php echo $this->divName;?>", options);
-	map.addLayer(new OpenLayers.Layer.OSM());
+// 	map.addLayer(new OpenLayers.Layer.OSM("OSM"));
+	map.addLayer(new OpenLayers.Layer.OSM.Mapnik("Mapnik"));
+	map.addLayer(new OpenLayers.Layer.OSM.CycleMap("CycleMap"));
 	AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, { 'autoSize': true});
 <?php
 	foreach($this->marker AS $number => $marker){

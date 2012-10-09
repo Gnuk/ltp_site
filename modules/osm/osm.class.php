@@ -42,7 +42,7 @@ class ModOsm{
 	public function show(){
 ?>
 <script src="<?php echo LINKR_LIB; ?>openlayers/OpenLayers.js"></script>
-<script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
+<script src="<?php echo Module::getRLink('osm');?>js/OpenStreetMap.js"></script>
 <script>
 	var options = {
 		controls: [

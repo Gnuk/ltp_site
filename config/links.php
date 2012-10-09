@@ -8,5 +8,6 @@
 	define('LINK_PAGES', LINK_ROOT . LINK_R . 'pages/');
 	define('LINKR_IMAGES', LINK_R . 'images/');
 	define('LINK_IMAGES', LINKR_IMAGES . 'images/');
-	define('LINK_MODULES', LINK_ROOT . LINK_R . 'modules/');
+	define('LINKR_MODULES', LINK_R . 'modules/');
+	define('LINK_MODULES', LINK_ROOT . LINKR_MODULES);
 ?>

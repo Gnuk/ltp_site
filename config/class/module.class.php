@@ -9,5 +9,8 @@ class Module{
 	public static function getLink($moduleName){
 		return LINK_MODULES . $moduleName . '/';
 	}
+	public static function getRLink($moduleName){
+		return LINKR_MODULES . $moduleName . '/';
+	}
 }
 ?>

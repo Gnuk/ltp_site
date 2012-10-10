@@ -14,7 +14,7 @@ class Debug{
 	/**
 	* Constructeur de la débug
 	* @param boolean $debugMode Activer ou désactiver le mode debug
-	* @param array $whatShow Indique ce qu'il faut afficher
+	* @param array $whatShow Indique ce qu'il faut afficher (Erreur, Avertissement, Indication, Autre)
 	* @param boolean $onLog Créer un log à partir des erreurs
 	*/
 	public function __construct($debugMode=false, $whatShow=array(true, true, false, false), $onLog=false){

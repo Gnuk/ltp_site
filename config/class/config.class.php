@@ -10,17 +10,19 @@ class Config{
 	private static $encoding;
 	private static $localedomain;
 	private static $locale;
+	private static $debug;
 	
 	/**
 	* Génère la configuration
 	*/
 	public static function setConfig(){
+		self::$debug = new Debug();
 		self::$encoding = 'UTF-8';
 		self::$defaultLocale='en_US';
 		self::$localedomain='messages';
 		self::$locale=self::$defaultLocale;
-		self::setSessions();
 		self::setLocales();
+		self::setSessions();
 	}
 	
 	/**
@@ -71,20 +73,26 @@ class Config{
 		T_textdomain(self::$localedomain);
 
 		header('Content-type: text/html; charset=' . self::$encoding);
+		self::$debug->add(T_('Locales initialisées'));
 	}
 	
 	/**
 	* Récupère la session et l'initialise
+	* @param string $connection
+	* @param string $deconnection
 	*/
-	private static function setSessions(){
-		if(isset($_GET['deconnection'])){
-			self::deconnection();
+	private static function setSessions($connection = 'connection', $disconnection = 'disconnection'){
+		if(isset($_GET[$disconnection])){
+			self::$debug->add(T_('Déconnexion'));
+			self::disconnect();
 		}
 		session_start();
-		if(isset($_POST['login']) AND isset($_POST['password'])){
+		if(isset($_GET[$connection]) AND isset($_POST['login']) AND isset($_POST['password'])){
+			self::$debug->add(T_('Tentative de connexion'));
 			self::connect();
 		}
 		else if(empty($_SESSION)){
+			self::$debug->add(T_('Anonymous'));
 			self::putSessions();
 		}
 	}
@@ -136,7 +144,7 @@ class Config{
 	/**
 	* Déconnexion
 	*/
-	public static function deconnection(){
+	public static function disconnect(){
 		session_start();
 		$_SESSION = array();
 		session_destroy();

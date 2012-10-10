@@ -23,8 +23,8 @@
 	
 	<body>
 		<img id="iconeAccueil" src="images/icone_accueil.png" alt="iconeAccueil" />
-		<form name="form1" method="post" action="index.php" >
-			<label for="pseudo"><?php echo T_('Identifiant :');?></label><input type="text" name="pseudo" maxlength="32" id="pseudo" /><br/>
+		<form name="form1" method="post" action="?connection" >
+			<label for="login"><?php echo T_('Identifiant :');?></label><input type="text" name="login" maxlength="32" id="login" /><br/>
 			<label for="password"><?php echo T_('Mot de passe :');?></label><input type="password" name="password" maxlength="64" id="password" /><br/>
 			<input type="submit" value="<?php echo T_('Connexion');?>" name="boutonConnexion" class="submit" id="connexion" />
 		</form>

@@ -1,8 +1,10 @@
 <?php
+namespace gnk;
 /**
 * Gestion des pages
 * @author Anthony REY <gnuk@mailoo.org>
 * @since 05/10/2012
+* @namespace gnk
 */
 class Page{
 	
@@ -16,14 +18,14 @@ class Page{
 	* @param string $defaultPage La page par défaut
 	*/
 	public static function show($getName = 'p', $defaultPage = 'home'){
-		Page::$defaultPage = $defaultPage;
-		Page::$page = $defaultPage;
-		if(isset($_GET[$getName]) AND is_file(Page::getChemin($_GET[$getName]))){
-			Page::$page = $_GET[$getName];
-			require_once(Page::getChemin(Page::$page));
+		self::$defaultPage = $defaultPage;
+		self::$page = $defaultPage;
+		if(isset($_GET[$getName]) AND is_file(self::getChemin($_GET[$getName]))){
+			self::$page = $_GET[$getName];
+			require_once(self::getChemin(self::$page));
 		}
 		else{
-			Page::showDefault();
+			self::showDefault();
 		}
 	}
 	
@@ -42,9 +44,9 @@ class Page{
 	* Affiche la page par défaut si elle existe
 	*/
 	public static function showDefault(){
-		if(is_file(Page::getChemin(Page::$defaultPage)) AND Page::$rights){
-			Page::$page = Page::$defaultPage;
-			require_once(Page::getChemin(Page::$defaultPage));
+		if(is_file(self::getChemin(self::$defaultPage)) AND self::$rights){
+			self::$page = self::$defaultPage;
+			require_once(self::getChemin(self::$defaultPage));
 		}
 		else if(is_file(LINK_ERROR404)){
 			require_once(LINK_ERROR404);
@@ -73,13 +75,13 @@ class Page{
 	*/
 	public static function haveRights($need=1, $others=1){
 		$right=false;
-		if(Page::getRights() != '?'){
+		if(self::getRights() != '?'){
 			echo 'Uninplemented';
 		}
-		else if(Page::goodRight($need, $others)){
+		else if(self::goodRight($need, $others)){
 			$right = true;
 		}
-		Page::$rights = $right;
+		self::$rights = $right;
 		return $right;
 	}
 	

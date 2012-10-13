@@ -1,11 +1,13 @@
 <?php
+namespace module\osm;
 /**
 * Module créant une marker OSM via php
 * @author Anthony REY <anthony.rey@mailoo.org>
 * @since 08/10/2012
-* @see ModOsm
+* @see Osm
+* @namespace module\osm
 */
-class ModOsmMarker{
+class Marker{
 	private $alias;
 	private $marker = array();
 	

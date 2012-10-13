@@ -1,6 +1,9 @@
 <?php
+namespace gnk;
 /**
 * Gestion des modules
+* @author Anthony Rey <anthony.rey@mailoo.org>
+* @namespace gnk
 */
 class Module{
 	public static function load($moduleName){

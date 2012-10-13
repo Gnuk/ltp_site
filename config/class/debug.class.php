@@ -1,8 +1,10 @@
 <?php
+namespace gnk;
 /**
 * Classe débug : Permet de déboguer le programme
 * @author Anthony REY <anthony.rey@mailoo.org>
 * @since 06/10/2012
+* @namespace gnk
 */
 class Debug{
 	

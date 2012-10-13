@@ -1,8 +1,14 @@
 <?php
+namespace gnk;
+
+# Utilisation de Setup et EntityManager pour Doctrine
+use \Doctrine\ORM\Tools\Setup;
+use \Doctrine\ORM\EntityManager;
 /**
 * Gère la configuration du site
 * @author Anthony REY <anthony.rey@mailoo.org>
 * @since 06/10/2012
+* @namespace gnk
 */
 class Config{
 
@@ -16,12 +22,13 @@ class Config{
 	* Génère la configuration
 	*/
 	public static function setConfig(){
-		self::$debug = new Debug();
+		self::$debug = new Debug(true);
 		self::$encoding = 'UTF-8';
 		self::$defaultLocale='en_US';
 		self::$localedomain='messages';
 		self::$locale=self::$defaultLocale;
 		self::setLocales();
+		self::setDatabase();
 		self::setSessions();
 	}
 	
@@ -137,17 +144,38 @@ class Config{
 	/**
 	* Vérification de l'utilisateur
 	*/
-	public static function connect(){
+	private static function connect(){
 		self::putSessions();
 	}
 	
 	/**
 	* Déconnexion
 	*/
-	public static function disconnect(){
+	private static function disconnect(){
 		session_start();
 		$_SESSION = array();
 		session_destroy();
+	}
+	
+	/**
+	* Connecte la base de donnée
+	*/
+	public static function setDatabase(){
+		$doctrineDir = LINK_LIB . 'doctrine';
+		if(is_dir($doctrineDir)){
+			if(is_file($doctrineDir.'/Doctrine/ORM/Tools/Setup.php')){
+				require_once($doctrineDir.'/Doctrine/ORM/Tools/Setup.php');
+				self::$debug->add(sprintf(T_('Fichier %s chargé'), $doctrineDir.'/Doctrine/ORM/Tools/Setup.php'));
+				$lib = $doctrineDir;
+				Setup::registerAutoloadDirectory($lib);
+			}
+			else{
+				self::$debug->addWarning(sprintf(T_('Le fichier "%s" est absent, peut-être que Doctrine n\'est pas installé'), $doctrineDir));
+			}
+		}
+		else{
+			self::$debug->addWarning(sprintf(T_('La bibliothèque Doctrine "%s" est absente'), $doctrineDir));
+		}
 	}
 }
 ?>

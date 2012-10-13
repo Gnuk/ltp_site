@@ -1,4 +1,8 @@
 <?php
+	use \gnk\Page;
+	use \gnk\Module;
+	use \module\Osm;
+	use \module\osm\Marker;
 	if(Page::haveRights()){
 ?>
 <!DOCTYPE html>
@@ -37,12 +41,12 @@
 		</div>
 		<?php
 			Module::load('osm');
-			$osm = new ModOsm('carte');
-			$marker = new ModOsmMarker('Amis');
+			$osm = new Osm('carte');
+			$marker = new Marker('Amis');
 			$marker->add(5.92 ,45.57, '<h1>José</h1>');
 			$marker->add(5.8714950, 45.6470858, '<h1>Hugues</h1>');
 			$osm->addMarker($marker);
-			$mark2 = new ModOsmMarker('Love');
+			$mark2 = new Marker('Love');
 			$mark2->add(5.93 ,45.57);
 			$mark2->add(5.88, 45.6470858);
 			$osm->addMarker($mark2);

@@ -5,3 +5,5 @@
 /config.php
 # Ignorer le mo généré par le pot
 /locale/default/pot/messages.mo
+# Ignorer doctrine.php
+/doctrine.php

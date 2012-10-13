@@ -4,6 +4,10 @@ namespace gnk;
 # Utilisation de Setup et EntityManager pour Doctrine
 use \Doctrine\ORM\Tools\Setup;
 use \Doctrine\ORM\EntityManager;
+use \Symfony\Component\Console\Helper\HelperSet;
+use \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
+use \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
+use \Doctrine\ORM\Tools\Console\ConsoleRunner;
 /**
 * Gère la configuration du site
 * @author Anthony REY <anthony.rey@mailoo.org>
@@ -168,6 +172,23 @@ class Config{
 				self::$debug->add(sprintf(T_('Fichier %s chargé'), $doctrineDir.'/Doctrine/ORM/Tools/Setup.php'));
 				$lib = $doctrineDir;
 				Setup::registerAutoloadDirectory($lib);
+				/*// Create a simple "default" Doctrine ORM configuration for XML Mapping
+				$isDevMode = true;
+				//$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
+				// or if you prefer yaml or annotations
+				$config = Setup::createAnnotationMetadataConfiguration(array(LINK_DATABASE."entities"), $isDevMode);
+				//$config = Setup::createYAMLMetadataConfiguration(array(__DIR__."/config/yaml"), $isDevMode);
+
+				// database configuration parameters
+				$conn = array(
+					'driver' => 'pdo_mysql',
+					'user' => 'root',
+					'password' => '',
+					'dbname' => 'doctrinetest'
+				);
+				
+				// obtaining the entity manager
+				$entityManager = EntityManager::create($conn, $config);*/
 			}
 			else{
 				self::$debug->addWarning(sprintf(T_('Le fichier "%s" est absent, peut-être que Doctrine n\'est pas installé'), $doctrineDir));

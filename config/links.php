@@ -10,4 +10,5 @@
 	define('LINK_IMAGES', LINKR_IMAGES . 'images/');
 	define('LINKR_MODULES', LINK_R . 'modules/');
 	define('LINK_MODULES', LINK_ROOT . LINKR_MODULES);
+	define('LINK_DATABASE', LINK_ROOT . 'database');
 ?>

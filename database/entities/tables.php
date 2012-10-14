@@ -1,4 +1,5 @@
 <?php
+namespace gnk\db;
 use \Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -14,6 +15,8 @@ class Users
 	protected $id;
 	/** @Column(type="string", length=255, unique=true) **/
 	protected $login;
+	/** @Column(type="string", length=255) **/
+	protected $password;
 	/** @Column(type="integer") **/
 	protected $rights;
 	/** @Column(type="datetime") **/
@@ -24,8 +27,24 @@ class Users
 	protected $cookie;
 	/** @Column(type="string", length=255, unique=true) **/
 	protected $mail;
-	/** @Column(type="string", length=255, nullable=true) **/
+}
+
+/**
+* @Entity
+*/
+class VerifyUsers
+{
+	/** 
+	* @Id
+	* @OneToOne(targetEntity="Users")
+	**/
+	protected $user;
+	/** @Column(type="string") **/
 	protected $key;
+	
+	public function __construct($user){
+		$this->user = $user;
+	}
 }
 
 /**
@@ -64,6 +83,8 @@ class Status
     protected $latitude;
 	/** @Column(type="text") **/
     protected $message;
+	/** @Column(type="datetime") **/
+    protected $date;
     /** @ManyToOne(targetEntity="Users") **/
     protected $user;
     

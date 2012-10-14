@@ -1,8 +1,8 @@
 <?php
 class Fonctions{
 	/**
-	* Connexion à la Base de donnée
-	* @param string $nameDB Nom de la base de donnée
+	* Connexion Ã  la Base de donnÃ©e
+	* @param string $nameDB Nom de la base de donnÃ©e
 	* @deprecated Not used at this time
 	*/
 	public function connexion_DB($name_DB)
@@ -17,7 +17,7 @@ class Fonctions{
 	}
 
 	/**
-	* Déconnection de la BDD
+	* DÃ©connection de la BDD
 	* @deprecated Not used at this time
 	*/
 	public function deconnexion_DB()
@@ -26,8 +26,8 @@ class Fonctions{
 	}
 
 	/**
-	* Fonction qui exécute une requète SQL. Si la requête ne passe pas, elle renvoie le message d'erreur MySQL
-	* @param string $strSQL Chaîne SQL
+	* Fonction qui exÃ©cute une requÃ¨te SQL. Si la requÃªte ne passe pas, elle renvoie le message d'erreur MySQL
+	* @param string $strSQL ChaÃ®ne SQL
 	* @result mysql_query $result Correspond aux enregistrements correspondants
 	* @deprecated Not used at this time
 	*/
@@ -46,10 +46,10 @@ class Fonctions{
 
 
 	/**
-	* Fonction permettant formater le message affiché à l'internaute
+	* Fonction permettant formater le message affichÃ© Ã  l'internaute
 	* @param boolean $message_erreur Erreur ou non.
-	* @param string $message Une variable contenant le message à afficher.
-	* @return string $retour Le message formaté.
+	* @param string $message Une variable contenant le message Ã  afficher.
+	* @return string $retour Le message formatÃ©.
 	* @deprecated Not used at this time
 	*/
 	public function retourMessage($message_erreur,$message)
@@ -66,9 +66,9 @@ class Fonctions{
 	}
 
 	/**
-	* Fonction permettant de générer une chaine de caractères alpha-numérique aléatoire
-	* @param int $longueur La taille de la chaine de caractères à générer.
-	* @return string $chaine La chaine de caractères alpha-numérique générée aléatoirement.
+	* Fonction permettant de gÃ©nÃ©rer une chaine de caractÃ¨res alpha-numÃ©rique alÃ©atoire
+	* @param int $longueur La taille de la chaine de caractÃ¨res Ã  gÃ©nÃ©rer.
+	* @return string $chaine La chaine de caractÃ¨res alpha-numÃ©rique gÃ©nÃ©rÃ©e alÃ©atoirement.
 	* @deprecated Not used at this time
 	*/
 	public function alea($longueur)
@@ -85,8 +85,8 @@ class Fonctions{
 	}
 
 	/**
-	* Fonction permettant de découper un temps en secondes au format JJj HHh:MMm:SSs
-	* Cette fonction est utilisée pour l'affichage des comptes non validés
+	* Fonction permettant de dÃ©couper un temps en secondes au format JJj HHh:MMm:SSs
+	* Cette fonction est utilisÃ©e pour l'affichage des comptes non validÃ©s
 	* @param int $t Le temps en secondes.
 	* @param string $heure Le temps au format JJj HHh:MMm:SSs.
 	* @deprecated Not used at this time
@@ -134,7 +134,7 @@ class Fonctions{
 	//##################################################################################################################################//
 
 	/**
-	* Fonction permettant d'afficher les comptes non validés avec l'adresse mail
+	* Fonction permettant d'afficher les comptes non validÃ©s avec l'adresse mail
 	* @deprecated Not used at this time
 	*/
 	public function affichageCompteNonValide()
@@ -161,7 +161,7 @@ class Fonctions{
 			$check = '';
 		}
 		
-		echo 'Affichage des comptes n\'ayant pas été activé';
+		echo 'Affichage des comptes n\'ayant pas Ã©tÃ© activÃ©';
 		while($tabl_result = mysql_fetch_array($resultat))
 		{
 			if($i == 0)
@@ -206,7 +206,7 @@ class Fonctions{
 		}
 		echo '</form></div>';
 		echo '<div id="test" ><a href="http://localhost/Plateforme/index.php?checked" >Tout cocher</a> / ';
-		echo '<a href="http://localhost/Plateforme/index.php?unchecked" >Tout décocher</a>';
+		echo '<a href="http://localhost/Plateforme/index.php?unchecked" >Tout dÃ©cocher</a>';
 		echo '<button class="mult_submit" type="submit" name="effacer" value="Effacer" title="Effacer" >
 		<img src="imagesSite/supprimer.png" title="Effacer" alt="Effacer" class="icon" height="16" width="16" ></button></div>';
 	}
@@ -218,7 +218,7 @@ class Fonctions{
 	//##################################################################################################################################//
 
 	/**
-	* Fonction permettant d'afficher soit le formulaire de connection (pour l'internaute venant d'arriver sur la page), soit un bouton de déconnection pour l'utilisateur déjà connecté.
+	* Fonction permettant d'afficher soit le formulaire de connection (pour l'internaute venant d'arriver sur la page), soit un bouton de dÃ©connection pour l'utilisateur dÃ©jÃ  connectÃ©.
 	* @deprecated Not used at this time
 	*/
 	public function connect()
@@ -228,7 +228,7 @@ class Fonctions{
 			$connect = '<label> ----- '.$_SESSION['login'].' ----- </label><div class="connection" >
 						<a href="#" >Mon profil</a>
 						<form name="form1" method="post" >
-							<input type="submit" value="Déconnexion" name="boutonDeconnexion" class="submit" />
+							<input type="submit" value="DÃ©connexion" name="boutonDeconnexion" class="submit" />
 						</form></div>';
 		}
 		else
@@ -239,15 +239,15 @@ class Fonctions{
 							<label for="password">Mot de passe :</label><input type="password" name="password" maxlength="64" id="password" /><br/>
 							<input type="submit" value="Connexion" name="boutonConnexion" class="submit" id="connexion" />
 						</form>
-						<span id="recupInscrip" ><a href="index.php?page=recupMDP" >Mot de passe oublié?</a> - <a href="index.php?page=inscription" >Inscription</a></span></div>';
+						<span id="recupInscrip" ><a href="index.php?page=recupMDP" >Mot de passe oubliÃ©?</a> - <a href="index.php?page=inscription" >Inscription</a></span></div>';
 		}
 		return $connect;
 	}
 
 	/**
-	* Fonction permettant de vérifier les identifiants d'un utilisateur
+	* Fonction permettant de vÃ©rifier les identifiants d'un utilisateur
 	* @see retourMessage
-	* @return string L'utilisateur accède au contenu qui lui est destiné en fonction de son statut si les identifiants sont corrects, ou on affiche un message d'erreur.
+	* @return string L'utilisateur accÃ¨de au contenu qui lui est destinÃ© en fonction de son statut si les identifiants sont corrects, ou on affiche un message d'erreur.
 	* @deprecated Not used at this time
 	*/
 	public function verifierConnexion()
@@ -268,12 +268,12 @@ class Fonctions{
 		}
 		elseif(!empty($pseudo) && $pseudo == $tabl_result['pseudo'] && $tabl_result['compte_valide'] == true && $tabl_result['statut'] == 0)
 		{
-			$message = 'Ce compte a été vérouillé car le nombre essais de mots de passe a été suppérieur à 3. Un message a été envoyé sur la messagerie correspondant au compte.';
+			$message = 'Ce compte a Ã©tÃ© vÃ©rouillÃ© car le nombre essais de mots de passe a Ã©tÃ© suppÃ©rieur Ã  3. Un message a Ã©tÃ© envoyÃ© sur la messagerie correspondant au compte.';
 			$message_erreur = true;
 		}
 		elseif(!empty($pseudo) && $pseudo == $tabl_result['pseudo'] && $tabl_result['compte_valide'] == true && $tabl_result['statut'] == -1)
 		{
-			$message = 'Ce compte a été vérouillé car son utilisateur a été banni.';
+			$message = 'Ce compte a Ã©tÃ© vÃ©rouillÃ© car son utilisateur a Ã©tÃ© banni.';
 			$message_erreur = true;
 		}
 		else
@@ -288,14 +288,14 @@ class Fonctions{
 					$requete = mysql_query($sql) or die(mysql_error());
 				}
 			}
-			$message = 'Le mot de passe est erroné ou le compte n\'existe pas.';
+			$message = 'Le mot de passe est erronÃ© ou le compte n\'existe pas.';
 			$message_erreur = true;
 		}
 		return retourMessage($message_erreur,$message);
 	}
 
 	/**
-	* Fonction permettant de déconnecter un utilisateur
+	* Fonction permettant de dÃ©connecter un utilisateur
 	* @see retourMessage
 	* @return Destruction de la session de l'utilisateur.
 	* @deprecated Not used at this time
@@ -306,7 +306,7 @@ class Fonctions{
 		unset($_SESSION);
 		$_SESSION = array();
 		@session_destroy();
-		$message = 'Vous êtes déconnecté.';
+		$message = 'Vous Ãªtes dÃ©connectÃ©.';
 		$message_erreur = false;
 		return retourMessage($message_erreur,$message);
 	}
@@ -321,9 +321,9 @@ class Fonctions{
 	//##################################################################################################################################//
 
 	/**
-	* Fonction permettant de valider l'inscription de l'utilisateur grâce à son identifiant et au code généré lors de l'envoie du mail
+	* Fonction permettant de valider l'inscription de l'utilisateur grÃ¢ce Ã  son identifiant et au code gÃ©nÃ©rÃ© lors de l'envoie du mail
 	* @see retourMessage
-	* @return boolean Écriture d'un booléen (true) dans la base de données si les informations sont justes et création d'un dossier pour l'utilisateur (le dossier prendra comme nom celui de l'utilisateur)
+	* @return boolean Ã‰criture d'un boolÃ©en (true) dans la base de donnÃ©es si les informations sont justes et crÃ©ation d'un dossier pour l'utilisateur (le dossier prendra comme nom celui de l'utilisateur)
 	* @return string Sinon on affiche un message d'erreur.
 	* @deprecated Not used at this time
 	*/
@@ -336,21 +336,21 @@ class Fonctions{
 		{
 			$sql = 'UPDATE `utilisateur` SET compte_valide=True WHERE id_utilisateur="'.$tabl_result['id_utilisateur'].'"';
 			$requete = mysql_query($sql) or die(mysql_error());
-			$message = "Votre compte a été validé.";
+			$message = "Votre compte a Ã©tÃ© validÃ©.";
 			mkdir('./RepertoireUtilisateur/'.$tabl_result['pseudo'].'', 0777);
 			$message_erreur = false;
 		}
 		else
 		{
-			$message = "Erreur, ce lien ne correspond pas à une validation de compte, le compte a déjà été validé ou le compte a été supprimé.";
+			$message = "Erreur, ce lien ne correspond pas Ã  une validation de compte, le compte a dÃ©jÃ  Ã©tÃ© validÃ© ou le compte a Ã©tÃ© supprimÃ©.";
 			$message_erreur = true;
 		}
 		return retourMessage($message_erreur,$message);
 	}
 
 	/**
-	* Fonction permettant de vérifier les différents champs rentrés par l'utilisateur
-	* @return  Écriture des informations dans la base de données (si les champs rentrés par l'utilisateur sont valides sinon on retourne un message d'erreur).
+	* Fonction permettant de vÃ©rifier les diffÃ©rents champs rentrÃ©s par l'utilisateur
+	* @return  Ã‰criture des informations dans la base de donnÃ©es (si les champs rentrÃ©s par l'utilisateur sont valides sinon on retourne un message d'erreur).
 	* @deprecated Not used at this time
 	*/
 	public function verifierChamps()
@@ -393,33 +393,33 @@ class Fonctions{
 											}
 											else
 											{
-												$message = 'Erreur lors de la saisie des caractères.';
+												$message = 'Erreur lors de la saisie des caractÃ¨res.';
 											}
 										}
 										fclose($fp);
 									}
-									else{$message = 'Cette adresse mail est déjà associée à un compte.';}
+									else{$message = 'Cette adresse mail est dÃ©jÃ  associÃ©e Ã  un compte.';}
 								}
-								else{$message = 'Votre adresse mail est erronée.';}
+								else{$message = 'Votre adresse mail est erronÃ©e.';}
 							}
-							else{$message = 'La saisie du mot de passe est erronée.';}
+							else{$message = 'La saisie du mot de passe est erronÃ©e.';}
 						}
 						else{$message = 'N\'oubliez pas de confirmer la saisie de votre mot de passe.';}
 					}
-					else{$message = 'La taille de votre mot de passe doit être comprise entre 8 et 64 caracteres.';}
+					else{$message = 'La taille de votre mot de passe doit Ãªtre comprise entre 8 et 64 caracteres.';}
 				}
-				else{$message = 'Ce pseudo est déjà associée à un compte.';}
+				else{$message = 'Ce pseudo est dÃ©jÃ  associÃ©e Ã  un compte.';}
 			}
-			else{$message = 'Le pseudo contient des caractères interdits. Caractères autorisés : minuscules, MAJUSCULES, chiffres et les tirets (exemple : Mon_Pseudo-23)';}
+			else{$message = 'Le pseudo contient des caractÃ¨res interdits. CaractÃ¨res autorisÃ©s : minuscules, MAJUSCULES, chiffres et les tirets (exemple : Mon_Pseudo-23)';}
 		}
-		else{$message = 'La taille de votre pseudo doit être comprise entre 3 et 32 caractères.';}
+		else{$message = 'La taille de votre pseudo doit Ãªtre comprise entre 3 et 32 caractÃ¨res.';}
 		return retourMessage($message_erreur,$message);
 	}
 
 	/**
-	* Fonction permettant de vérifier si le pseudo est valide ou non
-	* @param string $pseudoVerif L'adresse mail entrée par l'utilisateur dans le formulaire.
-	* @return boolean Un booléen qui dit si le pseudo est valide (true) ou non (false).
+	* Fonction permettant de vÃ©rifier si le pseudo est valide ou non
+	* @param string $pseudoVerif L'adresse mail entrÃ©e par l'utilisateur dans le formulaire.
+	* @return boolean Un boolÃ©en qui dit si le pseudo est valide (true) ou non (false).
 	* @deprecated Not used at this time
 	*/
 	public function verifierPseudo($pseudoVerif)
@@ -436,9 +436,9 @@ class Fonctions{
 	}
 
 	/**
-	* Fonction permettant de vérifier si une adresse mail est valide ou non
-	* @param string $adresse L'adresse mail entrée par l'utilisateur dans le formulaire.
-	* @return boolean Un booléen qui dit si l'adresse est valide (true) ou non (false).
+	* Fonction permettant de vÃ©rifier si une adresse mail est valide ou non
+	* @param string $adresse L'adresse mail entrÃ©e par l'utilisateur dans le formulaire.
+	* @return boolean Un boolÃ©en qui dit si l'adresse est valide (true) ou non (false).
 	* @deprecated Not used at this time
 	*/
 	public function verifierAdresseMail($adresse)
@@ -464,9 +464,9 @@ class Fonctions{
 	//##################################################################################################################################//
 
 	/**
-	* Fonction permettant vérifier les informations de l'internaute pour la génération d'un nouveau mot de passe
+	* Fonction permettant vÃ©rifier les informations de l'internaute pour la gÃ©nÃ©ration d'un nouveau mot de passe
 	* @return boolean
-	* @return string Un message d'erreur en fonction des données entrées dans les différents champs.
+	* @return string Un message d'erreur en fonction des donnÃ©es entrÃ©es dans les diffÃ©rents champs.
 	* @deprecated Not used at this time
 	*/
 	public function genererMDP()
@@ -493,7 +493,7 @@ class Fonctions{
 					$message_erreur = $retour[0];
 					$message = $retour[1];
 				}
-				else{$message = 'Les informations rentrées sont erronées.';}
+				else{$message = 'Les informations rentrÃ©es sont erronÃ©es.';}
 			}
 			else{$message = 'Veuillez renseigner une adresse mail.';}
 		}
@@ -511,7 +511,7 @@ class Fonctions{
 	//##################################################################################################################################//
 
 	/**
-	* Fonction permettant de d'envoyer un message à l'utilisateur ayant oublié son mot de passe
+	* Fonction permettant de d'envoyer un message Ã  l'utilisateur ayant oubliÃ© son mot de passe
 	* @return boolean
 	* @return string Un message d'erreur ou non lors de l'envoie du mail.
 	* @deprecated Not used at this time
@@ -527,9 +527,9 @@ class Fonctions{
 		
 		$destinataire = $tabl_result['adresse_mail'];
 		$subject = "Nouveau mot de passe";
-		$subject = '=?iso8859-1?B?'.base64_encode($subject).'?=';	//Ligne permettant pallier aux problèmes d'affichage des accents dans le
+		$subject = '=?iso8859-1?B?'.base64_encode($subject).'?=';	//Ligne permettant pallier aux problÃ¨mes d'affichage des accents dans le
 																	//champ <objet> sur certaines messageries
-		//En-tête
+		//En-tÃªte
 		$limite = "_----------=_parties_".alea(32);
 		$headers = "From: \"Mon Site\"<monsite@monserveur.fr>\n";
 		$headers .= "Reply-To: <monsite@monserveur.fr>\n";
@@ -540,16 +540,16 @@ class Fonctions{
 		$text =
 		$tabl_result['pseudo'].",
 		
-		Ce courriel vous a été envoyé depuis le site : http://www.monsite.fr.
+		Ce courriel vous a Ã©tÃ© envoyÃ© depuis le site : http://www.monsite.fr.
 		La personne utilisant l'adresse ip ".$tabl_result['adresse_ip'].",
-		a générée un nouveau mot de passe.
-		Votre nouveau mot de passe a été généré : ".$code.".
+		a gÃ©nÃ©rÃ©e un nouveau mot de passe.
+		Votre nouveau mot de passe a Ã©tÃ© gÃ©nÃ©rÃ© : ".$code.".
 		
 		Passez un bon moment sur notre site!
 		
 		Cordialement,
 		
-		L'équipe de Mon Site.";
+		L'Ã©quipe de Mon Site.";
 		$message = "--".$limite."\n";
 		$message .= "Content-Type: text/plain; charset=iso-8859-1\r\n";
 		$message .= "Content-Transfer-Encoding: 8bit\n\n";
@@ -559,16 +559,16 @@ class Fonctions{
 		$html = 
 		"<div style=\" font-family: 'Trebuchet MS', Calibri, sans-serif; \">".$tabl_result['pseudo'].",
 		<br/>
-		Ce courriel vous a été envoyé depuis le site : <a href=\"http://www.monsite.fr\">http://www.monsite.fr</a>.<br/>
+		Ce courriel vous a Ã©tÃ© envoyÃ© depuis le site : <a href=\"http://www.monsite.fr\">http://www.monsite.fr</a>.<br/>
 		La personne utilisant l'adresse ip ".$tabl_result['adresse_ip'].",<br/>
-		a généré un nouveau mot de passe.<br/>
-		Votre nouveau mot de passe a été généré : ".$code.".
+		a gÃ©nÃ©rÃ© un nouveau mot de passe.<br/>
+		Votre nouveau mot de passe a Ã©tÃ© gÃ©nÃ©rÃ© : ".$code.".
 		<br/>
 		Passez un bon moment sur notre site!<br/>
 		<br/>
 		Cordialement,<br/>
 		<br/>
-		L'équipe de Mon Site.<div>";
+		L'Ã©quipe de Mon Site.<div>";
 		$message .= "\n\n--".$limite."\n";
 		$message .= "Content-Type: text/html; charset=iso-8859-1\r\n";
 		$message .= "Content-Transfer-Encoding: 8bit\n\n";
@@ -580,7 +580,7 @@ class Fonctions{
 		{
 			$sql = 'UPDATE `utilisateur` SET password="'.$code.'" WHERE id_utilisateur="'.$tabl_result['id_utilisateur'].'"';
 			$requete = mysql_query($sql) or die(mysql_error());
-			$message = "Le nouveau mot de passe a été envoyé à l'adresse de messagerie.";
+			$message = "Le nouveau mot de passe a Ã©tÃ© envoyÃ© Ã  l'adresse de messagerie.";
 			$message_erreur = false;
 		}
 		else
@@ -592,7 +592,7 @@ class Fonctions{
 	}
 
 	/**
-	* Fonction permettant d'envoyer un mail à l'utilisateur pour qu'il valide son inscription
+	* Fonction permettant d'envoyer un mail Ã  l'utilisateur pour qu'il valide son inscription
 	* @return boolean
 	* @return string Un message d'erreur ou non lors de l'envoie du mail.
 	* @deprecated Not used at this time
@@ -606,15 +606,15 @@ class Fonctions{
 		$resultat = requeteSQL($strSQL);
 		$tabl_result = mysql_fetch_array($resultat);
 		
-		//On remplace en français l'écriture des mois anglais 
-		$mois = array('Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre');
+		//On remplace en franÃ§ais l'Ã©criture des mois anglais 
+		$mois = array('Janvier','FÃ©vrier','Mars','Avril','Mai','Juin','Juillet','AoÃ»t','Septembre','Octobre','Novembre','DÃ©cembre');
 		$nombre = date('m')-1;
 		
 		$destinataire = $tabl_result['adresse_mail'];
-		$subject = "Incription à Mon Site";
-		$subject = '=?iso8859-1?B?'.base64_encode($subject).'?=';	//Ligne permettant pallier aux problèmes d'affichage des accents dans le
+		$subject = "Incription Ã  Mon Site";
+		$subject = '=?iso8859-1?B?'.base64_encode($subject).'?=';	//Ligne permettant pallier aux problÃ¨mes d'affichage des accents dans le
 																	//champ <objet> sur certaines messageries
-		//En-tête
+		//En-tÃªte
 		$limite = "_----------=_parties_".alea(32);
 		$headers = "From: \"Mon Site\"<monsite@monserveur.fr>\n";
 		$headers .= "Reply-To: <monsite@monserveur.fr>\n";
@@ -625,11 +625,11 @@ class Fonctions{
 		$text =
 		$tabl_result['pseudo'].",
 		
-		Ce courriel vous a été envoyé depuis le site : http://www.monsite.fr.
-		Vous avez reçu ce message car votre adresse mail a été utilisée lors
-		d'une inscription sur notre site le ".date('d ').$mois[$nombre].date(' Y à G:i').".
+		Ce courriel vous a Ã©tÃ© envoyÃ© depuis le site : http://www.monsite.fr.
+		Vous avez reÃ§u ce message car votre adresse mail a Ã©tÃ© utilisÃ©e lors
+		d'une inscription sur notre site le ".date('d ').$mois[$nombre].date(' Y Ã  G:i').".
 		
-		Si vous ne vous êtes pas inscrit sur ce site,
+		Si vous ne vous Ãªtes pas inscrit sur ce site,
 		merci de ne pas tenir compte de ce message.
 		
 		Pour activer votre compte, cliquez sur le lien suivant
@@ -641,7 +641,7 @@ class Fonctions{
 		
 		Cordialement,
 		
-		L'équipe de Mon Site.";
+		L'Ã©quipe de Mon Site.";
 		$message = "--".$limite."\n";
 		$message .= "Content-Type: text/plain; charset=iso-8859-1\r\n";
 		$message .= "Content-Transfer-Encoding: 8bit\n\n";
@@ -651,11 +651,11 @@ class Fonctions{
 		$html = 
 		"<div style=\" font-family: 'Trebuchet MS', Calibri, sans-serif; \">".$tabl_result['pseudo'].",
 		<br/>
-		Ce courriel vous a été envoyé depuis le site : <a href=\"http://www.monsite.fr\">http://www.monsite.fr</a>.<br/>
-		Vous avez reçu ce message car votre adresse mail a été utilisée lors<br/>
-		d'une inscription sur notre site le ".date('d ').$mois[$nombre].date(' Y à G:i').".<br/>
+		Ce courriel vous a Ã©tÃ© envoyÃ© depuis le site : <a href=\"http://www.monsite.fr\">http://www.monsite.fr</a>.<br/>
+		Vous avez reÃ§u ce message car votre adresse mail a Ã©tÃ© utilisÃ©e lors<br/>
+		d'une inscription sur notre site le ".date('d ').$mois[$nombre].date(' Y Ã  G:i').".<br/>
 		<br/>
-		Si vous ne vous êtes pas inscrit sur ce site,<br/>
+		Si vous ne vous Ãªtes pas inscrit sur ce site,<br/>
 		merci de ne pas tenir compte de ce message.<br/>
 		<br/>
 		Pour activer votre compte, cliquez sur le lien suivant<br/>
@@ -667,7 +667,7 @@ class Fonctions{
 		<br/>
 		Cordialement,<br/>
 		<br/>
-		L'équipe de Mon Site.<div>";
+		L'Ã©quipe de Mon Site.<div>";
 		$message .= "\n\n--".$limite."\n";
 		$message .= "Content-Type: text/html; charset=iso-8859-1\r\n";
 		$message .= "Content-Transfer-Encoding: 8bit\n\n";
@@ -679,7 +679,7 @@ class Fonctions{
 		{
 			$sql = 'UPDATE `utilisateur` SET code_validation="'.$code.'" WHERE id_utilisateur="'.$tabl_result['id_utilisateur'].'"';
 			$requete = mysql_query($sql) or die(mysql_error());
-			$message = "Un message a été envoyé à l'adresse de messagerie spécifiée lors de l'inscription. Vous avez 24h pour valider votre inscription, passé ce délai, le compte sera supprimé.";
+			$message = "Un message a Ã©tÃ© envoyÃ© Ã  l'adresse de messagerie spÃ©cifiÃ©e lors de l'inscription. Vous avez 24h pour valider votre inscription, passÃ© ce dÃ©lai, le compte sera supprimÃ©.";
 			$message_erreur = false;
 		}
 		else
@@ -721,10 +721,10 @@ class Fonctions{
 	}
 
 	/**
-	* Fonction permettant de tester l'intégrité du fichier "verif.txt" ainsi que de le créer s'il n'existe pas
-	* Si le fichier "verif.txt" dépasse 100 lignes (2700 octets) il est alors recréé (afin d'éviter que le serveur travaille avec de trop gros fichiers).
-	* Cette fonction gère l'écriture et le réécriture simultanée de plusieurs codes correspond aux adresses ip 
-	* @param string $chaine L'image générée.
+	* Fonction permettant de tester l'intÃ©gritÃ© du fichier "verif.txt" ainsi que de le crÃ©er s'il n'existe pas
+	* Si le fichier "verif.txt" dÃ©passe 100 lignes (2700 octets) il est alors recrÃ©Ã© (afin d'Ã©viter que le serveur travaille avec de trop gros fichiers).
+	* Cette fonction gÃ¨re l'Ã©criture et le rÃ©Ã©criture simultanÃ©e de plusieurs codes correspond aux adresses ip 
+	* @param string $chaine L'image gÃ©nÃ©rÃ©e.
 	* @deprecated Not used at this time
 	*/
 	public function testVerifIP($chaine)
@@ -763,9 +763,9 @@ class Fonctions{
 	}
 
 	/**
-	* Fonction permettant d'écrire l'adresse ip de l'utilisateur ainsi que le code correspond
-	* Cette fonction gère l'écriture et le réécriture simultanée de plusieurs codes correspond aux adresses ip 
-	* @param string $chaine variable de type chaine de caractère correspond au code de l'image générée.
+	* Fonction permettant d'Ã©crire l'adresse ip de l'utilisateur ainsi que le code correspond
+	* Cette fonction gÃ¨re l'Ã©criture et le rÃ©Ã©criture simultanÃ©e de plusieurs codes correspond aux adresses ip 
+	* @param string $chaine variable de type chaine de caractÃ¨re correspond au code de l'image gÃ©nÃ©rÃ©e.
 	* @deprecated Not used at this time
 	*/
 	public function ecrireVerifIP($chaine)
@@ -796,9 +796,9 @@ class Fonctions{
 	}
 
 	/**
-	* Fonction permettant de vérifier si le code rentré par l'utilisateur est correct par rapport à l'image
-	* @param string $chaine variable de type chaine de caractère correspond au code rentré par l'utilisateur.
-	* @return boolean $code un booléen qui dit si le code est valide (true) ou non (false)..
+	* Fonction permettant de vÃ©rifier si le code rentrÃ© par l'utilisateur est correct par rapport Ã  l'image
+	* @param string $chaine variable de type chaine de caractÃ¨re correspond au code rentrÃ© par l'utilisateur.
+	* @return boolean $code un boolÃ©en qui dit si le code est valide (true) ou non (false)..
 	* @deprecated Not used at this time
 	*/
 	public function lireVerifIP($chaine)

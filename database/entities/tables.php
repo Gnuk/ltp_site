@@ -1,5 +1,5 @@
 <?php
-namespace gnk\db;
+namespace gnk\database\entities;
 use \Doctrine\Common\Collections\ArrayCollection;
 
 /**

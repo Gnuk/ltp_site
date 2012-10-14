@@ -1,11 +1,11 @@
 <?php
-namespace module\osm;
+namespace gnk\modules\osm;
 /**
 * Module créant une marker OSM via php
 * @author Anthony REY <anthony.rey@mailoo.org>
 * @since 08/10/2012
 * @see Osm
-* @namespace module\osm
+* @namespace gnk\modules\osm
 */
 class Marker{
 	private $alias;

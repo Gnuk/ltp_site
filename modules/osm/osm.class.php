@@ -1,12 +1,12 @@
 <?php
-namespace module;
-use \gnk\Module;
+namespace gnk\modules\osm;
+use \gnk\config\Module;
 /**
 * Module générant une map OSM via php
 * @author Anthony REY <anthony.rey@mailoo.org>
 * @since 08/10/2012
 * @see L'api OpenLayer
-* @namespace module
+* @namespace gnk\modules\osm
 */
 require_once(Module::getLink('osm') . 'marker.class.php');
 class Osm{

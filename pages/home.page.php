@@ -1,8 +1,8 @@
 <?php
-	use \gnk\Page;
-	use \gnk\Module;
-	use \module\Osm;
-	use \module\osm\Marker;
+	use \gnk\config\Page;
+	use \gnk\config\Module;
+	use \gnk\modules\osm\Osm;
+	use \gnk\modules\osm\Marker;
 	if(Page::haveRights()){
 ?>
 <!DOCTYPE html>

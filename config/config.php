@@ -17,5 +17,5 @@
 			require_once(LINK_CONFIG . 'class/' . $file);
 		}
 	}
-	gnk\Config::setConfig();
+	gnk\config\Config::setConfig();
 ?>

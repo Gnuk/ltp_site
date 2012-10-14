@@ -1,10 +1,10 @@
 <?php
-namespace gnk;
+namespace gnk\config;
 /**
 * Gestion des pages
 * @author Anthony REY <gnuk@mailoo.org>
 * @since 05/10/2012
-* @namespace gnk
+* @namespace gnk\config
 */
 class Page{
 	

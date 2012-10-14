@@ -1,5 +1,5 @@
 <?php
-namespace gnk;
+namespace gnk\config;
 
 # Utilisation de Setup et EntityManager pour Doctrine
 use \Doctrine\ORM\Tools\Setup;
@@ -12,7 +12,7 @@ use \Doctrine\ORM\Tools\Console\ConsoleRunner;
 * Gère la configuration du site
 * @author Anthony REY <anthony.rey@mailoo.org>
 * @since 06/10/2012
-* @namespace gnk
+* @namespace gnk\config
 */
 class Config{
 

@@ -32,8 +32,8 @@ class Osm{
 	
 	/**
 	* Ajout de calque de type Marker
-	* @param ModOsmMarker $marker L'objet marqueur à ajouter
-	* @see ModOsmMarker
+	* @param Marker $marker L'objet marqueur à ajouter
+	* @see \module\osm\Marker
 	*/
 	public function addMarker($marker){
 		$this->marker[]=$marker;

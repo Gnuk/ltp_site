@@ -7,3 +7,5 @@
 /locale/default/pot/messages.mo
 # Ignorer doctrine.php
 /doctrine.php
+# Ignorer la génération de doxygen
+/doxygen/*

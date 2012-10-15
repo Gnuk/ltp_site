@@ -21,6 +21,7 @@ class Config{
 	private static $localedomain;
 	private static $locale;
 	private static $debug;
+	protected static $em = null;
 	
 	/**
 	* Génère la configuration
@@ -164,31 +165,13 @@ class Config{
 	/**
 	* Connecte la base de donnée
 	*/
-	public static function setDatabase(){
+	private static function setDatabase(){
 		$doctrineDir = LINK_LIB . 'doctrine';
 		if(is_dir($doctrineDir)){
 			if(is_file($doctrineDir.'/Doctrine/ORM/Tools/Setup.php')){
-				require_once($doctrineDir.'/Doctrine/ORM/Tools/Setup.php');
+				require_once(LINK_CONFIG.'include/doctrineConnect.php');
 				self::$debug->add(sprintf(T_('Fichier %s chargé'), $doctrineDir.'/Doctrine/ORM/Tools/Setup.php'));
-				$lib = $doctrineDir;
-				Setup::registerAutoloadDirectory($lib);
-				/*// Create a simple "default" Doctrine ORM configuration for XML Mapping
-				$isDevMode = true;
-				//$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
-				// or if you prefer yaml or annotations
-				$config = Setup::createAnnotationMetadataConfiguration(array(LINK_DATABASE."entities"), $isDevMode);
-				//$config = Setup::createYAMLMetadataConfiguration(array(__DIR__."/config/yaml"), $isDevMode);
-
-				// database configuration parameters
-				$conn = array(
-					'driver' => 'pdo_mysql',
-					'user' => 'root',
-					'password' => '',
-					'dbname' => 'doctrinetest'
-				);
-				
-				// obtaining the entity manager
-				$entityManager = EntityManager::create($conn, $config);*/
+				self::$em = EntityManager::create($conn, $config);
 			}
 			else{
 				self::$debug->addWarning(sprintf(T_('Le fichier "%s" est absent, peut-être que Doctrine n\'est pas installé'), $doctrineDir));
@@ -198,5 +181,24 @@ class Config{
 			self::$debug->addWarning(sprintf(T_('La bibliothèque Doctrine "%s" est absente'), $doctrineDir));
 		}
 	}
+	/**
+	* Récupère une configuration depuis un fichier
+	*/
+	public static function getConfigFile($link){
+		$dataTable = array();
+		if(is_file($link)){
+			$file = file($link);
+			foreach($file as $nbLine => $expression){
+				if(preg_match("#^(\w)+(\ =|=)(.+)#", $expression)){
+					$param = trim(preg_replace("#^(.+)=(.+)#","$1",  $expression));
+					$data = trim(preg_replace("#^(.+)=(.+)#","$2",  $expression));
+					$dataTable[$param] = $data;
+				}
+			}
+		}
+		return $dataTable;
+	}
 }
+
+require_once(LINK_CONFIG.'class/config/database.class.php');
 ?>

@@ -9,3 +9,5 @@
 /doctrine.php
 # Ignorer la génération de doxygen
 /doxygen/*
+# Ignorer la configuration de la base de donnée
+/userconfig/db.conf

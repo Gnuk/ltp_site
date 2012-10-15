@@ -1,5 +1,6 @@
 <?php
 namespace gnk\database\entities;
+use \DateTime;
 use \Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -27,6 +28,15 @@ class Users
 	protected $cookie;
 	/** @Column(type="string", length=255, unique=true) **/
 	protected $mail;
+	
+	public function __construct($login, $password, $mail){
+		$this->login = $login;
+		$this->password = sha1($password);
+		$this->mail = $mail;
+		$this->rights = 2;
+		$datetime = new DateTime();
+		$this->date = $datetime;
+	}
 }
 
 /**

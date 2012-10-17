@@ -37,6 +37,10 @@ class Users
 		$datetime = new DateTime();
 		$this->date = $datetime;
 	}
+	
+	public function setMail($mail){
+		$this->mail=$mail;
+	}
 }
 
 /**

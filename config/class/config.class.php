@@ -22,6 +22,7 @@ class Config{
 	private static $localedomain;
 	private static $locale;
 	private static $debug;
+	private static $info;
 	protected static $em = null;
 	
 	/**
@@ -168,8 +169,13 @@ class Config{
 			self::putSessions($user->getLogin(), $user->getId());
 		}
 		else{
+			self::$info[]=T_('Votre identifiant ou/et votre mot de passe est erroné');
 			self::putSessions();
 		}
+	}
+	
+	public static function getInfo(){
+		return self::$info;
 	}
 	
 	/**

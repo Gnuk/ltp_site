@@ -77,7 +77,7 @@ class Page{
 	*/
 	public static function haveRights($need=1, $others=1){
 		$right=false;
-		if($r=self::getRights() != '?'){
+		if(($r = self::getRights()) != '?'){
 			if(self::goodRight($need, $r)){
 				$right = true;
 			}
@@ -113,6 +113,9 @@ class Page{
 			if(isset($result[0]['rights'])){
 				$right = $result[0]['rights'];
 			}
+		}
+		else if(isset(self::$rightUser)){
+			$right = self::$rightUser;
 		}
 		self::$rightUser = $right;
 		return $right;

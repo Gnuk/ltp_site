@@ -44,11 +44,13 @@ class Config{
 	*/
 	private static function getLanguage($lang=null){
 		$locale = self::$defaultLocale;
-		$clientLocale = self::getLanguageFromClient();
+		if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])){
+			$clientLocale = self::getLanguageFromClient();
+		}
 		if(isset($lang) AND isset($_GET[$lang])){
 			$clientLocale = $_GET[$lang];
 		}
-		if(is_file(LINK_LOCALE . $clientLocale . '/LC_MESSAGES/' . self::$localedomain . '.mo')){
+		if(isset($clientLocale) AND is_file(LINK_LOCALE . $clientLocale . '/LC_MESSAGES/' . self::$localedomain . '.mo')){
 			$locale=$clientLocale;
 		}
 		self::$locale=$locale;

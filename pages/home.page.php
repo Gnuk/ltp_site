@@ -38,7 +38,7 @@
 		<ul>
 <?php
 			foreach ($info as $nInfo => $valueInfo){ ?>
-			<li><?php echo htmlspecialchars($valueInfo); ?></li>
+			<li><?php echo htmlspecialchars($valueInfo, ENT_QUOTES); ?></li>
 <?php
 			} ?>
 		</ul>

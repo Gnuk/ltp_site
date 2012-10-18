@@ -1,5 +1,6 @@
 <?php
 namespace gnk\config;
+use \gnk\database\entities\Users;
 /**
 * Gestion des pages
 * @author Anthony REY <gnuk@mailoo.org>
@@ -11,6 +12,7 @@ class Page{
 	private static $page = null;
 	private static $defaultPage = null;
 	private static $rights = true;
+	private static $rightUser = null;
 	
 	/**
 	* Affichage de la page demandée (La page est de la forme <page>.page.php, fonctionne aussi en récursif avec le séparateur ':' et <repertoire>_DIR)
@@ -75,8 +77,13 @@ class Page{
 	*/
 	public static function haveRights($need=1, $others=1){
 		$right=false;
-		if(self::getRights() != '?'){
-			echo 'Uninplemented';
+		if($r=self::getRights() != '?'){
+			if(self::goodRight($need, $r)){
+				$right = true;
+			}
+			else{
+				$right = false;
+			}
 		}
 		else if(self::goodRight($need, $others)){
 			$right = true;
@@ -92,6 +99,22 @@ class Page{
 	*/
 	private static function getRights(){
 		$right = '?';
+		if(!isset(self::$rightUser)  AND Config::isUser()){
+			Database::useTables();
+			$em = Database::getEM();
+			$qb = $em->createQueryBuilder();
+			$qb->select('u.rights')
+				->from('\gnk\database\entities\Users', 'u')
+				->where('u.id = ?1')
+				->andWhere('u.active = ?2');
+			$qb->setParameters(array(1 => $_SESSION['user_id'], 2 => true));
+			$query = $qb->getQuery();
+			$result = $query->getResult();
+			if(isset($result[0]['rights'])){
+				$right = $result[0]['rights'];
+			}
+		}
+		self::$rightUser = $right;
 		return $right;
 	}
 	

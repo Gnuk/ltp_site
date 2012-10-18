@@ -33,13 +33,29 @@ class Users
 		$this->login = $login;
 		$this->password = sha1($password);
 		$this->mail = $mail;
-		$this->rights = 2;
+		$this->rights = 3;
 		$datetime = new DateTime();
 		$this->date = $datetime;
 	}
 	
 	public function setMail($mail){
 		$this->mail=$mail;
+	}
+	
+	public function getLogin(){
+		return $this->login;
+	}
+	
+	public function getRights(){
+		return $this->rights;
+	}
+	
+	public function getId(){
+		return $this->id;
+	}
+	
+	public function getActive(){
+		return $this->active;
 	}
 }
 

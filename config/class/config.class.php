@@ -8,6 +8,7 @@ use \Symfony\Component\Console\Helper\HelperSet;
 use \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
 use \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use \Doctrine\ORM\Tools\Console\ConsoleRunner;
+use \gnk\database\entities\Users;
 /**
 * Gère la configuration du site
 * @author Anthony REY <anthony.rey@mailoo.org>
@@ -115,9 +116,8 @@ class Config{
 	* @param int $rights Droits de l'utilisateur
 	* @param int $id Identifiant utilisateur
 	*/
-	private static function putSessions($user='anonymous', $rights = 0, $id=null){
+	private static function putSessions($user='anonymous', $id=null){
 		$_SESSION['user'] = $user;
-		$_SESSION['rights'] = $rights;
 		if(isset($id)){
 			$_SESSION['user_id'] = $id;
 		}
@@ -126,6 +126,7 @@ class Config{
 	/**
 	* Récupère les droits de l'utilisateur courant
 	* @return int
+	* @deprecated
 	*/
 	public static function getRights(){
 		$rights = 0;
@@ -143,14 +144,32 @@ class Config{
 		if(isset($_SESSION['user_id'])){
 			return true;
 		}
-		return false;
+		else{
+			return false;
+		}
 	}
 	
 	/**
 	* Vérification de l'utilisateur
 	*/
 	private static function connect(){
-		self::putSessions();
+		Database::useTables();
+		$em=Database::getEM();
+		$qb = $em->createQueryBuilder();
+		$qb->select('u')
+			->from('\gnk\database\entities\Users', 'u')
+			->where('u.login = ?1')
+			->andWhere('u.password = ?2');
+		$qb->setParameters(array(1 => $_POST['login'], 2 => sha1($_POST['password'])));
+		$query = $qb->getQuery();
+		$result = $query->getResult();
+		if(count($result) > 0 AND $result[0]->getActive()){
+			$user = $result[0];
+			self::putSessions($user->getLogin(), $user->getId());
+		}
+		else{
+			self::putSessions();
+		}
 	}
 	
 	/**

@@ -33,7 +33,7 @@
 			<input type="submit" value="<?php echo T_('Connexion');?>" name="boutonConnexion" class="submit" id="connexion" />
 		</form>
 		<span id="recupInscrip" ><a href="index.php?page=recupMDP" ><?php echo T_('Mot de passe oublié ?');?></a> - <a href="index.php?page=inscription" ><?php echo T_('Inscription');?></a></span>
-		<div id="carte" style=" width:425px; height:350px;">
+		<div id="carte" style=" width:800px; height:600px;">
 <!--			<iframe id="carteOSM" width="425" height="350" src="http://www.openstreetmap.org/export/embed.html?bbox=5.6528,45.5355,6.0689,45.7594&amp;layer=mapnik"></iframe>
 			<p id="droitsAuteurs">
 				<?php echo T_('© 2012 M1 STIC Informatique. Tous droits réservés.'); ?>

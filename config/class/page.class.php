@@ -13,6 +13,7 @@ class Page{
 	private static $defaultPage = null;
 	private static $rights = true;
 	private static $rightUser = null;
+	private static $getName = 'p';
 	
 	/**
 	* Affichage de la page demandée (La page est de la forme <page>.page.php, fonctionne aussi en récursif avec le séparateur ':' et <repertoire>_DIR)
@@ -20,6 +21,7 @@ class Page{
 	* @param string $defaultPage La page par défaut
 	*/
 	public static function show($getName = 'p', $defaultPage = 'home'){
+		self::$getName=$getName;
 		self::$defaultPage = $defaultPage;
 		self::$page = $defaultPage;
 		if(isset($_GET[$getName]) AND is_file(self::getChemin($_GET[$getName]))){
@@ -133,6 +135,33 @@ class Page{
 		}
 		else{
 			return false;
+		}
+	}
+	
+	/**
+	 * Retourne le lien à partir des paramètres passés dans le tableau
+	 * @param array $params
+	 * @param boolean $here
+	 */
+	public static function getLink($params=null, $here=true){
+		$array = array();
+		$compose = array();
+		if($here){
+			if(isset($_GET['p'])){
+				$array[self::$getName] = $_GET['p'];
+			}
+		}
+		if(isset($params) AND is_array($params)){
+			$array = array_merge($array,$params);
+		}
+		foreach ($array as $nParam => $param) {
+			$compose[] = $nParam . '=' . $param;
+		}
+		if(count($compose)>0){
+			return '?'.implode('&amp;', $compose);
+		}
+		else{
+			return '';
 		}
 	}
 }

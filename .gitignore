@@ -11,3 +11,5 @@
 /doxygen/*
 # Ignorer la configuration de la base de donnée
 /userconfig/db.conf
+# Ignorer la configuration Aptana (ou Eclipse)
+/.project

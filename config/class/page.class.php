@@ -14,6 +14,8 @@ class Page{
 	private static $rights = true;
 	private static $rightUser = null;
 	private static $getName = 'p';
+	private static $js = array();
+	private static $css = array();
 	
 	/**
 	* Affichage de la page demandée (La page est de la forme <page>.page.php, fonctionne aussi en récursif avec le séparateur ':' et <repertoire>_DIR)
@@ -163,6 +165,52 @@ class Page{
 		else{
 			return '';
 		}
+	}
+	
+	public static function getJS(){
+		return self::$js;
+	}
+	
+	public static function showJS(){
+		if(count(self::$js) > 0){
+			foreach(self::$js as $nJs => $script){
+?>
+<script language="javascript" type="text/javascript" src="<?php echo $script;?>"></script>
+<?php
+			}
+		}
+	}
+	
+	public static function setJS($array){
+		$js=array_merge(self::$js, $array);
+		self::$js=array_unique($js);
+	}
+	
+	public static function addJS($string){
+		$js = self::$js;
+		$js[] = $string;
+		self::$js = array_unique($js);
+	}
+	
+	public static function showCSS(){
+		if(count(self::$css) > 0){
+			foreach(self::$css as $nCss => $style){
+?>
+<link rel="stylesheet" href="<?php echo $style;?>" type="text/css" media="screen">
+<?php
+			}
+		}
+	}
+	
+	public static function setCSS($array){
+		$css=array_merge(self::$css, $array);
+		self::$css=array_unique($css);
+	}
+	
+	public static function addCSS($string){
+		$css = self::$css;
+		$css[] = $string;
+		self::$css = array_unique($css);
 	}
 }
 ?>

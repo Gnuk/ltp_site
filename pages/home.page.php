@@ -5,12 +5,29 @@
 	use \gnk\modules\osm\Osm;
 	use \gnk\modules\osm\Marker;
 	if(Page::haveRights()){
+		Page::addCSS(LINKR_STYLES . 'style.css');
+		Module::load('osm');
+		$osm = new Osm('carte');
+		if(Config::isUser()){
+			$marker = new Marker('Amis');
+			$marker->add(5.92 ,45.57, '<h1>José</h1>');
+			$marker->add(5.8714950, 45.6470858, '<h1>Hugues</h1>');
+			$osm->addMarker($marker);
+			$mark2 = new Marker('Love');
+			$mark2->add(5.93 ,45.57);
+			$mark2->add(5.88, 45.6470858);
+			$osm->addMarker($mark2);
+		}
+		
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
 	<head>
 		<meta charset="UTF-8" />
-		<link rel="stylesheet" href="styles/style.css" />
+<?php
+		Page::showCSS();
+		Page::showJS();
+?>
 		<link rel="shortcut icon" href="images/icone.png" />
 		<title><?php echo T_('LocalizeTeaPot');?></title>
 		<style>
@@ -71,18 +88,6 @@
 			<?php echo T_('Copyright © 2012 Open Team Map'); ?>
 		</footer>
 		<?php
-			Module::load('osm');
-			$osm = new Osm('carte');
-			if(Config::isUser()){
-				$marker = new Marker('Amis');
-				$marker->add(5.92 ,45.57, '<h1>José</h1>');
-				$marker->add(5.8714950, 45.6470858, '<h1>Hugues</h1>');
-				$osm->addMarker($marker);
-				$mark2 = new Marker('Love');
-				$mark2->add(5.93 ,45.57);
-				$mark2->add(5.88, 45.6470858);
-				$osm->addMarker($mark2);
-			}
 			$osm->show();
 		?>
 	</body>

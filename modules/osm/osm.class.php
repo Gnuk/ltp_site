@@ -1,6 +1,7 @@
 <?php
 namespace gnk\modules\osm;
 use \gnk\config\Module;
+use \gnk\config\Page;
 /**
 * Module générant une map OSM via php
 * @author Anthony REY <anthony.rey@mailoo.org>
@@ -15,6 +16,7 @@ class Osm{
 	private $defaultLon;
 	private $defaultLat;
 	private $defaultZoom;
+	private static $loadRequired = false;
 	
 	/**
 	* Constructeur
@@ -28,6 +30,7 @@ class Osm{
 		$this->defaultLon = $lon;
 		$this->defaultLat = $lat;
 		$this->defaultZoom = $zoom;
+		Osm::loadRequired();
 	}
 	
 	/**
@@ -39,13 +42,21 @@ class Osm{
 		$this->marker[]=$marker;
 	}
 	
+	private static function loadRequired(){
+		if(!self::$loadRequired){
+			Page::setJS(array(
+				LINKR_LIB . 'openlayers/OpenLayers.js',
+				Module::getRLink('osm') . 'js/OpenStreetMap.js'
+			));
+			self::$loadRequired = true;
+		}
+	}
+	
 	/**
 	* Affiche le script de la carte
 	*/
 	public function show(){
 ?>
-<script src="<?php echo LINKR_LIB; ?>openlayers/OpenLayers.js"></script>
-<script src="<?php echo Module::getRLink('osm');?>js/OpenStreetMap.js"></script>
 <script>
 	var options = {
 		controls: [

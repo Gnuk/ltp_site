@@ -1,6 +1,7 @@
 <?php
 	use \gnk\config\Module;
 	use \gnk\config\Page;
+	use \gnk\config\Template;
 	use \gnk\modules\form\Form;
 	Module::load('form');
 
@@ -39,7 +40,7 @@
     $passFrom = 6;
     $passTo = 50;
     $obj->set_rule(array(
-        'required'  => array('error', T_('Password is required!')),
+        'required'  => array('error', T_('Le mot de passe est demandé.')),
         'length'    => array($passFrom, $passTo, 'error', sprintf(T_('Votre mot passe doit être composé de %d à %d caractères.'), $passFrom, $passTo)),
     ));
     $form->add('note', 'note_password', 'password', sprintf(T_('Votre mot passe doit être composé de %d à %d caractères.'), $passFrom, $passTo));
@@ -63,27 +64,15 @@
     // "submit"
     $form->add('submit', 'btnsubmit', T_('S\'enregistrer'));
 
-
-?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Zebra_Form Example</title>
-        <script>window.jQuery || document.write('<script src="lib/jquery/jquery.min.js"><\/script>')</script>
-<?php
-	Page::showCSS();
-	Page::showJS();
-?>
-    </head>
-    <body>
-<?php 
+	$template = new Template();
+	$template->show('header_full');
+	
     if($form->validate()){
 		echo "Formulaire valide, traitement DQL souhaité";
     }
     else{
 		$form->render();
 	}
+	
+	$template->show('footer_full');
 ?>
-    </body>
-</html>

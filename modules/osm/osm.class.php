@@ -31,6 +31,7 @@ class Osm{
 		$this->defaultLat = $lat;
 		$this->defaultZoom = $zoom;
 		Osm::loadRequired();
+		Page::addCSS(Module::getRLink('osm') . 'css/popup.css');
 	}
 	
 	/**

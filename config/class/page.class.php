@@ -167,31 +167,49 @@ class Page{
 		}
 	}
 	
+	/**
+	* Récupère la liste des fichiers JS
+	* @return array Les liens des fichiers
+	*/
 	public static function getJS(){
 		return self::$js;
 	}
 	
+	/**
+	* Affiche les fichiers JS à utiliser
+	*/
 	public static function showJS(){
 		if(count(self::$js) > 0){
 			foreach(self::$js as $nJs => $script){
 ?>
-<script language="javascript" type="text/javascript" src="<?php echo $script;?>"></script>
+<script type="text/javascript" src="<?php echo $script;?>"></script>
 <?php
 			}
 		}
 	}
 	
+	/**
+	* Indique des liens de fichiers JS à ajouter
+	* @param array $array Le tableau des liens
+	*/
 	public static function setJS($array){
 		$js=array_merge(self::$js, $array);
 		self::$js=array_unique($js);
 	}
 	
+	/**
+	* Ajoute un lien de fichier JS
+	* @param string $string Le lien
+	*/
 	public static function addJS($string){
 		$js = self::$js;
 		$js[] = $string;
 		self::$js = array_unique($js);
 	}
 	
+	/**
+	* Affiche les fichiers CSS à utiliser
+	*/
 	public static function showCSS(){
 		if(count(self::$css) > 0){
 			foreach(self::$css as $nCss => $style){
@@ -202,11 +220,19 @@ class Page{
 		}
 	}
 	
+	/**
+	* Indique des liens de fichiers CSS à ajouter
+	* @param array $array Le tableau des liens
+	*/
 	public static function setCSS($array){
 		$css=array_merge(self::$css, $array);
 		self::$css=array_unique($css);
 	}
 	
+	/**
+	* Ajoute un lien de fichier CSS
+	* @param string $string Le lien
+	*/
 	public static function addCSS($string){
 		$css = self::$css;
 		$css[] = $string;

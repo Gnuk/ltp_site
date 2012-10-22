@@ -4,8 +4,9 @@
 	use \gnk\config\Module;
 	use \gnk\modules\osm\Osm;
 	use \gnk\modules\osm\Marker;
+	use \gnk\config\Template;
+	use \gnk\modules\form\Form;
 	if(Page::haveRights()){
-		Page::addCSS(LINKR_STYLES . 'style.css');
 		Module::load('osm');
 		$osm = new Osm('carte');
 		if(Config::isUser()){
@@ -18,78 +19,55 @@
 			$mark2->add(5.88, 45.6470858);
 			$osm->addMarker($mark2);
 		}
-		
-?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
-	<head>
-		<meta charset="UTF-8" />
-<?php
-		Page::showCSS();
-		Page::showJS();
-?>
-		<link rel="shortcut icon" href="images/icone.png" />
-		<title><?php echo T_('LocalizeTeaPot');?></title>
-		<style>
-			.olPopup{
-				box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
-			}
-			.olPopup, .olPopupContent{
-				border-radius: 10px;
-			}
-			.olPopupContent{
-				
-			}
-		</style>
-	</head>
-	
-	<body>
-		<header>
-			<h1>
-				<img id="iconeAccueil" src="images/icone_accueil.png" alt="Accueil" />
-			</h1>
-		</header>
-<?php 
-	if(!Config::isUser()){
-		if(count($info = Config::getInfo())){ ?>
+		Module::load('form');
+		$form = new Form('form', $method = 'POST', $action = '?connection');
+		$form->add('label', 'label_login', 'login', T_('Identifiant : '));
+		$obj = & $form->add('text', 'login');
+		$obj->set_rule(array(
+			'required'  =>  array('error', T_('Vous indiquer votre identifiant.')),
+
+		));
+		// "password"
+		$form->add('label', 'label_password', 'password', T_('Mot de passe : '));
+		$obj = & $form->add('password', 'password');
+		$obj->set_rule(array(
+			'required'  => array('error', T_('Veuillez indiquer votre mot de passe.'))
+		));
+		$form->add('submit', 'btnsubmit', T_('Se connecter'));
+		$template = new Template();
+		$template->show('header_full');
+		if(!$form->validate() OR !Config::isUser()){
+			if(count($info = Config::getInfo())){ ?>
 		<ul>
 <?php
-			foreach ($info as $nInfo => $valueInfo){ ?>
+				foreach ($info as $nInfo => $valueInfo){ ?>
 			<li><?php echo htmlspecialchars($valueInfo, ENT_QUOTES); ?></li>
 <?php
 			} ?>
 		</ul>
 <?php
-		}?>
-		<form name="form1" method="post" action="?connection" >
-			<p>
-				<label for="login"><?php echo T_('Identifiant :');?></label>
-				<input type="text" name="login" maxlength="32" id="login" />
-			</p>
-			<p>
-				<label for="password"><?php echo T_('Mot de passe :');?></label>
-				<input type="password" name="password" maxlength="64" id="password" />
-			</p>
-			<p>
-				<input type="submit" value="<?php echo T_('Connexion');?>" name="boutonConnexion" class="submit" id="connexion" />
-			</p>
-		</form>
+			}
+			$form->render();
+?>
 		<p>
-			<a href="index.php?p=forgetpassword" ><?php echo T_('Mot de passe oublié ?');?></a> - <a href="index.php?p=inscription" ><?php echo T_('Inscription');?></a>
+			<a href="?p=forgetpassword" title="<?php echo T_('Mot de passe oublié'); ?>"><?php echo T_('Mot de passe oublié'); ?></a> | <a href="?inscription" title="<?php echo T_('S\'inscrire'); ?>"><?php echo T_('S\'inscrire'); ?></a>
 		</p>
 <?php
-	}
-	else{ ?>
+		}
+		else{ ?>
 		<p><a href="?disconnection"><?php echo T_('Se déconnecter'); ?></a></p>
 <?php
-	} ?>
-		<div id="carte" style=" width:800px; height:600px;"><p>Veuillez activer javascript pour voir la carte</p></div>
+		}?>
+		<div id="carte" style=" width:800px; height:600px;"><noscript><p>Veuillez activer javascript pour voir la carte</p></noscript></div>
 		<footer>
-			<?php echo T_('Copyright © 2012 Open Team Map'); ?>
+<?php
+		$template->show('footer');
+?>
 		</footer>
-		<?php
-			$osm->show();
-		?>
+<?php
+		$template->show('foot');
+		$osm->show();
+?>
 	</body>
 </html>
 <?php

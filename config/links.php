@@ -12,4 +12,6 @@
 	define('LINK_MODULES', LINK_ROOT . LINKR_MODULES);
 	define('LINK_DATABASE', LINK_ROOT . LINK_R . 'database/');
 	define('LINK_USERCONFIG', LINK_ROOT . LINK_R . 'userconfig/');
+	define('LINKR_TEMPLATE',  LINK_R . 'template/');
+	define('LINK_TEMPLATE', LINK_ROOT . LINKR_TEMPLATE);
 ?>

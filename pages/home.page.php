@@ -57,8 +57,9 @@
 		else{ ?>
 		<p><a href="?disconnection"><?php echo T_('Se déconnecter'); ?></a></p>
 <?php
-		}?>
-		<div id="carte" style=" width:800px; height:600px;"><noscript><p>Veuillez activer javascript pour voir la carte</p></noscript></div>
+		}
+		$osm->showDiv();
+		?>
 		<footer>
 <?php
 		$template->show('footer');
@@ -66,7 +67,7 @@
 		</footer>
 <?php
 		$template->show('foot');
-		$osm->show();
+		$osm->showJS();
 ?>
 	</body>
 </html>

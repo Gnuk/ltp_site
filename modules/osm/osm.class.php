@@ -54,9 +54,18 @@ class Osm{
 	}
 	
 	/**
+	* 
+	*/
+	public function showDiv($width=600, $height=450){
+?>
+	<div id="<?php echo $this->divName;?>" style=" width:<?php echo $width;?>px; height:<?php echo $height;?>px;"><noscript><p><?php echo T_('Veuillez activer javascript pour voir la carte');?></p></noscript></div>
+<?php
+	}
+	
+	/**
 	* Affiche le script de la carte
 	*/
-	public function show(){
+	public function showJS(){
 ?>
 <script>
 	var options = {

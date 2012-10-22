@@ -144,8 +144,15 @@ class Page{
 	 * Retourne le lien à partir des paramètres passés dans le tableau
 	 * @param array $params
 	 * @param boolean $here
+	 * @param boolean $encode (Affiche &amp; si true)
 	 */
-	public static function getLink($params=null, $here=true){
+	public static function getLink($params=null, $here=true, $encode = true){
+		if($encode){
+			$enc = '&amp;';
+		}
+		else{
+			$enc = '&';
+		}
 		$array = array();
 		$compose = array();
 		if($here){
@@ -157,10 +164,15 @@ class Page{
 			$array = array_merge($array,$params);
 		}
 		foreach ($array as $nParam => $param) {
-			$compose[] = $nParam . '=' . $param;
+			if(!isset($param) OR $param == ''){
+				$compose[] = $nParam;
+			}
+			else{
+				$compose[] = $nParam . '=' . $param;
+			}
 		}
 		if(count($compose)>0){
-			return '?'.implode('&amp;', $compose);
+			return '?'.implode($enc, $compose);
 		}
 		else{
 			return '';
@@ -237,6 +249,14 @@ class Page{
 		$css = self::$css;
 		$css[] = $string;
 		self::$css = array_unique($css);
+	}
+	
+	/**
+	* Récupère le nom de la page par défaut
+	* @return string $defaultPage
+	*/
+	public static function getDefaultPage(){
+		return self::$defaultPage;
 	}
 }
 ?>

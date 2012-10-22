@@ -7,3 +7,4 @@
 		<header>
 <?php $this->show('header');?>
 		</header>
+		<div id="corps">

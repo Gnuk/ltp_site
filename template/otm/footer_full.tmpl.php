@@ -1,4 +1,5 @@
 
+		</div>
 		<footer>
 			<?php $this->show('footer');?>
 		

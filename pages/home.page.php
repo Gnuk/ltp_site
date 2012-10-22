@@ -20,7 +20,7 @@
 			$osm->addMarker($mark2);
 		}
 		Module::load('form');
-		$form = new Form('form', $method = 'POST', $action = '?connection');
+		$form = new Form('form', $method = 'POST', $action = Page::getLink(array('connection' => null), true, false));
 		$form->add('label', 'label_login', 'login', T_('Identifiant : '));
 		$obj = & $form->add('text', 'login');
 		$obj->set_rule(array(
@@ -36,30 +36,42 @@
 		$form->add('submit', 'btnsubmit', T_('Se connecter'));
 		$template = new Template();
 		$template->show('header_full');
-		if(!$form->validate() OR !Config::isUser()){
-			if(count($info = Config::getInfo())){ ?>
-		<ul>
+?>
+			<article>
 <?php
-				foreach ($info as $nInfo => $valueInfo){ ?>
-			<li><?php echo htmlspecialchars($valueInfo, ENT_QUOTES); ?></li>
+		if(Config::isUser()){
+?>
+				<h1><?php echo sprintf(T_('Bienvenue %s'), htmlspecialchars($_SESSION['user']), ENT_QUOTES);?></h1>
+				<p><a href="?disconnection"><?php echo T_('Se déconnecter'); ?></a></p>
 <?php
-			} ?>
-		</ul>
+		}
+		else{
+?>
+				<h1><?php echo T_('Connexion');?></h1>
 <?php
+			if($form->validate()){
+				if(count($info = Config::getInfo())){ ?>
+				<ul>
+<?php
+					foreach ($info as $nInfo => $valueInfo){ ?>
+					<li><?php echo htmlspecialchars($valueInfo, ENT_QUOTES); ?></li>
+<?php
+					} ?>
+				</ul>
+<?php
+				}
 			}
 			$form->render();
 ?>
-		<p>
-			<a href="?p=forgetpassword" title="<?php echo T_('Mot de passe oublié'); ?>"><?php echo T_('Mot de passe oublié'); ?></a> | <a href="?inscription" title="<?php echo T_('S\'inscrire'); ?>"><?php echo T_('S\'inscrire'); ?></a>
-		</p>
+				<p>
+					<a href="?p=forgetpassword" title="<?php echo T_('Mot de passe oublié'); ?>"><?php echo T_('Mot de passe oublié'); ?></a> | <a href="?p=inscription" title="<?php echo T_('S\'inscrire'); ?>"><?php echo T_('S\'inscrire'); ?></a>
+				</p>
 <?php
 		}
-		else{ ?>
-		<p><a href="?disconnection"><?php echo T_('Se déconnecter'); ?></a></p>
-<?php
-		}
-		$osm->showDiv();
+			$osm->showDiv();
 		?>
+			</article>
+		</div>
 		<footer>
 <?php
 		$template->show('footer');

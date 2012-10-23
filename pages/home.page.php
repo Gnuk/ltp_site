@@ -41,7 +41,7 @@
 <?php
 		if(Config::isUser()){
 ?>
-				<h1><?php echo sprintf(T_('Bienvenue %s'), htmlspecialchars($_SESSION['user']), ENT_QUOTES);?></h1>
+				<h1><?php echo Page::htmlEncode(sprintf(T_('Bienvenue %s')), Page::htmlEncode($_SESSION['user']));?></h1>
 				<p><a href="?disconnection"><?php echo T_('Se déconnecter'); ?></a></p>
 <?php
 		}
@@ -54,7 +54,7 @@
 				<ul>
 <?php
 					foreach ($info as $nInfo => $valueInfo){ ?>
-					<li><?php echo htmlspecialchars($valueInfo, ENT_QUOTES); ?></li>
+					<li><?php echo Page::htmlEncode($valueInfo); ?></li>
 <?php
 					} ?>
 				</ul>
@@ -64,7 +64,7 @@
 			$form->render();
 ?>
 				<p>
-					<a href="?p=forgetpassword" title="<?php echo T_('Mot de passe oublié'); ?>"><?php echo T_('Mot de passe oublié'); ?></a> | <a href="?p=inscription" title="<?php echo T_('S\'inscrire'); ?>"><?php echo T_('S\'inscrire'); ?></a>
+					<a href="?p=forgetpassword" title="<?php echo Page::htmlEncode(T_('Mot de passe oublié')); ?>"><?php echo Page::htmlEncode(T_('Mot de passe oublié')); ?></a> | <a href="?p=inscription" title="<?php echo Page::htmlEncode(T_('S\'inscrire')); ?>"><?php echo Page::htmlEncode(T_('S\'inscrire')); ?></a>
 				</p>
 <?php
 		}

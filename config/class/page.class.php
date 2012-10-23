@@ -258,5 +258,14 @@ class Page{
 	public static function getDefaultPage(){
 		return self::$defaultPage;
 	}
+		
+	/**
+	* Encode du texte pour qu'il puisse passer sans erreurs dans du HTML
+	* @param string $text Le texte
+	* @return string Le texte encodé
+	*/
+	public static function htmlEncode($text){
+		return htmlspecialchars($text, ENT_QUOTES);
+	}
 }
 ?>

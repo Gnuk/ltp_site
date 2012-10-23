@@ -1,4 +1,5 @@
 # Ignorer les fichiers de sauvegarde
+*.kate-swp
 *~
 *.bak
 # Ignorer la configuration personnalisée

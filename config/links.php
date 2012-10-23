@@ -14,4 +14,6 @@
 	define('LINK_USERCONFIG', LINK_ROOT . LINK_R . 'userconfig/');
 	define('LINKR_TEMPLATE',  LINK_R . 'template/');
 	define('LINK_TEMPLATE', LINK_ROOT . LINKR_TEMPLATE);
+	define('LINK_MODEL', LINK_ROOT . LINK_R . 'model/');
+	define('LINK_CONTROLLER', LINK_ROOT . LINK_R . 'controller/');
 ?>

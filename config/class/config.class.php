@@ -27,6 +27,7 @@ class Config{
 	
 	/**
 	* Génère la configuration
+	* @todo Récupérer des configurations par défaut dans un fichier texte
 	*/
 	public static function setConfig(){
 		self::$debug = new Debug(true);
@@ -37,6 +38,8 @@ class Config{
 		self::setLocales();
 		self::setDatabase();
 		self::setSessions();
+		Template::setDefaultTemplate('otm');
+		Tools::setMailDefaultSender('Anthony REY',  'gnuk.server@gmail.com');
 	}
 	
 	/**

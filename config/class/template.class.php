@@ -5,7 +5,7 @@
 	* @author Anthony REY <anthony.rey@mailoo.org>
 	*/
 	class Template{
-		private static $defaultTemplate = 'otm';
+		private static $defaultTemplate;
 		private $template;
 		private $link;
 		
@@ -47,7 +47,7 @@
 		* @param string $defaultTemplate Le nom du template
 		* @todo Appeller cette méthode via la configuration pour le thème choisit par l'utilisateur
 		*/
-		public function setDefaultTemplate($defaultTemplate){
+		public static function setDefaultTemplate($defaultTemplate){
 			self::$defaultTemplate = $defaultTemplate;
 		}
 		

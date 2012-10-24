@@ -4,6 +4,12 @@
 	use \gnk\config\Tools;
 	use \gnk\database\entities\Users;
 	use \gnk\database\entities\VerifyUsers;
+	
+	/**
+	* Modèle d'inscription
+	* @todo Supprimer le verifUsers correspondant à l'utilisateur lorsqu'il clique sur le lien puis mettre à jour le champ "active" de Users
+	* @todo Traitement du formulaire de récupération de mot de passe
+	*/
 	class Inscription{
 		private $em;
 		private $username;
@@ -58,26 +64,33 @@
 				$user=new Users($username, $password, $mail);
 				$this->em->persist($user);
 				$this->em->flush();
-				$verif=new VerifyUsers($user, $this->key);
-				$this->em->persist($verif);
-				$this->em->flush();
-				$this->id = $user->getId();
-				//Envoi du message
-				$this->getSubject();
-				$this->getMessage();
-				if(Tools::sendmail($this->mail, $this->subject, $this->message)){
-// 					echo T_('Utilisateur ajouté');
-					return true;
-				}
-				else{
-					$this->em->remove($verif);
-					$this->flush();
-// 					echo T_('Envoi du mail échoué, veuillez récupérer votre mot de passe via le formulaire de mots de passes oubliés');
-					return false;
-				}
+				return $this->verificationUser($user);
 			}
 			else{
 // 				echo T_('Un utilisateur porte déjà ce login ou ce mail');
+				return false;
+			}
+		}
+		
+		/**
+		* Envoi un mail de vérification à l'utilisateur
+		*/
+		private function verificationUser($user){
+			$verif=new VerifyUsers($user, $this->key);
+			$this->em->persist($verif);
+			$this->em->flush();
+			$this->id = $user->getId();
+			//Envoi du message
+			$this->getSubject();
+			$this->getMessage();
+			if(Tools::sendmail($this->mail, $this->subject, $this->message)){
+// 					echo T_('Utilisateur ajouté');
+				return true;
+			}
+			else{
+				$this->em->remove($verif);
+				$this->flush();
+// 					echo T_('Envoi du mail échoué, veuillez récupérer votre mot de passe via le formulaire de mots de passes oubliés');
 				return false;
 			}
 		}

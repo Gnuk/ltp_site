@@ -70,10 +70,11 @@ class VerifyUsers
 	**/
 	protected $user;
 	/** @Column(type="string") **/
-	protected $key;
+	protected $userkey;
 	
-	public function __construct($user){
+	public function __construct($user, $key){
 		$this->user = $user;
+		$this->userkey=sha1($key);
 	}
 }
 

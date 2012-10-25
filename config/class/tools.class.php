@@ -18,12 +18,14 @@
 		*/
 		public static function sendmail($to, $subject = '(No subject)', $message = '', $from_user=null, $from_email=null, $contentType='plain')
 		{
+			if(isset($from_user) AND isset($from_email)){
+				self::$mail['sender_name'] = $from_user;
+				self::$mail['sender_mail'] = $from_email;
+			}
 			$subject = "=?UTF-8?B?".base64_encode($subject)."?=";
 			if(isset(self::$mail['sender_name']) AND isset(self::$mail['sender_mail'])){
-				$from_user=self::$mail['sender_name'];
-				$from_mail=self::$mail['sender_mail'];
 				$from_user = "=?UTF-8?B?".base64_encode($from_user)."?=";
-				$headers = "From: $from_user <$from_email>\r\n". 
+				$headers = "From: =?UTF-8?B?".base64_encode(self::$mail['sender_name'])."?= <".self::$mail['sender_mail'].">\r\n". 
 						"MIME-Version: 1.0" . "\r\n" . 
 						"Content-type: text/$contentType; charset=UTF-8" . "\r\n"; 
 				return mail($to, $subject, $message, $headers);

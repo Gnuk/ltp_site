@@ -2,7 +2,52 @@
 	namespace gnk\controller;
 	use \gnk\modules\form\Form;
 	use \gnk\config\Module;
+	use \gnk\config\Model;
+	Model::load('inscription');
 	class Inscription{
+	
+		private $params=false;
+		private $confirm;
+		private $id;
+		private $key;
+		private $model;
+		private $unsubscribe = false;
+		
+		public function __construct(){
+			$this->model = new \gnk\model\Inscription();
+			$this->getParams();
+		}
+		
+		public function addUser(){
+			return $this->model->addUser($_POST['login'], $_POST['password'], $_POST['email']);
+		}
+		
+		private function getParams(){
+			if(isset($_GET)){
+				if(isset($_GET['id']) AND isset($_GET['key'])){
+					$this->params = true;
+					$this->id=$_GET['id'];
+					$this->key=$_GET['key'];
+					if(isset($_GET['unsubscribe'])){
+						$this->unsubscribe = true;
+					}
+					$this->updateUser();
+				}
+			}
+		}
+		
+		private function updateUser(){
+			if($this->unsubscribe){
+				$this->model->deleteUser($this->id, $this->key);
+			}
+			else{
+				$this->model->activeUser($this->id, $this->key);
+			}
+		}
+		
+		public function getInfo(){
+			return $this->model->getInfo();
+		}
 		
 		/**
 		* Formulaire d'inscription

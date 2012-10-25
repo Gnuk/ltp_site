@@ -41,7 +41,7 @@
 <?php
 		if(Config::isUser()){
 ?>
-				<h1><?php echo Page::htmlEncode(sprintf(T_('Bienvenue %s')), Page::htmlEncode($_SESSION['user']));?></h1>
+				<h1><?php echo Page::htmlEncode(sprintf(T_('Bienvenue %s'), Page::htmlEncode($_SESSION['user'])));?></h1>
 				<p><a href="?disconnection"><?php echo T_('Se déconnecter'); ?></a></p>
 <?php
 		}

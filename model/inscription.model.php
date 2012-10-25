@@ -18,6 +18,7 @@
 		private $subject;
 		private $message;
 		private $id;
+		private $indications = array();
 		
 		/**
 		* Constructeur
@@ -46,6 +47,40 @@
 				return true;
 			}
 			return false;
+		}
+		
+		public function activeUser($id, $key){
+			$qb = $this->em->createQueryBuilder();
+			$qb->select(array('v'))
+				->from('\gnk\database\entities\VerifyUsers', 'v')
+				->where('v.user = :id')
+				->andWhere('v.userkey = :userkey');
+			$qb->setParameters(array('id' => $id, 'userkey' => sha1($key)));
+			$query = $qb->getQuery();
+			$result = $query->getResult();
+			if(count($result)>0){
+				$result[0]->getUser()->setActive(true);
+				$this->indications[]=T_('Vous pouvez maintenant vous connecter');
+				$this->em->persist($result[0]->getUser());
+				$this->em->remove($result[0]);
+				$this->em->flush();
+			}
+		}
+		public function deleteUser($id, $key){
+			$qb = $this->em->createQueryBuilder();
+			$qb->select(array('v'))
+				->from('\gnk\database\entities\VerifyUsers', 'v')
+				->where('v.user = :id')
+				->andWhere('v.userkey = :userkey');
+			$qb->setParameters(array('id' => $id, 'userkey' => sha1($key)));
+			$query = $qb->getQuery();
+			$result = $query->getResult();
+			if(count($result)>0){
+				$this->em->remove($result[0]->getUser());
+				$this->em->remove($result[0]);
+				$this->em->flush();
+				$this->indications[]=T_('Utilisateur supprimé de la base de donnée');
+			}
 		}
 		
 		/**
@@ -121,6 +156,10 @@
 				$this->message .= '?';
 			}
 			$this->message .= 'id='.$this->id.'&key='.$this->key;
+		}
+		
+		public function getInfo(){
+			return $this->indications;
 		}
 	}
 ?>

@@ -42,6 +42,10 @@ class Users
 		$this->mail=$mail;
 	}
 	
+	public function setActive($active){
+		$this->active=$active;
+	}
+	
 	public function getLogin(){
 		return $this->login;
 	}
@@ -75,6 +79,10 @@ class VerifyUsers
 	public function __construct($user, $key){
 		$this->user = $user;
 		$this->userkey=sha1($key);
+	}
+	
+	public function getUser(){
+		return $this->user;
 	}
 }
 

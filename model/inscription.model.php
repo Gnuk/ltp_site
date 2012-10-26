@@ -7,7 +7,7 @@
 	
 	/**
 	* Modèle d'inscription
-	* @todo Supprimer le verifUsers correspondant à l'utilisateur lorsqu'il clique sur le lien puis mettre à jour le champ "active" de Users
+	* @author Anthony REY <anthony.rey@mailoo.org>
 	* @todo Traitement du formulaire de récupération de mot de passe
 	*/
 	class Inscription{

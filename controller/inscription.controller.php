@@ -4,6 +4,9 @@
 	use \gnk\config\Module;
 	use \gnk\config\Model;
 	Model::load('inscription');
+	/**
+	* Classe inscription
+	*/
 	class Inscription{
 	
 		private $params=false;
@@ -13,15 +16,24 @@
 		private $model;
 		private $unsubscribe = false;
 		
+		/**
+		* Constructeur du contrôleur
+		*/
 		public function __construct(){
 			$this->model = new \gnk\model\Inscription();
 			$this->getParams();
 		}
 		
+		/**
+		* Ajout de l'utilisateur
+		*/
 		public function addUser(){
 			return $this->model->addUser($_POST['login'], $_POST['password'], $_POST['email']);
 		}
 		
+		/**
+		* Récupération des paramètres de l'URL (pour l'activation de compte)
+		*/
 		private function getParams(){
 			if(isset($_GET)){
 				if(isset($_GET['id']) AND isset($_GET['key'])){
@@ -36,6 +48,9 @@
 			}
 		}
 		
+		/**
+		* Mise à jour de l'utilisateur
+		*/
 		private function updateUser(){
 			if($this->unsubscribe){
 				$this->model->deleteUser($this->id, $this->key);
@@ -45,6 +60,9 @@
 			}
 		}
 		
+		/**
+		* Récupération des informations du modèle
+		*/
 		public function getInfo(){
 			return $this->model->getInfo();
 		}

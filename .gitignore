@@ -14,3 +14,6 @@
 /userconfig/db.conf
 # Ignorer la configuration Aptana (ou Eclipse)
 /.project
+# Ignorer les projets Kdevelop
+/.kdev4
+*.kdev4

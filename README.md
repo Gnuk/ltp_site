@@ -21,9 +21,11 @@ Gettext est une bibliothèque libre permettant de traduire du texte dans différ
 * Tous les textes doivent s'écrire de la forme T_('Mon texte') pour pouvoir être traduits.
 * Pour les termes ou expressions contenant un pluriel dépendant d'une variable, on utilise T_ngettext :
  * Cas particulier: inclusion d'une variable. Pour inclure une variable dans T_ngettext, on utilise sprintf puisque la variable ne peut être passée en paramètre de traduction.
+
 ```php
 sprintf(T_ngettext('%d élément', '%d éléments', $numberElements), $numberElements);
 ```
+
 * Les traductions des textes (utilisant la fonction T_ et T_ngettext) se font dans des fichiers po puis sont compilés en mo
 
 ##### Les fichiers mo et po
@@ -82,7 +84,10 @@ Module::load('osm');
 $osm = new Osm('carte');
 # Création du calque de marqueurs
 $marker = new Marker('Mon calque de marqueurs');
-# Ajout d'un marqueur
+# Ajout d'un marqueur (Le html en 3ème argument est facultatif)
+# Ici :
+# - Longitude = 4.2
+# - Latitude = 42.42
 $marker->add(4.2 ,42.24, '<h1>Ma Popup</h1>');
 # Ajout du calque de marqueurs à la carte
 $osm->addMarker($marker);

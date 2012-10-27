@@ -1,7 +1,0 @@
-# Database connection
-# Rename me in db.conf
-driver=pdo_mysql
-host=localhost
-user=root
-password=
-dbname=gnuk_database

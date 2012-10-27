@@ -24,6 +24,7 @@ class Config{
 	private static $debug;
 	private static $info;
 	protected static $em = null;
+	private static $dbConfig = false;
 	
 	/**
 	* Génère la configuration
@@ -212,9 +213,9 @@ class Config{
 		}
 	}
 	/**
-	* Récupère une configuration depuis un fichier
+	* Récupère une configuration depuis un fichier texte
 	*/
-	public static function getConfigFile($link){
+	public static function getConfigTextFile($link){
 		$dataTable = array();
 		if(is_file($link)){
 			$file = file($link);
@@ -227,6 +228,36 @@ class Config{
 			}
 		}
 		return $dataTable;
+	}
+	
+	/**
+	* Récupère une configuration depuis un fichier de configuration
+	*/
+	public static function getConfigFile($link){
+		$dataTable = array();
+		if(is_file($link)){
+			require($link);
+			if(isset($params)){
+				$dataTable = $params;
+			}
+		}
+		return $dataTable;
+	}
+	
+	/**
+	* Setter de $dbConfig
+	* @param boolean $dbConfig
+	*/
+	public static function setDbConfig($dbConfig){
+		self::$dbConfig = $dbConfig;
+	}
+	
+	/**
+	* Indique si la configuration de la base de donnée a été définie
+	* @return boolean
+	*/
+	public static function getDbConfig(){
+		return self:: $dbConfig;
 	}
 }
 

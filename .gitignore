@@ -10,8 +10,9 @@
 /doctrine.php
 # Ignorer la génération de doxygen
 /doxygen/*
-# Ignorer la configuration de la base de donnée
+# Ignorer la configuration de la base de donnée (db.conf deprecated)
 /userconfig/db.conf
+/userconfig/db.conf.php
 # Ignorer la configuration Aptana (ou Eclipse)
 /.project
 # Ignorer les projets Kdevelop

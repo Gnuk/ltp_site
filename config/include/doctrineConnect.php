@@ -12,9 +12,14 @@
 	//$config = Setup::createYAMLMetadataConfiguration(array(__DIR__."/config/yaml"), $isDevMode);
 
 	// database configuration parameters
-	$dbConf=LINK_USERCONFIG . 'db.conf';
+	$dbConf=LINK_USERCONFIG . 'db.conf.php';
+	$dbConfDefault=LINK_USERCONFIG . 'db.conf.default.php';
 	if(is_file($dbConf)){
 		$conn = Config::getConfigFile($dbConf);
+		Config::setDbConfig(true);
+	}
+	else if(is_file($dbConfDefault)){
+		$conn = Config::getConfigFile($dbConfDefault);
 	}
 	else{
 		$conn = array(

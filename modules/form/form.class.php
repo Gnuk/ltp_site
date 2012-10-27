@@ -11,8 +11,8 @@ class Form extends \Zebra_Form{
 		$this->form_properties['assets_url'] = LINKR_LIB . 'zebra/';
         $this->language('francais');
 		Page::setJS(array(
-			LINKR_LIB . 'zebra/public/javascript/zebra_form.js',
-			LINKR_LIB . 'jquery/jquery.min.js'
+			LINKR_LIB . 'jquery/jquery.min.js',
+			LINKR_LIB . 'zebra/public/javascript/zebra_form.js'
 		));
 		Page::addCSS(LINKR_LIB . 'zebra/public/css/zebra_form.css');
 	}

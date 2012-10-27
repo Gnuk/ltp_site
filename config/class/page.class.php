@@ -16,6 +16,7 @@ class Page{
 	private static $getName = 'p';
 	private static $js = array();
 	private static $css = array();
+	private static $sourceJs = array();
 	
 	/**
 	* Affichage de la page demandée (La page est de la forme <page>.page.php, fonctionne aussi en récursif avec le séparateur ':' et <repertoire>_DIR)
@@ -198,6 +199,13 @@ class Page{
 <?php
 			}
 		}
+		if(count(self::$sourceJs) > 0){
+			foreach(self::$sourceJs as $nSourceJs => $source){
+?>
+<script type="text/javascript"><?php echo $source;?></script>
+<?php
+			}
+		}
 	}
 	
 	/**
@@ -211,12 +219,18 @@ class Page{
 	
 	/**
 	* Ajoute un lien de fichier JS
-	* @param string $string Le lien
+	* @param string $string Le lien ou le code
+	* @param boolean $source Indique si le code est du code source
 	*/
-	public static function addJS($string){
-		$js = self::$js;
-		$js[] = $string;
-		self::$js = array_unique($js);
+	public static function addJS($string, $source = false){
+		if($source){
+			self::$sourceJs[] = $string;
+		}
+		else{
+			$js = self::$js;
+			$js[] = $string;
+			self::$js = array_unique($js);
+		}
 	}
 	
 	/**

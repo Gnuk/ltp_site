@@ -54,7 +54,7 @@ class Osm{
 	}
 	
 	/**
-	* 
+	* Affiche la zone de carte
 	*/
 	public function showDiv($width=600, $height=450){
 ?>
@@ -63,72 +63,86 @@ class Osm{
 	}
 	
 	/**
+	* Ajoute le JS à la page
+	*/
+	public function setJS(){
+		Page::addJS($this->getJS(), true);
+	}
+	
+	/**
+	* Récupère le code javascript de la carte
+	*/
+	public function getJS(){
+		$js='
+		var options = {
+			controls: [
+			new OpenLayers.Control.Navigation(),
+			new OpenLayers.Control.PanZoomBar(),
+			new OpenLayers.Control.LayerSwitcher(),
+			new OpenLayers.Control.Attribution()
+			]
+		};
+		function getIcon(){
+			var size = new OpenLayers.Size(21, 25);
+			var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+			return new OpenLayers.Icon(\''. LINKR_IMAGES . 'marker.png\',size,offset);
+		}
+		map = new OpenLayers.Map("'.$this->divName.'", options);
+		map.addLayer(new OpenLayers.Layer.OSM.Mapnik("Standard"));
+		map.addLayer(new OpenLayers.Layer.OSM.CycleMap("Cyclable"));
+		map.addLayer(new OpenLayers.Layer.OSM.TransportMap("Transport"));
+		AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, { \'autoSize\': true});';
+		foreach($this->marker AS $number => $marker){
+			$js .= $marker->get();
+		}
+		$js.= '
+		function addMarker(ll, popupClass, popupContentHTML, closeBox, overflow) {
+			var feature = new OpenLayers.Feature(markers, ll); 
+			feature.closeBox = closeBox;
+			feature.popupClass = popupClass;
+			feature.data.popupContentHTML = popupContentHTML;
+			feature.data.overflow = (overflow) ? "auto" : "hidden";
+					
+			var marker = feature.createMarker();
+
+			var markerClick = function (evt) {
+				if (this.popup == null) {
+					this.popup = this.createPopup(this.closeBox);
+					map.addPopup(this.popup);
+					this.popup.show();
+				} else {
+					this.popup.toggle();
+				}
+				currentPopup = this.popup;
+				OpenLayers.Event.stop(evt);
+			};
+			marker.events.register("mousedown", feature, markerClick);
+
+			markers.addMarker(marker);
+		}';
+		if(!empty($this->marker)){
+			$js.= '
+			var bounds = markers.getDataExtent();
+			map.zoomToExtent(bounds);';
+		}
+		else{
+			$js .= '
+			var center = new OpenLayers.LonLat('. $this->defaultLon . ', ' . $this->defaultLat .').transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+			var zoom='. $this->defaultZoom.';
+			map.setCenter (center, zoom);';
+		}
+		return $js;
+	}
+	
+	/**
 	* Affiche le script de la carte
 	*/
 	public function showJS(){
 ?>
 <script>
-	var options = {
-		controls: [
-		new OpenLayers.Control.Navigation(),
-		new OpenLayers.Control.PanZoomBar(),
-		new OpenLayers.Control.LayerSwitcher(),
-		new OpenLayers.Control.Attribution()
-		]
-	};
-	function getIcon(){
-		var size = new OpenLayers.Size(21, 25);
-		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-		return new OpenLayers.Icon('<?php echo LINKR_IMAGES . 'marker.png';?>',size,offset);
-	}
-	map = new OpenLayers.Map("<?php echo $this->divName;?>", options);
-// 	map.addLayer(new OpenLayers.Layer.OSM("OSM"));
-	map.addLayer(new OpenLayers.Layer.OSM.Mapnik("Standard"));
-	map.addLayer(new OpenLayers.Layer.OSM.CycleMap("Cyclable"));
-	map.addLayer(new OpenLayers.Layer.OSM.TransportMap("Transport"));
-	AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, { 'autoSize': true});
 <?php
-	foreach($this->marker AS $number => $marker){
-		$marker->show();
-	}
+		echo $this->getJS();
 ?>
-	function addMarker(ll, popupClass, popupContentHTML, closeBox, overflow) {
-		var feature = new OpenLayers.Feature(markers, ll); 
-		feature.closeBox = closeBox;
-		feature.popupClass = popupClass;
-		feature.data.popupContentHTML = popupContentHTML;
-		feature.data.overflow = (overflow) ? "auto" : "hidden";
-				
-		var marker = feature.createMarker();
-
-		var markerClick = function (evt) {
-			if (this.popup == null) {
-				this.popup = this.createPopup(this.closeBox);
-				map.addPopup(this.popup);
-				this.popup.show();
-			} else {
-				this.popup.toggle();
-			}
-			currentPopup = this.popup;
-			OpenLayers.Event.stop(evt);
-		};
-		marker.events.register("mousedown", feature, markerClick);
-
-		markers.addMarker(marker);
-	}
-<?php
-	if(!empty($this->marker)){
-?>
-	var bounds = markers.getDataExtent();
-	map.zoomToExtent(bounds);
-<?php
-	}
-	else{
-?>
-	var center = new OpenLayers.LonLat(<?php echo $this->defaultLon . ', ' . $this->defaultLat; ?>).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-	var zoom=<?php echo $this->defaultZoom;?>;
-	map.setCenter (center, zoom);
-<?php } ?>
 </script>
 <?php
 	}

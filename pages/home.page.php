@@ -19,6 +19,7 @@
 			$mark2->add(5.88, 45.6470858);
 			$osm->addMarker($mark2);
 		}
+		$osm->setJS();
 		Module::load('form');
 		$form = new Form('form', $method = 'POST', $action = Page::getLink(array('connection' => null), true, false));
 		$form->add('label', 'label_login', 'login', T_('Identifiant : '));
@@ -71,19 +72,8 @@
 			$osm->showDiv();
 		?>
 			</article>
-		</div>
-		<footer>
 <?php
-		$template->show('footer');
-?>
-		</footer>
-<?php
-		$template->show('foot');
-		$osm->showJS();
-?>
-	</body>
-</html>
-<?php
+		$template->show('footer_full');
 	}
 	else{
 		Page::showDefault();

@@ -37,34 +37,31 @@ class Marker{
 	/**
 	* Affiche le marqueur
 	*/
-	public function show(){
-?>
-	markers = new OpenLayers.Layer.Markers("<?php echo $this->alias; ?>");
-	map.addLayer(markers);
-<?php
+	public function get(){
+		$js='
+		markers = new OpenLayers.Layer.Markers("<?php echo $this->alias; ?>");
+		map.addLayer(markers);';
  		foreach($this->marker as $number => $marker){
 			if(isset($marker['html'])){
-
-?>	addMarker(new OpenLayers.LonLat(<?php echo $marker['lon'] . ',' . $marker['lat'];?>).transform(
-		new OpenLayers.Projection("EPSG:4326"), 
-		map.getProjectionObject() 
-	), AutoSizeAnchored, '<?php
+				$js.='
+				addMarker(new OpenLayers.LonLat('.$marker['lon'] . ',' . $marker['lat'].').transform(
+				new OpenLayers.Projection("EPSG:4326"), 
+				map.getProjectionObject() 
+				), AutoSizeAnchored, \'';
 				if(isset($marker['html'])){
-?><?php echo $marker['html']; ?><?php
+					$js.= $marker['html']; ?><?php
 				}
-?>');
-<?php
+			$js .= '\')';
 			}
 			else{
-?>
-	position = new OpenLayers.LonLat(<?php echo $marker['lon'] . ',' . $marker['lat'];?>).transform(
-		new OpenLayers.Projection("EPSG:4326"), 
-		map.getProjectionObject()
-	);
-	markers.addMarker(new OpenLayers.Marker(position));
-<?php
+				$js.= 'position = new OpenLayers.LonLat('. $marker['lon'] . ',' . $marker['lat'].').transform(
+				new OpenLayers.Projection("EPSG:4326"), 
+				map.getProjectionObject()
+				);
+				markers.addMarker(new OpenLayers.Marker(position));';
 			}
  		}
+ 		return $js;
 	}
 }
 ?>

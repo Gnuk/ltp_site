@@ -61,5 +61,40 @@
 			$configFile = LINK_USERCONFIG . 'website.conf.php';
 			$this->websiteConfig = Config::getConfigFile($configFile);
 		}
+		
+		/**
+		* Affiche les paramètres du site (balises meta, title)
+		*/
+		public function showWebsiteParams(){
+			foreach($this->websiteConfig AS $nConfig => $config){
+				if($nConfig == 'title'){
+?>
+		<title><?php echo Page::htmlEncode($config);?></title>
+<?php
+				}
+				else{
+					if(is_array($config)){
+?>
+		<meta name="<?php echo Page::htmlEncode($nConfig);?>" content="<?php
+			echo Page::htmlEncode(implode(', ', $config));
+		?>" />
+<?php
+					}
+					else{
+?>
+		<meta name="<?php echo Page::htmlEncode($nConfig);?>" content="<?php echo Page::htmlEncode($config);?>" />
+<?php
+					}
+				}
+			}
+		}
+		
+		/**
+		* Ajoute un titre à la page, peut être utilisé plusieurs fois
+		* @param string $title Le titre
+		*/
+		public function addTitle($title){
+			$this->websiteConfig['title'] .= ' - ' . $title;
+		}
 	}
 ?>

@@ -36,6 +36,7 @@
 		));
 		$form->add('submit', 'btnsubmit', T_('Se connecter'));
 		$template = new Template();
+		$template->addTitle(T_('Accueil'));
 		$template->show('header_full');
 ?>
 			<article>

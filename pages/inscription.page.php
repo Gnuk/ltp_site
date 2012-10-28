@@ -8,6 +8,7 @@
 	$controller = new \gnk\controller\Inscription();
 	$form = $controller->getForm();
 	$template = new Template();
+	$template->addTitle(T_('Inscription'));
 	$template->show('header_full');
 ?>
 	<article>

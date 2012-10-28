@@ -8,10 +8,12 @@
 		private static $defaultTemplate;
 		private $template;
 		private $link;
+		private $websiteConfig;
 		
 		/**
 		* Constructeur du Template
 		* @param string $template Le nom du template à utiliser
+		* @todo Gérer le websiteConfig
 		*/
 		public function __construct($template = null){
 			if(isset($template) AND is_dir(LINK_TEMPLATE . $template)){
@@ -21,6 +23,7 @@
 				$this->template = self::$defaultTemplate;
 			}
 			$this->link = LINKR_TEMPLATE . $this->template . '/';
+			$this->getWebsiteParams();
 		}
 		
 		/**
@@ -51,5 +54,12 @@
 			self::$defaultTemplate = $defaultTemplate;
 		}
 		
+		/**
+		* Récupère les paramètres utilisateur pour la page
+		*/
+		private function getWebsiteParams(){
+			$configFile = LINK_USERCONFIG . 'website.conf.php';
+			$this->websiteConfig = Config::getConfigFile($configFile);
+		}
 	}
 ?>

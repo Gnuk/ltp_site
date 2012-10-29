@@ -47,7 +47,6 @@
 		/**
 		* Définit le template par défaut
 		* @param string $defaultTemplate Le nom du template
-		* @todo Appeller cette méthode via la configuration pour le thème choisit par l'utilisateur
 		*/
 		public static function setDefaultTemplate($defaultTemplate){
 			self::$defaultTemplate = $defaultTemplate;

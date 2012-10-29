@@ -174,19 +174,6 @@ class Config{
 	}
 	
 	/**
-	* Récupère les droits de l'utilisateur courant
-	* @return int
-	* @deprecated
-	*/
-	public static function getRights(){
-		$rights = 0;
-		if(isset($_SESSION['rights'])){
-			$rights = $_SESSION['rights'];
-		}
-		return $rights;
-	}
-	
-	/**
 	* Indique si un utilisateur est connecté ou non
 	* @return boolean
 	*/

@@ -22,12 +22,12 @@
 				self::$mail['sender_name'] = $from_user;
 				self::$mail['sender_mail'] = $from_email;
 			}
-			$subject = "=?UTF-8?B?".base64_encode($subject)."?=";
+			$subject = '=?UTF-8?B?'.base64_encode($subject).'?=';
 			if(isset(self::$mail['sender_name']) AND isset(self::$mail['sender_mail'])){
-				$from_user = "=?UTF-8?B?".base64_encode($from_user)."?=";
-				$headers = "From: =?UTF-8?B?".base64_encode(self::$mail['sender_name'])."?= <".self::$mail['sender_mail'].">\r\n". 
-						"MIME-Version: 1.0" . "\r\n" . 
-						"Content-type: text/$contentType; charset=UTF-8" . "\r\n"; 
+				$from_user = '=?UTF-8?B?'.base64_encode($from_user).'?=';
+				$headers = 'From: =?UTF-8?B?'.base64_encode(self::$mail['sender_name']).'?= <'.self::$mail['sender_mail'].'>'."\r\n". 
+						'MIME-Version: 1.0' . "\r\n" . 
+						'Content-type: text/'.$contentType.'; charset="UTF-8"' . "\r\n"; 
 				return mail($to, $subject, $message, $headers);
 			}
 			return mail($to, $subject, $message);

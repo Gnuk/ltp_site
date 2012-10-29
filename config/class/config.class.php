@@ -33,13 +33,13 @@ class Config{
 	public static function setConfig(){
 		self::$debug = new Debug(true);
 		self::$encoding = 'UTF-8';
-		self::$defaultLocale='en_US';
+		self::$defaultLocale='en';
 		self::$localedomain='messages';
 		self::$locale=self::$defaultLocale;
+		self::setWebsiteConfig();
 		self::setLocales();
 		self::setDatabase();
 		self::setSessions();
-		self::setWebsiteConfig();
 		self::setTemplate();
 		self::setMail();
 	}
@@ -90,15 +90,26 @@ class Config{
 	* Définit le langage de l'utilisateur
 	*/
 	private static function getLanguage($lang=null){
-		$locale = self::$defaultLocale;
+		if(isset(self::$websiteConfig['locale'])){
+			$locale = self::$websiteConfig['locale'];
+		}
+		else{
+			$locale = self::$defaultLocale;
+		}
 		if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])){
 			$clientLocale = self::getLanguageFromClient();
 		}
 		if(isset($lang) AND isset($_GET[$lang])){
 			$clientLocale = $_GET[$lang];
 		}
-		if(isset($clientLocale) AND is_file(LINK_LOCALE . $clientLocale . '/LC_MESSAGES/' . self::$localedomain . '.mo')){
-			$locale=$clientLocale;
+		if(isset($clientLocale)){
+			$clientLang = self::getLangFromLocale($clientLocale);
+			if(is_file(LINK_LOCALE . $clientLocale . '/LC_MESSAGES/' . self::$localedomain . '.mo')){
+				$locale=$clientLocale;
+			}
+			else if(is_file(LINK_LOCALE . $clientLang . '/LC_MESSAGES/' . self::$localedomain . '.mo')){
+				$locale=$clientLang;
+			}
 		}
 		self::$locale=$locale;
 	}
@@ -119,6 +130,11 @@ class Config{
 		$lang = explode('-',$language_info[0]);
 		$locale = implode('_', $lang);
 		return $locale;
+	}
+	
+	private static function getLangFromLocale($clientLocale){
+		$client = explode('_',$clientLocale);
+		return $client[0];
 	}
 	
 	/**

@@ -4,6 +4,7 @@
 		'year' => '2012',
 		'user' => 'Anthony REY',
 		'mail' => 'gnuk.server@gmail.com',
-		'theme' => 'otm'
+		'theme' => 'otm',
+		'locale' => 'en'
 	);
 ?>

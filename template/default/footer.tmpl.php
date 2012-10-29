@@ -1,0 +1,1 @@
+			<p><?php echo T_('Copyright © 2012 Open Team Map'); ?></p>

@@ -13,7 +13,6 @@
 		/**
 		* Constructeur du Template
 		* @param string $template Le nom du template à utiliser
-		* @todo Gérer le websiteConfig
 		*/
 		public function __construct($template = null){
 			if(isset($template) AND is_dir(LINK_TEMPLATE . $template)){

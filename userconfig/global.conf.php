@@ -2,6 +2,8 @@
 	$params = array(
 		'title' => 'LocalizeTeaPot',
 		'year' => '2012',
-		'mail' => 'gnuk.server@gmail.com'
+		'user' => 'Anthony REY',
+		'mail' => 'gnuk.server@gmail.com',
+		'theme' => 'otm'
 	);
 ?>

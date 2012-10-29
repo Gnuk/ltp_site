@@ -29,7 +29,6 @@ class Config{
 	
 	/**
 	* Génère la configuration
-	* @todo Récupérer des configurations par défaut dans un fichier texte
 	*/
 	public static function setConfig(){
 		self::$debug = new Debug(true);
@@ -41,8 +40,34 @@ class Config{
 		self::setDatabase();
 		self::setSessions();
 		self::setWebsiteConfig();
-		Template::setDefaultTemplate('otm');
-		Tools::setMailDefaultSender('Anthony REY',  'gnuk.server@gmail.com');
+		self::setTemplate();
+		self::setMail();
+	}
+	
+	/**
+	* Instancie le template
+	*/
+	private static function setTemplate(){
+		$defaultTheme = 'default';
+		if(isset(self::$websiteConfig['theme'])){
+			$defaultTheme = self::$websiteConfig['theme'];
+		}
+		Template::setDefaultTemplate($defaultTheme);
+	}
+	
+	/**
+	* Instancie les mails
+	*/
+	private static function setMail(){
+		$defaultUser = 'Gnuk';
+		$defaultMail = 'admin@yourserver.org';
+		if(isset(self::$websiteConfig['user'])){
+			$defaultUser = self::$websiteConfig['user'];
+		}
+		if(isset(self::$websiteConfig['mail'])){
+			$defaultMail = self::$websiteConfig['mail'];
+		}
+		Tools::setMailDefaultSender($defaultUser,  $defaultMail);
 	}
 	
 	/**

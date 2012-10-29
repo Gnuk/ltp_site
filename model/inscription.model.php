@@ -90,7 +90,6 @@
 		* @param string $username
 		* @param string $password
 		* @param string $mail
-		* @todo Indiquer l'erreur s'il y en a une
 		*/
 		public function addUser($username, $password, $mail){
 			$this->username = $username;

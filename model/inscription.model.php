@@ -14,7 +14,6 @@
 	class Inscription{
 		private $em;
 		private $username;
-		private $password;
 		private $mail;
 		private $subject;
 		private $message;
@@ -91,13 +90,12 @@
 		* @param string $password
 		* @param string $mail
 		*/
-		public function addUser($username, $password, $mail){
+		public function addUser($username, $password, $mail, $language=null){
 			$this->username = $username;
-			$this->password = $password;
 			$this->mail=$mail;
 			$this->key = sha1(uniqid(rand(), true));
 			if(!$this->isUser()){
-				$user=new Users($username, $password, $mail);
+				$user=new Users($username, $password, $mail, $language);
 				$this->em->persist($user);
 				$this->em->flush();
 				return $this->verificationUser($user);

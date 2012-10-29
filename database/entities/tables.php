@@ -20,6 +20,8 @@ class Users
 	protected $password;
 	/** @Column(type="integer") **/
 	protected $rights;
+	/** @Column(type="string", nullable=true)) **/
+	protected $language;
 	/** @Column(type="datetime") **/
 	protected $date;
 	/** @Column(type="boolean") **/
@@ -29,11 +31,14 @@ class Users
 	/** @Column(type="string", length=255, unique=true) **/
 	protected $mail;
 	
-	public function __construct($login, $password, $mail){
+	public function __construct($login, $password, $mail, $language = null){
 		$this->login = $login;
 		$this->password = sha1($password);
 		$this->mail = $mail;
 		$this->rights = 3;
+		if(isset($language)){
+			$this->language = $language;
+		}
 		$datetime = new DateTime();
 		$this->date = $datetime;
 	}
@@ -60,6 +65,10 @@ class Users
 	
 	public function getActive(){
 		return $this->active;
+	}
+	
+	public function getLanguage(){
+		return $this->language;
 	}
 }
 

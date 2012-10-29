@@ -31,15 +31,16 @@ class Config{
 	* Génère la configuration
 	*/
 	public static function setConfig(){
+		require_once(LINK_LIB . 'gettext/gettext.inc');
 		self::$debug = new Debug(true);
 		self::$encoding = 'UTF-8';
 		self::$defaultLocale='en';
 		self::$localedomain='messages';
 		self::$locale=self::$defaultLocale;
 		self::setWebsiteConfig();
-		self::setLocales();
 		self::setDatabase();
 		self::setSessions();
+		self::setLocales();
 		self::setTemplate();
 		self::setMail();
 	}
@@ -99,6 +100,9 @@ class Config{
 		if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])){
 			$clientLocale = self::getLanguageFromClient();
 		}
+		if(isset($_SESSION['user_lang'])){
+			$clientLocale = $_SESSION['user_lang'];
+		}
 		if(isset($lang) AND isset($_GET[$lang])){
 			$clientLocale = $_GET[$lang];
 		}
@@ -141,7 +145,6 @@ class Config{
 	* Définit les LOCALES pour le site
 	*/
 	private static function setLocales(){
-		require_once(LINK_LIB . 'gettext/gettext.inc');
 
 		self::getLanguage('lang');
 		
@@ -182,10 +185,13 @@ class Config{
 	* @param int $rights Droits de l'utilisateur
 	* @param int $id Identifiant utilisateur
 	*/
-	private static function putSessions($user='anonymous', $id=null){
+	private static function putSessions($user='anonymous', $id=null, $language=null){
 		$_SESSION['user'] = $user;
 		if(isset($id)){
 			$_SESSION['user_id'] = $id;
+		}
+		if(isset($language)){
+			$_SESSION['user_lang'] = $language;
 		}
 	}
 	
@@ -218,7 +224,7 @@ class Config{
 		$result = $query->getResult();
 		if(count($result) > 0 AND $result[0]->getActive()){
 			$user = $result[0];
-			self::putSessions($user->getLogin(), $user->getId());
+			self::putSessions($user->getLogin(), $user->getId(), $user->getLanguage());
 		}
 		else{
 			self::$info[]=T_('Votre identifiant ou/et votre mot de passe est erroné');

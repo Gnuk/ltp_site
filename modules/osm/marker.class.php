@@ -39,7 +39,7 @@ class Marker{
 	*/
 	public function get(){
 		$js='
-		markers = new OpenLayers.Layer.Markers("<?php echo $this->alias; ?>");
+		markers = new OpenLayers.Layer.Markers("' .$this->alias.'");
 		map.addLayer(markers);';
  		foreach($this->marker as $number => $marker){
 			if(isset($marker['html'])){
@@ -49,7 +49,7 @@ class Marker{
 				map.getProjectionObject() 
 				), AutoSizeAnchored, \'';
 				if(isset($marker['html'])){
-					$js.= $marker['html']; ?><?php
+					$js.= $marker['html'];
 				}
 			$js .= '\')';
 			}

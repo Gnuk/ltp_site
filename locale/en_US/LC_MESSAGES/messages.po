@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-06 13:38+0100\n"
-"PO-Revision-Date: 2012-10-06 13:40+0100\n"
+"POT-Creation-Date: 2012-10-29 12:53+0100\n"
+"PO-Revision-Date: 2012-10-29 12:53+0100\n"
 "Last-Translator: \n"
 "Language-Team: Open Team MAP\n"
 "MIME-Version: 1.0\n"
@@ -15,59 +15,286 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ./../../..\n"
 
-#: ../../../config/class/debug.class.php:69
-msgid "Débogage"
-msgstr "Debug"
+#: ../../../model/inscription.model.php:65
+msgid "Vous pouvez maintenant vous connecter"
+msgstr "You can connect now"
 
-#: ../../../config/class/debug.class.php:83
-msgid "Erreur"
-msgstr "Error"
+#: ../../../model/inscription.model.php:84
+msgid "Utilisateur supprimé de la base de donnée"
+msgstr "User deleted from database"
 
-#: ../../../config/class/debug.class.php:86
-msgid "Avertissement"
-msgstr "Warning"
+#: ../../../model/inscription.model.php:106
+msgid ""
+"Un utilisateur porte déjà cet identifiant ou cette adresse de messagerie."
+msgstr "A user already have this login or mail."
 
-#: ../../../config/class/debug.class.php:89
-msgid "Indication"
-msgstr "Notice"
+#: ../../../model/inscription.model.php:135
+msgid ""
+"Envoi du mail échoué, veuillez récupérer votre mot de passe via le "
+"formulaire de mots de passes oubliés."
+msgstr ""
+"Sending email failed, please recover your password with the forgotten "
+"password form."
 
-#: ../../../config/class/debug.class.php:92
-msgid "Débogage non identifié"
-msgstr "Debugging unidentified"
+#: ../../../model/inscription.model.php:146
+#, php-format
+msgid "Inscription à %s"
+msgstr "Registration to %s"
 
-#: ../../../config/class/page.class.php:18
-#: ../../../config/class/page.class.php:21
-msgid "Erreur 404"
-msgstr "Error 404"
-
-#: ../../../config/class/page.class.php:23
-msgid "Veuillez créer une page error404.html à la racine"
-msgstr "Please create error404.html in the root website directory"
-
-#: ../../../pages/home.page.php:7
-msgid "LocalizeTeaPot"
-msgstr "LocalizeTeaPot"
-
-#: ../../../pages/home.page.php:13
-msgid "Identifiant :"
-msgstr "Login :"
-
-#: ../../../pages/home.page.php:14
-msgid "Mot de passe :"
-msgstr "Password :"
-
-#: ../../../pages/home.page.php:15
-msgid "Connexion"
-msgstr "Connection"
-
-#: ../../../pages/home.page.php:17
-msgid "Mot de passe oublié ?"
-msgstr "Forget password ?"
-
-#: ../../../pages/home.page.php:17
+#: ../../../model/inscription.model.php:149
+#: ../../../pages/inscription.page.php:11
+#: ../../../pages/inscription.page.php:34
 msgid "Inscription"
 msgstr "Subscribe"
 
-#: ../../../pages/home.page.php:21
-msgid "© 2012 M1 STIC Informatique. Tous droits réservés."
-msgstr "© 2012 M1 STIC Informatique. All rights reserved."
+#: ../../../model/inscription.model.php:160
+#, php-format
+msgid "Bienvenue sur %s"
+msgstr "Welcome to %s"
+
+#: ../../../model/inscription.model.php:163
+msgid "Bienvenue"
+msgstr "Welcome"
+
+#: ../../../model/inscription.model.php:165
+msgid "Vous pouvez terminer votre inscription en cliquant sur"
+msgstr "You can complete your registration by clicking on"
+
+#: ../../../model/inscription.model.php:179
+msgid "Ou l'annuler en cliquant sur"
+msgstr "Or cancel by clicking on"
+
+#: ../../../userconfig/website.conf.php:3
+msgid "Retrouve tous tes amis (pour le thé)"
+msgstr "Find all your friends (for tea)"
+
+#: ../../../userconfig/website.conf.php:4
+msgid "localiser"
+msgstr "localize"
+
+#: ../../../userconfig/website.conf.php:4
+msgid "amis"
+msgstr "friends"
+
+#: ../../../userconfig/website.conf.php:4
+msgid "carte"
+msgstr "map"
+
+#: ../../../userconfig/website.conf.php:4
+msgid "position"
+msgstr "position"
+
+#: ../../../controller/inscription.controller.php:86
+#: ../../../pages/home.page.php:25
+msgid "Identifiant : "
+msgstr "Login :"
+
+#: ../../../controller/inscription.controller.php:97
+msgid "Vous devez préciser un identifiant."
+msgstr "You must specify your login."
+
+#: ../../../controller/inscription.controller.php:102
+msgid "Adresse de messagerie électronique :"
+msgstr "Mail :"
+
+#: ../../../controller/inscription.controller.php:105
+msgid "Veuillez entrer une adresse de messagerie électronique."
+msgstr "Can you enter your mail."
+
+#: ../../../controller/inscription.controller.php:106
+msgid "Cette adresse est invalide."
+msgstr "This mail is not valid."
+
+#: ../../../controller/inscription.controller.php:110
+msgid ""
+"Veuillez entrer une adresse de messagerie électronique, vous recevrez "
+"message électronique pour valider votre compte."
+msgstr ""
+"Can you enter your mail, you will recieve a mail to valid your account."
+
+#: ../../../controller/inscription.controller.php:113
+#: ../../../pages/home.page.php:32
+msgid "Mot de passe : "
+msgstr "Password :"
+
+#: ../../../controller/inscription.controller.php:118
+msgid "Le mot de passe est demandé."
+msgstr "The password is required."
+
+#: ../../../controller/inscription.controller.php:119
+#: ../../../controller/inscription.controller.php:121
+#, php-format
+msgid "Votre mot passe doit être composé de %d à %d caractères."
+msgstr "Your password must contain %d to %d characters."
+
+#: ../../../controller/inscription.controller.php:124
+msgid "Confirmation de mot de passe :"
+msgstr "Password confirm :"
+
+#: ../../../controller/inscription.controller.php:127
+msgid "Les mots de passes ne correspondent pas."
+msgstr "Passwords don't match."
+
+#: ../../../controller/inscription.controller.php:132
+msgid "Êtes-vous un être humain ?"
+msgstr "Are you human ?"
+
+#: ../../../controller/inscription.controller.php:134
+msgid "Vous devez entrer les caractères de couleur noire"
+msgstr "You will enter black color characters"
+
+#: ../../../controller/inscription.controller.php:136
+msgid "Les caractères ne correspondent pas !"
+msgstr "The characters don't match !"
+
+#: ../../../controller/inscription.controller.php:140
+msgid "S'enregistrer"
+msgstr "Subscribe"
+
+#: ../../../modules/osm/osm.class.php:61
+msgid "Veuillez activer javascript pour voir la carte"
+msgstr "Please "
+
+#: ../../../template/otm/footer.tmpl.php:1
+msgid "Copyright © 2012 Open Team Map"
+msgstr ""
+
+#: ../../../template/otm/header.tmpl.php:7 ../../../pages/home.page.php:39
+msgid "Accueil"
+msgstr "Home"
+
+#: ../../../template/default/footer.tmpl.php:1
+msgid "Copyright © 2012 GNK Website"
+msgstr ""
+
+#: ../../../template/default/header.tmpl.php:13
+msgid "Mon site"
+msgstr "My website"
+
+#: ../../../config/class/debug.class.php:71
+msgid "Débogage"
+msgstr "Debug"
+
+#: ../../../config/class/debug.class.php:85
+msgid "Erreur"
+msgstr "Error"
+
+#: ../../../config/class/debug.class.php:88
+msgid "Avertissement"
+msgstr "Warning"
+
+#: ../../../config/class/debug.class.php:91
+msgid "Indication"
+msgstr "Notice"
+
+#: ../../../config/class/debug.class.php:94
+msgid "Débogage non identifié"
+msgstr "Debugging unidentified"
+
+#: ../../../config/class/config.class.php:139
+msgid "Locales initialisées"
+msgstr "Initialized local"
+
+#: ../../../config/class/config.class.php:149
+msgid "Déconnexion"
+msgstr "Log out"
+
+#: ../../../config/class/config.class.php:154
+msgid "Tentative de connexion"
+msgstr "Connection attempt"
+
+#: ../../../config/class/config.class.php:158
+msgid "Anonymous"
+msgstr "Anonymous"
+
+#: ../../../config/class/config.class.php:221
+msgid "Votre identifiant ou/et votre mot de passe est erroné"
+msgstr "Your login or password is not correct"
+
+#: ../../../config/class/config.class.php:247
+#, php-format
+msgid "Fichier %s chargé"
+msgstr "File %s loaded"
+
+#: ../../../config/class/config.class.php:251
+#, php-format
+msgid "Le fichier \"%s\" est absent, peut-être que Doctrine n'est pas installé"
+msgstr "The file \"%s\" don't exist, Doctrine may not be installed"
+
+#: ../../../config/class/config.class.php:255
+#, php-format
+msgid "La bibliothèque Doctrine \"%s\" est absente"
+msgstr "Doctrine \"%s\" library is missing"
+
+#: ../../../config/class/page.class.php:65
+#: ../../../config/class/page.class.php:68
+msgid "Erreur 404"
+msgstr "Error 404"
+
+#: ../../../config/class/page.class.php:70
+msgid "Veuillez créer une page error404.html à la racine"
+msgstr "Please create error404.html in the root website directory"
+
+#: ../../../pages/inscription.page.php:12
+msgid "Inscription à LocalizeTeaPot."
+msgstr "Registration to LocalizeTeaPot."
+
+#: ../../../pages/inscription.page.php:13
+msgid "inscription"
+msgstr "registration"
+
+#: ../../../pages/inscription.page.php:20
+msgid "Confirmation d'inscription"
+msgstr "Confirmation of registration"
+
+#: ../../../pages/inscription.page.php:41
+msgid "Vous êtes maintenant inscrit, veuillez regarder vos messages."
+msgstr "You're now registred, please see your mails."
+
+#: ../../../pages/inscription.page.php:59
+msgid "Une erreur non répertoriée est survenue."
+msgstr "An error unlisted has occurred."
+
+#: ../../../pages/home.page.php:28
+msgid "Vous indiquer votre identifiant."
+msgstr "Please enter your login."
+
+#: ../../../pages/home.page.php:35
+msgid "Veuillez indiquer votre mot de passe."
+msgstr "Please enter your password."
+
+#: ../../../pages/home.page.php:37
+msgid "Se connecter"
+msgstr "Connect"
+
+#: ../../../pages/home.page.php:46
+#, php-format
+msgid "Bienvenue %s"
+msgstr "Welcome %s"
+
+#: ../../../pages/home.page.php:47
+msgid "Se déconnecter"
+msgstr "Log out"
+
+#: ../../../pages/home.page.php:52
+msgid "Connexion"
+msgstr "Connection"
+
+#: ../../../pages/home.page.php:69
+msgid "Mot de passe oublié"
+msgstr "Forget password"
+
+#: ../../../pages/home.page.php:69
+msgid "S'inscrire"
+msgstr "Subscribe"
+
+#: ../../../pages/doctrine.page.php:32
+msgid "Utilisateur ajouté"
+msgstr "Added user"
+
+#: ../../../pages/doctrine.page.php:35
+msgid "Un utilisateur porte déjà ce login ou ce mail"
+msgstr "There is already a user with this login or this email"
+
+#~ msgid "© 2012 M1 STIC Informatique. Tous droits réservés."
+#~ msgstr "© 2012 M1 STIC Informatique. All rights reserved."

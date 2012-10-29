@@ -9,7 +9,7 @@
 	$form = $controller->getForm();
 	$template = new Template();
 	$template->addTitle(T_('Inscription'));
-	$template->setDescription(T_('Inscription à LocalizeTeaPots.'));
+	$template->setDescription(T_('Inscription à LocalizeTeaPot.'));
 	$template->addKeywords(array(T_('inscription')));
 	$template->show('header_full');
 ?>
@@ -31,7 +31,7 @@
 		$form = $controller->getForm();
 		$displayForm = true;
 ?>
-		<h1 id="inscription">Inscription</h1>
+		<h1 id="inscription"><?php echo T_('Inscription');?></h1>
 <?php
 		if($form->validate()){
 			# Récupération du modèle

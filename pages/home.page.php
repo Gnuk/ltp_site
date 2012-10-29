@@ -53,7 +53,7 @@
 <?php
 			if($form->validate()){
 				if(count($info = Config::getInfo())){ ?>
-				<ul>
+				<ul class="form_error">
 <?php
 					foreach ($info as $nInfo => $valueInfo){ ?>
 					<li><?php echo Page::htmlEncode($valueInfo); ?></li>

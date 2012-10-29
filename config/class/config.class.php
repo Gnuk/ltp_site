@@ -25,6 +25,7 @@ class Config{
 	private static $info;
 	protected static $em = null;
 	private static $dbConfig = false;
+	private static $websiteConfig = array();
 	
 	/**
 	* Génère la configuration
@@ -39,8 +40,25 @@ class Config{
 		self::setLocales();
 		self::setDatabase();
 		self::setSessions();
+		self::setWebsiteConfig();
 		Template::setDefaultTemplate('otm');
 		Tools::setMailDefaultSender('Anthony REY',  'gnuk.server@gmail.com');
+	}
+	
+	/**
+	* Créé la configuration globale du site
+	*/
+	private static function setWebsiteConfig(){
+		$configFile = LINK_USERCONFIG . 'global.conf.php';
+		self::$websiteConfig = self::getConfigFile($configFile);
+	}
+	
+	/**
+	* Récupère la configuration globale du site
+	* @return array $websiteConfig
+	*/
+	public static function getWebsiteConfig(){
+		return self::$websiteConfig;
 	}
 	
 	/**

@@ -2,6 +2,7 @@
 	namespace gnk\model;
 	use \gnk\config\Database;
 	use \gnk\config\Tools;
+	use \gnk\config\Config;
 	use \gnk\database\entities\Users;
 	use \gnk\database\entities\VerifyUsers;
 	
@@ -19,6 +20,7 @@
 		private $message;
 		private $id;
 		private $indications = array();
+		private $errors = array();
 		
 		/**
 		* Constructeur
@@ -102,9 +104,16 @@
 				return $this->verificationUser($user);
 			}
 			else{
-// 				echo T_('Un utilisateur porte déjà ce login ou ce mail');
+				$this->errors[] = T_('Un utilisateur porte déjà cet identifiant ou cette adresse de messagerie.');
 				return false;
 			}
+		}
+		
+		/**
+		* Récupère les erreurs envoyées
+		*/
+		public function getError(){
+			return $this->errors;
 		}
 		
 		/**
@@ -119,43 +128,57 @@
 			$this->getSubject();
 			$this->getMessage();
 			if(Tools::sendmail($this->mail, $this->subject, $this->message)){
-// 					echo T_('Utilisateur ajouté');
 				return true;
 			}
 			else{
 				$this->em->remove($verif);
-				$this->flush();
-// 					echo T_('Envoi du mail échoué, veuillez récupérer votre mot de passe via le formulaire de mots de passes oubliés');
+				$this->em->flush();
+				$this->errors[] = T_('Envoi du mail échoué, veuillez récupérer votre mot de passe via le formulaire de mots de passes oubliés.');
 				return false;
 			}
 		}
 		
 		/**
 		* Permet de récupérer le sujet du message
-		* @todo Rendre plus générique en mettant le "réel" nom du site dans le sujet
 		*/
 		private function getSubject(){
-			$this->subject = T_('Inscription à LocalizeTeaPot');
+			$global = Config::getWebsiteConfig();
+			if(isset($global['title'])){
+				$this->subject = sprintf(T_('Inscription à %s'), $global['title']);
+			}
+			else{
+				$this->subject = T_('Inscription');
+			}
+			
 		}
 		
 		/**
 		* Permet de définir le message à envoyer à la personne qui s'inscrit
-		* @todo Rendre plus générique en mettant le "réel" nom du site dans le message
 		*/
 		private function getMessage(){
-			$this->message = 'Bienvenue sur LocalizeTeaPot,'."\n".'Vous pouvez terminer votre inscription en cliquant sur'."\n";
-			$this->message .= 'http';
-			if(isset($_SERVER['HTTPS'])){
-				$this->message .= 's';
+			$global = Config::getWebsiteConfig();
+			if(isset($global['title'])){
+				$this->message = sprintf(T_("Bienvenue sur %s"), $global['title']) . "\n";
 			}
-			$this->message .=  '://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+			else{
+				$this->message = T_("Bienvenue") . "\n";
+			}
+			$this->message .= T_('Vous pouvez terminer votre inscription en cliquant sur')."\n";
+			$url = 'http';
+			if(isset($_SERVER['HTTPS'])){
+				$url .= 's';
+			}
+			$url .=  '://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 			if(isset($_GET)){
-				$this->message .= '&';
+				$url .= '&';
 			}
 			else{
 				$this->message .= '?';
 			}
-			$this->message .= 'id='.$this->id.'&key='.$this->key;
+			$url .= 'id='.$this->id.'&key='.$this->key;
+			$this->message .= $url . "\n";
+			$this->message .= T_('Ou l\'annuler en cliquant sur') . "\n";
+			$this->message .= $url . '&unsubscribe';
 		}
 		
 		public function getInfo(){

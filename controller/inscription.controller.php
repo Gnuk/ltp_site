@@ -68,6 +68,13 @@
 		}
 		
 		/**
+		* Récupération de les erreurs du modèle
+		*/
+		public function getError(){
+			return $this->model->getError();
+		}
+		
+		/**
 		* Formulaire d'inscription
 		* @return Form $form Le formulaire
 		*/

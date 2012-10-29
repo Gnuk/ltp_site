@@ -8,7 +8,7 @@
 		private static $defaultTemplate;
 		private $template;
 		private $link;
-		private $websiteConfig;
+		private $websiteConfig = array();
 		
 		/**
 		* Constructeur du Template
@@ -59,7 +59,19 @@
 		*/
 		private function getWebsiteParams(){
 			$configFile = LINK_USERCONFIG . 'website.conf.php';
-			$this->websiteConfig = Config::getConfigFile($configFile);
+			if(count($global = Config::getWebsiteConfig())>0){
+				$config = array();
+				if(isset($global['title'])){
+					$config['title'] = $global['title'];
+				}
+				
+				$config = array_merge($config, Config::getConfigFile($configFile));
+				$this->websiteConfig = array_unique($config, SORT_REGULAR);
+			}
+			else{
+				$this->websiteConfig = Config::getConfigFile($configFile);
+			}
+			
 		}
 		
 		/**
@@ -94,7 +106,37 @@
 		* @param string $title Le titre
 		*/
 		public function addTitle($title){
-			$this->websiteConfig['title'] .= ' - ' . $title;
+			if(isset($this->websiteConfig['title'])){
+				$this->websiteConfig['title'] .= ' - ' . $title;
+			}
+			else{
+				$this->websiteConfig['title'] = $title;
+			}
+		}
+		
+		/**
+		* Change la description de la page
+		* @param string $description La description
+		*/
+		public function setDescription($description){
+			$this->websiteConfig['description'] = $description;
+		}
+		
+		/**
+		* Change l'auteur de la page
+		* @param string $author L'auteur
+		*/
+		public function setAuthor($author){
+			$this->websiteConfig['author'] = $author;
+		}
+		
+		/**
+		* Ajoute des mots clés à la page, peut être utilisé plusieurs fois
+		* @param array $keywords Le tableau de mots clés
+		*/
+		public function addKeywords($keywords){
+			$keywordsNotUni = array_merge($this->websiteConfig['keywords'], $keywords);
+			$this->websiteConfig['keywords'] = array_unique($keywordsNotUni, SORT_REGULAR);
 		}
 	}
 ?>

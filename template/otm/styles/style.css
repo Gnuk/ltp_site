@@ -20,6 +20,10 @@ div#corps{
 	box-shadow:0px 0px 5px 5px rgba(0,0,0,0.2);
 }
 
+article>p, section>p{
+	text-align:justify;
+}
+
 footer{
 	text-align: right;
 }
@@ -32,6 +36,37 @@ iframe#carteOSM
 p#droitsAuteurs
 {
 	text-align: right;
+}
+
+.form_valid{
+	background-color: #bf9;
+	background-image: url('../images/valid.png');
+}
+.form_error{
+	background-color: #fbb;
+	background-image: url('../images/error.png');
+}
+.form_info{
+	background-color: #bdf;
+	background-image: url('../images/info.png');
+}
+ul.form_error, ul.form_info, ul.form_valid{
+	list-style-type: none;
+	list-style-position: inside;
+}
+
+.form_error, .form_valid, .form_info{
+	border-radius: 5px;
+	padding: 5px 26px 5px 5px;
+	border-right: 5px solid transparent;
+	min-height: 16px;
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-origin: padding-box;
+	box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+.form_error:hover, .form_valid:hover, .form_info:hover{
+	box-shadow: 0px 0px 5px 1px rgba(0,100,200,0.5);
 }
 
 /* CSS Liens du site */

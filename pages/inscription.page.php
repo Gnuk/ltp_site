@@ -9,6 +9,8 @@
 	$form = $controller->getForm();
 	$template = new Template();
 	$template->addTitle(T_('Inscription'));
+	$template->setDescription(T_('Inscription à LocalizeTeaPots.'));
+	$template->addKeywords(array(T_('inscription')));
 	$template->show('header_full');
 ?>
 	<article>
@@ -19,7 +21,7 @@
 <?php
 		foreach($infos AS $nInfo => $info){
 ?>
-		<p>
+		<p class="form_info">
 			<?php echo Page::htmlEncode($info);?>
 		</p>
 <?php
@@ -29,24 +31,35 @@
 		$form = $controller->getForm();
 		$displayForm = true;
 ?>
-		<h1>Inscription</h1>
+		<h1 id="inscription">Inscription</h1>
 <?php
 		if($form->validate()){
 			# Récupération du modèle
 			if($controller->addUser()){
 ?>
-		<p>
+		<p class="form_info">
 			<?php echo T_('Vous êtes maintenant inscrit, veuillez regarder vos messages.');?>
 		</p>
 <?php
 				$displayForm = false;
 			}
 			else{
+				if(count($errors = $controller->getError()) > 0){
+					foreach($errors AS $nError => $error){
 ?>
-		<p>
-			<?php echo T_('Un utilisateur porte déjà cet identifiant ou cette adresse de messagerie.');?>
+		<p class="form_error">
+			<?php echo $error;?>
 		</p>
 <?php
+					}
+				}
+				else{
+?>
+		<p class="form_error">
+			<?php echo T_('Une erreur non répertoriée est survenue.');?>
+		</p>
+<?php
+				}
 				$displayForm = true;
 			}
 		}

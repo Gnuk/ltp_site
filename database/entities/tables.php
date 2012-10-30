@@ -140,4 +140,16 @@ class Status
     {
 		$this->user = $user;
     }
+    
+    public function getMessage(){
+		return $this->message;
+    }
+    
+    public function getLatitude(){
+		return $this->latitude;
+    }
+    
+    public function getLongitude(){
+		return $this->longitude;
+    }
 }

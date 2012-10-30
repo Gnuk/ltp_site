@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-29 12:53+0100\n"
-"PO-Revision-Date: 2012-10-29 12:53+0100\n"
+"POT-Creation-Date: 2012-10-30 14:16+0100\n"
+"PO-Revision-Date: 2012-10-30 14:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: Open Team MAP\n"
 "MIME-Version: 1.0\n"
@@ -15,20 +15,20 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ./../../..\n"
 
-#: ../../../model/inscription.model.php:65
+#: ../../../model/inscription.model.php:64
 msgid "Vous pouvez maintenant vous connecter"
 msgstr "You can connect now"
 
-#: ../../../model/inscription.model.php:84
+#: ../../../model/inscription.model.php:83
 msgid "Utilisateur supprimé de la base de donnée"
 msgstr "User deleted from database"
 
-#: ../../../model/inscription.model.php:106
+#: ../../../model/inscription.model.php:104
 msgid ""
 "Un utilisateur porte déjà cet identifiant ou cette adresse de messagerie."
 msgstr "A user already have this login or mail."
 
-#: ../../../model/inscription.model.php:135
+#: ../../../model/inscription.model.php:133
 msgid ""
 "Envoi du mail échoué, veuillez récupérer votre mot de passe via le "
 "formulaire de mots de passes oubliés."
@@ -36,31 +36,31 @@ msgstr ""
 "Sending email failed, please recover your password with the forgotten "
 "password form."
 
-#: ../../../model/inscription.model.php:146
+#: ../../../model/inscription.model.php:144
 #, php-format
 msgid "Inscription à %s"
 msgstr "Registration to %s"
 
-#: ../../../model/inscription.model.php:149
+#: ../../../model/inscription.model.php:147
 #: ../../../pages/inscription.page.php:11
 #: ../../../pages/inscription.page.php:34
 msgid "Inscription"
 msgstr "Subscribe"
 
-#: ../../../model/inscription.model.php:160
+#: ../../../model/inscription.model.php:158
 #, php-format
 msgid "Bienvenue sur %s"
 msgstr "Welcome to %s"
 
-#: ../../../model/inscription.model.php:163
+#: ../../../model/inscription.model.php:161
 msgid "Bienvenue"
 msgstr "Welcome"
 
-#: ../../../model/inscription.model.php:165
+#: ../../../model/inscription.model.php:163
 msgid "Vous pouvez terminer votre inscription en cliquant sur"
 msgstr "You can complete your registration by clicking on"
 
-#: ../../../model/inscription.model.php:179
+#: ../../../model/inscription.model.php:177
 msgid "Ou l'annuler en cliquant sur"
 msgstr "Or cancel by clicking on"
 
@@ -84,92 +84,93 @@ msgstr "map"
 msgid "position"
 msgstr "position"
 
-#: ../../../controller/inscription.controller.php:86
+#: ../../../controller/inscription.controller.php:92
 #: ../../../pages/home.page.php:25
 msgid "Identifiant : "
 msgstr "Login :"
 
-#: ../../../controller/inscription.controller.php:97
+#: ../../../controller/inscription.controller.php:103
 msgid "Vous devez préciser un identifiant."
 msgstr "You must specify your login."
 
-#: ../../../controller/inscription.controller.php:102
+#: ../../../controller/inscription.controller.php:108
 msgid "Adresse de messagerie électronique :"
 msgstr "Mail :"
 
-#: ../../../controller/inscription.controller.php:105
+#: ../../../controller/inscription.controller.php:111
 msgid "Veuillez entrer une adresse de messagerie électronique."
 msgstr "Can you enter your mail."
 
-#: ../../../controller/inscription.controller.php:106
+#: ../../../controller/inscription.controller.php:112
 msgid "Cette adresse est invalide."
 msgstr "This mail is not valid."
 
-#: ../../../controller/inscription.controller.php:110
+#: ../../../controller/inscription.controller.php:116
 msgid ""
 "Veuillez entrer une adresse de messagerie électronique, vous recevrez "
 "message électronique pour valider votre compte."
 msgstr ""
 "Can you enter your mail, you will recieve a mail to valid your account."
 
-#: ../../../controller/inscription.controller.php:113
+#: ../../../controller/inscription.controller.php:119
+msgid "Langue :"
+msgstr "Language :"
+
+#: ../../../controller/inscription.controller.php:124
 #: ../../../pages/home.page.php:32
 msgid "Mot de passe : "
 msgstr "Password :"
 
-#: ../../../controller/inscription.controller.php:118
+#: ../../../controller/inscription.controller.php:129
 msgid "Le mot de passe est demandé."
 msgstr "The password is required."
 
-#: ../../../controller/inscription.controller.php:119
-#: ../../../controller/inscription.controller.php:121
+#: ../../../controller/inscription.controller.php:130
+#: ../../../controller/inscription.controller.php:132
 #, php-format
 msgid "Votre mot passe doit être composé de %d à %d caractères."
 msgstr "Your password must contain %d to %d characters."
 
-#: ../../../controller/inscription.controller.php:124
+#: ../../../controller/inscription.controller.php:135
 msgid "Confirmation de mot de passe :"
 msgstr "Password confirm :"
 
-#: ../../../controller/inscription.controller.php:127
+#: ../../../controller/inscription.controller.php:138
 msgid "Les mots de passes ne correspondent pas."
 msgstr "Passwords don't match."
 
-#: ../../../controller/inscription.controller.php:132
+#: ../../../controller/inscription.controller.php:143
 msgid "Êtes-vous un être humain ?"
 msgstr "Are you human ?"
 
-#: ../../../controller/inscription.controller.php:134
+#: ../../../controller/inscription.controller.php:145
 msgid "Vous devez entrer les caractères de couleur noire"
 msgstr "You will enter black color characters"
 
-#: ../../../controller/inscription.controller.php:136
+#: ../../../controller/inscription.controller.php:147
 msgid "Les caractères ne correspondent pas !"
 msgstr "The characters don't match !"
 
-#: ../../../controller/inscription.controller.php:140
+#: ../../../controller/inscription.controller.php:151
 msgid "S'enregistrer"
 msgstr "Subscribe"
 
 #: ../../../modules/osm/osm.class.php:61
 msgid "Veuillez activer javascript pour voir la carte"
-msgstr "Please "
+msgstr "Please enable javascript to view the map"
 
 #: ../../../template/otm/footer.tmpl.php:1
 msgid "Copyright © 2012 Open Team Map"
 msgstr ""
 
-#: ../../../template/otm/header.tmpl.php:7 ../../../pages/home.page.php:39
-msgid "Accueil"
-msgstr "Home"
+#: ../../../template/otm/header.tmpl.php:14
+#: ../../../template/default/header.tmpl.php:13
+msgid "Mon site"
+msgstr "My website"
 
 #: ../../../template/default/footer.tmpl.php:1
 msgid "Copyright © 2012 GNK Website"
 msgstr ""
-
-#: ../../../template/default/header.tmpl.php:13
-msgid "Mon site"
-msgstr "My website"
 
 #: ../../../config/class/debug.class.php:71
 msgid "Débogage"
@@ -191,37 +192,37 @@ msgstr "Notice"
 msgid "Débogage non identifié"
 msgstr "Debugging unidentified"
 
-#: ../../../config/class/config.class.php:139
+#: ../../../config/class/config.class.php:158
 msgid "Locales initialisées"
 msgstr "Initialized local"
 
-#: ../../../config/class/config.class.php:149
+#: ../../../config/class/config.class.php:168
 msgid "Déconnexion"
 msgstr "Log out"
 
-#: ../../../config/class/config.class.php:154
+#: ../../../config/class/config.class.php:173
 msgid "Tentative de connexion"
 msgstr "Connection attempt"
 
-#: ../../../config/class/config.class.php:158
+#: ../../../config/class/config.class.php:177
 msgid "Anonymous"
 msgstr "Anonymous"
 
-#: ../../../config/class/config.class.php:221
+#: ../../../config/class/config.class.php:230
 msgid "Votre identifiant ou/et votre mot de passe est erroné"
 msgstr "Your login or password is not correct"
 
-#: ../../../config/class/config.class.php:247
+#: ../../../config/class/config.class.php:256
 #, php-format
 msgid "Fichier %s chargé"
 msgstr "File %s loaded"
 
-#: ../../../config/class/config.class.php:251
+#: ../../../config/class/config.class.php:260
 #, php-format
 msgid "Le fichier \"%s\" est absent, peut-être que Doctrine n'est pas installé"
 msgstr "The file \"%s\" don't exist, Doctrine may not be installed"
 
-#: ../../../config/class/config.class.php:255
+#: ../../../config/class/config.class.php:264
 #, php-format
 msgid "La bibliothèque Doctrine \"%s\" est absente"
 msgstr "Doctrine \"%s\" library is missing"
@@ -266,6 +267,10 @@ msgstr "Please enter your password."
 #: ../../../pages/home.page.php:37
 msgid "Se connecter"
 msgstr "Connect"
+
+#: ../../../pages/home.page.php:39
+msgid "Accueil"
+msgstr "Home"
 
 #: ../../../pages/home.page.php:46
 #, php-format

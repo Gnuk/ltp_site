@@ -7,10 +7,10 @@
 					<?php
 						$global = Config::getWebsiteConfig();
 						if(isset($global['title'])){
-							echo $global['title'];
+							echo Page::htmlEncode($global['title']);
 						}
 						else{
-							echo T_('Mon site');
+							echo Page::htmlEncode(T_('Mon site'));
 						}?>
 				</a>
 			</h1>

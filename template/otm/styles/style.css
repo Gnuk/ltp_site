@@ -20,6 +20,10 @@ div#corps{
 	box-shadow:0px 0px 5px 5px rgba(0,0,0,0.2);
 }
 
+img{
+	border: none;
+}
+
 article>p, section>p{
 	text-align:justify;
 }

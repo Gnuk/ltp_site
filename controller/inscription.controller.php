@@ -3,6 +3,7 @@
 	use \gnk\modules\form\Form;
 	use \gnk\config\Module;
 	use \gnk\config\Model;
+	use \gnk\config\Config;
 	Model::load('inscription');
 	/**
 	* Classe inscription
@@ -28,7 +29,12 @@
 		* Ajout de l'utilisateur
 		*/
 		public function addUser(){
-			return $this->model->addUser($_POST['login'], $_POST['password'], $_POST['email']);
+			if(isset($_POST['language']) AND $_POST['language'] != ''){
+				return $this->model->addUser($_POST['login'], $_POST['password'], $_POST['email'], $_POST['language']);
+			}
+			else{
+				return $this->model->addUser($_POST['login'], $_POST['password'], $_POST['email']);
+			}
 		}
 		
 		/**
@@ -108,6 +114,11 @@
 
 			// attach a note to the email element
 			$form->add('note', 'note_email', 'email', T_('Veuillez entrer une adresse de messagerie électronique, vous recevrez message électronique pour valider votre compte.'), array('style'=>'width:200px'));
+			
+			 // language
+			$form->add('label', 'label_language', 'language', T_('Langue :'));
+			$obj = & $form->add('select', 'language', '');
+			$obj->add_options(Config::getLanguages());
 
 			// "password"
 			$form->add('label', 'label_password', 'password', T_('Mot de passe : '));

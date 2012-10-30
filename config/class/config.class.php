@@ -311,6 +311,25 @@ class Config{
 	public static function getDbConfig(){
 		return self:: $dbConfig;
 	}
+	
+	
+		
+	/**
+	* Récupère la liste des langages indexés par le langage
+	*/
+	public static function getLanguages(){
+		$lang = array();
+		if ($handle = opendir(LINK_LOCALE)) {
+			/* Ceci est la façon correcte de traverser un dossier. */
+			while (false !== ($entry = readdir($handle))) {
+				if(is_file(LINK_LOCALE .$entry. '/LC_MESSAGES/' . self::$localedomain . '.mo')){
+					$lang[$entry]=$entry;
+				}
+			}
+			closedir($handle);
+		}
+		return $lang;
+	}
 }
 
 require_once(LINK_CONFIG.'class/config/database.class.php');

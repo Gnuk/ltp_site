@@ -1,6 +1,7 @@
 <?php
 	# Affichage des erreurs
 	error_reporting(E_ALL);
+	date_default_timezone_set('Europe/Paris');
 
 	# Définition des liens utiles pour trouver la banque de liens
 	define('LINK_R', '');

@@ -7,7 +7,7 @@
 	function getStatus($login, $password){
 		Database::useTables();
 		$qb = Database::getEM()->createQueryBuilder();
-		$qb->select(array('s'))
+		$qb->select(array('s.longitude', 's.latitude', 's.message', 's.date', 'u.login'))
 			->from('\gnk\database\entities\Status', 's')
 			->leftJoin('\gnk\database\entities\Users', 'u', 'WITH', 's.user = u.id')
 			->where('u.login LIKE ?1')
@@ -19,16 +19,25 @@
 		return $result;
 	}
 	if(isset($_SERVER['PHP_AUTH_USER']) AND isset($_SERVER['PHP_AUTH_PW'])){
+?>
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="LocalizeTeaPot server" xmlns="http://www.topografix.com/GPX/1/1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<?php
 		$status = getStatus($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
 		foreach($status AS $nStat => $stat){
 ?>
-	<ul>
-		<li>Longitude : <?php echo $stat->getLongitude() ;?></li>
-		<li>Latitude : <?php echo $stat->getLatitude() ;?></li>
-		<li>Message : <?php echo $stat->getMessage() ;?></li>
-	</ul>
+	<wpt lat="<?php echo Page::htmlEncode($stat['latitude']) ;?>" lon="<?php echo Page::htmlEncode($stat['longitude']) ;?>">
+		<name><?php echo Page::htmlEncode($stat['login']) ;?></name>
+		<desc><?php echo Page::htmlEncode($stat['message']) ;?></desc>
+		<time><?php echo Page::htmlEncode($stat['date']->format('Y-m-d\TH:i:sP')) ;?></time>
+	</wpt>
 <?php
 		}
+?>
+</gpx>
+<?php
 	}
 	else{
 	?>

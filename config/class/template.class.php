@@ -163,16 +163,23 @@
 		}
 		
 		private function displayElement($element, $link, $nMenu){
+			$active = false;
 			$link[] = $nMenu;
 			$url = implode(':', $link);
 			echo '<li><a ';
 			if((isset($_GET['p']))){
 				$p=explode(':', $_GET['p']);
-				if($p[0] == $link[0]){
-					echo 'class="active" ';
+				$active = true;
+				foreach($link AS $kLink =>$vLink){
+					if($p[$kLink] != $link[$kLink]){
+						$active = false;
+					}
 				}
 			}
 			else if(!isset($_GET['p']) AND Page::getDefaultPage() == $url){
+				$active = true;
+			}
+			if($active){
 				echo 'class="active" ';
 			}
 			echo 'href="?p='.$url.'">' . Page::htmlEncode($element['title']) . '</a>';

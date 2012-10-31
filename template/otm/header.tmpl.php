@@ -15,3 +15,6 @@
 					}?>" />
 				</a>
 			</h1>
+			<nav id="menu">
+				<?php $this->showMenu(); ?>
+			</nav>

@@ -9,6 +9,74 @@ body
 	background-color: #DDDDDD;
 }
 
+#menu{
+	padding: 0px 5px;
+	background: #1522b2;
+	border-radius: 5px 5px 0px 0px;
+	
+}
+
+#menu>ul>li>a.active{
+	background: #fff;
+	color: #000;
+	border-radius: 5px 5px 0px 0px;
+	box-shadow: 0px -2px 2px -1px rgba(0,0,0,0.5);
+}
+
+#menu li{
+	margin: 0px;
+}
+
+#menu>ul>li>a{
+	color: #fff;
+}
+#menu>ul>li>ul a{
+	color: #000;
+}
+#menu ul{
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;
+	list-style-position: inside;
+}
+#menu ul>li{
+	display: none;
+}
+#menu ul>li>a{
+	padding: 5px;
+}
+#menu li:hover>ul>li{
+	display: inline-block;
+	width: 100px;
+	vertical-align: top;
+	
+}
+#menu>ul>li:hover>ul{
+	padding: 2px;
+}
+
+#menu>ul>li>ul>li:hover{
+	background: #eee;
+	border-radius:5px;
+	box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.5);
+}
+#men>ul>li{
+	margin: 5px 0px;
+}
+#menu>ul>li>ul{
+	position: absolute;
+	background: #ddd;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.7), inset 0px 0px 5px rgba(255,255,255,0.5);
+}
+/*#menu li:hover>ul{
+	background: #fff;
+	background: #fff;
+}*/
+#menu>ul>li{
+	display: inline-block;
+}
+
 div#corps, header, footer{
 	width: 950px;
 	margin: auto;

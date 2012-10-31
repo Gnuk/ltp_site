@@ -82,16 +82,12 @@ class Page{
 	*/
 	public static function haveRights($need=1, $others=1){
 		$right=false;
-		if(($r = self::getRights()) != '?'){
-			if(self::goodRight($need, $r)){
-				$right = true;
-			}
-			else{
-				$right = false;
-			}
-		}
-		else if(self::goodRight($need, $others)){
+		$r = self::getRights();
+		if(self::goodRight($need, $r)){
 			$right = true;
+		}
+		else{
+			$right = false;
 		}
 		self::$rights = $right;
 		return $right;
@@ -102,8 +98,8 @@ class Page{
 	* @todo Récupérer les droits grâce aux infos en session et à la base de donnée (non implémenté)
 	* @return char|int $right Le droit extrait de la base de donnée
 	*/
-	private static function getRights(){
-		$right = '?';
+	public static function getRights(){
+		$right = 1;
 		if(!isset(self::$rightUser)  AND Config::isUser()){
 			Database::useTables();
 			$em = Database::getEM();

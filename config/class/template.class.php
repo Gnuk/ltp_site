@@ -23,6 +23,8 @@
 			}
 			$this->link = LINKR_TEMPLATE . $this->template . '/';
 			$this->getWebsiteParams();
+			$this->menu = Config::getConfigFile(LINK_USERCONFIG . 'menu.conf.php');
+			$this->rights = Page::getRights();
 		}
 		
 		/**
@@ -135,6 +137,49 @@
 		public function addKeywords($keywords){
 			$keywordsNotUni = array_merge($this->websiteConfig['keywords'], $keywords);
 			$this->websiteConfig['keywords'] = array_unique($keywordsNotUni, SORT_REGULAR);
+		}
+		
+		public function showMenu(){
+			if(is_array($this->menu) AND count($this->menu > 0)){
+				$this->displayMenu($this->menu);
+			}
+		}
+		
+		private function displayMenu($menu, $link=array()){
+			echo '<ul>';
+			foreach($menu AS $nMenu => $m){
+				if($m['rights'] >=0 ){
+					if($m['rights'] <= $this->rights){
+						$this->displayElement($m, $link, $nMenu);
+					}
+				}
+				else{
+					if(abs($m['rights']) > $this->rights){
+						$this->displayElement($m, $link, $nMenu);
+					}
+				}
+			}
+			echo '</ul>';
+		}
+		
+		private function displayElement($element, $link, $nMenu){
+			$link[] = $nMenu;
+			$url = implode(':', $link);
+			echo '<li><a ';
+			if((isset($_GET['p']))){
+				$p=explode(':', $_GET['p']);
+				if($p[0] == $link[0]){
+					echo 'class="active" ';
+				}
+			}
+			else if(!isset($_GET['p']) AND Page::getDefaultPage() == $url){
+				echo 'class="active" ';
+			}
+			echo 'href="?p='.$url.'">' . Page::htmlEncode($element['title']) . '</a>';
+			if(isset($element['menu'])){
+				$this->displayMenu($element['menu'], $link);
+			}
+			echo '</li>';
 		}
 	}
 ?>

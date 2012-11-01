@@ -145,6 +145,11 @@ ul.form_error, ul.form_info, ul.form_valid{
 	box-shadow: 0px 0px 5px 1px rgba(0,100,200,0.5);
 }
 
+.mod_otm_map{
+	height: 600px;
+	width: 800px;
+}
+
 /* CSS Liens du site */
 a.menu{ color: black; text-decoration: none; }
 a.menu:hover{ color: white; text-decoration: none; }

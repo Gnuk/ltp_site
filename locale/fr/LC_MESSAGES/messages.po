@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-06 13:40+0100\n"
-"PO-Revision-Date: 2012-10-06 13:41+0100\n"
+"POT-Creation-Date: 2012-11-01 10:48+0100\n"
+"PO-Revision-Date: 2012-11-01 10:49+0100\n"
 "Last-Translator: \n"
 "Language-Team: Open Team Map\n"
 "MIME-Version: 1.0\n"
@@ -15,59 +15,328 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ./../../..\n"
 
-#: ../../../config/class/debug.class.php:69
-msgid "Débogage"
-msgstr "LocalizeTeaPot"
+#: ../../../model/inscription.model.php:64
+msgid "Vous pouvez maintenant vous connecter"
+msgstr "Débogage"
 
-#: ../../../config/class/debug.class.php:83
-msgid "Erreur"
-msgstr "Erreur"
+#: ../../../model/inscription.model.php:83
+msgid "Utilisateur supprimé de la base de donnée"
+msgstr "Utilisateur supprimé de la base de donnée"
 
-#: ../../../config/class/debug.class.php:86
-msgid "Avertissement"
-msgstr "Avertissement"
+#: ../../../model/inscription.model.php:104
+msgid ""
+"Un utilisateur porte déjà cet identifiant ou cette adresse de messagerie."
+msgstr ""
+"Un utilisateur porte déjà cet identifiant ou cette adresse de messagerie."
 
-#: ../../../config/class/debug.class.php:89
-msgid "Indication"
-msgstr "Indication"
+#: ../../../model/inscription.model.php:133
+msgid ""
+"Envoi du mail échoué, veuillez récupérer votre mot de passe via le "
+"formulaire de mots de passes oubliés."
+msgstr ""
+"Envoi du mail échoué, veuillez récupérer votre mot de passe via le "
+"formulaire de mots de passes oubliés."
 
-#: ../../../config/class/debug.class.php:92
-msgid "Débogage non identifié"
-msgstr "Débogage non identifié"
+#: ../../../model/inscription.model.php:144
+#, php-format
+msgid "Inscription à %s"
+msgstr "Inscription à %s"
 
-#: ../../../config/class/page.class.php:18
-#: ../../../config/class/page.class.php:21
-msgid "Erreur 404"
-msgstr "Erreur 404"
-
-#: ../../../config/class/page.class.php:23
-msgid "Veuillez créer une page error404.html à la racine"
-msgstr "Veuillez créer une page error404.html à la racine"
-
-#: ../../../pages/home.page.php:7
-msgid "LocalizeTeaPot"
-msgstr "LocalizeTeaPot"
-
-#: ../../../pages/home.page.php:13
-msgid "Identifiant :"
-msgstr "Identifiant :"
-
-#: ../../../pages/home.page.php:14
-msgid "Mot de passe :"
-msgstr "Mot de passe :"
-
-#: ../../../pages/home.page.php:15
-msgid "Connexion"
-msgstr "Connexion"
-
-#: ../../../pages/home.page.php:17
-msgid "Mot de passe oublié ?"
-msgstr "Mot de passe oublié ?"
-
-#: ../../../pages/home.page.php:17
+#: ../../../model/inscription.model.php:147
+#: ../../../userconfig/menu.conf.php:8 ../../../pages/inscription.page.php:11
+#: ../../../pages/inscription.page.php:34
 msgid "Inscription"
 msgstr "Inscription"
 
-#: ../../../pages/home.page.php:21
-msgid "© 2012 M1 STIC Informatique. Tous droits réservés."
-msgstr "© 2012 M1 STIC Informatique. Tous droits réservés."
+#: ../../../model/inscription.model.php:158
+#, php-format
+msgid "Bienvenue sur %s"
+msgstr "Bienvenue sur %s"
+
+#: ../../../model/inscription.model.php:161
+msgid "Bienvenue"
+msgstr "Bienvenue"
+
+#: ../../../model/inscription.model.php:163
+msgid "Vous pouvez terminer votre inscription en cliquant sur"
+msgstr "Vous pouvez terminer votre inscription en cliquant sur"
+
+#: ../../../model/inscription.model.php:177
+msgid "Ou l'annuler en cliquant sur"
+msgstr "Ou l'annuler en cliquant sur"
+
+#: ../../../userconfig/website.conf.php:3
+msgid "Retrouve tous tes amis (pour le thé)"
+msgstr "Retrouve tous tes amis (pour le thé)"
+
+#: ../../../userconfig/website.conf.php:4
+msgid "localiser"
+msgstr "localiser"
+
+#: ../../../userconfig/website.conf.php:4
+msgid "amis"
+msgstr "amis"
+
+#: ../../../userconfig/website.conf.php:4
+msgid "carte"
+msgstr "carte"
+
+#: ../../../userconfig/website.conf.php:4
+msgid "position"
+msgstr "position"
+
+#: ../../../userconfig/menu.conf.php:4 ../../../pages/home.page.php:39
+msgid "Accueil"
+msgstr "Accueil"
+
+#: ../../../userconfig/menu.conf.php:12
+msgid "Mot de passe oublié ?"
+msgstr "Mot de passe oublié ?"
+
+#: ../../../userconfig/menu.conf.php:16
+msgid "Amis"
+msgstr "Amis"
+
+#: ../../../userconfig/menu.conf.php:20
+msgid "Mes Amis"
+msgstr "Mes Amis"
+
+#: ../../../userconfig/menu.conf.php:24
+msgid "Nouvel Ami"
+msgstr "Nouvel Ami"
+
+#: ../../../userconfig/menu.conf.php:30
+msgid "Vos amis"
+msgstr "Vos amis"
+
+#: ../../../userconfig/menu.conf.php:36
+#: ../../../controller/statusmanager.controller.php:28
+#: ../../../pages/status.page.php:11 ../../../pages/status.page.php:17
+msgid "Status"
+msgstr "Status"
+
+#: ../../../controller/inscription.controller.php:92
+#: ../../../pages/home.page.php:25
+msgid "Identifiant : "
+msgstr "Identifiant : "
+
+#: ../../../controller/inscription.controller.php:103
+msgid "Vous devez préciser un identifiant."
+msgstr "Vous devez préciser un identifiant."
+
+#: ../../../controller/inscription.controller.php:108
+msgid "Adresse de messagerie électronique :"
+msgstr "Adresse de messagerie électronique :"
+
+#: ../../../controller/inscription.controller.php:111
+msgid "Veuillez entrer une adresse de messagerie électronique."
+msgstr "Veuillez entrer une adresse de messagerie électronique."
+
+#: ../../../controller/inscription.controller.php:112
+msgid "Cette adresse est invalide."
+msgstr "Cette adresse est invalide."
+
+#: ../../../controller/inscription.controller.php:116
+msgid ""
+"Veuillez entrer une adresse de messagerie électronique, vous recevrez "
+"message électronique pour valider votre compte."
+msgstr ""
+"Veuillez entrer une adresse de messagerie électronique, vous recevrez "
+"message électronique pour valider votre compte."
+
+#: ../../../controller/inscription.controller.php:119
+msgid "Langue :"
+msgstr "Langue :"
+
+#: ../../../controller/inscription.controller.php:124
+#: ../../../pages/home.page.php:32
+msgid "Mot de passe : "
+msgstr "Mot de passe : "
+
+#: ../../../controller/inscription.controller.php:129
+msgid "Le mot de passe est demandé."
+msgstr "Le mot de passe est demandé."
+
+#: ../../../controller/inscription.controller.php:130
+#: ../../../controller/inscription.controller.php:132
+#, php-format
+msgid "Votre mot passe doit être composé de %d à %d caractères."
+msgstr "Votre mot passe doit être composé de %d à %d caractères."
+
+#: ../../../controller/inscription.controller.php:135
+msgid "Confirmation de mot de passe :"
+msgstr "Confirmation de mot de passe :"
+
+#: ../../../controller/inscription.controller.php:138
+msgid "Les mots de passes ne correspondent pas."
+msgstr "Les mots de passes ne correspondent pas."
+
+#: ../../../controller/inscription.controller.php:143
+msgid "Êtes-vous un être humain ?"
+msgstr "Êtes-vous un être humain ?"
+
+#: ../../../controller/inscription.controller.php:145
+msgid "Vous devez entrer les caractères de couleur noire"
+msgstr "Vous devez entrer les caractères de couleur noire"
+
+#: ../../../controller/inscription.controller.php:147
+msgid "Les caractères ne correspondent pas !"
+msgstr "Les caractères ne correspondent pas !"
+
+#: ../../../controller/inscription.controller.php:151
+msgid "S'enregistrer"
+msgstr "S'enregistrer"
+
+#: ../../../modules/osm/osm.class.php:61
+msgid "Veuillez activer javascript pour voir la carte"
+msgstr "Veuillez activer javascript pour voir la carte"
+
+#: ../../../template/otm/footer.tmpl.php:1
+msgid "Copyright © 2012 Open Team Map"
+msgstr ""
+
+#: ../../../template/otm/header.tmpl.php:14
+#: ../../../template/default/header.tmpl.php:13
+msgid "Mon site"
+msgstr "Mon site"
+
+#: ../../../template/default/footer.tmpl.php:1
+msgid "Copyright © 2012 GNK Website"
+msgstr ""
+
+#: ../../../config/class/debug.class.php:71
+msgid "Débogage"
+msgstr "LocalizeTeaPot"
+
+#: ../../../config/class/debug.class.php:85
+msgid "Erreur"
+msgstr "Erreur"
+
+#: ../../../config/class/debug.class.php:88
+msgid "Avertissement"
+msgstr "Avertissement"
+
+#: ../../../config/class/debug.class.php:91
+msgid "Indication"
+msgstr "Indication"
+
+#: ../../../config/class/debug.class.php:94
+msgid "Débogage non identifié"
+msgstr "Débogage non identifié"
+
+#: ../../../config/class/config.class.php:158
+msgid "Locales initialisées"
+msgstr "Locales initialisées"
+
+#: ../../../config/class/config.class.php:168
+msgid "Déconnexion"
+msgstr "Déconnexion"
+
+#: ../../../config/class/config.class.php:173
+msgid "Tentative de connexion"
+msgstr "Tentative de connexion"
+
+#: ../../../config/class/config.class.php:177
+msgid "Anonymous"
+msgstr "Anonymous"
+
+#: ../../../config/class/config.class.php:230
+msgid "Votre identifiant ou/et votre mot de passe est erroné"
+msgstr "Votre identifiant ou/et votre mot de passe est erroné"
+
+#: ../../../config/class/config.class.php:256
+#, php-format
+msgid "Fichier %s chargé"
+msgstr "Fichier %s chargé"
+
+#: ../../../config/class/config.class.php:260
+#, php-format
+msgid "Le fichier \"%s\" est absent, peut-être que Doctrine n'est pas installé"
+msgstr ""
+"Le fichier \"%s\" est absent, peut-être que Doctrine n'est pas installé"
+
+#: ../../../config/class/config.class.php:264
+#, php-format
+msgid "La bibliothèque Doctrine \"%s\" est absente"
+msgstr "La bibliothèque Doctrine \"%s\" est absente"
+
+#: ../../../config/class/page.class.php:65
+#: ../../../config/class/page.class.php:68
+msgid "Erreur 404"
+msgstr "Erreur 404"
+
+#: ../../../config/class/page.class.php:70
+msgid "Veuillez créer une page error404.html à la racine"
+msgstr "Veuillez créer une page error404.html à la racine"
+
+#: ../../../pages/inscription.page.php:12
+msgid "Inscription à LocalizeTeaPot."
+msgstr "Inscription à LocalizeTeaPot."
+
+#: ../../../pages/inscription.page.php:13
+msgid "inscription"
+msgstr "inscription"
+
+#: ../../../pages/inscription.page.php:20
+msgid "Confirmation d'inscription"
+msgstr "Confirmation d'inscription"
+
+#: ../../../pages/inscription.page.php:41
+msgid "Vous êtes maintenant inscrit, veuillez regarder vos messages."
+msgstr "Vous êtes maintenant inscrit, veuillez regarder vos messages."
+
+#: ../../../pages/inscription.page.php:59
+msgid "Une erreur non répertoriée est survenue."
+msgstr "Une erreur non répertoriée est survenue."
+
+#: ../../../pages/status.page.php:12
+msgid "Gestion du status."
+msgstr "Gestion du status."
+
+#: ../../../pages/status.page.php:13
+msgid "status"
+msgstr "status"
+
+#: ../../../pages/home.page.php:28
+msgid "Vous indiquer votre identifiant."
+msgstr "Vous indiquer votre identifiant."
+
+#: ../../../pages/home.page.php:35
+msgid "Veuillez indiquer votre mot de passe."
+msgstr "Veuillez indiquer votre mot de passe."
+
+#: ../../../pages/home.page.php:37
+msgid "Se connecter"
+msgstr "Se connecter"
+
+#: ../../../pages/home.page.php:46
+#, php-format
+msgid "Bienvenue %s"
+msgstr "Bienvenue %s"
+
+#: ../../../pages/home.page.php:47
+msgid "Se déconnecter"
+msgstr "Se déconnecter"
+
+#: ../../../pages/home.page.php:52
+msgid "Connexion"
+msgstr "Connexion"
+
+#: ../../../pages/home.page.php:69
+msgid "Mot de passe oublié"
+msgstr "Mot de passe oublié"
+
+#: ../../../pages/home.page.php:69
+msgid "S'inscrire"
+msgstr "S'inscrire"
+
+#: ../../../pages/doctrine.page.php:32
+msgid "Utilisateur ajouté"
+msgstr "Utilisateur ajouté"
+
+#: ../../../pages/doctrine.page.php:35
+msgid "Un utilisateur porte déjà ce login ou ce mail"
+msgstr "Un utilisateur porte déjà ce login ou ce mail"
+
+#~ msgid "© 2012 M1 STIC Informatique. Tous droits réservés."
+#~ msgstr "© 2012 M1 STIC Informatique. Tous droits réservés."

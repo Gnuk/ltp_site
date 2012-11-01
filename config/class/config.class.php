@@ -330,6 +330,19 @@ class Config{
 		}
 		return $lang;
 	}
+	
+	/**
+	* Récupère l'ID de l'utilisateur, envoie 0 s'il n'y en a pas
+	* @return int
+	*/
+	public static function getUserId(){
+		if(isset($_SESSION['user_id'])){
+			return $_SESSION['user_id'];
+		}
+		else{
+			return 0;
+		}
+	}
 }
 
 require_once(LINK_CONFIG.'class/config/database.class.php');

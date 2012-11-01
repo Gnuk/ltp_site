@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-30 14:16+0100\n"
-"PO-Revision-Date: 2012-10-30 14:16+0100\n"
+"POT-Creation-Date: 2012-11-01 09:49+0100\n"
+"PO-Revision-Date: 2012-11-01 10:50+0100\n"
 "Last-Translator: \n"
 "Language-Team: Open Team MAP\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgid "Inscription à %s"
 msgstr "Registration to %s"
 
 #: ../../../model/inscription.model.php:147
-#: ../../../pages/inscription.page.php:11
+#: ../../../userconfig/menu.conf.php:8 ../../../pages/inscription.page.php:11
 #: ../../../pages/inscription.page.php:34
 msgid "Inscription"
 msgstr "Subscribe"
@@ -83,6 +83,35 @@ msgstr "map"
 #: ../../../userconfig/website.conf.php:4
 msgid "position"
 msgstr "position"
+
+#: ../../../userconfig/menu.conf.php:4 ../../../pages/home.page.php:39
+msgid "Accueil"
+msgstr "Home"
+
+#: ../../../userconfig/menu.conf.php:12
+msgid "Mot de passe oublié ?"
+msgstr "Forget password ?"
+
+#: ../../../userconfig/menu.conf.php:16
+msgid "Amis"
+msgstr "Friends"
+
+#: ../../../userconfig/menu.conf.php:20
+msgid "Mes Amis"
+msgstr "My Friends"
+
+#: ../../../userconfig/menu.conf.php:24
+msgid "Nouvel Ami"
+msgstr "New friend"
+
+#: ../../../userconfig/menu.conf.php:30
+msgid "Vos amis"
+msgstr "Your friends"
+
+#: ../../../userconfig/menu.conf.php:36 ../../../pages/status.page.php:10
+#: ../../../pages/status.page.php:16
+msgid "Status"
+msgstr "Status"
 
 #: ../../../controller/inscription.controller.php:92
 #: ../../../pages/home.page.php:25
@@ -256,6 +285,14 @@ msgstr "You're now registred, please see your mails."
 msgid "Une erreur non répertoriée est survenue."
 msgstr "An error unlisted has occurred."
 
+#: ../../../pages/status.page.php:11
+msgid "Gestion du status."
+msgstr ""
+
+#: ../../../pages/status.page.php:12
+msgid "status"
+msgstr "status"
+
 #: ../../../pages/home.page.php:28
 msgid "Vous indiquer votre identifiant."
 msgstr "Please enter your login."
@@ -267,10 +304,6 @@ msgstr "Please enter your password."
 #: ../../../pages/home.page.php:37
 msgid "Se connecter"
 msgstr "Connect"
-
-#: ../../../pages/home.page.php:39
-msgid "Accueil"
-msgstr "Home"
 
 #: ../../../pages/home.page.php:46
 #, php-format

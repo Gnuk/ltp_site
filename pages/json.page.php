@@ -28,7 +28,7 @@
 		$password = $_SERVER['PHP_AUTH_PW'];
 	}
 	if(isset($login) AND isset($password)){
-// 		header('Content-Disposition: attachment; filename="friends.json"');
+ 		header('Content-Type: application/json');
 ?>
 {"gpx":
   {"@version":"1.1",

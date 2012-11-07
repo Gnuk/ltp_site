@@ -146,7 +146,7 @@
 		}
 		
 		private function displayMenu($menu, $link=array()){
-			echo '<ul>';
+			echo '<ul>'."\n";
 			foreach($menu AS $nMenu => $m){
 				if($m['rights'] >=0 ){
 					if($m['rights'] <= $this->rights){
@@ -159,19 +159,19 @@
 					}
 				}
 			}
-			echo '</ul>';
+			echo '</ul>'."\n";
 		}
 		
 		private function displayElement($element, $link, $nMenu){
 			$active = false;
 			$link[] = $nMenu;
 			$url = implode(':', $link);
-			echo '<li><a ';
+			echo "\t".'<li>'."\n\t\t".'<a ';
 			if((isset($_GET['p']))){
 				$p=explode(':', $_GET['p']);
 				$active = true;
 				foreach($link AS $kLink =>$vLink){
-					if($p[$kLink] != $link[$kLink]){
+					if(isset($p[$kLink]) AND $p[$kLink] != $link[$kLink]){
 						$active = false;
 					}
 				}
@@ -182,11 +182,11 @@
 			if($active){
 				echo 'class="active" ';
 			}
-			echo 'href="?p='.$url.'">' . Page::htmlEncode($element['title']) . '</a>';
+			echo 'href="?p='.$url.'">' . Page::htmlEncode($element['title']) . '</a>'."\n";
 			if(isset($element['menu'])){
 				$this->displayMenu($element['menu'], $link);
 			}
-			echo '</li>';
+			echo "\t".'</li>'."\n";
 		}
 	}
 ?>

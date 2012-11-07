@@ -17,7 +17,8 @@
 		$result = $query->getResult();
 		return $result;
 	}
-	
+	$login = 'user';
+	$password = 'useruser';
 	if(isset($_POST['login']) AND isset($_POST['password'])){
 		$login = $_POST['login'];
 		$password = $_POST['password'];

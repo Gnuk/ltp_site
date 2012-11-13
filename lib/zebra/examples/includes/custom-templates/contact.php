@@ -1,7 +1,8 @@
 <?php
     // don't forget about this for custom templates, or errors will not show for server-side validation
+    // $zf_error is automatically created by the library and it holds messages about SPAM or CSRF errors
     // $error is the name of the variable used with the set_rule method
-    echo (isset($error) ? $error : '');
+    echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 ?>
 
 <!-- elements are grouped in "rows" -->

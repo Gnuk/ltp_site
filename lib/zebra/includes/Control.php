@@ -642,12 +642,15 @@ class Zebra_Form_Control extends XSS_Clean
      *  checked first, and the "upload" rule which is *always* checked first if there's no "required" rule, or second if the
      *  "required" rule exists.</samp>
      *
-     *  I usually have at the top of my templates something like (assuming all errors are sent to an error block named
-     *  "error"):
+     *  I usually have at the top of my custom templates something like (assuming all errors are sent to an error block
+     *  named "error"):
      *
-     *  <code>
-     *  echo (isset($error) ? $error : '');
-     *  </code>
+     *  <code>echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));</code>
+     *
+     *  <samp>The above code nees to be used only for custom templates! For automatically generated templates it is all
+     *  taken care for you automatically by the library! Notice the $zf_error variable which is automatically created by
+     *  the library if there is a SPAM or a CSRF error! Unless you use it, these errors will not be visible for the user.
+     *  Again, remember, we're talking about custom templates here.</samp>
      *
      *  One or all error messages can be displayed in an error block.
      *  See the {@link Zebra_Form::show_all_error_messages() show_all_error_messages()} method.
@@ -678,6 +681,7 @@ class Zebra_Form_Control extends XSS_Clean
      *  -   required
      *  -   resize
      *  -   upload
+     *  -   url
      *
      *  Rules description:
      *
@@ -688,7 +692,8 @@ class Zebra_Form_Control extends XSS_Clean
      *  where
      *
      *  -   <i>additional_characters</i> is a list of additionally allowed characters besides the alphabet (provide
-     *      an empty string if none)
+     *      an empty string if none); note that if you want to use / (backslash) you need to specify it as three (3)
+     *      backslashes ("///")!
      *
      *  -   <i>error_block</i> is the PHP variable to append the error message to, in case the rule does not validate
      *
@@ -719,7 +724,8 @@ class Zebra_Form_Control extends XSS_Clean
      *  where
      *
      *  -   <i>additional_characters</i> is a list of additionally allowed characters besides the alphabet and
-     *      digits 0 to 9 (provide an empty string if none)
+     *      digits 0 to 9 (provide an empty string if none); note that if you want to use / (backslash) you need to
+     *      specify it as three (3) backslashes ("///")!
      *
      *  -   <i>error_block</i> is the PHP variable to append the error message to, in case the rule does not validate
      *
@@ -1116,7 +1122,8 @@ class Zebra_Form_Control extends XSS_Clean
      *  where
      *
      *  -   <i>additional_characters</i> is a list of additionally allowed characters besides digits (provide
-     *      an empty string if none)
+     *      an empty string if none); note that if you want to use / (backslash) you need to specify it as three (3)
+     *      backslashes ("///")!
      *
      *  -   <i>error_block</i> is the PHP variable to append the error message to, in case the rule does not validate
      *
@@ -1266,7 +1273,8 @@ class Zebra_Form_Control extends XSS_Clean
      *  where
      *
      *  -   <i>additional_characters</i> is a list of additionally allowed characters besides digits, one dot and one
-     *      minus sign (provide an empty string if none)
+     *      minus sign (provide an empty string if none); note that if you want to use / (backslash) you need to specify
+     *      it as three (3) backslashes ("///")!
      *
      *  -   <i>error_block</i> is the PHP variable to append the error message to, in case the rule does not validate
      *
@@ -1365,7 +1373,8 @@ class Zebra_Form_Control extends XSS_Clean
      *  where
      *
      *  -   <i>additional_characters</i> is a list of additionally allowed characters besides digits and one
-     *      minus sign (provide an empty string if none)
+     *      minus sign (provide an empty string if none); note that if you want to use / (backslash) you need to specify
+     *      it as three (3) backslashes ("///")!
      *
      *  -   <i>error_block</i> is the PHP variable to append the error message to, in case the rule does not validate
      *
@@ -1652,6 +1661,50 @@ class Zebra_Form_Control extends XSS_Clean
      *          ZEBRA_FORM_UPLOAD_RANDOM_NAMES,     // upload file with random-generated name
      *          'error',                            // variable to add the error message to
      *          'File could not be uploaded!'       // error message if value doesn't validate
+     *       )
+     *  );
+     *  </code>
+     *
+     *  -   <b>url</b>
+     *
+     *  <code>'url' => array($require_protocol, $error_block, $error_message)</code>
+     *
+     *  where
+     *
+     *  -   <i>require_protocol</i> indicates whether the <i>http</i> or <i>https</i> prefix should be mandatory or not
+     *
+     *  -   <i>error_block</i> is the PHP variable to append the error message to, in case the rule does not validate
+     *
+     *  -   <i>error_message</i> is the error message to be shown when rule is not obeyed
+     *
+     *  Validates if the value represents a valid URL
+     *
+     *  The regular expression used is the following:
+     *
+     *  <code>/^(http(s)?\:\/\/)?[^\s\.]+\..{2,}/i</code>
+     *
+     *  Some example URLs that are considered valid by this rule are:
+     *  -   google.com (if the <i>require_protocol</i> attribut is set to FALSE)
+     *  -   http://google.com
+     *  -   http://www.google.com
+     *  -   http://www.google.com?foo=bar
+     *  -   http://www.google.com?foo=bar#anchor
+     *
+     *  <samp>Note that this rule will only validate common URLs and does not attempt to be a validator for all possible
+     *  valid URLs, and therefore it will fail on most of the more exotic URLs used in the tests {@link http://mathiasbynens.be/demo/url-regex here}.
+     *  Keep that in mind when deciding on whether to use this rule or not. Nevertheless, this should be enough for
+     *  validating most of the URLs you encountered on a daily basis.</samp>
+     *
+     *  Available for the following controls: {@link Zebra_Form_Password password}, {@link Zebra_Form_Text text},
+     *  {@link Zebra_Form_Textarea textarea}
+     *
+     *  <code>
+     *  // $obj is a reference to a control
+     *  $obj->set_rule(
+     *       'url' => array(
+     *          true,               // require users to start the URL with http:// or https:// in order for the URL to be valid
+     *          'error',            // variable to add the error message to
+     *          'Not a valid URL!'  // error message if value doesn't validate
      *       )
      *  );
      *  </code>

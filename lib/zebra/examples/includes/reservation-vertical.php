@@ -8,6 +8,10 @@
     // instantiate a Zebra_Form object
     $form = new Zebra_Form('form');
 
+    $form->client_side_validation(array(
+        'validate_on_the_fly'   =>  true,
+    ));
+
     // the label for the "name" element
     $form->add('label', 'label_name', 'name', 'Your name:');
 

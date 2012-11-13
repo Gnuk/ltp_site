@@ -27,7 +27,7 @@ define('ZEBRA_FORM_UPLOAD_RANDOM_NAMES', false);
  *  For more resources visit {@link http://stefangabos.ro/}
  *
  *  @author     Stefan Gabos <contact@stefangabos.ro>
- *  @version    2.8.7 (last revision: September 15, 2012)
+ *  @version    2.8.8 (last revision: November 08, 2012)
  *  @copyright  (c) 2006 - 2012 Stefan Gabos
  *  @license    http://www.gnu.org/licenses/lgpl-3.0.txt GNU LESSER GENERAL PUBLIC LICENSE
  *  @package    Zebra_Form
@@ -222,9 +222,6 @@ class Zebra_Form
         // set the form's respective property
         $this->form_properties['max_file_size'] = $value;
 
-        // save the version of PHP as we will use it in some instances to determine how to solve things
-        $this->form_properties['php_version'] = str_pad(str_replace('.', '', phpversion()), 5, '0', STR_PAD_RIGHT);
-
         // include the XSS filter class - the Zebra_Form_Control class extends this class
         require_once dirname(__FILE__) . '/includes/XSSClean.php';
 
@@ -234,6 +231,10 @@ class Zebra_Form
 
         // load the default language file
         $this->language('english');
+
+        // enable protection against CSRF attacks using the default values
+        // note that this has no effect if this method was already called before
+        $this->csrf();
 
     }
 
@@ -373,7 +374,7 @@ class Zebra_Form
             if (class_exists($class_name)) {
 
                 // if PHP version is lower than 5
-                if (substr(phpversion(), 0, 1) < 5) {
+                if (version_compare(PHP_VERSION, '5.0.0', '<')) {
 
                     // convert arguments passed to the add() method to a string ready to be parsed by eval()
                     // notice that first argument is ignored as it refers to the type of the control to add
@@ -755,12 +756,11 @@ class Zebra_Form
      *  Read more about specifics and a simple implementation on
      *  {@link http://shiflett.org/articles/cross-site-request-forgeries Chris Shiflett's website}.
      *
-     *  This method is automatically called by the library - unless you call it yourself *before* the form's {@link validate()}
-     *  and {@link render()} methods, so protection against CSRF attacks is enabled by default for all forms and the
-     *  script will decide automatically on the method to use for storing the CSRF token: if a session is already started
-     *  then the CSRF token will be stored in a session variable or, if a session is not started, the CSRF token will be
-     *  stored in a session cookie (cookies that expire when the browser is closed) but, in this case, it offers a lower
-     *  level of security.
+     *  This method is automatically called by the library, so protection against CSRF attacks is enabled by default for
+     *  all forms and the script will decide automatically on the method to use for storing the CSRF token: if a session
+     *  is already started then the CSRF token will be stored in a session variable or, if a session is not started, the
+     *  CSRF token will be stored in a session cookie (cookies that expire when the browser is closed) but, in this case,
+     *  it offers a lower level of security.
      *
      *  If cookies are used for storage, you'll have to make sure that Zebra_Form is instantiated before any output from
      *  your script (this is a protocol restriction) including &lt;html> and &lt;head> tags as well as any whitespace!
@@ -774,6 +774,10 @@ class Zebra_Form
      *  regenerated - useful if you submit forms by AJAX.
      *
      *  As an added benefit, protection against CSRF attacks prevents "double posts" by design.
+     *
+     *  <samp>You only need to call this method if you want to change CSRF related settings. If you do call this method
+     *  then you should call it right after instantiating the class and *before* calling the form's {@link validate()}
+     *  and {@link render()} methods!</samp>
      *
      *  <code>
      *  // recommended usage is:
@@ -790,18 +794,6 @@ class Zebra_Form
      *  // rely on cookies)
      *  $form = new Zebra_Form('my_form');
      *  </code>
-     *
-     *  @param  integer $csrf_token_lifetime    (Optional) The number of seconds after which the CSRF token is to be
-     *                                          considered as expired.
-     *
-     *                                          If set to "0" the tokens will expire at the end of the session (when the
-     *                                          browser closes or session expires).
-     *
-     *                                          <i>Note that if csrf_storage_method is set to "session" this value cannot
-     *                                          be higher than the session's life time as, if idle, the session will time
-     *                                          out regardless of this value!</i>
-     *
-     *                                          Default is 0.
      *
      *  @param  string  $csrf_storage_method    (Optional) Sets whether the CSRF token should be stored in a cookie, in
      *                                          a session variable, or let the script to automatically decide and use
@@ -830,6 +822,18 @@ class Zebra_Form
      *                                          the form will not validate.
      *
      *                                          Default is "auto".
+     *
+     *  @param  integer $csrf_token_lifetime    (Optional) The number of seconds after which the CSRF token is to be
+     *                                          considered as expired.
+     *
+     *                                          If set to "0" the tokens will expire at the end of the session (when the
+     *                                          browser closes or session expires).
+     *
+     *                                          <i>Note that if csrf_storage_method is set to "session" this value cannot
+     *                                          be higher than the session's life time as, if idle, the session will time
+     *                                          out regardless of this value!</i>
+     *
+     *                                          Default is 0.
      *
      *  @param  array   $csrf_cookie_config     (Optional) An associative array containing the properties to be used when
      *                                          setting the cookie with the CSRF token (if <b>csrf_storage_method</b> is
@@ -868,6 +872,9 @@ class Zebra_Form
      *                                                                  disputed. Available only in PHP 5.2.0+<br>
      *                                                                  Default is FALSE
      *
+     *                                                                  Available only for PHP 5.2.0+ and will be ignored
+     *                                                                  if not available.
+     *
      *                                          Not all properties must be set - for the properties that are not set, the
      *                                          default values will be used instead.
      *
@@ -875,39 +882,37 @@ class Zebra_Form
      *
      *  @return void
      */
-    function csrf($csrf_token_lifetime = 0, $csrf_storage_method = 'auto', $csrf_cookie_config = array('path' => '/', 'domain' => '', 'secure' => false, 'httponly' => false))
+    function csrf($csrf_storage_method = 'auto', $csrf_token_lifetime = 0, $csrf_cookie_config = array('path' => '/', 'domain' => '', 'secure' => false, 'httponly' => false))
     {
 
         // continue only if protection against CSRF attacks is not disabled and a token was not already generated
-        if ($this->form_properties['csrf_storage_method'] !== false && $this->form_properties['csrf_token'] == '') {
+        if ($csrf_storage_method !== false && (func_num_args() > 0 || $this->form_properties['csrf_token'] == '')) {
 
             // set the storage method for the CSRF token
-            $this->form_properties['csrf_storage_method'] = ($csrf_storage_method === false ? false : strtolower(trim($csrf_storage_method)));
+            $this->form_properties['csrf_storage_method'] = strtolower(trim($csrf_storage_method));
 
-            // if protection against CSRF attacks is not disabled
-            if ($this->form_properties['csrf_storage_method'] !== false) {
+            // if the script should decide what method to use and a session is already started
+            if ($this->form_properties['csrf_storage_method'] == 'auto')
 
-                // if the script should decide what method to use and a session is already started
-                if ($this->form_properties['csrf_storage_method'] == 'auto')
+                // use sessions as storage method
+                if (isset($_SESSION)) $this->form_properties['csrf_storage_method'] = 'session';
 
-                    // use sessions as storage method
-                    if (isset($_SESSION)) $this->form_properties['csrf_storage_method'] = 'session';
+                // if a session is not already started, use cookies as storage method
+                else $this->form_properties['csrf_storage_method'] = 'cookie';
 
-                    // if a session is not already started, use cookies as storage method
-                    else $this->form_properties['csrf_storage_method'] = 'cookie';
+            // set the life time of the CSRF token
+            $this->form_properties['csrf_token_lifetime'] = ($csrf_token_lifetime <= 0 ? 0 : $csrf_token_lifetime);
 
-                // set the life time of the CSRF token
-                $this->form_properties['csrf_token_lifetime'] = ($csrf_token_lifetime <= 0 ? 0 : $csrf_token_lifetime);
+            // set the configuration options for cookies
+            $this->form_properties['csrf_cookie_config'] = array_merge($this->form_properties['csrf_cookie_config'], $csrf_cookie_config);
 
-                // set the configuration options for cookies
-                $this->form_properties['csrf_cookie_config'] = array_merge($this->form_properties['csrf_cookie_config'], $csrf_cookie_config);
+            // generate a new CSRF token (if it is the case)
+            // (if this method is called with any arguments it means it is called by the user and therefore the
+            // token should be regenerated)
+            $this->_csrf_generate_token(func_num_args() > 0 ? true : false);
 
-                // generate a new CSRF token (if it is the case)
-                $this->_csrf_generate_token();
-
-            }
-
-        }
+        // if protection against CSRF attacks is disabled, save the option for later use
+        } else $this->form_properties['csrf_storage_method'] = false;
 
     }
 
@@ -1176,6 +1181,7 @@ class Zebra_Form
                         case 'filetype':
                         case 'float':
                         case 'number':
+                        case 'url':
 
                             // the class name also contains the extra parameter(s)
                             $class .= '(' . preg_replace('/\,/', 'comma;', $properties[0]) . ')';
@@ -1208,7 +1214,7 @@ class Zebra_Form
                                 $class .= implode('comma;', array_map(create_function('$value', 'return preg_replace(array("/\,/"), array("mark;"), $value);'), array_slice($values, 1, -2)));
 
                                 // remove any trailing "comma;" that may have left over if there are no custom arguments to the function
-                                $class = preg_replace('/comma\;.*?$/', '', $class);
+                                $class = preg_replace('/comma\;$/', '', $class);
 
                                 // the error message
                                 $messages .= ($counter > 0 ? ',' : '') . '"custom_' . $function_name . '":"' . $values[count($values) - 1] . '"';
@@ -1280,20 +1286,20 @@ class Zebra_Form
                 // set a special class for the select control so that we know that it has a textbox attached to it
 
                 // add a special class to the control
-                $this->controls[$key]->set_attributes(array('class'=>'other'), false);
+                $this->controls[$key]->set_attributes(array('class' => 'other'), false);
 
                 // add a text control
                 $obj = & $this->add('text', $attributes['id'] . $this->form_properties['other_suffix'], $attributes['default_other']);
 
                 // set a special class for the control
-                $obj->set_attributes(array('class'=>'other'), false);
+                $obj->set_attributes(array('class' => 'other'), false);
 
                 // if the select control was not submitted OR it was submitted but the selected option is other than
                 // the "other" option
                 if (!isset($control->submitted_value) || $control->submitted_value != 'other')
 
                     // hide the text box
-                    $obj->set_attributes(array('class'=>'other-invisible'), false);
+                    $obj->set_attributes(array('class' => 'other-invisible'), false);
 
                 // make sure the value in the control propagates
                 $obj->get_submitted_value();
@@ -1308,8 +1314,8 @@ class Zebra_Form
                 // find the position of the parent control
                 $parent_position = array_search($attributes['name'], array_keys($this->controls));
 
-                // if PHP version is greater that 5.0.2
-                if ($this->form_properties['php_version'] > 50200)
+                // if PHP version is greater than 5.0.2
+                if (version_compare(PHP_VERSION, '5.0.2', '>'))
 
                     // use this method to insert the control right after the parent control
                     $this->controls =
@@ -1383,7 +1389,11 @@ class Zebra_Form
 
                     $control->attributes['days'] = $this->form_properties['language']['days'];
 
+                    if (is_array($this->form_properties['language']['days_abbr'])) $control->attributes['days_abbr'] = $this->form_properties['language']['days_abbr'];
+
                     $control->attributes['months'] = $this->form_properties['language']['months'];
+
+                    if (is_array($this->form_properties['language']['months_abbr'])) $control->attributes['months_abbr'] = $this->form_properties['language']['months_abbr'];
 
                     $properties = '';
 
@@ -1445,10 +1455,6 @@ class Zebra_Form
         // this field will be hidden from users and we expect only spam-bots to fill it. if this field will not be empty
         // when submitting the form, we'll consider that the form was submitted by a spam-bot
         $this->add('text', $this->form_properties['honeypot'], '', array('autocomplete' => 'off'));
-
-        // enable protection against CSRF attacks using the default values
-        // note that this has no effect if this method was already called before
-        $this->csrf();
 
         // if CSRF protection is enabled (is not boolean FALSE)
         if ($this->form_properties['csrf_storage_method'] !== false)
@@ -1652,6 +1658,22 @@ class Zebra_Form
 
             }
 
+        // if there are any SPAM or CSRF errors
+        if (isset($this->errors['zf_error_spam']) || isset($this->errors['zf_error_csrf'])) {
+
+            // if there's a CSRF error leave only that
+            if (isset($this->errors['zf_error_csrf'])) $this->errors['zf_error'] = $this->errors['zf_error_csrf'];
+
+            // else, if there's a SPAM error, leave just that
+            else $this->errors['zf_error'] = $this->errors['zf_error_spam'];
+
+            // remove these two errors
+            // as now there will be only one, under the name of "zf_error"
+            unset($this->errors['zf_error_csrf']);
+            unset($this->errors['zf_error_spam']);
+
+        }
+
         // if output is to be auto-generated
         if ($template == '' || $template == '*horizontal' || $template == '*vertical') {
 
@@ -1661,11 +1683,17 @@ class Zebra_Form
             // and render them at the top of the auto-generated output
             foreach ($this->errors as $errors) $error_messages .= $errors;
 
-            // group controls in master label/control/label/note
+            // group controls in master-label/control/label/note
+            // so, every block looks like
+            // - master label (if any)
+            // - label (if any)
+            // - control
+            // - (in case of radio buttons and checkboxes the above two may be repeated)
+            // - note (if any)
             $blocks = array();
 
             // iterate through the form's controls
-            foreach ($this->controls as $key=>$control) {
+            foreach ($this->controls as $key => $control) {
 
                 // get some attributes for the control
                 $attributes = $control->get_attributes(array('type', 'name', 'id', 'for', 'inside'));
@@ -1679,7 +1707,7 @@ class Zebra_Form
                 // if the control is a text box that is to be shown when user selects "other" in a select control
                 if (preg_match('/(.*)' . preg_quote($this->form_properties['other_suffix']) . '$/', $attributes['name'], $matches) > 0)
 
-                    // save the control the current control is attached to
+                    // the parent is the control to which the control is attached to
                     $parent = $matches[1];
 
                 // for other controls
@@ -1688,7 +1716,7 @@ class Zebra_Form
                     // check the control's type
                     switch ($attributes['type']) {
 
-                        // if control is captcha, label or note
+                        // if control is captcha, label, or note
                         case 'captcha':
                         case 'label':
                         case 'note':
@@ -1711,7 +1739,7 @@ class Zebra_Form
 
                             )
 
-                                // save the both the "master" parent and, separated by a dot, the actual parent
+                                // save both the "master" parent and, separated by a dot, the actual parent
                                 $parent = preg_replace('/\[\]$/', '', $this->controls[$parent]->attributes['name']) . '.' . $parent;
 
                             // if control is a label and the parent control doesn't exist (the label is most probably a "master" label)
@@ -1739,7 +1767,7 @@ class Zebra_Form
                 // iterate through the control's parents
                 foreach ($parents as $key => $parent) {
 
-                    // if firs entry
+                    // if first entry
                     // make $array a pointer to the $blocks array
                     if ($key == 0) $array = & $blocks;
 
@@ -1770,13 +1798,13 @@ class Zebra_Form
                     // if we're at the last parent
                     if ($key == count($parents) - 1)
 
-                        // if control already exits in the parent's array as a key (remember that $array is a pointer!)
+                        // if control already exists in the parent's array as a key (remember that $array is a pointer!)
                         if (array_key_exists($attributes['id'], $array))
 
                             // add the control to the array
                             $array[$attributes['id']][] = $attributes['id'];
 
-                        // if control doesn't exit in the parent's array (remember that $array is a pointer!)
+                        // if control doesn't exists in the parent's array (remember that $array is a pointer!)
                         else
 
                             // add the control to the array
@@ -1900,7 +1928,7 @@ class Zebra_Form
                 // iterate through blocks
                 foreach ($blocks as $controls) {
 
-                    // each block is in its own row
+                    // ...then block is contained in its own row
                     $contents .= '<div class="row' . (++$counter % 2 == 0 ? ' even' : '') . ($counter == $rows ? ' last' : '') . '">';
 
                     // iterate through the controls to be rendered
@@ -1937,15 +1965,15 @@ class Zebra_Form
 
                     }
 
-                    // finish rendering
+                    // ...finish rendering
                     $contents .= '</div>';
 
                 }
 
             }
 
-        // if a function with the name given as $template exists
-        } elseif (is_array($template) || function_exists($template)) {
+        // if a function with the name given as $template, and the function exists
+        } elseif (function_exists($template)) {
 
             // this variable will contain all the rendered controls
             $controls = array();
@@ -2096,7 +2124,7 @@ class Zebra_Form
     {
 
         // iterate through the form's controls
-        foreach ($this->controls as $key=>$control) {
+        foreach ($this->controls as $key => $control) {
 
             // reference to the control
             $obj = & $this->controls[$key];
@@ -2167,16 +2195,11 @@ class Zebra_Form
 
         $method = & ${'_' . $this->form_properties['method']};
 
-        // enable protection against CSRF attacks using the default values
-        // note that this has no effect if this method was already called before
-        $this->csrf();
-
         // we assume the form is not valid (or it was not submitted)
         $form_is_valid = false;
 
         // continue only if form was submitted
         if (
-
 
             isset($method[$this->form_properties['identifier']]) &&
 
@@ -2272,11 +2295,23 @@ class Zebra_Form
                 $method[$this->form_properties['honeypot']] != ''
 
             // show the appropriate error message to the user
-            ) $this->add_error('*spam*', $this->form_properties['language']['spam_detected']);
+            ) $this->add_error('zf_error_spam', $this->form_properties['language']['spam_detected']);
 
             // else, if a possible CSRF attack was detected
             // show the appropriate error message to the user
-            elseif (!$csrf_status) $this->add_error('*spam*', $this->form_properties['language']['csrf_detected']);
+            elseif (!$csrf_status) $this->add_error('zf_error_csrf', $this->form_properties['language']['csrf_detected']);
+
+            // if
+            if (
+
+                // form is valid
+                $form_is_valid ||
+
+                // form is invalid and the from was not submitted via AJAX
+                !isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+
+            // regenerate the CSRF token
+            ) $this->_csrf_generate_token(true);
 
         // here's a special error check:
         // due to a bug (?) when the POST/GET data is larger than allowed by upload_max_filesize/post_max_size the
@@ -2285,18 +2320,6 @@ class Zebra_Form
         } elseif (empty($method) && isset($_SERVER['CONTENT_LENGTH']) && (int)$_SERVER['CONTENT_LENGTH'] > 0)
 
             $form_is_valid = false;
-
-        // if
-        if (
-
-            // form is valid
-            $form_is_valid ||
-
-            // form is invalid and the from was not submitted via AJAX
-            !isset($_SERVER['HTTP_X_REQUESTED_WITH'])
-
-        // regenerate the CSRF token
-        ) $this->_csrf_generate_token(true);
 
         // return the state of the form
         return $form_is_valid;
@@ -2427,7 +2450,7 @@ class Zebra_Form
                 if (!$valid) {
 
                     // set the error message
-                    $this->add_error('*spam*', $this->form_properties['language']['spam_detected']);
+                    $this->add_error('zf_error_spam', $this->form_properties['language']['spam_detected']);
 
                     // don't look further
                     return false;
@@ -2474,7 +2497,8 @@ class Zebra_Form
                                 $attribute['value'] != '' &&
 
                                 // control does not contain only letters from the alphabet (and other allowed characters, if any)
-                                !preg_match('/^[a-z' . preg_quote($rule_attributes[0]) . ']+$/i', $attribute['value'])
+                                // we're also fixing a bug where in PHP prior to 5.3, preg_quote was not escaping dashes (-)
+                                !preg_match('/^[a-z' . preg_quote(preg_replace('/(?<!\\\)\-/', '\-', $rule_attributes[0])) . ']+$/i', $attribute['value'])
 
                             ) {
 
@@ -2513,7 +2537,8 @@ class Zebra_Form
                                 $attribute['value'] != '' &&
 
                                 // control does not contain only allowed characters
-                                !preg_match('/^[a-z0-9' . preg_quote($rule_attributes[0]) . ']+$/i', $attribute['value'])
+                                // we're also fixing a bug where in PHP prior to 5.3, preg_quote was not escaping dashes (-)
+                                !preg_match('/^[a-z0-9' . preg_quote(preg_replace('/(?<!\\\)\-/', '\-', $rule_attributes[0])) . ']+$/i', $attribute['value'])
 
                             ) {
 
@@ -3070,7 +3095,8 @@ class Zebra_Form
                                 $attribute['value'] != '' &&
 
                                 // but entered value does not contain digits only (and other allowed characters, if any)
-                                !preg_match('/^[0-9' . preg_quote($rule_attributes[0]) . ']+$/', $attribute['value'])
+                                // we're also fixing a bug where in PHP prior to 5.3, preg_quote was not escaping dashes (-)
+                                !preg_match('/^[0-9' . preg_quote(preg_replace('/(?<!\\\)\-/', '\-', $rule_attributes[0])) . ']+$/', $attribute['value'])
 
                             ) {
 
@@ -3370,7 +3396,8 @@ class Zebra_Form
                                     preg_match_all('/\./', $attribute['value'], $matches) > 1 ||
 
                                     // not a floating point number
-                                    !preg_match('/^[0-9\-\.' . preg_quote($rule_attributes[0]) . ']+$/', $attribute['value']) ||
+                                    // we're also fixing a bug where in PHP prior to 5.3, preg_quote was not escaping dashes (-)
+                                    !preg_match('/^[0-9\-\.' . preg_quote(preg_replace('/(?<!\\\)\-/', '\-', $rule_attributes[0])) . ']+$/', $attribute['value']) ||
 
                                     // has a minus sign in it but is not at the very beginning
                                     (strpos($attribute['value'], '-') !== false && strpos($attribute['value'], '-') > 0)
@@ -3507,7 +3534,8 @@ class Zebra_Form
                                     preg_match_all('/\-/', $attribute['value'], $matches) > 1 ||
 
                                     // not a number
-                                    !preg_match('/^[0-9\-' . preg_quote($rule_attributes[0]) . ']+$/', $attribute['value']) ||
+                                    // we're also fixing a bug where in PHP prior to 5.3, preg_quote was not escaping dashes (-)
+                                    !preg_match('/^[0-9\-' . preg_quote(preg_replace('/(?<!\\\)\-/', '\-', $rule_attributes[0])) . ']+$/', $attribute['value']) ||
 
                                     // has a minus sign in it but is not at the very beginning
                                     (strpos($attribute['value'], '-') !== false && strpos($attribute['value'], '-') > 0)
@@ -3769,6 +3797,45 @@ class Zebra_Form
 
                             break;
 
+                        // if "url"
+                        case 'url':
+
+                            if (
+
+                                (
+                                    // control is 'password'
+                                    $attribute['type'] == 'password' ||
+
+                                    // control is 'text'
+                                    $attribute['type'] == 'text' ||
+
+                                    // control is 'textarea'
+                                    $attribute['type'] == 'textarea'
+
+                                ) &&
+
+                                // a value was entered
+                                $attribute['value'] != '' &&
+
+                                // value does not match regular expression
+                                !preg_match('/^(http(s)?\:\/\/)' . ($rule_attributes[0] === true ? '' : '?') . '[^\s\.]+\..{2,}/i', $attribute['value'])
+
+                            ) {
+
+                                // add error message to indicated error block
+                                $this->add_error($rule_attributes[1], $rule_attributes[2]);
+
+                                // the control does not validate
+                                $valid = false;
+
+                                // no further checking needs to be done for the control, making sure that only one
+                                // error message is displayed at a time for each erroneous control
+                                break 2;
+
+                            }
+
+                            break;
+
                     }
 
                 }
@@ -3862,18 +3929,36 @@ class Zebra_Form
                     $_SESSION[$this->form_properties['csrf_cookie_name']] = array($this->form_properties['csrf_token'], $csrf_token_expiry);
 
                 // if storage method is "cookie"
-                } else
+                } else {
 
-                    // store the CSRF token in a cookie
-                	if (!setcookie(
-                        $this->form_properties['csrf_cookie_name'],
-                        $this->form_properties['csrf_token'],
-                        $csrf_token_expiry,
-                        $this->form_properties['csrf_cookie_config']['path'],
-                        $this->form_properties['csrf_cookie_config']['domain'],
-                        $this->form_properties['csrf_cookie_config']['secure'],
-                        $this->form_properties['csrf_cookie_config']['httponly']
-                    )) trigger_error('The library tried to store the CSRF token in a cookie but was unable to do so because there was output already sent to the browser. You should either start a session prior to instantiating the library (recommended), have no output (including <html> and <head> tags, as well as any whitespace) sent to the browser prior to instantiating the library, or turn output buffering on in php.ini.', E_USER_ERROR);
+                    // if PHP version is 5.2.0+
+                    if (version_compare(PHP_VERSION, '5.2.0', '>='))
+
+                        // store the CSRF token in a cookie and use also the httponly argument
+                    	if (!setcookie(
+                            $this->form_properties['csrf_cookie_name'],
+                            $this->form_properties['csrf_token'],
+                            $csrf_token_expiry,
+                            $this->form_properties['csrf_cookie_config']['path'],
+                            $this->form_properties['csrf_cookie_config']['domain'],
+                            $this->form_properties['csrf_cookie_config']['secure'],
+                            $this->form_properties['csrf_cookie_config']['httponly']
+                        )) trigger_error('The library tried to store the CSRF token in a cookie but was unable to do so because there was output already sent to the browser. You should either start a session prior to instantiating the library (recommended), have no output (including <html> and <head> tags, as well as any whitespace) sent to the browser prior to instantiating the library, or turn output buffering on in php.ini.', E_USER_ERROR);
+
+                    // if PHP version is lower than 5.2.0
+                    else
+
+                        // store the CSRF token in a cookie without also using the httponly argument
+                    	if (!setcookie(
+                            $this->form_properties['csrf_cookie_name'],
+                            $this->form_properties['csrf_token'],
+                            $csrf_token_expiry,
+                            $this->form_properties['csrf_cookie_config']['path'],
+                            $this->form_properties['csrf_cookie_config']['domain'],
+                            $this->form_properties['csrf_cookie_config']['secure']
+                        )) trigger_error('The library tried to store the CSRF token in a cookie but was unable to do so because there was output already sent to the browser. You should either start a session prior to instantiating the library (recommended), have no output (including <html> and <head> tags, as well as any whitespace) sent to the browser prior to instantiating the library, or turn output buffering on in php.ini.', E_USER_ERROR);
+
+                }
 
             }
 
@@ -4523,7 +4608,7 @@ function _zebra_form_show_error($message, $type)
         $errorInfo = array_pop(array_slice($backtraceInfo, 2, 1));
 
         // show error message
-        echo '<br><strong>' . ($type == E_USER_WARNING ? 'Warning' : ($type == E_USER_NOTICE ? 'Notice' : 'Fatal error')) . '</strong>:  ' . $message . ' in <strong>' . basename($errorInfo['file']) . '</strong> on line <strong>' . $errorInfo['line'] .  '</strong><br>';
+        echo '<br><strong>' . ($type == E_USER_WARNING ? 'Warning' : ($type == E_USER_NOTICE ? 'Notice' : 'Fatal error')) . '</strong>:  ' . $message . (isset($errorInfo['file']) ? ' in <strong>' . basename($errorInfo['file']) . '</strong> on line <strong>' . $errorInfo['line'] .  '</strong>' : '') . '<br>';
 
         // die if necessary
         if ($type == E_USER_ERROR) die();

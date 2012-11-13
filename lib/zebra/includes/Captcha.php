@@ -109,6 +109,7 @@ class Zebra_Form_Captcha extends Zebra_Form_Control
      */
     function toHTML()
     {
+    
         return '<img src="' . $this->form_properties['assets_url'] . 'process.php?captcha=1&amp;nocache=' . time() . '" alt=""' . ($this->form_properties['doctype'] == 'xhtml' ? '/' : '') . '>';
     
     }

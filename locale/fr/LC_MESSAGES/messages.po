@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-01 10:48+0100\n"
-"PO-Revision-Date: 2012-11-01 10:49+0100\n"
+"PO-Revision-Date: 2012-11-13 12:39+0100\n"
 "Last-Translator: \n"
 "Language-Team: Open Team Map\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: ../../../model/inscription.model.php:64
 msgid "Vous pouvez maintenant vous connecter"
-msgstr "Débogage"
+msgstr "Vous pouvez maintenant vous connecter"
 
 #: ../../../model/inscription.model.php:83
 msgid "Utilisateur supprimé de la base de donnée"

@@ -88,8 +88,8 @@ class XSS_Clean
 	function sanitize($str)
 	{
 
-		// Remove Invisible Characters and validate entities in URLs
-		$str = $this->_validate_entities($this->_remove_invisible_characters($str));
+		// Remove Invisible Characters
+		$str = $this->_remove_invisible_characters($str);
 
 		/*
 		 * URL Decode

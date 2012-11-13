@@ -195,6 +195,17 @@ class Zebra_Form_Select extends Zebra_Form_Control
 
 		);
 
+        // if "class" is amongst user specified attributes
+        if (isset($attributes['class'])) {
+
+            // we need to set the "class" attribute like this, so it doesn't overwrite previous values
+            $this->set_attributes(array('class' => $attributes['class']), false);
+
+            // make sure we don't set it again below
+            unset($attributes['class']);
+
+        }
+
         // sets user specified attributes for the control
         $this->set_attributes($attributes);
 

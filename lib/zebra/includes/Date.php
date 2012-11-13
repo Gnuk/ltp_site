@@ -25,14 +25,17 @@ class Zebra_Form_Date extends Zebra_Form_Control
      *  // add a date control to the form
      *  // the "&" symbol is there so that $obj will be a reference to the object in PHP 4
      *  // for PHP 5+ there is no need for it
-     *  $obj = &$form->add('date', 'my_date', date('Y-m-d'));
+     *  $mydate = &$form->add('date', 'my_date', date('Y-m-d'));
      *
      *  // set the date's format
-     *  $obj->format('Y-m-d');
+     *  $mydate->format('M d, Y');
      *
      *  // don't forget to always call this method before rendering the form
      *  if ($form->validate()) {
-     *      // put code here
+     *
+     *      // get the date in YYYY-MM-DD format so you can play with is easily
+     *      $date = $mydate->get_date();
+     *
      *  }
      *
      *  // output the form using an automatically generated template
@@ -102,12 +105,14 @@ class Zebra_Form_Date extends Zebra_Form_Control
             'always_show_clear',
             'always_visible',
             'days',
+            'days_abbr',
             'direction',
             'disabled_dates',
             'first_day_of_week',
             'format',
             'inside_icon',
             'months',
+            'months_abbr',
             'offset',
             'pair',
             'readonly_element',
@@ -115,6 +120,7 @@ class Zebra_Form_Date extends Zebra_Form_Control
             'start_date',
             'view',
             'weekend_days',
+            'zero_pad',
 
         );
 
@@ -125,12 +131,14 @@ class Zebra_Form_Date extends Zebra_Form_Control
             'always_show_clear',
             'always_visible',
             'days',
+            'days_abbr',
             'disabled_dates',
             'direction',
             'first_day_of_week',
             'format',
             'inside_icon',
             'months',
+            'months_abbr',
             'offset',
             'pair',
             'readonly_element',
@@ -138,6 +146,7 @@ class Zebra_Form_Date extends Zebra_Form_Control
             'start_date',
             'view',
             'weekend_days',
+            'zero_pad',
 
         );
 
@@ -156,6 +165,7 @@ class Zebra_Form_Date extends Zebra_Form_Control
                 'always_show_clear'         =>  null,
                 'always_visible'            =>  null,
                 'days'                      =>  null,
+                'days_abbr'                 =>  null,
                 'direction'                 =>  null,
                 'disable_zebra_datepicker'  =>  false,
                 'disabled_dates'            =>  null,
@@ -163,6 +173,7 @@ class Zebra_Form_Date extends Zebra_Form_Control
                 'format'                    =>  'Y-m-d',
                 'inside_icon'               =>  null,
                 'months'                    =>  null,
+                'months_abbr'               =>  null,
                 'offset'                    =>  null,
                 'pair'                      =>  null,
                 'readonly_element'          =>  null,
@@ -170,10 +181,22 @@ class Zebra_Form_Date extends Zebra_Form_Control
                 'start_date'                =>  null,
                 'view'                      =>  null,
                 'weekend_days'              =>  null,
+                'zero_pad'                  =>  null,
 
             )
 
         );
+
+        // if "class" is amongst user specified attributes
+        if (isset($attributes['class'])) {
+
+            // we need to set the "class" attribute like this, so it doesn't overwrite previous values
+            $this->set_attributes(array('class' => $attributes['class']), false);
+
+            // make sure we don't set it again below
+            unset($attributes['class']);
+
+        }
 
         // sets user specified attributes for the control
         $this->set_attributes($attributes);
@@ -549,7 +572,7 @@ class Zebra_Form_Date extends Zebra_Form_Control
      *
      *  @param  array   $days       An array of days of the week that are to be considered  as "weekend days".
      *
-     *                              Valid values are 0 to 6 (Sunday to Saturday)
+     *                              Valid values are 0 to 6 (Sunday to Saturday).
      *
      *                              Default is array(0,6) (Saturday and Sunday).
      *
@@ -559,6 +582,22 @@ class Zebra_Form_Date extends Zebra_Form_Control
 
         // set the date picker's attribute
         $this->set_attributes(array('weekend_days' => $days));
+
+    }
+
+    /**
+     *  Should day numbers < 10 be padded with zero?
+     *
+     *  @param  boolean $state      When set to TRUE, day numbers < 10 will be prefixed with 0.
+     *
+     *                              Default is FALSE.
+     *
+     *  @return void
+     */
+    function zero_pad($state) {
+
+        // set the date picker's attribute
+        $this->set_attributes(array('zero_pad' => $state));
 
     }
 

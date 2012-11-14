@@ -17,6 +17,7 @@ class Osm{
 	private $defaultLat;
 	private $defaultZoom;
 	private static $loadRequired = false;
+	private $picker;
 	
 	/**
 	* Constructeur
@@ -44,6 +45,12 @@ class Osm{
 		$this->marker[]=$marker;
 	}
 	
+	public function getLongitude(){
+		return $this->defaultLon;
+	}
+	public function getLatitude(){
+		return $this->defaultLat;
+	}
 	private static function loadRequired(){
 		if(!self::$loadRequired){
 			Page::setJS(array(
@@ -67,17 +74,55 @@ class Osm{
 <?php
 	}
 	
+	public function addPicker($formLon = 'longitude', $formLat = 'latitude'){
+		$this->picker = '
+		var locationPickerLayer = new OpenLayers.Layer.Vector("'.T_('Sélecteur de localisation').'");
+        map.addLayer(locationPickerLayer);
+    	
+        var proj4326 = new OpenLayers.Projection("EPSG:4326");
+        var projmerc = new OpenLayers.Projection("EPSG:900913");
+        
+        var locationPickerPoint = new OpenLayers.Geometry.Point(center.lon, center.lat);
+        var locationPickerMarkerStyle = {externalGraphic: \''.Module::getRLink('osm') . 'images/poi.png'.'\', graphicHeight: 37, graphicWidth: 32, graphicYOffset: -37, graphicXOffset: -16 };
+        var locationPickerVector = new OpenLayers.Feature.Vector(locationPickerPoint, null, locationPickerMarkerStyle);
+        locationPickerLayer.addFeatures(locationPickerVector);
+        
+        var dragFeature = new OpenLayers.Control.DragFeature(locationPickerLayer, 
+				{ 
+        			onComplete:	function( feature, pixel ) {
+        				var selectedPositionAsMercator = new OpenLayers.LonLat(locationPickerPoint.x, locationPickerPoint.y);
+        			 	var selectedPositionAsLonLat = selectedPositionAsMercator.transform(projmerc, proj4326);
+        				
+        				document.getElementById("'.$formLon.'").value = selectedPositionAsLonLat.lat;
+        		    	document.getElementById("'.$formLat.'").value = selectedPositionAsLonLat.lon;
+        				
+        			}
+   				}
+        );
+        map.addControl(dragFeature);
+        dragFeature.activate();
+		';
+	}
+	
 	/**
 	* Ajoute le JS à la page
 	*/
-	public function setJS(){
-		Page::addJS($this->getJS(), true);
+	public function setJS($longitude = null, $latitude = null){
+		Page::addJS($this->getJS($longitude, $latitude), true);
 	}
 	
 	/**
 	* Récupère le code javascript de la carte
+	* @param int $longitude La longitude à centrer
+	* @param int $latitude La latitude à centrer
 	*/
-	public function getJS(){
+	public function getJS($longitude = null, $latitude = null){
+		if(!isset($longitude)){
+			$longitude = $this->defaultLon;
+		}
+		if(!isset($latitude)){
+			$latitude = $this->defaultLat;
+		}
 		$js='
 		var options = {
 			controls: [
@@ -87,18 +132,20 @@ class Osm{
 			new OpenLayers.Control.Attribution()
 			]
 		};
-		function getIcon(){
-			var size = new OpenLayers.Size(21, 25);
-			var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-			return new OpenLayers.Icon(\''. LINKR_IMAGES . 'marker.png\',size,offset);
-		}
 		map = new OpenLayers.Map("'.$this->divName.'", options);
 		map.addLayer(new OpenLayers.Layer.OSM.Mapnik("Standard"));
 		map.addLayer(new OpenLayers.Layer.OSM.CycleMap("Cyclable"));
 		map.addLayer(new OpenLayers.Layer.OSM.TransportMap("Transport"));
-		AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, { \'autoSize\': true});';
+		AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, { \'autoSize\': true});
+		
+		var center = new OpenLayers.LonLat('. $this->defaultLon . ', ' . $this->defaultLat .').transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+		var zoom='. $this->defaultZoom.';
+		';
 		foreach($this->marker AS $number => $marker){
 			$js .= $marker->get();
+		}
+		if(isset($this->picker)){
+			$js .= $this->picker;
 		}
 		$js.= '
 		function addMarker(ll, popupClass, popupContentHTML, closeBox, overflow) {
@@ -132,8 +179,6 @@ class Osm{
 		}
 		else{
 			$js .= '
-			var center = new OpenLayers.LonLat('. $this->defaultLon . ', ' . $this->defaultLat .').transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-			var zoom='. $this->defaultZoom.';
 			map.setCenter (center, zoom);';
 		}
 		return $js;

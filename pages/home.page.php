@@ -34,6 +34,7 @@
 		$obj->set_rule(array(
 			'required'  => array('error', T_('Veuillez indiquer votre mot de passe.'))
 		));
+		
 		$form->add('submit', 'btnsubmit', T_('Se connecter'));
 		$template = new Template();
 		$template->addTitle(T_('Accueil'));

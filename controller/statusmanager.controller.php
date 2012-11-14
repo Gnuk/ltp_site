@@ -21,18 +21,21 @@
 		public function getMap(){
 			Module::load('osm');
 			$osm = new Osm('carte');
-			if(count($this->status) > 0){
-				$markers = self::getMarkersStatus();
-				$osm->addMarker($markers);
+			if(!isset($_GET['add'])){
+				if(count($this->status) > 0){
+					$markers = $this->getMarkersStatus();
+					$osm->addMarker($markers);
+				}
 			}
-			$osm->addPicker();
+			else{
+				$osm->addPicker();
+			}
 			$osm->setJS();
 			return $osm;
 		}
 		
 		
-		
-		public function getForm($longitude, $latitude){
+		public function getAddForm($longitude, $latitude){
 			Module::load('form');
 			$form = new Form('status');
 			
@@ -61,15 +64,45 @@
 			return $form;
 		}
 		
+		public function getEditForm(){
+			Module::load('form');
+			$form = new Form('status');
+			
+			$form->add('label', 'label_message', 'message', T_('Message :'));
+			$obj = & $form->add('textarea', 'message');
+			$obj->set_rule(array(
+				'required'  =>  array('error', T_('Vous devez ajouter un message.')),
+
+			));
+			
+			$form->add('submit', 'btnsubmit', T_('Modifier le statut'));
+			return $form;
+		}
+		
 		private function getMarkersStatus(){
 			$marker = new Marker(T_('Status'));
 			foreach($this->status as $nStatus => $stat){
-				$marker->add($stat['longitude'] ,$stat['latitude'], '<p>'.Page::htmlEncode($stat['message']).'</p>');
+				$marker->add($stat['longitude'] ,$stat['latitude'], '<p>'.Page::htmlEncode($stat['message']).'</p><ul><li><a href="'.Page::getLink().'&amp;edit='.$stat['id'].'">'.T_('Éditer').'</a></li><li><a href="'.Page::getLink().'&amp;delete='.$stat['id'].'">'.T_('Supprimer').'</a></li></ul>');
 			}
 			return $marker;
 		}
 		
-		
+		/**
+		* Mise à jour des statuts
+		* @todo Implémenter l'édition d'un statut
+		*/
+		public function updateStatus(){
+			if(isset($_POST['message']) 
+				AND isset($_POST['longitude']) 
+				AND is_numeric($_POST['longitude']) 
+				AND isset($_POST['latitude']) 
+				AND is_numeric($_POST['latitude']) 
+				AND isset($_GET['edit']))
+			{
+				return true;
+			}
+			return false;
+		}
 		
 		/**
 		* Ajout de status
@@ -79,7 +112,8 @@
 				AND isset($_POST['longitude']) 
 				AND is_numeric($_POST['longitude']) 
 				AND isset($_POST['latitude']) 
-				AND is_numeric($_POST['latitude']))
+				AND is_numeric($_POST['latitude']) 
+				AND !isset($_GET['edit']))
 			{
 				$this->add = $this->model->addStatus($_POST['message'], $_POST['longitude'], $_POST['latitude']);
 				return $this->add;

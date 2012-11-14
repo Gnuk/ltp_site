@@ -33,7 +33,7 @@
 			)
 		),
 		'status' => array(
-			'title' => T_('Status'),
+			'title' => T_('Statuts'),
 			'rights' => 3
 		)
 	);

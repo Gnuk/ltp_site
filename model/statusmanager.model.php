@@ -18,7 +18,7 @@
 		
 		public function getStatuses(){
 			$qb = $this->em->createQueryBuilder();
-			$qb->select(array('s.longitude', 's.latitude', 's.message'))
+			$qb->select(array('s.longitude', 's.latitude', 's.message', 's.id'))
 				->from('\gnk\database\entities\Status', 's')
 				->where('s.user = :id')
 				->orderBy('s.date', 'DESC')

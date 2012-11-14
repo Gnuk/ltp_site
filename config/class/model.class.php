@@ -6,6 +6,9 @@
 	* @since 23/10/2012
 	*/
 	class Model{
+	
+		private $indications = array();
+		private $errors = array();
 		/**
 		* Récupère le modèle
 		* @param string $link Le lien du modèle
@@ -15,6 +18,28 @@
 			if(is_file($realLink)){
 				require_once($realLink);
 			}
+		}
+		
+		protected function addIndication($indication){
+			$this->indications[] = $indication;
+		}
+		
+		protected function addError($error){
+			$this->errors[] = $error;
+		}
+		
+		/**
+		* Récupère les erreurs envoyées
+		*/
+		public function getErrors(){
+			return $this->errors;
+		}
+		
+		/**
+		* Récupère les indications envoyées
+		*/
+		public function getIndications(){
+			return $this->indications;
 		}
 	}
 ?>

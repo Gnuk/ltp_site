@@ -70,14 +70,14 @@
 		* Récupération des informations du modèle
 		*/
 		public function getInfo(){
-			return $this->model->getInfo();
+			return $this->model->getIndications();
 		}
 		
 		/**
 		* Récupération de les erreurs du modèle
 		*/
 		public function getError(){
-			return $this->model->getError();
+			return $this->model->getErrors();
 		}
 		
 		/**

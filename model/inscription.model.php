@@ -3,6 +3,7 @@
 	use \gnk\config\Database;
 	use \gnk\config\Tools;
 	use \gnk\config\Config;
+	use \gnk\config\Model;
 	use \gnk\database\entities\Users;
 	use \gnk\database\entities\VerifyUsers;
 	
@@ -11,15 +12,13 @@
 	* @author Anthony REY <anthony.rey@mailoo.org>
 	* @todo Traitement du formulaire de récupération de mot de passe
 	*/
-	class Inscription{
+	class Inscription extends Model{
 		private $em;
 		private $username;
 		private $mail;
 		private $subject;
 		private $message;
 		private $id;
-		private $indications = array();
-		private $errors = array();
 		
 		/**
 		* Constructeur
@@ -61,7 +60,7 @@
 			$result = $query->getResult();
 			if(count($result)>0){
 				$result[0]->getUser()->setActive(true);
-				$this->indications[]=T_('Vous pouvez maintenant vous connecter');
+				$this->addIndication(T_('Vous pouvez maintenant vous connecter'));
 				$this->em->persist($result[0]->getUser());
 				$this->em->remove($result[0]);
 				$this->em->flush();
@@ -80,7 +79,7 @@
 				$this->em->remove($result[0]->getUser());
 				$this->em->remove($result[0]);
 				$this->em->flush();
-				$this->indications[]=T_('Utilisateur supprimé de la base de donnée');
+				$this->addIndication(T_('Utilisateur supprimé de la base de donnée'));
 			}
 		}
 		
@@ -101,16 +100,9 @@
 				return $this->verificationUser($user);
 			}
 			else{
-				$this->errors[] = T_('Un utilisateur porte déjà cet identifiant ou cette adresse de messagerie.');
+				$this->addError(T_('Un utilisateur porte déjà cet identifiant ou cette adresse de messagerie.'));
 				return false;
 			}
-		}
-		
-		/**
-		* Récupère les erreurs envoyées
-		*/
-		public function getError(){
-			return $this->errors;
 		}
 		
 		/**
@@ -130,7 +122,7 @@
 			else{
 				$this->em->remove($verif);
 				$this->em->flush();
-				$this->errors[] = T_('Envoi du mail échoué, veuillez récupérer votre mot de passe via le formulaire de mots de passes oubliés.');
+				$this->addError(T_('Envoi du mail échoué, veuillez récupérer votre mot de passe via le formulaire de mots de passes oubliés.'));
 				return false;
 			}
 		}
@@ -176,10 +168,6 @@
 			$this->message .= $url . "\n";
 			$this->message .= T_('Ou l\'annuler en cliquant sur') . "\n";
 			$this->message .= $url . '&unsubscribe';
-		}
-		
-		public function getInfo(){
-			return $this->indications;
 		}
 	}
 ?>

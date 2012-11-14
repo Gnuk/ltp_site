@@ -10,8 +10,12 @@
 	
 	class StatusManager{
 		private $status = array();
+		private $add = false;
+		private $sendForm = false;
+		
 		public function __construct(){
 			$this->model = new \gnk\model\StatusManager();
+			$this->sendForm = $this->addStatus();
 			$this->status = $this->model->getStatuses();
 		}
 		public function getMap(){
@@ -25,6 +29,8 @@
 			$osm->setJS();
 			return $osm;
 		}
+		
+		
 		
 		public function getForm($longitude, $latitude){
 			Module::load('form');
@@ -61,6 +67,24 @@
 				$marker->add($stat['longitude'] ,$stat['latitude'], '<p>'.Page::htmlEncode($stat['message']).'</p>');
 			}
 			return $marker;
+		}
+		
+		
+		
+		/**
+		* Ajout de status
+		*/
+		public function addStatus(){
+			if(isset($_POST['message']) 
+				AND isset($_POST['longitude']) 
+				AND is_numeric($_POST['longitude']) 
+				AND isset($_POST['latitude']) 
+				AND is_numeric($_POST['latitude']))
+			{
+				$this->add = $this->model->addStatus($_POST['message'], $_POST['longitude'], $_POST['latitude']);
+				return $this->add;
+			}
+			return false;
 		}
 	}
 ?>

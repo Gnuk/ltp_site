@@ -136,9 +136,14 @@ class Status
     /** @ManyToOne(targetEntity="Users") **/
     protected $user;
     
-    public function __construct(User $user)
+    public function __construct(Users $user, $message, $longitude, $latitude)
     {
 		$this->user = $user;
+		$this->message = $message;
+		$this->longitude = $longitude;
+		$this->latitude = $latitude;
+		$datetime = new DateTime();
+		$this->date = $datetime;
     }
     
     public function getMessage(){

@@ -18,9 +18,9 @@
 			$this->sendForm = $this->addStatus();
 			$this->status = $this->model->getStatuses();
 		}
-		public function getMap(){
+		public function getMap($divName='carte'){
 			Module::load('osm');
-			$osm = new Osm('carte');
+			$osm = new Osm($divName);
 			if(!isset($_GET['add'])){
 				if(count($this->status) > 0){
 					$markers = $this->getMarkersStatus();
@@ -85,6 +85,12 @@
 				$marker->add($stat['longitude'] ,$stat['latitude'], '<p>'.Page::htmlEncode($stat['message']).'</p><ul><li><a href="'.Page::getLink().'&amp;edit='.$stat['id'].'">'.T_('Éditer').'</a></li><li><a href="'.Page::getLink().'&amp;delete='.$stat['id'].'">'.T_('Supprimer').'</a></li></ul>');
 			}
 			return $marker;
+		}
+		
+		
+		
+		public function getStatus(){
+			return $this->status;
 		}
 		
 		/**

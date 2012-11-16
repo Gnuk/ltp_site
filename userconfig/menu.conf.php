@@ -14,23 +14,7 @@
 		),
 		'friends' => array(
 			'title' => T_('Amis'),
-			'rights' => 3,
-			'menu' => array(
-				'myfriends' => array(
-					'title' => T_('Mes Amis'),
-					'rights' => 3,
-					'menu' => array(
-						'newfriend' => array(
-							'title' => T_('Nouvel Ami'),
-							'rights' => 3
-						)
-					)
-				),
-				'yourfriends' => array(
-					'title' => T_('Vos amis'),
-					'rights' => 3,
-				)
-			)
+			'rights' => 3
 		),
 		'status' => array(
 			'title' => T_('Statuts'),

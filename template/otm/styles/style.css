@@ -150,6 +150,58 @@ ul.form_error, ul.form_info, ul.form_valid{
 	width: 800px;
 }
 
+#status_map{
+	vertical-align: top;
+	display: inline-block;
+	height: 450px;
+	width: 450px;
+}
+
+#statuses{
+	display: inline-block;
+	width: 450px;
+	vertical-align: top;
+	text-align: left;
+	margin: 0px 20px;
+}
+#statuses p{
+	margin: 0px;
+	padding: 5px;
+}
+
+#statuses section h1, #statuses section{
+	border-radius: 5px 5px 0px 0px;
+}
+#statuses section ul{
+	padding: 0px;
+	margin: 0px;
+	text-align: right;
+}
+#statuses section h1{
+	background-color: #2565d0;
+	padding: 1px 5px;
+	color: #fff;
+	box-shadow: inset 0pc 0px 5px #555;
+}
+#statuses section li{
+	display: inline-block;
+	padding: 5px;
+}
+
+#statuses section{
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+	margin-bottom: 7px;
+	border: 1px solid #aaa;
+}
+
+#status ul{
+	padding: 0px;
+	margin: 0px 5px 5px 5px;
+}
+#status li{
+	display: inline-block;
+}
+
 /* CSS Liens du site */
 a.menu{ color: black; text-decoration: none; }
 a.menu:hover{ color: white; text-decoration: none; }

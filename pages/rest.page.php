@@ -48,11 +48,11 @@
 			}
 ?>
 	{
-		"@lat" : "<?php echo Page::htmlEncode($stat['latitude']) ;?>",
-		"@lon" : "<?php echo Page::htmlEncode($stat['longitude']) ;?>",
-		"name" : "<?php echo Page::htmlEncode($stat['login']) ;?>",
-		"desc" : "<?php echo Page::htmlEncode($stat['message']) ;?>",
-		"time":"<?php echo Page::htmlEncode($stat['date']->format('Y-m-d\TH:i:sP')) ;?>"
+		"@lat" : "<?php echo Page::slashEncode($stat['latitude']) ;?>",
+		"@lon" : "<?php echo Page::slashEncode($stat['longitude']) ;?>",
+		"name" : "<?php echo Page::slashEncode($stat['login']) ;?>",
+		"desc" : "<?php echo Page::slashEncode($stat['message']) ;?>",
+		"time":"<?php echo Page::slashEncode($stat['date']->format('Y-m-d\TH:i:sP')) ;?>"
 	}
 <?php
 		}

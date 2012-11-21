@@ -277,5 +277,9 @@ class Page{
 	public static function htmlEncode($text){
 		return htmlspecialchars($text, ENT_QUOTES);
 	}
+	
+	public static function slashEncode($text){
+		return addslashes($text);
+	}
 }
 ?>

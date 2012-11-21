@@ -3,6 +3,11 @@
 	use \gnk\config\Page;
 	use \gnk\database\entities\Users;
 	use \gnk\database\entities\Status;
+	/**
+	* ?p=rest&format=json&service=status&method=get
+	* ?p=rest&format=json&service=status&method=put
+	*/
+	
 	function getStatus($login, $password){
 		Database::useTables();
 		$qb = Database::getEM()->createQueryBuilder();
@@ -17,8 +22,6 @@
 		$result = $query->getResult();
 		return $result;
 	}
-	$login = 'user';
-	$password = 'useruser';
 	if(isset($_POST['login']) AND isset($_POST['password'])){
 		$login = $_POST['login'];
 		$password = $_POST['password'];

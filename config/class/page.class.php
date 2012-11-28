@@ -27,6 +27,11 @@ class Page{
 		self::$getName=$getName;
 		self::$defaultPage = $defaultPage;
 		self::$page = $defaultPage;
+		/*if((isset($_SERVER["PATH_INFO"]) AND is_file(self::getRewriteChemin($_SERVER["PATH_INFO"])))){
+			self::$page = self::toPageLink($_SERVER["PATH_INFO"]);
+			require_once(self::getChemin(self::$page));
+		}
+		else */
 		if(isset($_GET[$getName]) AND is_file(self::getChemin($_GET[$getName]))){
 			self::$page = $_GET[$getName];
 			require_once(self::getChemin(self::$page));
@@ -45,6 +50,33 @@ class Page{
 		$explodePageName = explode(':', $pageName);
 		$implodePageName = implode('_DIR/', $explodePageName);
 		return LINK_PAGES . $implodePageName . '.page.php';
+	}
+	
+	
+	
+	/**
+	* Récupère le chemin à partir du nom de page passé en GET
+	* @param string $pageName Le nom de la page
+	* @return string Le lien vers la page correspondante
+	*/
+	private static function getRewriteChemin($pageName){
+		$page = preg_replace('#^\/#', '', $pageName);
+		$explodePageName = explode('/', $page);
+		$implodePageName = implode('_DIR/', $explodePageName);
+		return LINK_PAGES . $implodePageName . '.page.php';
+	}
+	
+	
+	/**
+	* Récupère le chemin à partir du nom de page passé en GET
+	* @param string $pageName Le nom de la page
+	* @return string Le lien vers la page correspondante
+	*/
+	private static function toPageLink($pageName){
+		$page = preg_replace('#^\/#', '', $pageName);
+		$explodePageName = explode('/', $page);
+		$implodePageName = implode(':', $explodePageName);
+		return $implodePageName;
 	}
 	
 	/**
@@ -191,7 +223,7 @@ class Page{
 		if(count(self::$js) > 0){
 			foreach(self::$js as $nJs => $script){
 ?>
-<script type="text/javascript" src="<?php echo $script;?>"></script>
+<script type="text/javascript" src="<?php echo self::rewriteLink($script);?>"></script>
 <?php
 			}
 		}
@@ -236,7 +268,7 @@ class Page{
 		if(count(self::$css) > 0){
 			foreach(self::$css as $nCss => $style){
 ?>
-<link rel="stylesheet" href="<?php echo $style;?>" type="text/css" media="screen">
+<link rel="stylesheet" href="<?php echo self::rewriteLink($style);?>" type="text/css" media="screen">
 <?php
 			}
 		}
@@ -286,6 +318,16 @@ class Page{
 	{
 		http_response_code($code);
 		return http_response_code();
+	}
+	
+	public static function rewriteLink($link){
+		if(isset($_SERVER["PATH_INFO"])){
+			$url_rewrite = preg_replace('#'.$_SERVER["PATH_INFO"].'$#', '', $_SERVER["PHP_SELF"]);
+		}
+		else{
+			$url_rewrite = $_SERVER["PHP_SELF"];
+		}
+		return $url_rewrite . '/../' . $link;
 	}
 }
 ?>

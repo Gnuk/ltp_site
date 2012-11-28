@@ -5,7 +5,7 @@
 ?>
 			<h1>
 				<a href="<?php echo Page::getLink(array('p' => Page::getDefaultPage()), false);?>">
-					<img id="iconeAccueil" src="<?php echo $this->getLink();?>images/icone_accueil.png" alt="<?php
+					<img id="iconeAccueil" src="<?php echo $this->getLink(true);?>images/icone_accueil.png" alt="<?php
 					$global = Config::getWebsiteConfig();
 					if(isset($global['title'])){
 						echo Page::htmlEncode($global['title']);

@@ -98,19 +98,32 @@ class VerifyUsers
 /**
 * @Entity
 */
-class Friends
+class FriendsWanted
 {
 	/** @Id @ManyToOne(targetEntity="Users") @JoinColumn(name="user_id", referencedColumnName="id") **/
 	protected $user;
-	/** @Id @ManyToOne(targetEntity="Users") @JoinColumn(name="friend_id", referencedColumnName="id") **/
-	protected $friend;
-	/** @Column(type="boolean") **/
-	protected $show;
+	/** @Id @ManyToOne(targetEntity="Users") @JoinColumn(name="want_id", referencedColumnName="id") **/
+	protected $want;
 	
-	public function __construct($user, $friend, $show=false){
+	public function __construct($user, $want){
 		$this->user = $user;
-		$this->friend = $friend;
-		$this->show = false;
+		$this->want = $want;
+	}
+}
+
+/**
+* @Entity
+*/
+class FriendsSeeMe
+{
+	/** @Id @ManyToOne(targetEntity="Users") @JoinColumn(name="user_id", referencedColumnName="id") **/
+	protected $user;
+	/** @Id @ManyToOne(targetEntity="Users") @JoinColumn(name="seeme_id", referencedColumnName="id") **/
+	protected $seeme;
+	
+	public function __construct($user, $seeme){
+		$this->user = $user;
+		$this->seeme = $seeme;
 	}
 }
 

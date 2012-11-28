@@ -63,8 +63,17 @@
 <?php
 	}
 	else{
-	?>
-Vous n'avez pas précisé de login ou/et de mot de passe.
+		$error = Page::setHTTPCode(404);
+?>
+	<html>
+		<head>
+			<title>API REST</title>
+		</head>
+		<body>
+			<h1>API REST</h1>
+			<p>Mon API</p>
+		</body>
+	</html>
 <?php
 	}
 ?>

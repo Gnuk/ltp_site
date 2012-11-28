@@ -281,5 +281,11 @@ class Page{
 	public static function slashEncode($text){
 		return addslashes($text);
 	}
+	
+	public static function setHTTPCode($code)
+	{
+		http_response_code($code);
+		return http_response_code();
+	}
 }
 ?>

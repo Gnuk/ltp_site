@@ -1,0 +1,265 @@
+# Documentation REST
+
+## Les statuts
+
+### GET
+
+* **URL**
+ * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=status&method=get
+ * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=status&method=get
+* **Méthode** GET
+* **Return**
+ * 200 OK & liste
+ * 401 Non autorisé
+ * 404 Introuvable
+
+#### Exemple
+
+##### JSON
+
+Non implémenté pour le moment
+
+~~~~~~~~~~~~~{.json}
+{
+	"ltp":
+	{
+		"application":"LocalizeTeaPot server",
+		"status":
+		[
+			{
+				"lat" : "24.242424",
+				"lon" : "2.4",
+				"content" : "Je suis maintenant là.",
+				"time":"2012-11-17T18:26:00+01:00"
+			}
+			,
+			{
+				"lat" : "42.424242",
+				"lon" : "4.2",
+				"content" : "Je suis ici.",
+				"time":"2012-11-16T15:13:14+01:00"
+			}
+		]
+	}
+}
+~~~~~~~~~~~~~
+
+##### XML
+
+### PUT
+
+* **URL**
+ * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=status&method=put
+ * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=status&method=put
+* **Méthode** PUT
+
+#### Exemple
+
+##### JSON
+
+Non implémenté pour le moment
+
+~~~~~~~~~~~~~{.json}
+{
+	"ltp":
+	{
+		"application":"Client LTP",
+		"status":
+		{
+			"lat" : "24.242424",
+			"lon" : "2.4",
+			"content" : "Mon nouveau statut."
+		}
+	}
+}
+~~~~~~~~~~~~~
+
+##### XML
+
+## Les Amis
+
+### GET
+
+* **URL**
+ * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=friends&method=get
+ * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=friends&method=get
+* **Méthode** GET
+* **Return**
+ * 200 OK & liste
+ * 401 Non autorisé
+ * 404 Introuvable
+
+#### Exemple
+
+##### JSON
+
+Non implémenté pour le moment
+
+~~~~~~~~~~~~~{.json}
+{
+	"ltp":
+	{
+		"application":"LocalizeTeaPot server",
+		"friends":
+		[
+			{
+				"username":"Gnuk",
+				"lat" : "24.242424",
+				"lon" : "2.4",
+				"content" : "Je suis maintenant là.",
+				"time":"2012-11-17T18:26:00+01:00"
+			}
+			,
+			{
+				"username":"Giu",
+				"lat" : "42.424242",
+				"lon" : "4.2",
+				"content" : "Je suis ici.",
+				"time":"2012-11-16T15:13:14+01:00"
+			}
+		]
+	}
+}
+~~~~~~~~~~~~~
+
+##### XML
+
+
+### PUT Demande d'amis
+
+* **URL**
+ * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=friends&add=want&method=put
+ * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=friends&add=want&method=put
+* **Méthode** PUT
+
+#### Exemple
+
+##### JSON
+
+Non implémenté pour le moment
+
+~~~~~~~~~~~~~{.json}
+{
+	"ltp":
+	{
+		"application":"Client LTP",
+		"mail": "gnuk@mail.org"
+	}
+}
+~~~~~~~~~~~~~
+
+Ou
+
+~~~~~~~~~~~~~{.json}
+{
+	"ltp":
+	{
+		"application":"Client LTP",
+		"username": "Gnuk"
+	}
+}
+~~~~~~~~~~~~~
+
+##### XML
+
+### PUT Autorisé à me voir
+
+* **URL**
+ * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=friends&add=seeme&method=put
+ * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=friends&add=seeme&method=put
+* **Méthode** PUT
+
+#### Exemple
+
+##### JSON
+
+Non implémenté pour le moment
+
+~~~~~~~~~~~~~{.json}
+{
+	"ltp":
+	{
+		"application":"Client LTP",
+		"mail": "james@mail.org"
+	}
+}
+~~~~~~~~~~~~~
+
+Ou
+
+~~~~~~~~~~~~~{.json}
+{
+	"ltp":
+	{
+		"application":"Client LTP",
+		"username": "James"
+	}
+}
+~~~~~~~~~~~~~
+
+##### XML
+
+## La gestion de l'utilisateur
+
+### GET récupération de l'utilisateur
+
+* **URL**
+ * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=user&method=get
+ * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=user&method=get
+* **Méthode** GET
+* **Return**
+ * 200 OK & liste
+ * 401 Non autorisé
+ * 404 Introuvable
+
+#### Exemple
+
+##### JSON
+
+Non implémenté pour le moment
+
+~~~~~~~~~~~~~{.json}
+{
+	"ltp":
+	{
+		"application":"LocalizeTeaPot server",
+		"profil":
+		{
+			"username" : "Gnuk",
+			"mail" : "gnuk@mail.org",
+			"language" : "fr"
+		}
+	}
+}
+~~~~~~~~~~~~~
+
+##### XML
+
+### PUT
+
+* **URL**
+ * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=user&method=put
+ * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=user&method=put
+* **Méthode** PUT
+
+#### Exemple
+
+##### JSON
+
+Non implémenté pour le moment
+
+~~~~~~~~~~~~~{.json}
+{
+	"ltp":
+	{
+		"application":"Client LTP",
+		"profil":
+		{
+			"mail" : "gnuk@mail.org",
+			"language" : "fr"
+		}
+	}
+}
+~~~~~~~~~~~~~
+
+##### XML

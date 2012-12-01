@@ -42,7 +42,7 @@
 		* Récupère le lien relatif du template
 		* @return string Le lien
 		*/
-		public function getLink($formated = false){
+		public function getLink($formated = true){
 			if($formated){
 				$link = Page::rewriteLink($this->link);
 			}

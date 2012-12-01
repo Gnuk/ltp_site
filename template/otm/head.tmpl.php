@@ -1,6 +1,6 @@
 <?php
 	use \gnk\config\Page;
-		Page::addCSS($this->getLink() . 'styles/style.css');
+		Page::addCSS($this->getLink(false) . 'styles/style.css');
 ?>
 		<meta charset="UTF-8" />
 <?php $this->showWebsiteParams();?>

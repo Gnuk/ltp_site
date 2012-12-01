@@ -316,8 +316,8 @@ class Page{
 	
 	public static function setHTTPCode($code)
 	{
-		http_response_code($code);
-		return http_response_code();
+		\http_response_code($code);
+		return \http_response_code();
 	}
 	
 	public static function rewriteLink($link){

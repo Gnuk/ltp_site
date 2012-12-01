@@ -83,7 +83,7 @@ class Osm{
         var projmerc = new OpenLayers.Projection("EPSG:900913");
         
         var locationPickerPoint = new OpenLayers.Geometry.Point(center.lon, center.lat);
-        var locationPickerMarkerStyle = {externalGraphic: \''.Module::getRLink('osm') . 'images/poi.png'.'\', graphicHeight: 37, graphicWidth: 32, graphicYOffset: -37, graphicXOffset: -16 };
+        var locationPickerMarkerStyle = {externalGraphic: \''.Page::rewriteLink(Module::getRLink('osm') . 'images/poi.png').'\', graphicHeight: 37, graphicWidth: 32, graphicYOffset: -37, graphicXOffset: -16 };
         var locationPickerVector = new OpenLayers.Feature.Vector(locationPickerPoint, null, locationPickerMarkerStyle);
         locationPickerLayer.addFeatures(locationPickerVector);
         

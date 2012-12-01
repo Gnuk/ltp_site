@@ -5,6 +5,7 @@ use \gnk\config\Config;
 use \gnk\config\Page;
 
 require_once(LINK_CONTROLLER . 'rest/services/user.class.php');
+require_once(LINK_CONTROLLER . 'rest/services/statuses.class.php');
 
 /**
 * Gestion des services Rest

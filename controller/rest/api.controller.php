@@ -1,15 +1,16 @@
 <?php
 use \gnk\config\Module;
 use \gnk\config\Model;
+use \gnk\config\Page;
 use \gnk\modules\rest\Rest;
 use \gnk\controller\rest\services\User;
+use \gnk\controller\rest\services\Statuses;
 use \gnk\model\RestManager;
 Module::load('rest');
 Model::load('restmanager');
 require_once(LINK_CONTROLLER . 'rest/services.class.php');
 
 class Api extends Rest{
-	private $rest;
 	public function __construct(){
 		parent::__construct();
 	}
@@ -38,7 +39,34 @@ class Api extends Rest{
 	
 	public function launchStatuses(){
 		if($this->getMethod() == 'get'){
-			echo 'Not Implemented !';
+			if(isset($this->login) AND count(isset($this->password)) == 1){
+				if($this->model->getUserProfile($this->login, $this->password)){
+					$statuses = $this->model->getStatuses($this->login, $this->password);
+					if(count($statuses) > 0){
+						$rest = new Statuses($statuses);
+						$this->setArray($rest->toArray());
+						$this->get();
+					}
+					else{
+						/**
+						* Aucun contenu
+						*/
+						Page::setHTTPCode(204);
+					}
+				}
+				else{
+					/**
+					* Authentification refusée
+					*/
+					Page::setHTTPCode(403);
+				}
+			}
+			else{
+				/**
+				* Page introuvable
+				*/
+				echo Page::setHTTPCode(404);
+			}
 		}
 	}
 }

@@ -3,11 +3,11 @@
 namespace gnk\controller\rest\services;
 
 /**
-* Exemple de classe Utiisateur pour REST
+* Classe Utilisateur pour REST
 * @author Anthony REY <anthony.rey@mailoo.org>
 * @since 28/11/2012
 * @see Services
-* @namespace gnk\modules\rest\example\services
+* @namespace gnk\controller\rest\services
 */
 class User extends \gnk\controller\rest\Services{
 	private $username;

@@ -16,22 +16,21 @@
 * **URL** : /api/1/statuses
 * **Méthode** GET
 * **Return**
- * 200 OK & liste
- * 401 Non autorisé
- * 404 Introuvable
+ * 200 OK & list
+ * 204 No Content
+ * 403 Forbidden
+ * 404 Not Found
 
 #### Exemple
 
 ##### JSON
-
-En cours d'implémentation sur le serveur LocalizeTeaPot
 
 ~~~~~~~~~~~~~{.json}
 {
 	"ltp":
 	{
 		"application":"LocalizeTeaPot server",
-		"status":
+		"statuses":
 		[
 			{
 				"lat" : "24.242424",

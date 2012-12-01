@@ -4,7 +4,7 @@
 	use \gnk\config\Config;
 ?>
 			<h1>
-				<a href="<?php echo Page::getLink(array('p' => Page::getDefaultPage()), false);?>">
+				<a href="<?php echo Page::defaultPageLink();?>">
 					<img id="iconeAccueil" src="<?php echo $this->getLink(true);?>images/icone_accueil.png" alt="<?php
 					$global = Config::getWebsiteConfig();
 					if(isset($global['title'])){

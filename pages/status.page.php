@@ -39,7 +39,7 @@
 			else{
 ?>
 			<ul class="action">
-				<li><a href="<?php echo Page::getLink() . '&amp;add'; ?>">Ajouter un statut</a></li>
+				<li><a href="<?php echo Page::getLink(array('add' => '')) ; ?>">Ajouter un statut</a></li>
 			</ul>
 <?php
 			}
@@ -54,12 +54,12 @@
 					<ul>
 						<li>
 							
-							<a href="<?php echo Page::getLink() .'&amp;edit='.$stat['id'];?>">
+							<a href="<?php echo Page::getLink(array('edit' => $stat['id']));?>">
 								<?php echo T_('Éditer');?>
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo Page::getLink() .'&amp;delete='.$stat['id'];?>">
+							<a href="<?php echo Page::getLink(array('delete' => $stat['id']));?>">
 								<?php echo T_('Supprimer');?>
 							</a>
 						</li>

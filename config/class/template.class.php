@@ -173,22 +173,17 @@
 			$link[] = $nMenu;
 			$url = implode(':', $link);
 			echo "\t".'<li>'."\n\t\t".'<a ';
-			if((isset($_GET['p']))){
-				$p=explode(':', $_GET['p']);
-				$active = true;
-				foreach($link AS $kLink =>$vLink){
-					if(isset($p[$kLink]) AND $p[$kLink] != $link[$kLink]){
-						$active = false;
-					}
+			$p=explode(':', Page::getPagePath());
+			$active = true;
+			foreach($link AS $kLink =>$vLink){
+				if(isset($p[$kLink]) AND $p[$kLink] != $link[$kLink]){
+					$active = false;
 				}
-			}
-			else if(!isset($_GET['p']) AND Page::getDefaultPage() == $url){
-				$active = true;
 			}
 			if($active){
 				echo 'class="active" ';
 			}
-			echo 'href="?p='.$url.'">' . Page::htmlEncode($element['title']) . '</a>'."\n";
+			echo 'href="'.Page::createPageLink($url).'">' . Page::htmlEncode($element['title']) . '</a>'."\n";
 			if(isset($element['menu'])){
 				$this->displayMenu($element['menu'], $link);
 			}

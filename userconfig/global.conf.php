@@ -5,6 +5,9 @@
 		'user' => 'Anthony REY',
 		'mail' => 'gnuk.server@gmail.com',
 		'theme' => 'otm',
-		'locale' => 'en'
+		'locale' => 'en',
+		'pageDefault' => 'home',
+		'pageMethod' => 'rewrite',
+		'pageGetName' => 'p'
 	);
 ?>

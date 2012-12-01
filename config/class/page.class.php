@@ -10,30 +10,46 @@ use \gnk\database\entities\Users;
 class Page{
 	
 	private static $page = null;
-	private static $defaultPage = null;
+	private static $defaultPage = 'home';
 	private static $rights = true;
 	private static $rightUser = null;
+	private static $method = 'rewrite';
 	private static $getName = 'p';
 	private static $js = array();
 	private static $css = array();
 	private static $sourceJs = array();
+	
+	public static function setDefaultPage($page){
+		self::$defaultPage = $page;
+	}
+	
+	public static function setMethod($method){
+		self::$method = $method;
+	}
+	
+	public static function setGetName($getName){
+		self::$getName = $getName;
+	}
 	
 	/**
 	* Affichage de la page demandée (La page est de la forme <page>.page.php, fonctionne aussi en récursif avec le séparateur ':' et <repertoire>_DIR)
 	* @param string $getName Le paramètre GET à viser
 	* @param string $defaultPage La page par défaut
 	*/
-	public static function show($getName = 'p', $defaultPage = 'home'){
-		self::$getName=$getName;
-		self::$defaultPage = $defaultPage;
+	public static function show($getName = null, $defaultPage = null){
+		if(isset($getName)){
+			self::$getName=$getName;
+		}
+		if(isset($defaultPage)){
+			self::$defaultPage = $defaultPage;
+		}
 		self::$page = $defaultPage;
-		/*if((isset($_SERVER["PATH_INFO"]) AND is_file(self::getRewriteChemin($_SERVER["PATH_INFO"])))){
+		if((isset($_SERVER["PATH_INFO"]) AND is_file(self::getRewriteChemin($_SERVER["PATH_INFO"])))){
 			self::$page = self::toPageLink($_SERVER["PATH_INFO"]);
 			require_once(self::getChemin(self::$page));
 		}
-		else */
-		if(isset($_GET[$getName]) AND is_file(self::getChemin($_GET[$getName]))){
-			self::$page = $_GET[$getName];
+		else if(isset($_GET[self::$getName]) AND is_file(self::getChemin($_GET[self::$getName]))){
+			self::$page = $_GET[self::$getName];
 			require_once(self::getChemin(self::$page));
 		}
 		else{
@@ -52,6 +68,29 @@ class Page{
 		return LINK_PAGES . $implodePageName . '.page.php';
 	}
 	
+	public static function getParameterPage(){
+		return self::$getName;
+	}
+	
+	public static function getPagePath(){
+		return self::$page;
+	}
+	
+	public static function createPageLink($path){
+		if(self::$method == 'get'){
+			$link = self::getFilePath() . '?' . self::$getName . '=' . $path;
+		}
+		else{
+			$link = self::getFilePath() . self::toRewriteLink($path);
+		}
+		return $link;
+	}
+	
+	
+	
+	private static function getHere(){
+		return self::createPageLink(self::$page);
+	}
 	
 	
 	/**
@@ -77,6 +116,12 @@ class Page{
 		$explodePageName = explode('/', $page);
 		$implodePageName = implode(':', $explodePageName);
 		return $implodePageName;
+	}
+	
+	
+	
+	private static function toRewriteLink($pagePath){
+		return '/'.preg_replace('#\:#', '/', $pagePath);
 	}
 	
 	/**
@@ -176,6 +221,7 @@ class Page{
 	 * @param boolean $encode (Affiche &amp; si true)
 	 */
 	public static function getLink($params=null, $here=true, $encode = true){
+		$getStarted = false;
 		if($encode){
 			$enc = '&amp;';
 		}
@@ -185,9 +231,13 @@ class Page{
 		$array = array();
 		$compose = array();
 		if($here){
-			if(isset($_GET['p'])){
-				$array[self::$getName] = $_GET['p'];
+			$link = self::getHere();
+			if(self::$method == 'get'){
+				$getStarted = true;
 			}
+		}
+		else{
+			$link = self::getFilePath();
 		}
 		if(isset($params) AND is_array($params)){
 			$array = array_merge($array,$params);
@@ -200,11 +250,17 @@ class Page{
 				$compose[] = $nParam . '=' . $param;
 			}
 		}
+		
 		if(count($compose)>0){
-			return '?'.implode($enc, $compose);
+			if($getStarted){
+				return $link . $enc .implode($enc, $compose);
+			}
+			else{
+				return $link . '?'.implode($enc, $compose);
+			}
 		}
 		else{
-			return '';
+			return $link;
 		}
 	}
 	
@@ -300,6 +356,10 @@ class Page{
 	public static function getDefaultPage(){
 		return self::$defaultPage;
 	}
+	
+	public static function defaultPageLink(){
+		return self::createPageLink(self::$defaultPage);
+	}
 		
 	/**
 	* Encode du texte pour qu'il puisse passer sans erreurs dans du HTML
@@ -321,13 +381,20 @@ class Page{
 	}
 	
 	public static function rewriteLink($link){
+		return self::getFilePath() . '/../' . $link;
+	}
+	
+	
+	private static function getFilePath(){
 		if(isset($_SERVER['PATH_INFO'])){
 			$url_rewrite = preg_replace('#'.$_SERVER['PATH_INFO'].'$#', '', $_SERVER['PHP_SELF']);
 		}
 		else{
 			$url_rewrite = $_SERVER['PHP_SELF'];
 		}
-		return $url_rewrite . '/../' . $link;
+// 		$url_temp = explode('?',$url_rewrite);
+// 		$url_rewrite = $url_temp[0];
+		return $url_rewrite;
 	}
 	
 	public static function getArrayPathInfo(){

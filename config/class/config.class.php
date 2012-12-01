@@ -44,6 +44,19 @@ class Config{
 		self::setLocales();
 		self::setTemplate();
 		self::setMail();
+		self::setPageConfig();
+	}
+	
+	private static function setPageConfig(){
+		if(isset(self::$websiteConfig['pageDefault'])){
+			Page::setDefaultPage(self::$websiteConfig['pageDefault']);
+		}
+		if(isset(self::$websiteConfig['pageMethod'])){
+			Page::setMethod(self::$websiteConfig['pageMethod']);
+		}
+		if(isset(self::$websiteConfig['pageGetName'])){
+			Page::setGetName(self::$websiteConfig['pageGetName']);
+		}
 	}
 	
 	/**
@@ -61,7 +74,7 @@ class Config{
 	* Instancie les mails
 	*/
 	private static function setMail(){
-		$defaultUser = 'Gnuk';
+		$defaultUser = 'admin';
 		$defaultMail = 'admin@yourserver.org';
 		if(isset(self::$websiteConfig['user'])){
 			$defaultUser = self::$websiteConfig['user'];

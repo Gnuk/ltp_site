@@ -3,10 +3,6 @@
 	use \gnk\config\Page;
 	use \gnk\database\entities\Users;
 	use \gnk\database\entities\Status;
-	/**
-	* ?p=rest&format=json&service=status&method=get
-	* ?p=rest&format=json&service=status&method=put
-	*/
 	
 	function getStatus($login, $password){
 		Database::useTables();

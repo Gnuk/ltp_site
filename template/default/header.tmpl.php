@@ -3,7 +3,7 @@
 	use \gnk\config\Config;
 ?>
 			<h1>
-				<a href="<?php echo Page::getLink(array('p' => Page::getDefaultPage()), false);?>">
+				<a href="<?php echo Page::defaultPageLink();?>">
 					<?php
 						$global = Config::getWebsiteConfig();
 						if(isset($global['title'])){

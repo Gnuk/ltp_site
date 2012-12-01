@@ -82,7 +82,7 @@
 		private function getMarkersStatus(){
 			$marker = new Marker(T_('Status'));
 			foreach($this->status as $nStatus => $stat){
-				$marker->add($stat['longitude'] ,$stat['latitude'], '<p>'.Page::htmlEncode($stat['message']).'</p><ul><li><a href="'.Page::getLink().'&amp;edit='.$stat['id'].'">'.T_('Éditer').'</a></li><li><a href="'.Page::getLink().'&amp;delete='.$stat['id'].'">'.T_('Supprimer').'</a></li></ul>');
+				$marker->add($stat['longitude'] ,$stat['latitude'], '<p>'.Page::htmlEncode($stat['message']).'</p><ul><li><a href="'.Page::getLink(array('edit' => $stat['id'])).'">'.T_('Éditer').'</a></li><li><a href="'.Page::getLink(array('delete' => $stat['id'])).'">'.T_('Supprimer').'</a></li></ul>');
 			}
 			return $marker;
 		}

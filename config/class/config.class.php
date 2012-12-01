@@ -32,6 +32,7 @@ class Config{
 	*/
 	public static function setConfig(){
 		require_once(LINK_LIB . 'gettext/gettext.inc');
+		require_once(LINK_CONFIG . 'include/functionNotSupported.php');
 		self::$debug = new Debug(true);
 		self::$encoding = 'UTF-8';
 		self::$defaultLocale='en';

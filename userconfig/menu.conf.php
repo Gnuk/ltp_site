@@ -16,7 +16,7 @@
 			'title' => T_('Amis'),
 			'rights' => 3
 		),
-		'status' => array(
+		'statuses' => array(
 			'title' => T_('Statuts'),
 			'rights' => 3
 		)

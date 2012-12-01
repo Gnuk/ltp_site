@@ -392,8 +392,6 @@ class Page{
 		else{
 			$url_rewrite = $_SERVER['PHP_SELF'];
 		}
-// 		$url_temp = explode('?',$url_rewrite);
-// 		$url_rewrite = $url_temp[0];
 		return $url_rewrite;
 	}
 	

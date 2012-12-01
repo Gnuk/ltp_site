@@ -321,13 +321,23 @@ class Page{
 	}
 	
 	public static function rewriteLink($link){
-		if(isset($_SERVER["PATH_INFO"])){
-			$url_rewrite = preg_replace('#'.$_SERVER["PATH_INFO"].'$#', '', $_SERVER["PHP_SELF"]);
+		if(isset($_SERVER['PATH_INFO'])){
+			$url_rewrite = preg_replace('#'.$_SERVER['PATH_INFO'].'$#', '', $_SERVER['PHP_SELF']);
 		}
 		else{
-			$url_rewrite = $_SERVER["PHP_SELF"];
+			$url_rewrite = $_SERVER['PHP_SELF'];
 		}
 		return $url_rewrite . '/../' . $link;
+	}
+	
+	public static function getArrayPathInfo(){
+		$pathArray = array();
+		if(isset($_SERVER['PATH_INFO'])){
+			$path = preg_replace('#^\/#', '', $_SERVER['PATH_INFO']);
+			$path = preg_replace('#\/$#', '',$path);
+			$pathArray = explode('/', $path);
+		}
+		return $pathArray;
 	}
 }
 ?>

@@ -1,12 +1,19 @@
 # Documentation REST
 
+## Introduction
+
+## Authentification
+
+## Liste des sites implémentant l'API
+
+* LocalizeTeaPot Serveur
+ * URL de l'api : https://jibiki.univ-savoie.fr/ltpdev/rest.php
+
 ## Les statuts
 
 ### GET
 
-* **URL**
- * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=status&method=get
- * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=status&method=get
+* **URL** : /api/1/statuses
 * **Méthode** GET
 * **Return**
  * 200 OK & liste
@@ -17,7 +24,7 @@
 
 ##### JSON
 
-Non implémenté pour le moment
+En cours d'implémentation sur le serveur LocalizeTeaPot
 
 ~~~~~~~~~~~~~{.json}
 {

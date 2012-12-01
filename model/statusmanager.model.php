@@ -1,18 +1,17 @@
 <?php
 	namespace gnk\model;
-	use \gnk\config\Database;
 	use \gnk\config\Config;
+	use \gnk\config\Model;
 	use \gnk\database\entities\Users;
 	use \gnk\database\entities\Status;
 	
-	class StatusManager{
+	class StatusManager extends Model{
 		private $message;
 		private $longitude;
 		private $latitude;
 		private $user;
 		public function __construct(){
-			Database::useTables();
-			$this->em = Database::getEM();
+			parent::__construct();
 			$this->id = Config::getUserId();
 		}
 		

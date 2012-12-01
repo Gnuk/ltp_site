@@ -1,6 +1,6 @@
 <?php
 
-namespace gnk\modules\rest\example\services;
+namespace gnk\controller\rest\services;
 
 /**
 * Exemple de classe Utiisateur pour REST
@@ -9,7 +9,7 @@ namespace gnk\modules\rest\example\services;
 * @see Services
 * @namespace gnk\modules\rest\example\services
 */
-class User extends \gnk\modules\rest\example\Services{
+class User extends \gnk\controller\rest\Services{
 	private $username;
 	private $mail;
 	private $password;
@@ -30,13 +30,10 @@ class User extends \gnk\modules\rest\example\Services{
 	public function toArray(){
 		if(count($this->serviceArray) == 0){
 			parent::toArray();
-			$this->serviceArray['rest']['profil']['username'] = $this->username;
-			$this->serviceArray['rest']['profil']['mail'] = $this->mail;
+			$this->serviceArray['ltp']['profil']['username'] = $this->username;
+			$this->serviceArray['ltp']['profil']['mail'] = $this->mail;
 			if(isset($this->language)){
-				$this->serviceArray['rest']['profil']['language'] = 'fr';
-			}
-			else{
-				$this->serviceArray['rest']['profil']['language'] = 'default';
+				$this->serviceArray['ltp']['profil']['language'] = 'fr';
 			}
 		}
 		return $this->serviceArray;

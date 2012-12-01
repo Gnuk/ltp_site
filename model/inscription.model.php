@@ -1,6 +1,5 @@
 <?php
 	namespace gnk\model;
-	use \gnk\config\Database;
 	use \gnk\config\Tools;
 	use \gnk\config\Config;
 	use \gnk\config\Model;
@@ -13,7 +12,6 @@
 	* @todo Traitement du formulaire de récupération de mot de passe
 	*/
 	class Inscription extends Model{
-		private $em;
 		private $username;
 		private $mail;
 		private $subject;
@@ -24,8 +22,7 @@
 		* Constructeur
 		*/
 		public function __construct(){
-			Database::useTables();
-			$this->em = Database::getEM();
+			parent::__construct();
 		}
 		
 		/**

@@ -1,11 +1,13 @@
 <?php
-namespace gnk\modules\example\rest;
+namespace gnk\controller\rest;
 use \gnk\config\Module;
 use \gnk\config\Config;
 use \gnk\config\Page;
 
+require_once(LINK_CONTROLLER . 'rest/services/user.class.php');
+
 /**
-* Exemple de gestion des services Rest
+* Gestion des services Rest
 * @author Anthony REY <anthony.rey@mailoo.org>
 * @since 28/11/2012
 * @see Rest
@@ -22,7 +24,7 @@ abstract class Services{
 		else{
 			$title = T_('Mon site');
 		}
-		$this->serviceArray['rest']['application']=$title;
+		$this->serviceArray['ltp']['application']=$title;
 	}
 }
 

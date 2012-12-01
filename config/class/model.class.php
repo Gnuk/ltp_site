@@ -9,6 +9,16 @@
 	
 		private $indications = array();
 		private $errors = array();
+		protected $em;
+
+		/**
+		* Constructeur
+		*/
+		public function __construct(){
+			Database::useTables();
+			$this->em = Database::getEM();
+		}
+		
 		/**
 		* Récupère le modèle
 		* @param string $link Le lien du modèle

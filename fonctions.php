@@ -56,35 +56,6 @@ class Fonctions{
 		return $heure = $d.'j '.$h.'h:'.$m.'m:'.$s.'s';
 	}
 
-	/**
-	* Affiche le menu
-	* @return string $inscription
-	* @deprecated Not used at this time
-	*/
-	public function afficheMenu()
-	{
-		if(!isset($_SESSION['login']))
-		{
-			$inscription = '<td class="caseMenu" ><a class="menu" href="index.php?page=inscription" >Inscription</a></td>';
-			return $inscription;
-		}
-		else
-		{
-			$strSQL = 'SELECT `statut` FROM `utilisateur` WHERE `pseudo` = "'.$_SESSION['login'].'"';
-			$resultat = requeteSQL($strSQL);
-			$tabl_result = mysql_fetch_array($resultat);
-			if($tabl_result['statut'] == 42)
-			{
-				$inscription = '<td class="caseMenu" style="font-weight: bold; color: white;" > --------- Super Administrateur --------- </td>';
-			}
-			elseif($tabl_result['statut'] == 5)
-			{
-				$inscription = '<td class="caseMenu" style="font-weight: bold; color: white;" > --------- Administrateur --------- </td>';
-			}
-			return $inscription;
-		}
-	}
-
 	//##################################################################################################################################//
 	//###############----------------------FONCTIONS--POUR--LA--PARTIE--ADMINISTRATION--DU--SITE-------------------------###############//
 	//##################################################################################################################################//

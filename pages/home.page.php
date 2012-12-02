@@ -7,19 +7,11 @@
 	use \gnk\config\Template;
 	use \gnk\modules\form\Form;
 	if(Page::haveRights()){
-		Module::load('osm');
-		$osm = new Osm('carte');
 		if(Config::isUser()){
-			$marker = new Marker('Amis');
-			$marker->add(5.92 ,45.57, '<h1>José</h1>');
-			$marker->add(5.8714950, 45.6470858, '<h1>Hugues</h1>');
-			$osm->addMarker($marker);
-			$mark2 = new Marker('Love');
-			$mark2->add(5.93 ,45.57);
-			$mark2->add(5.88, 45.6470858);
-			$osm->addMarker($mark2);
+			Module::load('osm');
+			$osm = new Osm('carte');
+			$osm->setJS();
 		}
-		$osm->setJS();
 		Module::load('form');
 		$form = new Form('form', $method = 'POST', $action = Page::getLink(array('connection' => null), true, false));
 		$form->add('label', 'label_login', 'login', T_('Identifiant : '));
@@ -71,7 +63,9 @@
 				</p>
 <?php
 		}
+		if(Config::isUser()){
 			$osm->showDiv();
+		}
 		?>
 			</article>
 <?php

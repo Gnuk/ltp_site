@@ -66,7 +66,7 @@ class Rest{
 	private function getJson(){
 		if(count($this->array) > 0){
 			header('Content-Type: application/json');
-			echo json_encode($this->array);
+			echo json_encode($this->array) . "\n";
 		}
 	}
 	

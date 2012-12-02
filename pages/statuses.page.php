@@ -15,8 +15,8 @@
 		}
 		$template = new Template();
 		$template->addTitle(T_('Statuts'));
-		$template->setDescription(T_('Gestion du status.'));
-		$template->addKeywords(array(T_('status')));
+		$template->setDescription(T_('Gestion des statuts.'));
+		$template->addKeywords(array(T_('statuses')));
 		$template->show('header_full');
 ?>
 	<article>
@@ -44,7 +44,7 @@
 <?php
 			}
 			if(!isset($_GET['add']) AND !isset($_GET['edit'])){
-				foreach($controller->getStatus() as $nStatus => $stat){
+				foreach($controller->getStatuses() as $nStatus => $stat){
 ?>
 				<section>
 					<h1><?php echo Page::htmlEncode(date_format($stat['date'], "d/m/Y H:i:s"));?></h1>

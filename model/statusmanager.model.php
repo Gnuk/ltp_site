@@ -3,7 +3,7 @@
 	use \gnk\config\Config;
 	use \gnk\config\Model;
 	use \gnk\database\entities\Users;
-	use \gnk\database\entities\Status;
+	use \gnk\database\entities\Statuses;
 	
 	class StatusManager extends Model{
 		private $message;
@@ -18,7 +18,7 @@
 		public function getStatuses(){
 			$qb = $this->em->createQueryBuilder();
 			$qb->select(array('s.longitude', 's.latitude', 's.message', 's.id', 's.date'))
-				->from('\gnk\database\entities\Status', 's')
+				->from('\gnk\database\entities\Statuses', 's')
 				->where('s.user = :id')
 				->orderBy('s.date', 'DESC')
 				->setMaxResults(5);
@@ -33,7 +33,7 @@
 			$this->longitude = $longitude;
 			$this->latitude = $latitude;
 			if($this->getUser()){
-				$status = new Status($this->user, $message, $latitude, $longitude);
+				$status = new Statuses($this->user, $message, $latitude, $longitude);
 				$this->em->persist($status);
 				$this->em->flush();
 				return true;

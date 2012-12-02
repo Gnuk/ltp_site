@@ -9,21 +9,21 @@
 	Model::load('statusmanager');
 	
 	class StatusManager{
-		private $status = array();
+		private $statuses = array();
 		private $add = false;
 		private $sendForm = false;
 		
 		public function __construct(){
 			$this->model = new \gnk\model\StatusManager();
 			$this->sendForm = $this->addStatus();
-			$this->status = $this->model->getStatuses();
+			$this->statuses = $this->model->getStatuses();
 		}
 		public function getMap($divName='carte'){
 			Module::load('osm');
 			$osm = new Osm($divName);
 			if(!isset($_GET['add'])){
-				if(count($this->status) > 0){
-					$markers = $this->getMarkersStatus();
+				if(count($this->statuses) > 0){
+					$markers = $this->getMarkersStatuses();
 					$osm->addMarker($markers);
 				}
 			}
@@ -37,7 +37,7 @@
 		
 		public function getAddForm($longitude, $latitude){
 			Module::load('form');
-			$form = new Form('status');
+			$form = new Form('statuses');
 			
 			$form->add('label', 'label_message', 'message', T_('Message :'));
 			$obj = & $form->add('textarea', 'message');
@@ -66,7 +66,7 @@
 		
 		public function getEditForm(){
 			Module::load('form');
-			$form = new Form('status');
+			$form = new Form('statuses');
 			
 			$form->add('label', 'label_message', 'message', T_('Message :'));
 			$obj = & $form->add('textarea', 'message');
@@ -79,9 +79,9 @@
 			return $form;
 		}
 		
-		private function getMarkersStatus(){
-			$marker = new Marker(T_('Status'));
-			foreach($this->status as $nStatus => $stat){
+		private function getMarkersStatuses(){
+			$marker = new Marker(T_('Statuses'));
+			foreach($this->statuses as $nStatus => $stat){
 				$marker->add($stat['longitude'] ,$stat['latitude'], '<p>'.Page::htmlEncode($stat['message']).'</p><ul><li><a href="'.Page::getLink(array('edit' => $stat['id'])).'">'.T_('Éditer').'</a></li><li><a href="'.Page::getLink(array('delete' => $stat['id'])).'">'.T_('Supprimer').'</a></li></ul>');
 			}
 			return $marker;
@@ -89,8 +89,8 @@
 		
 		
 		
-		public function getStatus(){
-			return $this->status;
+		public function getStatuses(){
+			return $this->statuses;
 		}
 		
 		/**

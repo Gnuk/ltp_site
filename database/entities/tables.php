@@ -130,7 +130,7 @@ class FriendsSeeMe
 /**
  * @Entity
  **/
-class Status
+class Statuses
 {
     /**
     * @Id

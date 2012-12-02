@@ -27,7 +27,7 @@ class RestManager extends Model{
 	function getStatuses($login, $password){
 		$qb = $this->em->createQueryBuilder();
 		$qb->select(array('s.longitude', 's.latitude', 's.message', 's.date'))
-			->from('\gnk\database\entities\Status', 's')
+			->from('\gnk\database\entities\Statuses', 's')
 			->leftJoin('\gnk\database\entities\Users', 'u', 'WITH', 's.user = u.id')
 			->where('u.login LIKE ?1')
 			->andWhere('u.password LIKE ?2')

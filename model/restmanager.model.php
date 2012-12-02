@@ -31,7 +31,8 @@ class RestManager extends Model{
 			->leftJoin('\gnk\database\entities\Users', 'u', 'WITH', 's.user = u.id')
 			->where('u.login LIKE ?1')
 			->andWhere('u.password LIKE ?2')
-			->orderBy('s.date', 'DESC');
+			->orderBy('s.date', 'DESC')
+			->setMaxResults(30);
 		$qb->setParameters(array(1 => $login, 2 => sha1($password)));
 		$query = $qb->getQuery();
 		$result = $query->getResult();

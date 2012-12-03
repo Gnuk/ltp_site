@@ -23,6 +23,8 @@ class Config{
 	private static $locale;
 	private static $debug;
 	private static $info;
+	private static $license;
+	private static $year = '2012';
 	protected static $em = null;
 	private static $dbConfig = false;
 	private static $websiteConfig = array();
@@ -38,6 +40,8 @@ class Config{
 		self::$defaultLocale='en';
 		self::$localedomain='messages';
 		self::$locale=self::$defaultLocale;
+		self::$license['name'] = 'AGPL v3';
+		self::$license['url'] = 'http://www.gnu.org/licenses/agpl-3.0.html';
 		self::setWebsiteConfig();
 		self::setDatabase();
 		self::setSessions();
@@ -91,6 +95,28 @@ class Config{
 	private static function setWebsiteConfig(){
 		$configFile = LINK_USERCONFIG . 'global.conf.php';
 		self::$websiteConfig = self::getConfigFile($configFile);
+		if(isset(self::$websiteConfig['year'])){
+			self::$year = self::$websiteConfig['year'];
+		}
+		if(isset(self::$websiteConfig['license'])){
+			self::$license = self::$websiteConfig['license'];
+		}
+	}
+	
+	/**
+	* Récupère la ou les années d'activité du site
+	* @return string La ou les années
+	*/
+	public static function getYear(){
+		return self::$year;
+	}
+	
+	/**
+	* Récupère la ou les années d'activité du site
+	* @return string La ou les années
+	*/
+	public static function getLicense(){
+		return self::$license;
 	}
 	
 	/**

@@ -80,7 +80,7 @@ body
 div#corps h1{
 	margin: 0px;
 }
-div#corps, header, footer{
+div#corps, body>header, body>footer{
 	width: 950px;
 	margin: auto;
 	padding: 0px;
@@ -100,7 +100,7 @@ article>p, section>p{
 	text-align:justify;
 }
 
-footer{
+body>footer{
 	text-align: right;
 }
 

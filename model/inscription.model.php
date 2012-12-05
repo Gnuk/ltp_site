@@ -2,6 +2,7 @@
 	namespace gnk\model;
 	use \gnk\config\Tools;
 	use \gnk\config\Config;
+	use \gnk\config\Page;
 	use \gnk\config\Model;
 	use \gnk\database\entities\Users;
 	use \gnk\database\entities\VerifyUsers;
@@ -56,9 +57,9 @@
 			$query = $qb->getQuery();
 			$result = $query->getResult();
 			if(count($result)>0){
-				$user = $result[0]->getUser()->setActive(true);
+				$result[0]->getUser()->setActive(true);
 				$this->addIndication(T_('Vous pouvez maintenant vous connecter'));
-				$this->em->persist($user);
+				$this->em->persist($result[0]->getUser());
 				$this->em->remove($result[0]);
 				$this->em->flush();
 			}
@@ -155,11 +156,16 @@
 				$url .= 's';
 			}
 			$url .=  '://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-			if(isset($_GET)){
-				$url .= '&';
+			if(Page::getMethod() == 'get'){
+				if(isset($_GET)){
+					$url .= '&';
+				}
+				else{
+					$url .= '?';
+				}
 			}
 			else{
-				$this->message .= '?';
+				$url .= '?';
 			}
 			$url .= 'id='.$this->id.'&key='.$this->key;
 			$this->message .= $url . "\n";

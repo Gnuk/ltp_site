@@ -27,6 +27,10 @@ class Page{
 		self::$method = $method;
 	}
 	
+	public static function getMethod(){
+		return self::$method;
+	}
+	
 	public static function setGetName($getName){
 		self::$getName = $getName;
 	}

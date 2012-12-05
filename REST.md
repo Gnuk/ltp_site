@@ -11,7 +11,7 @@
 
 ## Les statuts
 
-### GET
+### Récupération
 
 * **URL** /api/1/statuses
 * **Méthode** GET
@@ -52,7 +52,7 @@
 
 ##### XML
 
-### POST
+### Nouveau statut
 
 * **URL** /api/1/statuses
 * **Méthode** POST
@@ -87,7 +87,7 @@ Non implémenté pour le moment
 
 ## Les Amis
 
-### GET
+### Récupération
 
 * **URL** /api/1/friends
 * **Méthode** GET
@@ -132,7 +132,7 @@ Non implémenté pour le moment
 ##### XML
 
 
-### POST Demande d'amis
+### Demande d'amis
 
 * **URL** /api/1/friends/want
 * **Méthode** POST
@@ -167,10 +167,10 @@ Ou
 
 ##### XML
 
-### POST Autorisé à me voir
+### Autoriser à me voir
 
 * **URL** /api/1/friends/seeme
-* **Méthode** PUT
+* **Méthode** POST
 
 #### Exemple
 
@@ -204,7 +204,7 @@ Ou
 
 ## La gestion de l'utilisateur
 
-### GET récupération de l'utilisateur
+### Récupération de l'utilisateur
 
 * **URL** /api/1/user/
 * **Méthode** GET
@@ -234,7 +234,7 @@ Ou
 
 ##### XML
 
-### POST
+### Inscription
 
 * **URL** /api/1/user
 * **Méthode** POST
@@ -252,6 +252,8 @@ Non implémenté pour le moment
 		"application":"Client LTP",
 		"profile":
 		{
+			"username" : "Gnuk",
+			"password" : "monmotdepasse",
 			"mail" : "gnuk@mail.org",
 			"language" : "fr"
 		}

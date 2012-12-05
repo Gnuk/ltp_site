@@ -30,10 +30,10 @@ class User extends \gnk\controller\rest\Services{
 	public function toArray(){
 		if(count($this->serviceArray) == 0){
 			parent::toArray();
-			$this->serviceArray['ltp']['profil']['username'] = $this->username;
-			$this->serviceArray['ltp']['profil']['mail'] = $this->mail;
+			$this->serviceArray['ltp']['profile']['username'] = $this->username;
+			$this->serviceArray['ltp']['profile']['mail'] = $this->mail;
 			if(isset($this->language)){
-				$this->serviceArray['ltp']['profil']['language'] = $this->language;
+				$this->serviceArray['ltp']['profile']['language'] = $this->language;
 			}
 		}
 		return $this->serviceArray;

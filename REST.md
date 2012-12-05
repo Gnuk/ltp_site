@@ -13,7 +13,7 @@
 
 ### GET
 
-* **URL** : /api/1/statuses
+* **URL** /api/1/statuses
 * **Méthode** GET
 * **Return**
  * 200 OK & list
@@ -209,27 +209,23 @@ Ou
 
 ### GET récupération de l'utilisateur
 
-* **URL**
- * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=user&method=get
- * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=user&method=get
+* **URL** /api/1/user/
 * **Méthode** GET
 * **Return**
  * 200 OK & liste
- * 401 Non autorisé
- * 404 Introuvable
+ * 403 Forbidden
+ * 404 Not Found
 
 #### Exemple
 
 ##### JSON
-
-Non implémenté pour le moment
 
 ~~~~~~~~~~~~~{.json}
 {
 	"ltp":
 	{
 		"application":"LocalizeTeaPot server",
-		"profil":
+		"profile":
 		{
 			"username" : "Gnuk",
 			"mail" : "gnuk@mail.org",
@@ -259,7 +255,7 @@ Non implémenté pour le moment
 	"ltp":
 	{
 		"application":"Client LTP",
-		"profil":
+		"profile":
 		{
 			"mail" : "gnuk@mail.org",
 			"language" : "fr"

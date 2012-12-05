@@ -12,6 +12,7 @@
 		private $statuses = array();
 		private $add = false;
 		private $sendForm = false;
+		private $model;
 		
 		public function __construct(){
 			$this->model = new \gnk\model\StatusManager();

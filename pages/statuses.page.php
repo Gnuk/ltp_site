@@ -16,7 +16,7 @@
 		$template = new Template();
 		$template->addTitle(T_('Statuts'));
 		$template->setDescription(T_('Gestion des statuts.'));
-		$template->addKeywords(array(T_('statuses')));
+		$template->addKeywords(array(T_('statuts')));
 		$template->show('header_full');
 ?>
 	<article>

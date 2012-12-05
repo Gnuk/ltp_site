@@ -10,6 +10,8 @@
 		private $longitude;
 		private $latitude;
 		private $user;
+		private $id;
+		
 		public function __construct(){
 			parent::__construct();
 			$this->id = Config::getUserId();

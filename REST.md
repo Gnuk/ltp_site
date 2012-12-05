@@ -2,7 +2,17 @@
 
 ## Introduction
 
+LocalizeTeaPot est une application permettant à ses usagers de renseigner leur position ainsi que de récupérer celles
+de leurs amis. 
+
+L'application propose une API REST pour la communication entre le client et le serveur dont voici les fonctionnalitées :
+
 ## Authentification
+
+Pour s'authentifier, l'API utilise les méthodes d'authentifications HHTP.
+
+* Lorsque l'authentification échoue, une erreur 403 est envoyée. 
+* Losrque aucune authentification n'est effectuée, une erreur 404 est envoyée.
 
 ## Liste des sites implémentant l'API
 

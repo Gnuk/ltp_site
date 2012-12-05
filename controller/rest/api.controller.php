@@ -29,18 +29,49 @@ class Api extends Rest{
 		}
 	}
 	
+	/**
+	* 
+	*/
 	public function launchUser(){
 		if($this->getMethod() == 'get'){
-			$user = new User('Hello', 'World');
-			$this->setArray($user->toArray());
-			$this->get();
+			if(isset($this->login) AND isset($this->password)){
+				$profile = $this->model->getUserProfile($this->login, $this->password);
+				if(count($profile) == 1){
+					if(isset($profile[0]['language'])){
+						$user = new User($profile[0]['login'], $profile[0]['mail'], $profile[0]['language']);
+					}
+					else{
+						/**
+						* Si l'utilisateur n'a pas de langage définit
+						*/
+						$user = new User($profile[0]['login'], $profile[0]['mail']);
+					}
+					$this->setArray($user->toArray());
+					$this->get();
+				}
+				else{
+					/**
+					* Authentification refusée
+					*/
+					Page::setHTTPCode(403);
+				}
+			}
+			else{
+				/**
+				* Page introuvable
+				*/
+				Page::setHTTPCode(404);
+			}
 		}
 	}
 	
+	/**
+	* 
+	*/
 	public function launchStatuses(){
 		if($this->getMethod() == 'get'){
-			if(isset($this->login) AND count(isset($this->password)) == 1){
-				if($this->model->getUserProfile($this->login, $this->password)){
+			if(isset($this->login) AND isset($this->password)){
+				if(count($this->model->getUserProfile($this->login, $this->password)) == 1){
 					$statuses = $this->model->getStatuses($this->login, $this->password);
 					if(count($statuses) > 0){
 						$rest = new Statuses($statuses);
@@ -65,7 +96,7 @@ class Api extends Rest{
 				/**
 				* Page introuvable
 				*/
-				echo Page::setHTTPCode(404);
+				Page::setHTTPCode(404);
 			}
 		}
 	}

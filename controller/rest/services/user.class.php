@@ -33,7 +33,7 @@ class User extends \gnk\controller\rest\Services{
 			$this->serviceArray['ltp']['profil']['username'] = $this->username;
 			$this->serviceArray['ltp']['profil']['mail'] = $this->mail;
 			if(isset($this->language)){
-				$this->serviceArray['ltp']['profil']['language'] = 'fr';
+				$this->serviceArray['ltp']['profil']['language'] = $this->language;
 			}
 		}
 		return $this->serviceArray;

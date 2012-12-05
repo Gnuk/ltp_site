@@ -71,7 +71,7 @@ class Api extends Rest{
 	/**
 	* 
 	*/
-	public function launchStatuqses(){
+	public function launchStatuses(){
 		if($this->getMethod() == 'get'){
 			if(isset($this->login) AND isset($this->password)){
 				if(count($this->model->getUserProfile($this->login, $this->password)) == 1){

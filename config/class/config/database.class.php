@@ -1,6 +1,7 @@
 <?php
 namespace gnk\config;
 
+
 /**
 * Gère la base de donnée du site
 * @author Anthony REY <anthony.rey@mailoo.org>

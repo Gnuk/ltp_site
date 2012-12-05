@@ -60,7 +60,9 @@ Pour s'authentifier, l'API utilise les méthodes d'authentifications HHTP.
 }
 ~~~~~~~~~~~~~
 
-##### XML
+##### Exemple d'utilisation
+
+    curl --user Utilisateur https://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/statuses
 
 ### Nouveau statut
 
@@ -92,8 +94,6 @@ Non implémenté pour le moment
 	}
 }
 ~~~~~~~~~~~~~
-
-##### XML
 
 ## Les Amis
 
@@ -139,9 +139,6 @@ Non implémenté pour le moment
 }
 ~~~~~~~~~~~~~
 
-##### XML
-
-
 ### Demande d'amis
 
 * **URL** /api/1/friends/want
@@ -174,8 +171,6 @@ Ou
 	}
 }
 ~~~~~~~~~~~~~
-
-##### XML
 
 ### Autoriser à me voir
 
@@ -210,13 +205,11 @@ Ou
 }
 ~~~~~~~~~~~~~
 
-##### XML
-
 ## La gestion de l'utilisateur
 
 ### Récupération de l'utilisateur
 
-* **URL** /api/1/user/
+* **URL** /api/1/user
 * **Méthode** GET
 * **Return**
  * 200 OK & liste
@@ -242,7 +235,9 @@ Ou
 }
 ~~~~~~~~~~~~~
 
-##### XML
+##### Exemple d'utilisation
+
+    curl --user Utilisateur https://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/user
 
 ### Inscription
 
@@ -270,5 +265,3 @@ Non implémenté pour le moment
 	}
 }
 ~~~~~~~~~~~~~
-
-##### XML

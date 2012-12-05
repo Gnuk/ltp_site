@@ -63,12 +63,15 @@ class Api extends Rest{
 				Page::setHTTPCode(404);
 			}
 		}
+		if($this->getMethod() == 'post'){
+			echo 'Pas implémenté';
+		}
 	}
 	
 	/**
 	* 
 	*/
-	public function launchStatuses(){
+	public function launchStatuqses(){
 		if($this->getMethod() == 'get'){
 			if(isset($this->login) AND isset($this->password)){
 				if(count($this->model->getUserProfile($this->login, $this->password)) == 1){
@@ -98,6 +101,9 @@ class Api extends Rest{
 				*/
 				Page::setHTTPCode(404);
 			}
+		}
+		if($this->getMethod() == 'post'){
+			echo 'Pas implémenté';
 		}
 	}
 }

@@ -1,4 +1,5 @@
 <?php
+
 	namespace gnk\config;
 	/**
 	* Gestion des templates

@@ -1,4 +1,5 @@
 <?php
+
 	define('LINK_LOCALE', LINK_ROOT . LINK_R .'locale/');
 	define('LINKR_LIB', LINK_R . LINK_R .'lib/');
 	define('LINK_LIB', LINK_ROOT . LINKR_LIB);

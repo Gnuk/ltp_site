@@ -1,4 +1,5 @@
 <?php
+
 	# Affichage des erreurs
 	error_reporting(E_ALL);
 	date_default_timezone_set('Europe/Paris');

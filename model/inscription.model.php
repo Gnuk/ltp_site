@@ -56,9 +56,9 @@
 			$query = $qb->getQuery();
 			$result = $query->getResult();
 			if(count($result)>0){
-				$result[0]->getUser()->setActive(true);
+				$user = $result[0]->getUser()->setActive(true);
 				$this->addIndication(T_('Vous pouvez maintenant vous connecter'));
-				$this->em->persist($result[0]->getUser());
+				$this->em->persist($user);
 				$this->em->remove($result[0]);
 				$this->em->flush();
 			}

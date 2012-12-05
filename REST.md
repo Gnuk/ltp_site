@@ -52,12 +52,15 @@
 
 ##### XML
 
-### PUT
+### POST
 
-* **URL**
- * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=status&method=put
- * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=status&method=put
-* **Méthode** PUT
+* **URL** /api/1/statuses
+* **Méthode** POST
+* **Return**
+ * 200 OK & list
+ * 204 No Content
+ * 403 Forbidden
+ * 404 Not Found
 
 #### Exemple
 
@@ -86,9 +89,7 @@ Non implémenté pour le moment
 
 ### GET
 
-* **URL**
- * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=friends&method=get
- * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=friends&method=get
+* **URL** /api/1/friends
 * **Méthode** GET
 * **Return**
  * 200 OK & liste

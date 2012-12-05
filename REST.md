@@ -93,8 +93,8 @@ Non implémenté pour le moment
 * **Méthode** GET
 * **Return**
  * 200 OK & liste
- * 401 Non autorisé
- * 404 Introuvable
+ * 403 Forbidden
+ * 404 Not Found
 
 #### Exemple
 
@@ -132,12 +132,10 @@ Non implémenté pour le moment
 ##### XML
 
 
-### PUT Demande d'amis
+### POST Demande d'amis
 
-* **URL**
- * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=friends&add=want&method=put
- * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=friends&add=want&method=put
-* **Méthode** PUT
+* **URL** /api/1/friends/want
+* **Méthode** POST
 
 #### Exemple
 
@@ -169,11 +167,9 @@ Ou
 
 ##### XML
 
-### PUT Autorisé à me voir
+### POST Autorisé à me voir
 
-* **URL**
- * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=friends&add=seeme&method=put
- * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=friends&add=seeme&method=put
+* **URL** /api/1/friends/seeme
 * **Méthode** PUT
 
 #### Exemple
@@ -238,12 +234,10 @@ Ou
 
 ##### XML
 
-### PUT
+### POST
 
-* **URL**
- * JSON : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=json&service=user&method=put
- * XML : https://jibiki.univ-savoie.fr/ltpdev/?p=rest&format=xml&service=user&method=put
-* **Méthode** PUT
+* **URL** /api/1/user
+* **Méthode** POST
 
 #### Exemple
 

@@ -4,6 +4,7 @@
 		'host' => 'localhost',
 		'user' => 'root',
 		'password' => '',
-		'dbname' => 'gnk_website'
+		'dbname' => 'gnk_website',
+		'charset' => 'utf8'
 	);
 ?>

@@ -93,8 +93,8 @@ class Osm{
         				var selectedPositionAsMercator = new OpenLayers.LonLat(locationPickerPoint.x, locationPickerPoint.y);
         			 	var selectedPositionAsLonLat = selectedPositionAsMercator.transform(projmerc, proj4326);
         				
-        				document.getElementById("'.$formLon.'").value = selectedPositionAsLonLat.lat;
-        		    	document.getElementById("'.$formLat.'").value = selectedPositionAsLonLat.lon;
+        				document.getElementById("'.$formLat.'").value = selectedPositionAsLonLat.lat;
+        		    	document.getElementById("'.$formLon.'").value = selectedPositionAsLonLat.lon;
         				
         			}
    				}

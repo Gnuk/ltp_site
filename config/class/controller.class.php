@@ -1,11 +1,13 @@
 <?php
 	namespace gnk\config;
+	use \gnk\config\Model;
 	/**
 	* Gestion du contrôleur
 	* @author Anthony REY <anthony.rey@mailoo.org>
 	* @since 23/10/2012
 	*/
 	class Controller{
+	
 		/**
 		* Récupère le contrôleur
 		* @param string $link Le lien du contrôleur
@@ -15,6 +17,10 @@
 			if(is_file($realLink)){
 				require_once($realLink);
 			}
+		}
+		
+		public function loadModel($name){
+			Model::load($name);
 		}
 	}
 ?>

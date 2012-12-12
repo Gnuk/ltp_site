@@ -20,21 +20,24 @@
 */
 namespace gnk\controller;
 use \gnk\config\Page;
-use \gnk\config\Model;
+use \gnk\config\Controller;
 use \gnk\config\Module;
 use \gnk\modules\form\Form;
-Model::load('friendsmanager');
 
 /**
 * Contrôleur des amis
 */
-class FriendsManager{
+class FriendsManager extends Controller{
 	private $model;
 	private $add;
 	
 	public function __construct(){
+		$this->loadModel('friendsmanager');
  		$this->model = new \gnk\model\FriendsManager();
 		$this->addFriend();
+		echo '<pre>';
+		$this->model->getFriends();
+		echo '</pre>';
 	}
 	
 	public function getForm($get){
@@ -48,6 +51,10 @@ class FriendsManager{
 		));
 		$form->add('submit', 'btnsubmit', T_('Ajouter'));
 		return $form;
+	}
+	
+	public function getModelErrors(){
+		return $this->model->getErrors();
 	}
 	
 	public function addFriend(){
@@ -64,6 +71,23 @@ class FriendsManager{
 			return $this->add;
 		}
 		return false;
+	}
+		
+	/**
+	* Récupération de la liste de contacts
+	*/
+	public function getContactList(){
+		$list = $this->model->getFriends();
+		$i=0;
+		$friends = array();
+		
+		while(is_object($list) AND is_object($list->getSeeMe()->get($i))){
+			$user = $list->getSeeMe()->get($i)->getUser();
+			$friends[$i]['login'] = $user->getLogin();
+			$friends[$i]['mail'] = $user->getMail();
+			$i++;
+		}
+		return $friends;
 	}
 }
 

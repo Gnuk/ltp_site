@@ -408,5 +408,39 @@ class Page{
 		}
 		return $pathArray;
 	}
+	
+	public static function displayErrors($errors){
+		$onlyone = false;
+		if(is_array($errors)){
+			if(count($errors)>1){
+?>
+<ul class="form_error">
+<?php
+				foreach($errors AS $nError => $error){
+?>
+	<li><?php echo self::htmlEncode($error);?></li>
+<?php
+				}
+?>
+</ul>
+<?php
+			}
+			else if(count($errors) == 1){
+				$onlyone = true;
+				$oneerror = $errors[0];
+			}
+		}
+		else{
+			$onlyone = true;
+			$oneerror = $errors;
+		}
+		if($onlyone){
+?>
+<p class="form_error">
+	<?php echo self::htmlEncode($oneerror);?>
+</p>
+<?php
+		}
+	}
 }
 ?>

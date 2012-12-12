@@ -35,9 +35,26 @@
 ?>
 	<article>
 		<h1><?php echo T_("Amis");?></h1>
+			<?php
+				if(count($errors = $controller->getModelErrors()) > 0){
+					Page::displayErrors($errors);
+				}
+			?>
 		<section id="myfriends">
 			<h2><?php echo T_('Mes Amis') ;?></h2>
-			<p>Not Implemented</p>
+			<?php
+				$friends = $controller->getContactList();
+				if(count($friends) > 0){
+					echo '<table>';
+					foreach($friends AS $nFriend => $friend){
+						echo '<tr>';
+						echo '<td>'.$friend['login'].'</td>';
+						echo '<td>'.$friend['mail'].'</td>';
+						echo '</tr>';
+					}
+					echo '</table>';
+				}
+			?>
 		</section>
 		<section id="friendswantme">
 			<h2><?php echo T_('Demandes en cours') ;?></h2>

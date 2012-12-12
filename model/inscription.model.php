@@ -60,8 +60,8 @@
 				));
 			$qb->setParameters(array(1 => $this->username, 2 => $this->mail));
 			$query = $qb->getQuery();
-			$result = $query->getResult();
-			if(count($result) == 1){
+			$result = $query->getSingleResult();
+			if($result[1] == 1){
 				return true;
 			}
 			return false;

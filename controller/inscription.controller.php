@@ -22,13 +22,12 @@
 	namespace gnk\controller;
 	use \gnk\modules\form\Form;
 	use \gnk\config\Module;
-	use \gnk\config\Model;
+	use \gnk\config\Controller;
 	use \gnk\config\Config;
-	Model::load('inscription');
 	/**
 	* Classe inscription
 	*/
-	class Inscription{
+	class Inscription extends Controller{
 	
 		private $params=false;
 		private $confirm;
@@ -41,6 +40,7 @@
 		* Constructeur du contrôleur
 		*/
 		public function __construct(){
+			$this->loadModel('inscription');
 			$this->model = new \gnk\model\Inscription();
 			$this->getParams();
 		}
@@ -94,7 +94,7 @@
 		}
 		
 		/**
-		* Récupération de les erreurs du modèle
+		* Récupération des erreurs du modèle
 		*/
 		public function getError(){
 			return $this->model->getErrors();

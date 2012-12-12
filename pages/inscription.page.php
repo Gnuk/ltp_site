@@ -65,13 +65,7 @@
 			}
 			else{
 				if(count($errors = $controller->getError()) > 0){
-					foreach($errors AS $nError => $error){
-?>
-		<p class="form_error">
-			<?php echo $error;?>
-		</p>
-<?php
-					}
+					Page::displayErrors($errors);
 				}
 				else{
 ?>

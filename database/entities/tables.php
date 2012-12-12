@@ -31,6 +31,21 @@ class Users
 	/** @Column(type="string", length=255, unique=true) **/
 	protected $mail;
 	
+	/**
+	* @OneToMany(targetEntity="FriendsWanted", mappedBy="user")
+	*/
+	private $iwant;
+
+	/**
+	* @OneToMany(targetEntity="FriendsSeeMe", mappedBy="seeme")
+	*/
+	private $seeme;
+
+	/**
+	* @OneToMany(targetEntity="Statuses", mappedBy="id")
+	*/
+	private $statuses;
+	
 	public function __construct($login, $password, $mail, $language = null){
 		$this->login = $login;
 		$this->password = sha1($password);
@@ -41,6 +56,14 @@ class Users
 		}
 		$datetime = new DateTime();
 		$this->date = $datetime;
+	}
+	
+	public function getStatuses(){
+		return $this->statuses;
+	}
+	
+	public function getSeeMe(){
+		return $this->seeme;
 	}
 	
 	public function setMail($mail){
@@ -57,6 +80,10 @@ class Users
 	
 	public function getRights(){
 		return $this->rights;
+	}
+	
+	public function getMail(){
+		return $this->mail;
 	}
 	
 	public function getId(){
@@ -109,6 +136,14 @@ class FriendsWanted
 		$this->user = $user;
 		$this->want = $want;
 	}
+	
+	public function getUser(){
+		return $this->user;
+	}
+	
+	public function getWant(){
+		return $this->want;
+	}
 }
 
 /**
@@ -124,6 +159,14 @@ class FriendsSeeMe
 	public function __construct($user, $seeme){
 		$this->user = $user;
 		$this->seeme = $seeme;
+	}
+	
+	public function getUser(){
+		return $this->user;
+	}
+	
+	public function getSeeMe(){
+		return $this->seeme;
 	}
 }
 
@@ -146,7 +189,7 @@ class Statuses
     protected $message;
 	/** @Column(type="datetime") **/
     protected $date;
-    /** @ManyToOne(targetEntity="Users") **/
+    /** @ManyToOne(targetEntity="Users") @JoinColumn(name="user_id", referencedColumnName="id") **/
     protected $user;
     
     public function __construct(Users $user, $message, $longitude, $latitude)

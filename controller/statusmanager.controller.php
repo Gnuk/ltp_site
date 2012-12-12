@@ -20,21 +20,21 @@
 */
 
 	namespace gnk\controller;
-	use \gnk\config\Model;
+	use \gnk\config\Controller;
 	use \gnk\config\Module;
 	use \gnk\config\Page;
 	use \gnk\modules\osm\Osm;
 	use \gnk\modules\osm\Marker;
 	use \gnk\modules\form\Form;
-	Model::load('statusmanager');
 	
-	class StatusManager{
+	class StatusManager extends Controller{
 		private $statuses = array();
 		private $add = false;
 		private $sendForm = false;
 		private $model;
 		
 		public function __construct(){
+			$this->loadModel('statusmanager');
 			$this->model = new \gnk\model\StatusManager();
 			$this->sendForm = $this->addStatus();
 			$this->statuses = $this->model->getStatuses();

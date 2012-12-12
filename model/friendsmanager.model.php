@@ -22,6 +22,7 @@ namespace gnk\model;
 
 use \gnk\config\Model;
 use \gnk\config\Config;
+use \gnk\database\entities\Users;
 use \gnk\database\entities\FriendsWanted;
 use \gnk\database\entities\FriendsSeeMe;
 
@@ -29,16 +30,47 @@ use \gnk\database\entities\FriendsSeeMe;
 * Modèle des amis
 */
 class FriendsManager extends Model{
+
+	private $myId;
 	
 	public function __construct(){
 		parent::__construct();
+		$this->myId = Config::getUserId();
+	}
+	
+	public function getFriends(){
+	/*
+		SELECT * 
+FROM FriendsWanted AS fw
+LEFT JOIN FriendsSeeMe AS fs ON fs.seeme_id = fw.user_id
+LEFT JOIN Users AS u ON fs.user_id = u.id
+WHERE fw.id =3
+	*/
+		$qb = $this->em->createQueryBuilder();
+		$qb->select(array('u'))
+			->from('\gnk\database\entities\Users', 'u')
+			->leftJoin('u.iwant', 'w')
+			->leftJoin('u.seeme', 's')
+			->where('w.user = :id')
+			->andWhere('w.user = s.seeme');
+		$qb->setParameters(array('id' => $this->myId));
+		$query = $qb->getQuery();
+		$result = $query->getResult();
+		if(count($result) == 1){
+// 			var_dump($result[0]->getSeeMe()->get(0)->getUser()->getLogin());
+			return $result[0];
+ 		}
+ 		else{
+			return array();
+ 		}
 	}
 	
 	public function addFriendWanted($login){
-		$user=$this->getUsersFromId(Config::getUserId());
+		$user=$this->getUsersFromId($this->myId);
 		$want=$this->getUsersFromName($login);
 		if(count($want) == 1){
 			if($this->isWanted($user[0], $want[0])){
+				$this->addError(T_('Vous avez déjà fait une demande d\'ajout de ce contact dans votre liste'));
 				return false;
 			}
 			else{
@@ -49,6 +81,7 @@ class FriendsManager extends Model{
 			}
 		}
 		else{
+			$this->addError(T_('Cet utilisateur n\'existe pas sur ce site'));
 			return false;
 		}
 	}
@@ -59,7 +92,7 @@ class FriendsManager extends Model{
 			->from('\gnk\database\entities\FriendsWanted', 'f')
 			->where('f.user = :user')
 			->andWhere('f.want = :want');
-		$qb->setParameters(array('user' => $user, 'seeme' => $want));
+		$qb->setParameters(array('user' => $user, 'want' => $want));
 		$query = $qb->getQuery();
 		$result = $query->getResult();
 		if(count($result) == 1){
@@ -71,10 +104,11 @@ class FriendsManager extends Model{
 	}
 	
 	public function addFriendSeeMe($login){
-		$user=$this->getUsersFromId(Config::getUserId());
+		$user=$this->getUsersFromId($this->myId);
 		$seeme=$this->getUsersFromName($login);
 		if(count($seeme) == 1){
-			if($this->isSeeMe($user, $seeme)){
+			if($this->isSeeMe($user[0], $seeme[0])){
+				$this->addError(T_('Cet utilisateur peut déjà vous voir'));
 				return false;
 			}
 			else{
@@ -85,6 +119,7 @@ class FriendsManager extends Model{
 			}
 		}
 		else{
+			$this->addError(T_('Cet utilisateur n\'existe pas sur ce site'));
 			return false;
 		}
 	}

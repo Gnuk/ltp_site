@@ -85,7 +85,7 @@ class FriendsManager extends Model{
 			->from('\gnk\database\entities\Users', 'u')
 			->leftJoin('u.wanted', 'w')
 			->leftJoin('u.isee', 's')
-			->where('w.user = :id');
+			->where('w.user = :id')
 			->andWhere('w.user = s.seeme');
 		$qb->setParameters(array('id' => $this->myId));
 		$query = $qb->getQuery();

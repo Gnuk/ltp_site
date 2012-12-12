@@ -181,7 +181,7 @@ class FriendsManager extends Model{
 		$qb = $em->createQueryBuilder();
 		$qb->select(array('u'))
 			->from('\gnk\database\entities\Users', 'u')
-			->where('u.login = :name');
+			->where('u.login LIKE :name');
 		$qb->setParameters(array('name' => $name));
 		$query = $qb->getQuery();
 		$result = $query->getResult();

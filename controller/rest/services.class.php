@@ -26,6 +26,7 @@ use \gnk\config\Page;
 
 require_once(LINK_CONTROLLER . 'rest/services/user.class.php');
 require_once(LINK_CONTROLLER . 'rest/services/statuses.class.php');
+require_once(LINK_CONTROLLER . 'rest/services/friends.class.php');
 
 /**
 * Gestion des services Rest

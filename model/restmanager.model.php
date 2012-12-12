@@ -32,7 +32,7 @@ class RestManager extends Model{
 		parent::__construct();
 	}
 	
-	function getUserProfile($login, $password){
+	public function getUserProfile($login, $password){
 		$qb = $this->em->createQueryBuilder();
 		$qb->select(array('u.id', 'u.login', 'u.language', 'u.mail'))
 			->from('\gnk\database\entities\Users', 'u')
@@ -44,7 +44,7 @@ class RestManager extends Model{
 		return $result;
 	}
 	
-	function getStatuses($login, $password){
+	public function getStatuses($login, $password){
 		$qb = $this->em->createQueryBuilder();
 		$qb->select(array('s.longitude', 's.latitude', 's.message', 's.date'))
 			->from('\gnk\database\entities\Statuses', 's')
@@ -57,6 +57,25 @@ class RestManager extends Model{
 		$query = $qb->getQuery();
 		$result = $query->getResult();
 		return $result;
+	}
+	
+	public function getFriends($id){
+		$qb = $this->em->createQueryBuilder();
+		$qb->select(array('u.id', 'u.login', 'u.longitude', 'u.latitude'))
+			->from('\gnk\database\entities\Users', 'u')
+			->leftJoin('u.wanted', 'w')
+			->leftJoin('u.isee', 's')
+			->where('w.user = :id')
+			->andWhere('w.user = s.seeme');
+		$qb->setParameters(array('id' => $id));
+		$query = $qb->getQuery();
+		$result = $query->getResult();
+		if(count($result) > 0){
+			return $result;
+ 		}
+ 		else{
+			return array();
+ 		}
 	}
 }
 ?>

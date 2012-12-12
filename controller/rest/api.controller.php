@@ -24,6 +24,7 @@ use \gnk\config\Model;
 use \gnk\config\Page;
 use \gnk\modules\rest\Rest;
 use \gnk\controller\rest\services\User;
+use \gnk\controller\rest\services\Friends;
 use \gnk\controller\rest\services\Statuses;
 use \gnk\model\RestManager;
 Module::load('rest');
@@ -45,13 +46,46 @@ class Api extends Rest{
 				case 'statuses':
 					$this->launchStatuses();
 					break;
+				case 'friends':
+					$this->launchFriends();
+					break;
 			}
 		}
 	}
 	
 	public function launchFriends(){
 		if($this->getMethod() == 'get'){
-			# NOT IMPLEMENTED
+			if(isset($this->login) AND isset($this->password)){
+				if(count($user = $this->model->getUserProfile($this->login, $this->password)) == 1){
+					$friends = $this->model->getFriends($user[0]['id']);
+					if(count($friends) > 0){
+						$rest = new Friends($friends);
+						$this->setArray($rest->toArray());
+						$this->get();
+					}
+					else{
+						/**
+						* Aucun contenu
+						*/
+						Page::setHTTPCode(204);
+					}
+				}
+				else{
+					/**
+					* Authentification refusée
+					*/
+					Page::setHTTPCode(403);
+				}
+			}
+			else{
+				/**
+				* Page introuvable
+				*/
+				Page::setHTTPCode(404);
+			}
+		}
+		if($this->getMethod() == 'post'){
+			echo 'Pas implémenté';
 		}
 	}
 	

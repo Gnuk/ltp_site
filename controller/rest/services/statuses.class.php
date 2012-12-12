@@ -31,10 +31,19 @@ namespace gnk\controller\rest\services;
 class Statuses extends \gnk\controller\rest\Services{
 	private $statuses;
 	
+	/**
+	* Constructeur
+	* @param array $statuses Les statuts de l'utilisateur sous forme de tableau depuis la base de données
+	*/
 	public function __construct($statuses){
 		$this->statuses = $statuses;
 	}
 	
+	/**
+	* Génération du tableau (en fonction de l'API REST)
+	* @see toArray dans la classe Services
+	* @return array Le tableau généré
+	*/
 	public function toArray(){
 		if(count($this->serviceArray) == 0){
 			parent::toArray();

@@ -26,6 +26,10 @@ class Users
 	protected $date;
 	/** @Column(type="boolean") **/
 	protected $active=false;
+	/** @Column(type="float", nullable=true) **/
+	protected $longitude;
+	/** @Column(type="float", nullable=true) **/
+	protected $latitude;
 	/** @Column(type="integer", nullable=true) **/
 	protected $cookie;
 	/** @Column(type="string", length=255, unique=true) **/
@@ -34,12 +38,23 @@ class Users
 	/**
 	* @OneToMany(targetEntity="FriendsWanted", mappedBy="user")
 	*/
-	private $iwant;
+	private $wantme;
+	
+	/**
+	* @OneToMany(targetEntity="FriendsWanted", mappedBy="want")
+	*/
+	private $wanted;
 
 	/**
 	* @OneToMany(targetEntity="FriendsSeeMe", mappedBy="seeme")
 	*/
 	private $seeme;
+	
+	
+	/**
+	* @OneToMany(targetEntity="FriendsSeeMe", mappedBy="user")
+	*/
+	private $isee;
 
 	/**
 	* @OneToMany(targetEntity="Statuses", mappedBy="id")
@@ -58,12 +73,21 @@ class Users
 		$this->date = $datetime;
 	}
 	
+	public function setLonLat($longitude, $latitude){
+		$this->longitude = $longitude;
+		$this->latitude = $latitude;
+	}
+	
 	public function getStatuses(){
 		return $this->statuses;
 	}
 	
 	public function getSeeMe(){
 		return $this->seeme;
+	}
+	
+	public function getIWant(){
+		return $this->iwant;
 	}
 	
 	public function setMail($mail){

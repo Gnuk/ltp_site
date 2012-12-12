@@ -56,7 +56,9 @@
 			$this->latitude = $latitude;
 			if($this->getUser()){
 				$status = new Statuses($this->user, $message, $longitude, $latitude);
+				$this->user->setLonLat($longitude, $latitude);
 				$this->em->persist($status);
+				$this->em->persist($this->user);
 				$this->em->flush();
 				return true;
 			}

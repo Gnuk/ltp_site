@@ -304,6 +304,7 @@ class Config{
 			self::$debug->addWarning(sprintf(T_('La bibliothèque Doctrine "%s" est absente'), $doctrineDir));
 		}
 	}
+	
 	/**
 	* Récupère une configuration depuis un fichier texte
 	*/

@@ -49,8 +49,14 @@ class Api extends Rest{
 		}
 	}
 	
+	public function launchFriends(){
+		if($this->getMethod() == 'get'){
+			# NOT IMPLEMENTED
+		}
+	}
+	
 	/**
-	* 
+	* Action REST de gestion de l'utilisateur
 	*/
 	public function launchUser(){
 		if($this->getMethod() == 'get'){
@@ -89,7 +95,7 @@ class Api extends Rest{
 	}
 	
 	/**
-	* 
+	* Action REST de gestion des statuts
 	*/
 	public function launchStatuses(){
 		if($this->getMethod() == 'get'){

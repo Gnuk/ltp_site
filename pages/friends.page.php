@@ -43,7 +43,7 @@
 		<section id="myfriends">
 			<h2><?php echo T_('Mes Amis') ;?></h2>
 			<?php
-				$friends = $controller->getContactList();
+				$friends = $controller->getFriends();
 				if(count($friends) > 0){
 					echo '<table>';
 					foreach($friends AS $nFriend => $friend){
@@ -54,21 +54,52 @@
 					}
 					echo '</table>';
 				}
+				else{
+			?>
+			<p>
+				<?php echo T_('Vous n\'avez encore aucun amis') ;?>
+			</p>
+			<?php
+				}
 			?>
 		</section>
-		<section id="friendswantme">
+		<section id="friendsiwant">
 			<h2><?php echo T_('Demandes en cours') ;?></h2>
 			<?php
 				$formWant->render();
+				
+				$wanted = $controller->getWanted();
+				if(count($wanted) > 0){
+					echo '<table>';
+					foreach($wanted AS $nWanted => $want){
+						echo '<tr>';
+						echo '<td>'.$want['login'].'</td>';
+						echo '</tr>';
+					}
+					echo '</table>';
+				}
 			?>
-			<p>Not Implemented</p>
 		</section>
 		<section id="friendsseeme">
 			<h2><?php echo T_('Me voient') ;?></h2>
 			<?php
 				$formSeeMe->render();
 			?>
-			<p>Not Implemented</p>
+		</section>
+		<section id="friendswantme">
+			<h2><?php echo T_('Veulent me voir') ;?></h2>
+			<?php
+				$seeme = $controller->getWantMe();
+				if(count($seeme) > 0){
+					echo '<table>';
+					foreach($seeme AS $nSeeme => $see){
+						echo '<tr>';
+						echo '<td>'.$see['login'].'</td>';
+						echo '</tr>';
+					}
+					echo '</table>';
+				}
+			?>
 		</section>
 	</article>
 <?php

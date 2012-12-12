@@ -76,15 +76,41 @@ class FriendsManager extends Controller{
 	/**
 	* Récupération de la liste de contacts
 	*/
-	public function getContactList(){
+	public function getFriends(){
 		$list = $this->model->getFriends();
 		$i=0;
 		$friends = array();
 		
-		while(is_object($list) AND is_object($list->getSeeMe()->get($i))){
-			$user = $list->getSeeMe()->get($i)->getUser();
+		while(isset($list[$i])){
+			$user = $list[$i];
 			$friends[$i]['login'] = $user->getLogin();
 			$friends[$i]['mail'] = $user->getMail();
+			$i++;
+		}
+		return $friends;
+	}
+	
+	public function getWanted(){
+		$list = $this->model->getWanted();
+		$i=0;
+		$friends = array();
+		
+		while(isset($list[$i])){
+			$user = $list[$i];
+			$friends[$i]['login'] = $user->getLogin();
+			$i++;
+		}
+		return $friends;
+	}
+	
+	public function getWantMe(){
+		$list = $this->model->getWantMe();
+		$i=0;
+		$friends = array();
+		
+		while(isset($list[$i])){
+			$user = $list[$i];
+			$friends[$i]['login'] = $user->getLogin();
 			$i++;
 		}
 		return $friends;

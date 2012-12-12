@@ -38,27 +38,60 @@ class FriendsManager extends Model{
 		$this->myId = Config::getUserId();
 	}
 	
-	public function getFriends(){
-	/*
-		SELECT * 
-FROM FriendsWanted AS fw
-LEFT JOIN FriendsSeeMe AS fs ON fs.seeme_id = fw.user_id
-LEFT JOIN Users AS u ON fs.user_id = u.id
-WHERE fw.id =3
-	*/
-		$qb = $this->em->createQueryBuilder();
+	public function getWantMe(){
+		$em = $this->em;
+		$qb = $em->createQueryBuilder();
 		$qb->select(array('u'))
 			->from('\gnk\database\entities\Users', 'u')
-			->leftJoin('u.iwant', 'w')
+			->leftJoin('u.wantme', 'w')
 			->leftJoin('u.seeme', 's')
+			->where('w.want = :id')
+			->andWhere('s.user IS NULL');
+		$qb->setParameters(array('id' => $this->myId));
+		$query = $qb->getQuery();
+		$result = $query->getResult();
+		if(count($result) > 0){
+			return $result;
+ 		}
+ 		else{
+			return array();
+ 		}
+	}
+	
+	public function getWanted(){
+		$em = $this->em;
+		$qb = $em->createQueryBuilder();
+		$qb->select(array('u'))
+			->from('\gnk\database\entities\Users', 'u')
+			->leftJoin('u.wanted', 'w')
+			->leftJoin('u.isee', 's')
+			->where('w.user = :id')
+			->andWhere('s.user IS NULL');
+		$qb->setParameters(array('id' => $this->myId));
+		$query = $qb->getQuery();
+		$result = $query->getResult();
+		if(count($result) > 0){
+			return $result;
+ 		}
+ 		else{
+			return array();
+ 		}
+	}
+	
+	public function getFriends(){
+		$em = $this->em;
+		$qb = $em->createQueryBuilder();
+		$qb->select(array('u'))
+			->from('\gnk\database\entities\Users', 'u')
+			->leftJoin('u.wanted', 'w')
+			->leftJoin('u.isee', 's')
 			->where('w.user = :id')
 			->andWhere('w.user = s.seeme');
 		$qb->setParameters(array('id' => $this->myId));
 		$query = $qb->getQuery();
 		$result = $query->getResult();
-		if(count($result) == 1){
-// 			var_dump($result[0]->getSeeMe()->get(0)->getUser()->getLogin());
-			return $result[0];
+		if(count($result) > 0){
+			return $result;
  		}
  		else{
 			return array();
@@ -87,7 +120,8 @@ WHERE fw.id =3
 	}
 	
 	private function isWanted($user, $want){
-		$qb = $this->em->createQueryBuilder();
+		$em = $this->em;
+		$qb = $em->createQueryBuilder();
 		$qb->select(array('f'))
 			->from('\gnk\database\entities\FriendsWanted', 'f')
 			->where('f.user = :user')
@@ -125,7 +159,8 @@ WHERE fw.id =3
 	}
 	
 	private function isSeeMe($user, $seeme){
-		$qb = $this->em->createQueryBuilder();
+		$em = $this->em;
+		$qb = $em->createQueryBuilder();
 		$qb->select(array('f'))
 			->from('\gnk\database\entities\FriendsSeeMe', 'f')
 			->where('f.user = :user')
@@ -142,7 +177,8 @@ WHERE fw.id =3
 	}
 	
 	private function getUsersFromName($name){
-		$qb = $this->em->createQueryBuilder();
+		$em = $this->em;
+		$qb = $em->createQueryBuilder();
 		$qb->select(array('u'))
 			->from('\gnk\database\entities\Users', 'u')
 			->where('u.login = :name');
@@ -153,7 +189,8 @@ WHERE fw.id =3
 	}
 	
 	private function getUsersFromId($id){
-		$qb = $this->em->createQueryBuilder();
+		$em = $this->em;
+		$qb = $em->createQueryBuilder();
 		$qb->select(array('u'))
 			->from('\gnk\database\entities\Users', 'u')
 			->where('u.id = :id');

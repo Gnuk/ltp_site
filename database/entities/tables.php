@@ -34,12 +34,23 @@ class Users
 	/**
 	* @OneToMany(targetEntity="FriendsWanted", mappedBy="user")
 	*/
-	private $iwant;
+	private $wantme;
+	
+	/**
+	* @OneToMany(targetEntity="FriendsWanted", mappedBy="want")
+	*/
+	private $wanted;
 
 	/**
 	* @OneToMany(targetEntity="FriendsSeeMe", mappedBy="seeme")
 	*/
 	private $seeme;
+	
+	
+	/**
+	* @OneToMany(targetEntity="FriendsSeeMe", mappedBy="user")
+	*/
+	private $isee;
 
 	/**
 	* @OneToMany(targetEntity="Statuses", mappedBy="id")
@@ -64,6 +75,10 @@ class Users
 	
 	public function getSeeMe(){
 		return $this->seeme;
+	}
+	
+	public function getIWant(){
+		return $this->iwant;
 	}
 	
 	public function setMail($mail){

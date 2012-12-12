@@ -59,7 +59,7 @@
 			else{
 ?>
 			<ul class="action">
-				<li><a href="<?php echo Page::getLink(array('add' => '')) ; ?>">Ajouter un statut</a></li>
+				<li><a href="<?php echo Page::getLink(array('add' => '')) ; ?>"><?php echo T_('Ajouter un statut'); ?></a></li>
 			</ul>
 <?php
 			}

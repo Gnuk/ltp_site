@@ -40,6 +40,10 @@ class FriendsManager extends Controller{
 		echo '</pre>';
 	}
 	
+	/**
+	* Récupération du formulaire d'ajout d'un utilisateur à une liste
+	* @param string $get La méthode get correspondant au type d'utilisateur à envoyer (seeme ou want)
+	*/
 	public function getForm($get){
 		Module::load('form');
 		$form = new Form('form_'.$get, 'POST', Page::getLink(array($get => null), true, false));
@@ -53,10 +57,18 @@ class FriendsManager extends Controller{
 		return $form;
 	}
 	
+	/**
+	* Récupération des erreurs du modèle
+	* @return array Le tableau contenant les erreurs
+	*/
 	public function getModelErrors(){
 		return $this->model->getErrors();
 	}
 	
+	/**
+	* Ajout d'un ami
+	* @return boolean True si l'ajout a réussi ou False sinon
+	*/
 	public function addFriend(){
 		if(
 			isset($_POST['login'])
@@ -75,6 +87,7 @@ class FriendsManager extends Controller{
 		
 	/**
 	* Récupération de la liste de contacts
+	* @param $friends la liste des contacts de l'utilisateur
 	*/
 	public function getFriends(){
 		$list = $this->model->getFriends();

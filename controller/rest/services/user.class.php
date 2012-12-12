@@ -34,6 +34,12 @@ class User extends \gnk\controller\rest\Services{
 	private $password;
 	private $language;
 	
+	/**
+	* Constructeur
+	* @param string $username Le nom de l'utilisateur
+	* @param string $mail L'adresse mail de l'utilisateur
+	* @param string $language Le langage par défaut de l'utilisateur (vaut null si rien n'est précisé)
+	*/
 	public function __construct($username, $mail, $language = null){
 		$this->username = $username;
 		$this->mail = $mail;
@@ -42,10 +48,19 @@ class User extends \gnk\controller\rest\Services{
 		}
 	}
 	
+	/**
+	* Mise à jour du mot de passe
+	* @param string Le nouveau mot de passe
+	*/
 	public function setPassword($password){
 		$this->password = $password;
 	}
 	
+	/**
+	* Génération du tableau (en fonction de l'API REST)
+	* @see toArray dans la classe Services
+	* @return array Le tableau généré
+	*/
 	public function toArray(){
 		if(count($this->serviceArray) == 0){
 			parent::toArray();

@@ -37,6 +37,10 @@ require_once(LINK_CONTROLLER . 'rest/services/statuses.class.php');
 abstract class Services{
 	protected $serviceArray = array();
 	
+	/**
+	* Génération du tableau (en fonction de l'API REST)
+	* @return array Le tableau généré
+	*/
 	protected function toArray(){
 		$global = Config::getWebsiteConfig();
 		if(isset($global['title'])){

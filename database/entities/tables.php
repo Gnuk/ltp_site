@@ -73,6 +73,11 @@ class Users
 		$this->date = $datetime;
 	}
 	
+	public function setLonLat($longitude, $latitude){
+		$this->longitude = $longitude;
+		$this->latitude = $latitude;
+	}
+	
 	public function getStatuses(){
 		return $this->statuses;
 	}

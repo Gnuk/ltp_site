@@ -26,6 +26,10 @@ class Users
 	protected $date;
 	/** @Column(type="boolean") **/
 	protected $active=false;
+	/** @Column(type="float", nullable=true) **/
+	protected $longitude;
+	/** @Column(type="float", nullable=true) **/
+	protected $latitude;
 	/** @Column(type="integer", nullable=true) **/
 	protected $cookie;
 	/** @Column(type="string", length=255, unique=true) **/

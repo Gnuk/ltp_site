@@ -97,7 +97,7 @@ Non implémenté pour le moment
 
 ##### Exemple d'utilisation
 
-    curl --user Utilisateur http://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/statuses -X POST -d '{"ltp":{"application":"Client LTP","status":{"lat" : "24.242424","lon" : "2.4","content" : "Mon nouveau statut."}}}'
+    curl --user Utilisateur https://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/statuses -X POST -d '{"ltp":{"application":"Client LTP","status":{"lat" : "24.242424","lon" : "2.4","content" : "Mon nouveau statut."}}}'
 
 ## Les Amis
 
@@ -146,7 +146,7 @@ En cours d'implémentation
 }
 ~~~~~~~~~~~~~
 
-    curl --user Utilisateur http://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/friends
+    curl --user Utilisateur https://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/friends
 
 ### Demande d'amis
 

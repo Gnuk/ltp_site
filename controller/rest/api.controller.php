@@ -174,7 +174,6 @@ class Api extends Rest{
 						*/
 						Page::setHTTPCode(400);
 					}
-					echo "\n";
 				}
 				else{
 					/**

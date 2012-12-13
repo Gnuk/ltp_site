@@ -69,8 +69,8 @@ Pour s'authentifier, l'API utilise les méthodes d'authentifications HHTP.
 * **URL** /api/1/statuses
 * **Méthode** POST
 * **Return**
- * 200 OK & list
- * 204 No Content
+ * 200 OK
+ * 400 Bad Request
  * 403 Forbidden
  * 404 Not Found
 
@@ -95,6 +95,10 @@ Non implémenté pour le moment
 }
 ~~~~~~~~~~~~~
 
+##### Exemple d'utilisation
+
+    curl --user Utilisateur http://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/statuses -X POST -d '{"ltp":{"application":"Client LTP","status":{"lat" : "24.242424","lon" : "2.4","content" : "Mon nouveau statut."}}}'
+
 ## Les Amis
 
 ### Récupération
@@ -110,7 +114,7 @@ Non implémenté pour le moment
 
 ##### JSON
 
-Non implémenté pour le moment
+En cours d'implémentation
 
 ~~~~~~~~~~~~~{.json}
 {
@@ -131,13 +135,18 @@ Non implémenté pour le moment
 				"username":"Giu",
 				"lat" : "42.424242",
 				"lon" : "4.2",
-				"content" : "Je suis ici.",
-				"time":"2012-11-16T15:13:14+01:00"
+				"time":"2012-12-13T17:12:00+01:00"
+			}
+			,
+			{
+				"username":"James"
 			}
 		]
 	}
 }
 ~~~~~~~~~~~~~
+
+    curl --user Utilisateur http://gnuk-laptop/~anthony/ltp_site/rest.php/api/1/friends
 
 ### Demande d'amis
 

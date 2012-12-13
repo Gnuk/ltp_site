@@ -47,6 +47,9 @@ class Api extends Rest{
 				case 'statuses':
 					$this->launchStatuses();
 					break;
+				case 'status':
+					$this->launchStatuses();
+					break;
 				case 'friends':
 					$this->launchFriends();
 					break;

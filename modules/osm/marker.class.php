@@ -1,5 +1,6 @@
 <?php
 namespace gnk\modules\osm;
+use \gnk\config\Page;
 /**
 * Module créant une marker OSM via php
 * @author Anthony REY <anthony.rey@mailoo.org>
@@ -49,7 +50,7 @@ class Marker{
 				map.getProjectionObject() 
 				), AutoSizeAnchored, \'';
 				if(isset($marker['html'])){
-					$js.= $marker['html'];
+					$js.= Page::textToOneLine($marker['html']);
 				}
 			$js .= '\')';
 			}

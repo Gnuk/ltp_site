@@ -374,6 +374,14 @@ class Page{
 		return htmlspecialchars($text, ENT_QUOTES);
 	}
 	
+	public static function htmlBREncode($text){
+		return nl2br(self::htmlEncode($text));
+	}
+	
+	public static function textToOneLine($text){
+		return $text = str_replace(array("\r", "\n","\r\n" ), '', $text);
+	}
+	
 	public static function slashEncode($text){
 		return addslashes($text);
 	}

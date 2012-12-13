@@ -1,5 +1,5 @@
 <?php
-namespace gnk\modules\example\rest;
+namespace gnk\modules\rest\example;
 use \gnk\config\Module;
 use \gnk\config\Config;
 use \gnk\config\Page;

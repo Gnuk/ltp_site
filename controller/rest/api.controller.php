@@ -19,6 +19,7 @@
 * along with LocalizeTeaPot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace gnk\controller\rest;
 use \gnk\config\Module;
 use \gnk\config\Model;
 use \gnk\config\Page;

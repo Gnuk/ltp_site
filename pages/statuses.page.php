@@ -69,7 +69,7 @@
 				<section>
 					<h1><?php echo Page::htmlEncode(date_format($stat['date'], "d/m/Y H:i:s"));?></h1>
 					<p>
-						<?php echo Page::htmlEncode($stat['message']);?>
+						<?php echo Page::htmlBREncode($stat['message']);?>
 					</p>
 					<ul>
 						<li>

@@ -146,7 +146,7 @@ En cours d'implémentation
 }
 ~~~~~~~~~~~~~
 
-    curl --user Utilisateur http://gnuk-laptop/~anthony/ltp_site/rest.php/api/1/friends
+    curl --user Utilisateur http://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/friends
 
 ### Demande d'amis
 

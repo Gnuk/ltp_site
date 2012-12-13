@@ -26,6 +26,7 @@ use \gnk\modules\rest\Rest;
 use \gnk\controller\rest\services\User;
 use \gnk\controller\rest\services\Friends;
 use \gnk\controller\rest\services\Statuses;
+use \gnk\controller\rest\services\Status;
 use \gnk\model\RestManager;
 Module::load('rest');
 Model::load('restmanager');
@@ -83,9 +84,6 @@ class Api extends Rest{
 				*/
 				Page::setHTTPCode(404);
 			}
-		}
-		if($this->getMethod() == 'post'){
-			echo 'Pas implémenté';
 		}
 	}
 	
@@ -163,7 +161,34 @@ class Api extends Rest{
 			}
 		}
 		if($this->getMethod() == 'post'){
-			echo 'Pas implémenté';
+			if(isset($this->login) AND isset($this->password)){
+				if(count($user = $this->model->getUserProfile($this->login, $this->password)) == 1){
+					$this->recieve();
+					$array = $this->getArray();
+					if($status = Status::createStatus($array, $user[0]['id'])){
+						$status->save();
+					}
+					else{
+						/**
+						* Requête malformée
+						*/
+						Page::setHTTPCode(400);
+					}
+					echo "\n";
+				}
+				else{
+					/**
+					* Authentification refusée
+					*/
+					Page::setHTTPCode(403);
+				}
+			}
+			else{
+				/**
+				* Page introuvable
+				*/
+				Page::setHTTPCode(404);
+			}
 		}
 	}
 }

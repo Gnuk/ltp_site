@@ -28,6 +28,7 @@ require_once(LINK_CONTROLLER . 'rest/services/user.class.php');
 require_once(LINK_CONTROLLER . 'rest/services/statuses.class.php');
 require_once(LINK_CONTROLLER . 'rest/services/status.class.php');
 require_once(LINK_CONTROLLER . 'rest/services/friends.class.php');
+require_once(LINK_CONTROLLER . 'rest/services/track.class.php');
 
 /**
 * Gestion des services Rest

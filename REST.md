@@ -78,8 +78,6 @@ Pour s'authentifier, l'API utilise les méthodes d'authentifications HHTP.
 
 ##### JSON
 
-Non implémenté pour le moment
-
 ~~~~~~~~~~~~~{.json}
 {
 	"ltp":
@@ -98,6 +96,40 @@ Non implémenté pour le moment
 ##### Exemple d'utilisation
 
     curl --user Utilisateur https://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/statuses -X POST -d '{"ltp":{"application":"Client LTP","status":{"lat" : "24.242424","lon" : "2.4","content" : "Mon nouveau statut."}}}'
+
+## Le tracker
+
+### Nouvelle position
+
+* **URL** /api/1/track
+* **Méthode** PUT
+* **Return**
+ * 200 OK
+ * 400 Bad Request
+ * 403 Forbidden
+ * 404 Not Found
+
+#### Exemple
+
+##### JSON
+
+~~~~~~~~~~~~~{.json}
+{
+	"ltp":
+	{
+		"application":"Client LTP",
+		"track":
+		{
+			"lat" : "24.242424",
+			"lon" : "2.4"
+		}
+	}
+}
+~~~~~~~~~~~~~
+
+##### Exemple d'utilisation
+
+    curl --user Utilisateur https://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/track -X POST -d '{"ltp":{"application":"Client LTP","status":{"lat" : "24.242424","lon" : "2.4"}}}'
 
 ## Les Amis
 

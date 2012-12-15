@@ -19,5 +19,10 @@
 * along with LocalizeTeaPot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-	phpinfo(INFO_CONFIGURATION);
+	var_dump($_SERVER['REQUEST_METHOD']);
+	var_dump($_SERVER['REQUEST_URI']);
+	var_dump($_SERVER['PATH_INFO']);
+
+	if (($stream = fopen('php://input', "r")) !== FALSE)
+		var_dump(stream_get_contents($stream));
 ?>

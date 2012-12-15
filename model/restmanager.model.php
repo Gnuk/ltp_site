@@ -33,7 +33,16 @@ class RestManager extends Model{
 	}
 	
 	public function getUser($login, $password){
-		
+		$qb = $this->em->createQueryBuilder();
+		$qb->select(array('u'))
+			->from('\gnk\database\entities\Users', 'u')
+			->where('u.login LIKE ?1')
+			->andWhere('u.active = ?2')
+			->andWhere('u.password LIKE ?3');
+		$qb->setParameters(array(1 => $login, 2 => true, 3 => sha1($password)));
+		$query = $qb->getQuery();
+		$result = $query->getResult();
+		return $result;
 	}
 	
 	public function getUserProfile($login, $password){

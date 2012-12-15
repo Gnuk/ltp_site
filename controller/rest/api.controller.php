@@ -28,6 +28,7 @@ use \gnk\controller\rest\services\User;
 use \gnk\controller\rest\services\Friends;
 use \gnk\controller\rest\services\Statuses;
 use \gnk\controller\rest\services\Status;
+use \gnk\controller\rest\services\Track;
 use \gnk\model\RestManager;
 Module::load('rest');
 Model::load('restmanager');
@@ -128,8 +129,12 @@ class Api extends Rest{
 				Page::setHTTPCode(404);
 			}
 		}
-		if($this->getMethod() == 'post'){
+		else if($this->getMethod() == 'post'){
+			Page::setHTTPCode(404);
 			echo 'Pas implémenté';
+		}
+		else{
+			Page::setHTTPCode(404);
 		}
 	}
 	
@@ -167,12 +172,12 @@ class Api extends Rest{
 				Page::setHTTPCode(404);
 			}
 		}
-		if($this->getMethod() == 'post'){
+		else if($this->getMethod() == 'post'){
 			if(isset($this->login) AND isset($this->password)){
-				if(count($user = $this->model->getUserProfile($this->login, $this->password)) == 1){
+				if(count($user = $this->model->getUser($this->login, $this->password)) == 1){
 					$this->recieve();
 					$array = $this->getArray();
-					if($status = Status::createStatus($array, $user[0]['id'])){
+					if($status = Status::createStatus($array, $user[0])){
 						$status->save();
 					}
 					else{
@@ -196,12 +201,33 @@ class Api extends Rest{
 				Page::setHTTPCode(404);
 			}
 		}
+		else{
+			Page::setHTTPCode(404);
+		}
 	}
 	
 	public function launchTrack(){
 		if($this->getMethod() == 'put'){
 			if(isset($this->login) AND isset($this->password)){
-				
+				if(count($user = $this->model->getUser($this->login, $this->password)) == 1){
+					$this->recieve();
+					$array = $this->getArray();
+					if($track = Track::createTrack($array, $user[0])){
+						$track->save();
+					}
+					else{
+						/**
+						* Requête malformée
+						*/
+						Page::setHTTPCode(400);
+					}
+				}
+				else{
+					/**
+					* Authentification refusée
+					*/
+					Page::setHTTPCode(403);
+				}
 			}
 			else{
 				/**
@@ -209,6 +235,9 @@ class Api extends Rest{
 				*/
 				Page::setHTTPCode(404);
 			}
+		}
+		else{
+			Page::setHTTPCode(404);
 		}
 	}
 }

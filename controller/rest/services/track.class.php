@@ -25,12 +25,11 @@ use \gnk\config\Database;
 /**
 * Classe de statut pour REST
 * @author Anthony REY <anthony.rey@mailoo.org>
-* @since 13/12/2012
+* @since 15/12/2012
 * @see Services
 * @namespace gnk\controller\rest\services
 */
-class Status extends \gnk\controller\rest\Services{
-	private $content;
+class Track extends \gnk\controller\rest\Services{
 	private $lon;
 	private $lat;
 	private $user;
@@ -40,8 +39,7 @@ class Status extends \gnk\controller\rest\Services{
 	* Constructeur
 	* @param array $statuses Les statuts de l'utilisateur sous forme de tableau depuis la base de données
 	*/
-	public function __construct($content, $lon, $lat, $user){
-		$this->content = $content;
+	public function __construct($lon, $lat, $user){
 		$this->lon = $lon;
 		$this->lat = $lat;
 		$this->user = $user;
@@ -55,25 +53,22 @@ class Status extends \gnk\controller\rest\Services{
 	public function toArray(){
 		if(count($this->serviceArray) == 0){
 			parent::toArray();
-				$this->serviceArray['ltp']['status']['lon'] = $this->lon;
-				$this->serviceArray['ltp']['status']['lat'] = $this->lat;
-				$this->serviceArray['ltp']['status']['content'] = $this->content;
+				$this->serviceArray['ltp']['track']['lon'] = $this->lon;
+				$this->serviceArray['ltp']['track']['lat'] = $this->lat;
 		}
 		return $this->serviceArray;
 	}
 	
-	public static function createStatus($array, $user){
+	public static function createTrack($array, $user){
 		if(
-			isset($array['ltp']['status']['lon'])
-			AND is_numeric($array['ltp']['status']['lon'])
-			AND isset($array['ltp']['status']['lat'])
-			AND is_numeric($array['ltp']['status']['lat'])
-			AND isset($array['ltp']['status']['content'])
+			isset($array['ltp']['track']['lon'])
+			AND is_numeric($array['ltp']['track']['lon'])
+			AND isset($array['ltp']['track']['lat'])
+			AND is_numeric($array['ltp']['track']['lat'])
 		){
-			$status = new Status(
-				$array['ltp']['status']['content'],
-				$array['ltp']['status']['lon'],
-				$array['ltp']['status']['lat'],
+			$status = new Track(
+				$array['ltp']['track']['lon'],
+				$array['ltp']['track']['lat'],
 				$user
 			);
 			return $status;
@@ -86,10 +81,7 @@ class Status extends \gnk\controller\rest\Services{
 	public function save(){
 		Database::useTables();
 		$this->em = Database::getEM();
-		$status = new \gnk\database\entities\Statuses($this->user, $this->content, $this->lon, $this->lat);
-		# Met à jour la longitude et la latitude chez l'utilisateur (facultatif)
 		$this->user->setLonLat($this->lon, $this->lat);
-		$this->em->persist($status);
 		$this->em->persist($this->user);
 		$this->em->flush();
 	}

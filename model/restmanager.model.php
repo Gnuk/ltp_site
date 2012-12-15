@@ -24,6 +24,7 @@ namespace gnk\model;
 use \gnk\config\Model;
 
 class RestManager extends Model{
+	private $maxRestult = 30;
 		
 	/**
 	* Constructeur
@@ -58,16 +59,15 @@ class RestManager extends Model{
 		return $result;
 	}
 	
-	public function getStatuses($login, $password){
+	public function getStatuses($id){
 		$qb = $this->em->createQueryBuilder();
 		$qb->select(array('s.longitude', 's.latitude', 's.message', 's.date'))
 			->from('\gnk\database\entities\Statuses', 's')
 			->leftJoin('\gnk\database\entities\Users', 'u', 'WITH', 's.user = u.id')
-			->where('u.login LIKE ?1')
-			->andWhere('u.password LIKE ?2')
+			->where('u = ?1')
 			->orderBy('s.date', 'DESC')
-			->setMaxResults(30);
-		$qb->setParameters(array(1 => $login, 2 => sha1($password)));
+			->setMaxResults($this->maxRestult);
+		$qb->setParameters(array(1 => $id));
 		$query = $qb->getQuery();
 		$result = $query->getResult();
 		return $result;
@@ -80,7 +80,8 @@ class RestManager extends Model{
 			->leftJoin('u.wanted', 'w')
 			->leftJoin('u.isee', 's')
 			->where('w.user = :id')
-			->andWhere('w.user = s.seeme');
+			->andWhere('w.user = s.seeme')
+			->orderBy('u.login', 'ASC');
 		$qb->setParameters(array('id' => $id));
 		$query = $qb->getQuery();
 		$result = $query->getResult();

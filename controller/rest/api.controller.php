@@ -144,8 +144,8 @@ class Api extends Rest{
 	public function launchStatuses(){
 		if($this->getMethod() == 'get'){
 			if(isset($this->login) AND isset($this->password)){
-				if(count($this->model->getUserProfile($this->login, $this->password)) == 1){
-					$statuses = $this->model->getStatuses($this->login, $this->password);
+				if(count($user = $this->model->getUserProfile($this->login, $this->password)) == 1){
+					$statuses = $this->model->getStatuses($user[0]['id']);
 					if(count($statuses) > 0){
 						$rest = new Statuses($statuses);
 						$this->setArray($rest->toArray());

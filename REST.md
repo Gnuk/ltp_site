@@ -43,15 +43,15 @@ Pour s'authentifier, l'API utilise les méthodes d'authentifications HHTP.
 		"statuses":
 		[
 			{
-				"lat" : "24.242424",
-				"lon" : "2.4",
+				"lon" : "24.242424",
+				"lat" : "2.4",
 				"content" : "Je suis maintenant là.",
 				"time":"2012-11-17T18:26:00+01:00"
 			}
 			,
 			{
-				"lat" : "42.424242",
-				"lon" : "4.2",
+				"lon" : "42.424242",
+				"lat" : "4.2",
 				"content" : "Je suis ici.",
 				"time":"2012-11-16T15:13:14+01:00"
 			}
@@ -85,8 +85,8 @@ Pour s'authentifier, l'API utilise les méthodes d'authentifications HHTP.
 		"application":"Client LTP",
 		"status":
 		{
-			"lat" : "24.242424",
-			"lon" : "2.4",
+			"lon" : "24.242424",
+			"lat" : "2.4",
 			"content" : "Mon nouveau statut."
 		}
 	}
@@ -95,7 +95,7 @@ Pour s'authentifier, l'API utilise les méthodes d'authentifications HHTP.
 
 ##### Exemple d'utilisation
 
-    curl --user Utilisateur https://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/statuses -X POST -d '{"ltp":{"application":"Client LTP","status":{"lat" : "24.242424","lon" : "2.4","content" : "Mon nouveau statut."}}}'
+    curl --user Utilisateur https://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/statuses -X POST -d '{"ltp":{"application":"Client LTP","status":{"lon" : "24.242424","lat" : "2.4","content" : "Mon nouveau statut."}}}'
 
 ## Le tracker
 
@@ -120,8 +120,8 @@ Pour s'authentifier, l'API utilise les méthodes d'authentifications HHTP.
 		"application":"Client LTP",
 		"track":
 		{
-			"lat" : "24.242424",
-			"lon" : "2.4"
+			"lon" : "24.242424",
+			"lat" : "2.4"
 		}
 	}
 }
@@ -129,7 +129,7 @@ Pour s'authentifier, l'API utilise les méthodes d'authentifications HHTP.
 
 ##### Exemple d'utilisation
 
-    curl --user Utilisateur https://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/track -X POST -d '{"ltp":{"application":"Client LTP","status":{"lat" : "24.242424","lon" : "2.4"}}}'
+    curl --user Utilisateur https://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/track -X POST -d '{"ltp":{"application":"Client LTP","status":{"lon" : "24.242424","lat" : "2.4"}}}'
 
 ## Les Amis
 
@@ -157,16 +157,16 @@ En cours d'implémentation
 		[
 			{
 				"username":"Gnuk",
-				"lat" : "24.242424",
-				"lon" : "2.4",
+				"lon" : "24.242424",
+				"lat" : "2.4",
 				"content" : "Je suis maintenant là.",
 				"time":"2012-11-17T18:26:00+01:00"
 			}
 			,
 			{
 				"username":"Giu",
-				"lat" : "42.424242",
-				"lon" : "4.2",
+				"lon" : "42.424242",
+				"lat" : "4.2",
 				"time":"2012-12-13T17:12:00+01:00"
 			}
 			,

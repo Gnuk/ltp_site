@@ -129,7 +129,7 @@ Pour s'authentifier, l'API utilise les méthodes d'authentifications HHTP.
 
 ##### Exemple d'utilisation
 
-    curl --user Utilisateur https://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/track -X POST -d '{"ltp":{"application":"Client LTP","status":{"lon" : "24.242424","lat" : "2.4"}}}'
+    curl --user Utilisateur https://jibiki.univ-savoie.fr/ltpdev/rest.php/api/1/track -X POST -d '{"ltp":{"application":"Client LTP","track":{"lon" : "24.242424","lat" : "2.4"}}}'
 
 ## Les Amis
 

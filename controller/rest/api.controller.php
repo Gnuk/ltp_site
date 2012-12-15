@@ -54,6 +54,9 @@ class Api extends Rest{
 				case 'friends':
 					$this->launchFriends();
 					break;
+				case 'track':
+					$this->launchTrack();
+					break;
 			}
 		}
 	}
@@ -185,6 +188,20 @@ class Api extends Rest{
 					*/
 					Page::setHTTPCode(403);
 				}
+			}
+			else{
+				/**
+				* Page introuvable
+				*/
+				Page::setHTTPCode(404);
+			}
+		}
+	}
+	
+	public function launchTrack(){
+		if($this->getMethod() == 'put'){
+			if(isset($this->login) AND isset($this->password)){
+				
 			}
 			else{
 				/**

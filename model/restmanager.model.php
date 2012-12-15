@@ -32,13 +32,18 @@ class RestManager extends Model{
 		parent::__construct();
 	}
 	
+	public function getUser($login, $password){
+		
+	}
+	
 	public function getUserProfile($login, $password){
 		$qb = $this->em->createQueryBuilder();
 		$qb->select(array('u.id', 'u.login', 'u.language', 'u.mail'))
 			->from('\gnk\database\entities\Users', 'u')
 			->where('u.login LIKE ?1')
-			->andWhere('u.password LIKE ?2');
-		$qb->setParameters(array(1 => $login, 2 => sha1($password)));
+			->andWhere('u.active = ?2')
+			->andWhere('u.password LIKE ?3');
+		$qb->setParameters(array(1 => $login, 2 => true, 3 => sha1($password)));
 		$query = $qb->getQuery();
 		$result = $query->getResult();
 		return $result;

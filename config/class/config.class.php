@@ -24,6 +24,7 @@ class Config{
 	private static $debug;
 	private static $info;
 	private static $license;
+	private static $contentLicense;
 	private static $year = '2012';
 	protected static $em = null;
 	private static $dbConfig = false;
@@ -42,6 +43,8 @@ class Config{
 		self::$locale=self::$defaultLocale;
 		self::$license['name'] = 'AGPL v3';
 		self::$license['url'] = 'http://www.gnu.org/licenses/agpl-3.0.html';
+		self::$contentLicense['name'] = 'Creative Commons BY SA 3.0';
+		self::$contentLicense['url'] = 'http://creativecommons.org/licenses/by-sa/3.0/';
 		self::setWebsiteConfig();
 		self::setDatabase();
 		self::setSessions();
@@ -112,11 +115,19 @@ class Config{
 	}
 	
 	/**
-	* Récupère la ou les années d'activité du site
-	* @return string La ou les années
+	* Récupère la licence du site
+	* @return string La licence
 	*/
 	public static function getLicense(){
 		return self::$license;
+	}
+	
+	/**
+	* Récupère la licence du site
+	* @return string La licence
+	*/
+	public static function getContentLicense(){
+		return self::$contentLicense;
 	}
 	
 	/**

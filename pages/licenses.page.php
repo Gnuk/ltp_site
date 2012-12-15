@@ -22,11 +22,11 @@
 	use \gnk\config\Page;
 	use \gnk\config\Template;
 	$template = new Template();
-	$template->addTitle(T_('Droit d\'auteur'));
+	$template->addTitle(T_('À propos'));
 	$template->show('header_full');
 ?>
 			<article>
-				<h1><?php echo T_('Droit d\'auteur'); ?></h1>
+				<h1><?php echo T_('À propos'); ?></h1>
 				<header>
 					<p>
 						<?php echo T_('LocalizeTeaPot comporte de nombreuses licences sur son contenu et sur ses sources, vous trouverez dans cette partie du site toutes les informations relatives à ces licences');?>
@@ -40,8 +40,10 @@
 					</ul>
 					<footer>
 						<p>
-							<?php echo T_('Vous trouverez les sources du serveur à l\'adresse suivante :');?><br />
-							<a href="https://github.com/Gnuk/ltp_site" title="<?php echo T_('Code source du site') ;?>">https://github.com/Gnuk/ltp_site</a>
+							<?php
+								$sourcesServerUrl = '<a href="https://github.com/Gnuk/ltp_site" title="' . T_('Code source du site') . '">https://github.com/Gnuk/ltp_site</a>';
+								echo sprintf(T_('Vous trouverez les sources du serveur à l\'adresse suivante : <br />%s'),$sourcesServerUrl);
+							?>
 						</p>
 					</footer>
 				</section>
@@ -52,8 +54,10 @@
 					</ul>
 					<footer>
 						<p>
-							<?php echo T_('Vous trouverez les sources du client Android à l\'adresse suivante :');?><br />
-							<a href="https://github.com/Gnuk/ltp_client_osm" title="<?php echo T_('Code source du client Android') ;?>">https://github.com/Gnuk/ltp_client_osm</a>
+							<?php
+								$sourcesAndroidUrl = '<a href="https://github.com/Gnuk/ltp_client_osm" title="' . T_('Code source du client Android') . '">https://github.com/Gnuk/ltp_client_osm</a>';
+								echo sprintf(T_('Vous trouverez les sources du client Android à l\'adresse suivante : <br />%s'), $sourcesAndroidUrl);
+							?>
 						</p>
 					</footer>
 				</section>

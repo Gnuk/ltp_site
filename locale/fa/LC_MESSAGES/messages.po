@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-12 10:52+0100\n"
-"PO-Revision-Date: 2012-12-12 14:05+0100\n"
+"POT-Creation-Date: 2012-12-15 12:17+0100\n"
+"PO-Revision-Date: 2012-12-15 12:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,81 +16,184 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: ./../../..\n"
 
-#: ../../../config/class/config.class.php:198
-msgid "Locales initialisées"
-msgstr "مقدار دهی اولیه"
+#: ../../../model/friendsmanager.model.php:106
+msgid "Vous avez déjà fait une demande d'ajout de ce contact dans votre liste"
+msgstr "شما در حال حاضر درخواست اضافه کردن مخاطب به لیست خود را دارید"
 
-#: ../../../config/class/config.class.php:208
-msgid "Déconnexion"
-msgstr "بیرون آمدن"
+#: ../../../model/friendsmanager.model.php:117
+#: ../../../model/friendsmanager.model.php:156
+msgid "Cet utilisateur n'existe pas sur ce site"
+msgstr "چنین کاربری در لیست نداریم"
 
-#: ../../../config/class/config.class.php:213
-msgid "Tentative de connexion"
-msgstr "کوشش برای وارد شدن به برنامه"
+#: ../../../model/friendsmanager.model.php:145
+msgid "Cet utilisateur peut déjà vous voir"
+msgstr "این کاربر میتواند شما را ببیند"
 
-#: ../../../config/class/config.class.php:217
-msgid "Anonymous"
-msgstr "ناشناس"
+#: ../../../model/statusmanager.model.php:66
+msgid "L'utilisateur n'existe pas"
+msgstr "کاربر مورد نظر موجود نیست"
 
-#: ../../../config/class/config.class.php:270
-msgid "Votre identifiant ou/et votre mot de passe est erroné"
-msgstr "نام کاربری یا رمز ورود نادرست است "
+#: ../../../model/inscription.model.php:81
+msgid "Vous pouvez maintenant vous connecter"
+msgstr "شما هم اکنون می توانید وارد شوید"
 
-#: ../../../config/class/config.class.php:296
+#: ../../../model/inscription.model.php:100
+msgid "Utilisateur supprimé de la base de donnée"
+msgstr "کاربر از پایگاه داده زودوه شده است"
+
+#: ../../../model/inscription.model.php:121
+msgid ""
+"Un utilisateur porte déjà cet identifiant ou cette adresse de messagerie."
+msgstr "کاربر دیگری این نام را دارد یا آدرس تکراری است "
+
+#: ../../../model/inscription.model.php:143
+msgid ""
+"Envoi du mail échoué, veuillez récupérer votre mot de passe via le "
+"formulaire de mots de passes oubliés."
+msgstr "ایراد در فرستادن، رمز خود را از قسمت «نام رمز فراموش شده» دریافت کنید"
+
+#: ../../../model/inscription.model.php:154
 #, php-format
-msgid "Fichier %s chargé"
-msgstr " بارشده %s  فایل  "
+msgid "Inscription à %s"
+msgstr "%s  نام نویسی به"
 
-#: ../../../config/class/config.class.php:300
+#: ../../../model/inscription.model.php:157
+#: ../../../userconfig/menu.conf.php:8 ../../../pages/inscription.page.php:31
+#: ../../../pages/inscription.page.php:54
+msgid "Inscription"
+msgstr "نام نویسی"
+
+#: ../../../model/inscription.model.php:168
 #, php-format
-msgid "Le fichier \"%s\" est absent, peut-être que Doctrine n'est pas installé"
+msgid "Bienvenue sur %s"
+msgstr "  %s خوش آمدید به "
+
+#: ../../../model/inscription.model.php:171
+msgid "Bienvenue"
+msgstr "خوش آمدید"
+
+#: ../../../model/inscription.model.php:190
+#, fuzzy, php-format
+msgid ""
+"Vous pouvez terminer votre inscription en cliquant sur : \n"
+"%s"
+msgstr "نام نویسی خود را با کیلک بر تمام کنید"
+
+#: ../../../model/inscription.model.php:192
+#, fuzzy, php-format
+msgid ""
+"Ou l'annuler en cliquant sur : \n"
+"%s"
+msgstr "با کلیک بر کنسل کنید"
+
+#: ../../../model/inscription.model.php:196
+#, php-format
+msgid "L'équipe du site %s"
 msgstr ""
-"  مورد نظر در دسترس نیست، ممکن است فایل« دکترین» نصب نشده باشد \"%s\"فایل "
 
-#: ../../../config/class/config.class.php:304
-#, php-format
-msgid "La bibliothèque Doctrine \"%s\" est absente"
-msgstr " در دسترس نیست \"%s\"  کتابخانه دکتری"
+#: ../../../model/inscription.model.php:199
+msgid "L'équipe du site"
+msgstr ""
 
-#: ../../../config/class/debug.class.php:71
-msgid "Débogage"
-msgstr "اشکال زدایی"
+#: ../../../model/inscription.model.php:201
+msgid "Merci de ne pas répondre à ce mail auto généré"
+msgstr ""
 
-#: ../../../config/class/debug.class.php:85
-msgid "Erreur"
-msgstr "ایراد"
+#: ../../../userconfig/website.conf.php:3
+msgid "Retrouve tous tes amis (pour le thé)"
+msgstr "پیدا کردن دوستها (برای یک چایخوری)"
 
-#: ../../../config/class/debug.class.php:88
-msgid "Avertissement"
-msgstr "هشدار"
+#: ../../../userconfig/website.conf.php:4
+msgid "localiser"
+msgstr "تعیین محل"
 
-#: ../../../config/class/debug.class.php:91
-msgid "Indication"
-msgstr "نشانه گذاری"
+#: ../../../userconfig/website.conf.php:4 ../../../pages/friends.page.php:33
+msgid "amis"
+msgstr "دوستها"
 
-#: ../../../config/class/debug.class.php:94
-msgid "Débogage non identifié"
-msgstr "اشکال زدایی، ایراد نامعلوم"
+#: ../../../userconfig/website.conf.php:4
+msgid "carte"
+msgstr "کارت"
 
-#: ../../../config/class/page.class.php:146
-#: ../../../config/class/page.class.php:149
-msgid "Erreur 404"
-msgstr "404 ایراد "
+#: ../../../userconfig/website.conf.php:4
+msgid "position"
+msgstr "جایگاه"
 
-#: ../../../config/class/page.class.php:151
-msgid "Veuillez créer une page error404.html à la racine"
-msgstr " درست کنید، ممنون error404.html فایل "
+#: ../../../userconfig/menu.conf.php:4 ../../../pages/home.page.php:52
+msgid "Accueil"
+msgstr "خانه"
 
-#: ../../../controller/friendsmanager.controller.php:46
+#: ../../../userconfig/menu.conf.php:12
+msgid "Mot de passe oublié ?"
+msgstr "رمر را از یاد برده اید"
+
+#: ../../../userconfig/menu.conf.php:16 ../../../pages/friends.page.php:31
+#: ../../../pages/friends.page.php:37
+msgid "Amis"
+msgstr "دوستها"
+
+#: ../../../userconfig/menu.conf.php:20 ../../../pages/statuses.page.php:37
+msgid "Statuts"
+msgstr "جایگاهها"
+
+#: ../../../controller/statusmanager.controller.php:63
+#: ../../../controller/statusmanager.controller.php:92
+msgid "Message :"
+msgstr "پیام"
+
+#: ../../../controller/statusmanager.controller.php:66
+#: ../../../controller/statusmanager.controller.php:95
+msgid "Vous devez ajouter un message."
+msgstr "شما باید یک پیام اضافه کنید"
+
+#: ../../../controller/statusmanager.controller.php:70
+msgid "Longitude :"
+msgstr "درازا و پهنای جغرافیایی"
+
+#: ../../../controller/statusmanager.controller.php:73
+msgid "Vous devez indiquer une longitude."
+msgstr "شما  باید یک درازا  وارد کنید"
+
+#: ../../../controller/statusmanager.controller.php:77
+msgid "Latitude :"
+msgstr "پهنا"
+
+#: ../../../controller/statusmanager.controller.php:80
+msgid "Vous devez indiquer une latitude."
+msgstr "شما  باید یک پهنا  وارد کنید"
+
+#: ../../../controller/statusmanager.controller.php:84
+msgid "Indiquer le statut"
+msgstr "جایگاه خود را مشخص کنید"
+
+#: ../../../controller/statusmanager.controller.php:99
+msgid "Modifier le statut"
+msgstr "جابجا کردن جایگاه"
+
+#: ../../../controller/statusmanager.controller.php:104
+msgid "Statuses"
+msgstr "جایگاه"
+
+#: ../../../controller/statusmanager.controller.php:106
+#: ../../../pages/statuses.page.php:78
+msgid "Éditer"
+msgstr "عوض کردن "
+
+#: ../../../controller/statusmanager.controller.php:106
+#: ../../../pages/statuses.page.php:83
+msgid "Supprimer"
+msgstr "زدودن"
+
+#: ../../../controller/friendsmanager.controller.php:50
 msgid "Utilisateur : "
 msgstr "کاربر"
 
-#: ../../../controller/friendsmanager.controller.php:49
+#: ../../../controller/friendsmanager.controller.php:53
 #: ../../../pages/home.page.php:40
 msgid "Vous indiquer votre identifiant."
 msgstr "نام کاربری خود را وارد کنید"
 
-#: ../../../controller/friendsmanager.controller.php:52
+#: ../../../controller/friendsmanager.controller.php:56
 msgid "Ajouter"
 msgstr "افزودن"
 
@@ -166,124 +269,12 @@ msgstr "کاراکترها نادرست هستند"
 msgid "S'enregistrer"
 msgstr "ذخیره"
 
-#: ../../../controller/statusmanager.controller.php:63
-#: ../../../controller/statusmanager.controller.php:92
-msgid "Message :"
-msgstr "پیام"
-
-#: ../../../controller/statusmanager.controller.php:66
-#: ../../../controller/statusmanager.controller.php:95
-msgid "Vous devez ajouter un message."
-msgstr "شما باید یک پیام اضافه کنید"
-
-#: ../../../controller/statusmanager.controller.php:70
-msgid "Longitude :"
-msgstr "درازا و پهنای جغرافیایی"
-
-#: ../../../controller/statusmanager.controller.php:73
-msgid "Vous devez indiquer une longitude."
-msgstr "شما  باید یک درازا  وارد کنید"
-
-#: ../../../controller/statusmanager.controller.php:77
-msgid "Latitude :"
-msgstr "پهنا"
-
-#: ../../../controller/statusmanager.controller.php:80
-msgid "Vous devez indiquer une latitude."
-msgstr "شما  باید یک پهنا  وارد کنید"
-
-#: ../../../controller/statusmanager.controller.php:84
-msgid "Indiquer le statut"
-msgstr "جایگاه خود را مشخص کنید"
-
-#: ../../../controller/statusmanager.controller.php:99
-msgid "Modifier le statut"
-msgstr "جابجا کردن جایگاه"
-
-#: ../../../controller/statusmanager.controller.php:104
-msgid "Statuses"
-msgstr "جایگاه"
-
-#: ../../../controller/statusmanager.controller.php:106
-#: ../../../pages/statuses.page.php:78
-msgid "Éditer"
-msgstr "عوض کردن "
-
-#: ../../../controller/statusmanager.controller.php:106
-#: ../../../pages/statuses.page.php:83
-msgid "Supprimer"
-msgstr "زدودن"
-
-#: ../../../controller/rest/services.class.php:46
+#: ../../../controller/rest/services.class.php:53
 #: ../../../modules/rest/services.class.php:23
-#: ../../../template/default/header.tmpl.php:13
 #: ../../../template/otm/header.tmpl.php:33
+#: ../../../template/default/header.tmpl.php:13
 msgid "Mon site"
 msgstr "سابت من"
-
-#: ../../../model/friendsmanager.model.php:73
-msgid "Vous avez déjà fait une demande d'ajout de ce contact dans votre liste"
-msgstr "شما در حال حاضر درخواست اضافه کردن مخاطب به لیست خود را دارید"
-
-#: ../../../model/friendsmanager.model.php:84
-#: ../../../model/friendsmanager.model.php:122
-msgid "Cet utilisateur n'existe pas sur ce site"
-msgstr "چنین کاربری در لیست نداریم"
-
-#: ../../../model/friendsmanager.model.php:111
-msgid "Cet utilisateur peut déjà vous voir"
-msgstr "این کاربر میتواند شما را ببیند"
-
-#: ../../../model/inscription.model.php:81
-msgid "Vous pouvez maintenant vous connecter"
-msgstr "شما هم اکنون می توانید وارد شوید"
-
-#: ../../../model/inscription.model.php:100
-msgid "Utilisateur supprimé de la base de donnée"
-msgstr "کاربر از پایگاه داده زودوه شده است"
-
-#: ../../../model/inscription.model.php:121
-msgid ""
-"Un utilisateur porte déjà cet identifiant ou cette adresse de messagerie."
-msgstr "کاربر دیگری این نام را دارد یا آدرس تکراری است "
-
-#: ../../../model/inscription.model.php:143
-msgid ""
-"Envoi du mail échoué, veuillez récupérer votre mot de passe via le "
-"formulaire de mots de passes oubliés."
-msgstr "ایراد در فرستادن، رمز خود را از قسمت «نام رمز فراموش شده» دریافت کنید"
-
-#: ../../../model/inscription.model.php:154
-#, php-format
-msgid "Inscription à %s"
-msgstr "%s  نام نویسی به"
-
-#: ../../../model/inscription.model.php:157
-#: ../../../pages/inscription.page.php:31
-#: ../../../pages/inscription.page.php:54 ../../../userconfig/menu.conf.php:8
-msgid "Inscription"
-msgstr "نام نویسی"
-
-#: ../../../model/inscription.model.php:168
-#, php-format
-msgid "Bienvenue sur %s"
-msgstr "  %s خوش آمدید به "
-
-#: ../../../model/inscription.model.php:171
-msgid "Bienvenue"
-msgstr "خوش آمدید"
-
-#: ../../../model/inscription.model.php:173
-msgid "Vous pouvez terminer votre inscription en cliquant sur"
-msgstr "نام نویسی خود را با کیلک بر تمام کنید"
-
-#: ../../../model/inscription.model.php:192
-msgid "Ou l'annuler en cliquant sur"
-msgstr "با کلیک بر کنسل کنید"
-
-#: ../../../model/statusmanager.model.php:64
-msgid "L'utilisateur n'existe pas"
-msgstr "کاربر مورد نظر موجود نیست"
 
 #: ../../../modules/osm/osm.class.php:73
 msgid "Veuillez activer javascript pour voir la carte"
@@ -293,87 +284,80 @@ msgstr "جاوا اسکریپ را فعال کنید"
 msgid "Sélecteur de localisation"
 msgstr "انتخابگر موقعیت"
 
-#: ../../../pages/friends.page.php:31 ../../../pages/friends.page.php:37
-#: ../../../userconfig/menu.conf.php:16
-msgid "Amis"
-msgstr "دوستها"
-
-#: ../../../pages/friends.page.php:32
-msgid "Gestion des amis."
-msgstr "دوستها مدیریت "
-
-#: ../../../pages/friends.page.php:33 ../../../userconfig/website.conf.php:4
-msgid "amis"
-msgstr "دوستها"
-
-#: ../../../pages/friends.page.php:44
-msgid "Mes Amis"
-msgstr "دوستهای من"
-
-#: ../../../pages/friends.page.php:60
-msgid "Demandes en cours"
-msgstr "درخواست شما در حال بررسی می باشد"
-
-#: ../../../pages/friends.page.php:67
-msgid "Me voient"
-msgstr "خودمو قایم کنم"
-
-#: ../../../pages/home.page.php:47
-msgid "Veuillez indiquer votre mot de passe."
-msgstr "رمز خود را وارد کنید"
-
-#: ../../../pages/home.page.php:50
-msgid "Se connecter"
-msgstr "ورود"
-
-#: ../../../pages/home.page.php:52 ../../../userconfig/menu.conf.php:4
-msgid "Accueil"
-msgstr "خانه"
-
-#: ../../../pages/home.page.php:59
-#, php-format
-msgid "Bienvenue %s"
-msgstr " %s خوش آمدید  "
-
-#: ../../../pages/home.page.php:60
-msgid "Se déconnecter"
-msgstr "خارج شدن"
-
-#: ../../../pages/home.page.php:65
-msgid "Connexion"
-msgstr "وارد شدن"
-
-#: ../../../pages/home.page.php:82
-msgid "Mot de passe oublié"
-msgstr "رمز را از یاد برده اید؟"
-
-#: ../../../pages/home.page.php:82
-msgid "S'inscrire"
-msgstr "نام نویسی "
-
-#: ../../../pages/inscription.page.php:32
-msgid "Inscription à LocalizeTeaPot."
-msgstr "نام نویسی برای برنامه"
-
-#: ../../../pages/inscription.page.php:33
-msgid "inscription"
-msgstr "نام نویسی"
-
-#: ../../../pages/inscription.page.php:40
-msgid "Confirmation d'inscription"
-msgstr "تایید نام نویسی"
-
-#: ../../../pages/inscription.page.php:61
-msgid "Vous êtes maintenant inscrit, veuillez regarder vos messages."
-msgstr "شما هم اکنون نام نویسی شده اید، پست الکترونیکی خود را چک کنید"
-
-#: ../../../pages/inscription.page.php:73
-msgid "Une erreur non répertoriée est survenue."
-msgstr "یک ایراد ثبت نشده رخ داده است   "
-
+#: ../../../template/otm/footer.tmpl.php:26
 #: ../../../pages/licenses.page.php:25 ../../../pages/licenses.page.php:29
-msgid "Droit d'auteur"
-msgstr "تمام حقوق محفوظ"
+msgid "À propos"
+msgstr ""
+
+#: ../../../template/otm/footer.tmpl.php:34
+#, fuzzy, php-format
+msgid "Le code source de ce site est sous licence %s et son contenu sous %s"
+msgstr "کد برنامه تحت لیسانس است"
+
+#: ../../../config/class/debug.class.php:71
+msgid "Débogage"
+msgstr "اشکال زدایی"
+
+#: ../../../config/class/debug.class.php:85
+msgid "Erreur"
+msgstr "ایراد"
+
+#: ../../../config/class/debug.class.php:88
+msgid "Avertissement"
+msgstr "هشدار"
+
+#: ../../../config/class/debug.class.php:91
+msgid "Indication"
+msgstr "نشانه گذاری"
+
+#: ../../../config/class/debug.class.php:94
+msgid "Débogage non identifié"
+msgstr "اشکال زدایی، ایراد نامعلوم"
+
+#: ../../../config/class/config.class.php:209
+msgid "Locales initialisées"
+msgstr "مقدار دهی اولیه"
+
+#: ../../../config/class/config.class.php:219
+msgid "Déconnexion"
+msgstr "بیرون آمدن"
+
+#: ../../../config/class/config.class.php:224
+msgid "Tentative de connexion"
+msgstr "کوشش برای وارد شدن به برنامه"
+
+#: ../../../config/class/config.class.php:228
+msgid "Anonymous"
+msgstr "ناشناس"
+
+#: ../../../config/class/config.class.php:281
+msgid "Votre identifiant ou/et votre mot de passe est erroné"
+msgstr "نام کاربری یا رمز ورود نادرست است "
+
+#: ../../../config/class/config.class.php:307
+#, php-format
+msgid "Fichier %s chargé"
+msgstr " بارشده %s  فایل  "
+
+#: ../../../config/class/config.class.php:311
+#, php-format
+msgid "Le fichier \"%s\" est absent, peut-être que Doctrine n'est pas installé"
+msgstr ""
+"  مورد نظر در دسترس نیست، ممکن است فایل« دکترین» نصب نشده باشد \"%s\"فایل "
+
+#: ../../../config/class/config.class.php:315
+#, php-format
+msgid "La bibliothèque Doctrine \"%s\" est absente"
+msgstr " در دسترس نیست \"%s\"  کتابخانه دکتری"
+
+#: ../../../config/class/page.class.php:146
+#: ../../../config/class/page.class.php:149
+msgid "Erreur 404"
+msgstr "404 ایراد "
+
+#: ../../../config/class/page.class.php:151
+msgid "Veuillez créer une page error404.html à la racine"
+msgstr " درست کنید، ممنون error404.html فایل "
 
 #: ../../../pages/licenses.page.php:32
 msgid ""
@@ -398,33 +382,52 @@ msgstr ""
 "برای منابع گرافیکی و محتویات صفحات استفاده شده است Creative Commons BY SA "
 "3.0  لیسانس "
 
-#: ../../../pages/licenses.page.php:43
-msgid "Vous trouverez les sources du serveur à l'adresse suivante :"
-msgstr "منابع سرور را اینجا بیابید"
-
 #: ../../../pages/licenses.page.php:44
 msgid "Code source du site"
 msgstr "کد منبع وب سایت"
 
-#: ../../../pages/licenses.page.php:49
+#: ../../../pages/licenses.page.php:45
+#, fuzzy, php-format
+msgid "Vous trouverez les sources du serveur à l'adresse suivante : <br />%s"
+msgstr "منابع سرور را اینجا بیابید"
+
+#: ../../../pages/licenses.page.php:51
 msgid "Client"
 msgstr "کاربر"
 
-#: ../../../pages/licenses.page.php:51
+#: ../../../pages/licenses.page.php:53
 msgid "Utilisation de la licence CeCILL v2 pour les sources"
 msgstr "برای منابع CeCILL v2  لیسانس "
 
-#: ../../../pages/licenses.page.php:55
-msgid "Vous trouverez les sources du client Android à l'adresse suivante :"
-msgstr "منابع برای کاربران آندروید را اینجا بیابید"
-
-#: ../../../pages/licenses.page.php:56
+#: ../../../pages/licenses.page.php:58
 msgid "Code source du client Android"
 msgstr "کد  برنامه آندروید"
 
-#: ../../../pages/statuses.page.php:37 ../../../userconfig/menu.conf.php:20
-msgid "Statuts"
-msgstr "جایگاهها"
+#: ../../../pages/licenses.page.php:59
+#, fuzzy, php-format
+msgid ""
+"Vous trouverez les sources du client Android à l'adresse suivante : <br />%s"
+msgstr "منابع برای کاربران آندروید را اینجا بیابید"
+
+#: ../../../pages/inscription.page.php:32
+msgid "Inscription à LocalizeTeaPot."
+msgstr "نام نویسی برای برنامه"
+
+#: ../../../pages/inscription.page.php:33
+msgid "inscription"
+msgstr "نام نویسی"
+
+#: ../../../pages/inscription.page.php:40
+msgid "Confirmation d'inscription"
+msgstr "تایید نام نویسی"
+
+#: ../../../pages/inscription.page.php:61
+msgid "Vous êtes maintenant inscrit, veuillez regarder vos messages."
+msgstr "شما هم اکنون نام نویسی شده اید، پست الکترونیکی خود را چک کنید"
+
+#: ../../../pages/inscription.page.php:73
+msgid "Une erreur non répertoriée est survenue."
+msgstr "یک ایراد ثبت نشده رخ داده است   "
 
 #: ../../../pages/statuses.page.php:38
 msgid "Gestion des statuts."
@@ -442,34 +445,69 @@ msgstr "جایگاههای من"
 msgid "Revenir aux statuts"
 msgstr "برگشت به جایگاهها"
 
-#: ../../../template/default/footer.tmpl.php:1
-msgid "Copyright © 2012 GNK Website"
-msgstr "© 2012 GNK Website کپی رایت "
+#: ../../../pages/statuses.page.php:62
+#, fuzzy
+msgid "Ajouter un statut"
+msgstr "جایگاه خود را مشخص کنید"
 
-#: ../../../template/otm/footer.tmpl.php:26
-msgid "Droits d'auteur"
-msgstr "تمام حقوق محفوظ"
+#: ../../../pages/friends.page.php:32
+msgid "Gestion des amis."
+msgstr "دوستها مدیریت "
 
-#: ../../../template/otm/footer.tmpl.php:32
-msgid "Le code source de ce site est sous licence"
-msgstr "کد برنامه تحت لیسانس است"
+#: ../../../pages/friends.page.php:44
+msgid "Mes Amis"
+msgstr "دوستهای من"
 
-#: ../../../userconfig/menu.conf.php:12
-msgid "Mot de passe oublié ?"
-msgstr "رمر را از یاد برده اید"
+#: ../../../pages/friends.page.php:60
+msgid "Vous n'avez encore aucun amis"
+msgstr ""
 
-#: ../../../userconfig/website.conf.php:3
-msgid "Retrouve tous tes amis (pour le thé)"
-msgstr "پیدا کردن دوستها (برای یک چایخوری)"
+#: ../../../pages/friends.page.php:67
+msgid "Demandes en cours"
+msgstr "درخواست شما در حال بررسی می باشد"
 
-#: ../../../userconfig/website.conf.php:4
-msgid "localiser"
-msgstr "تعیین محل"
+#: ../../../pages/friends.page.php:84
+msgid "Me voient"
+msgstr "خودمو قایم کنم"
 
-#: ../../../userconfig/website.conf.php:4
-msgid "carte"
-msgstr "کارت"
+#: ../../../pages/friends.page.php:90
+msgid "Veulent me voir"
+msgstr ""
 
-#: ../../../userconfig/website.conf.php:4
-msgid "position"
-msgstr "جایگاه"
+#: ../../../pages/home.page.php:47
+msgid "Veuillez indiquer votre mot de passe."
+msgstr "رمز خود را وارد کنید"
+
+#: ../../../pages/home.page.php:50
+msgid "Se connecter"
+msgstr "ورود"
+
+#: ../../../pages/home.page.php:59
+#, php-format
+msgid "Bienvenue %s"
+msgstr " %s خوش آمدید  "
+
+#: ../../../pages/home.page.php:60
+msgid "Se déconnecter"
+msgstr "خارج شدن"
+
+#: ../../../pages/home.page.php:65
+msgid "Connexion"
+msgstr "وارد شدن"
+
+#: ../../../pages/home.page.php:82
+msgid "Mot de passe oublié"
+msgstr "رمز را از یاد برده اید؟"
+
+#: ../../../pages/home.page.php:82
+msgid "S'inscrire"
+msgstr "نام نویسی "
+
+#~ msgid "Copyright © 2012 GNK Website"
+#~ msgstr "© 2012 GNK Website کپی رایت "
+
+#~ msgid "Droit d'auteur"
+#~ msgstr "تمام حقوق محفوظ"
+
+#~ msgid "Droits d'auteur"
+#~ msgstr "تمام حقوق محفوظ"

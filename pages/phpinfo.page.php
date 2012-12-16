@@ -19,10 +19,19 @@
 * along with LocalizeTeaPot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-	var_dump($_SERVER['REQUEST_METHOD']);
-	var_dump($_SERVER['REQUEST_URI']);
-	var_dump($_SERVER['PATH_INFO']);
+	require_once(LINK_LIB.'geoip/geoipcity.inc');
+	require_once(LINK_LIB.'geoip/geoipregionvars.php');
+	$gi = geoip_open(LINK_DATABASE.'geoip/GeoLiteCity.dat',GEOIP_STANDARD);
+	
+	$record = geoip_record_by_addr($gi,$_SERVER['REMOTE_ADDR']);
+	if(isset($record)){
+		echo $record->country_name . "\n";
+		echo $GEOIP_REGION_NAME[$record->country_code][$record->region] . "\n";
+		echo $record->city . "\n";
+		echo $record->postal_code . "\n";
+		echo $record->latitude . "\n";
+		echo $record->longitude . "\n";
+	}
 
-	if (($stream = fopen('php://input', "r")) !== FALSE)
-		var_dump(stream_get_contents($stream));
+	geoip_close($gi);
 ?>

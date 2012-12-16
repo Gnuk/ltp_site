@@ -30,6 +30,9 @@
 		if(Config::isUser()){
 			Module::load('osm');
 			$osm = new Osm('carte');
+			$markers = new Marker(T_('À propos de vous'));
+			$markers->add(null, null, '<p>'.Page::htmlBREncode(T_('Il semble que vous êtes ici')).'</p>');
+			$osm->addMarker($markers);
 			$osm->setJS();
 		}
 		Module::load('form');

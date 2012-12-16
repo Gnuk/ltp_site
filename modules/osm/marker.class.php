@@ -26,9 +26,15 @@ class Marker{
 	* @param int $lat La lattitude
 	* @param string $html Le code html à ajouter dans la popup du point
 	*/
-	public function add($lon, $lat, $html=null){
-		$marker['lon'] = $lon;
-		$marker['lat'] = $lat;
+	public function add($lon = null, $lat = null, $html=null){
+		$marker['center'] = false;
+		if(isset($lon) AND isset($lat)){
+			$marker['lon'] = $lon;
+			$marker['lat'] = $lat;
+		}
+		else{
+			$marker['center'] = true;
+		}
 		if(isset($html)){
 			$marker['html'] = $html;
 		}
@@ -44,22 +50,34 @@ class Marker{
 		map.addLayer(markers);';
  		foreach($this->marker as $number => $marker){
 			if(isset($marker['html'])){
-				$js.='
-				addMarker(new OpenLayers.LonLat('.$marker['lon'] . ',' . $marker['lat'].').transform(
-				new OpenLayers.Projection("EPSG:4326"), 
-				map.getProjectionObject() 
-				), AutoSizeAnchored, \'';
+				$js .= '
+		addMarker(';
+			}
+			else{
+				$js .= 'position = ';
+			}
+			$js.='
+			new OpenLayers.LonLat(';
+			if($marker['center']){
+				$js .= 'dlon, dlat';
+			}
+			else{
+				$js .= $marker['lon'] . ',' . $marker['lat'];
+			}
+			$js .= ').transform(
+			new OpenLayers.Projection("EPSG:4326"), 
+			map.getProjectionObject() 
+		)';
+			if(isset($marker['html'])){
+				$js .= ', AutoSizeAnchored, \'';
 				if(isset($marker['html'])){
 					$js.= Page::textToOneLine($marker['html']);
 				}
 			$js .= '\')';
 			}
 			else{
-				$js.= 'position = new OpenLayers.LonLat('. $marker['lon'] . ',' . $marker['lat'].').transform(
-				new OpenLayers.Projection("EPSG:4326"), 
-				map.getProjectionObject()
-				);
-				markers.addMarker(new OpenLayers.Marker(position));';
+				$js.= ';
+			markers.addMarker(new OpenLayers.Marker(position));';
 			}
  		}
  		return $js;

@@ -28,7 +28,7 @@
 		$controller = new \gnk\controller\StatusManager();
 		$osm = $controller->getMap('status_map');
 		if(isset($_GET['add'])){
-			$form = $controller->getAddForm($osm->getLongitude(), $osm->getLatitude());
+			$form = $controller->getAddForm();
 		}
 		else if(isset($_GET['edit'])){
 			$form = $controller->getEditForm();

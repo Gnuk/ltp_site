@@ -24,7 +24,7 @@
 	$gi = geoip_open(LINK_DATABASE.'geoip/GeoLiteCity.dat',GEOIP_STANDARD);
 	
 	$record = geoip_record_by_addr($gi,$_SERVER['REMOTE_ADDR']);
-	if(isset($record)){
+	if(!empty($record)){
 		echo $record->country_name . "\n";
 		echo $GEOIP_REGION_NAME[$record->country_code][$record->region] . "\n";
 		echo $record->city . "\n";

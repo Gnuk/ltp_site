@@ -54,6 +54,9 @@ class Friends extends \gnk\controller\rest\Services{
 					$this->serviceArray['ltp']['friends'][$nFriend]['lon'] = $friend['longitude'];
 					$this->serviceArray['ltp']['friends'][$nFriend]['lat'] = $friend['latitude'];
 				}
+				if(isset($friend['trackdate'])){
+					$this->serviceArray['ltp']['friends'][$nFriend]['time'] = $friend['trackdate']->format('Y-m-d\TH:i:sP');
+				}
 			}
 		}
 		return $this->serviceArray;

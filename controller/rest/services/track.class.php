@@ -82,7 +82,6 @@ class Track extends \gnk\controller\rest\Services{
 		Database::useTables();
 		$this->em = Database::getEM();
 		$this->user->setLonLat($this->lon, $this->lat);
-		$this->em->persist($this->user);
 		$this->em->flush();
 	}
 }

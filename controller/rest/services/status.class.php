@@ -90,7 +90,6 @@ class Status extends \gnk\controller\rest\Services{
 		# Met à jour la longitude et la latitude chez l'utilisateur (facultatif)
 		$this->user->setLonLat($this->lon, $this->lat);
 		$this->em->persist($status);
-		$this->em->persist($this->user);
 		$this->em->flush();
 	}
 }

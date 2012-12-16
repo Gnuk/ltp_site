@@ -124,6 +124,7 @@ class Osm{
 			$latitude = $this->defaultLat;
 		}
 		$js='
+		function haveMap(dlon, dlat){
 		var options = {
 			controls: [
 			new OpenLayers.Control.Navigation(),
@@ -138,7 +139,7 @@ class Osm{
 		map.addLayer(new OpenLayers.Layer.OSM.TransportMap("Transport"));
 		AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, { \'autoSize\': true});
 		
-		var center = new OpenLayers.LonLat('. $this->defaultLon . ', ' . $this->defaultLat .').transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+		var center = new OpenLayers.LonLat(dlon, dlat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
 		var zoom='. $this->defaultZoom.';
 		';
 		foreach($this->marker AS $number => $marker){
@@ -181,6 +182,19 @@ class Osm{
 			$js .= '
 			map.setCenter (center, zoom);';
 		}
+		$js .= '
+		}
+		if(navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+				function(position){
+					haveMap(position.coords.longitude , position.coords.latitude);
+				}
+			);
+		}
+		else {
+			haveMap('. $this->defaultLon . ', ' . $this->defaultLat .');
+		}
+		';
 		return $js;
 	}
 	

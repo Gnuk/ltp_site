@@ -19,6 +19,9 @@
 * along with LocalizeTeaPot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+	use \gnk\config\Page;
+	use \gnk\config\Template;
+
 	require_once(LINK_LIB.'geoip/geoipcity.inc');
 	require_once(LINK_LIB.'geoip/geoipregionvars.php');
 	$gi = geoip_open(LINK_DATABASE.'geoip/GeoLiteCity.dat',GEOIP_STANDARD);
@@ -34,4 +37,23 @@
 	}
 
 	geoip_close($gi);
+	$template = new Template();
+	$template->addTitle(T_('À propos'));
+	$template->show('header_full');
+?>
+<input type="text" name="lat" id="lat" /> 
+<input type="text" name="lng" id="lng" />
+<script>
+if(navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position)
+  {
+	document.getElementById("lat").value = position.coords.latitude;
+	document.getElementById("lng").value = position.coords.longitude;
+  });
+} else {
+  alert('geoloc disabled');
+}
+</script>
+<?php
+	$template->show('footer_full');
 ?>

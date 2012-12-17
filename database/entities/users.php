@@ -101,6 +101,10 @@ class Users
 		$this->active=$active;
 	}
 	
+	public function setPassword($password){
+		$this->password = sha1($password);
+	}
+	
 	public function getLogin(){
 		return $this->login;
 	}

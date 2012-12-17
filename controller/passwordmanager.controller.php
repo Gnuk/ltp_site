@@ -42,7 +42,16 @@
 				isset($_GET['id'])
 				AND isset($_GET['key'])
 			){
-				return $this->model->isConfirm($_GET['id'], $_GET['key']);
+				if(
+					isset($_POST['pass'])
+					AND isset($_POST['confirmpass'])
+					AND $_POST['pass'] == $_POST['confirmpass']
+				){
+					return $this->model->changePassword($_GET['id'], $_GET['key'], $_POST['pass']);
+				}
+				else{
+					return $this->model->isConfirm($_GET['id'], $_GET['key']);
+				}
 			}
 			return false;
 		}

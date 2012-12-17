@@ -27,23 +27,31 @@
 	if(Page::haveRights()){
 		$controller = new \gnk\controller\PasswordManager();
 		Module::load('form');
+		$template = new Template();
 		if($controller->isConfirm()){
+			$title = T_('Définition du nouveau mot de passe');
+			
 			$form = new Form('changepassword');
 			$form->add('label', 'label_pass', 'pass', T_('Mot de passe :'));
 			$obj = & $form->add('password', 'pass');
+			$passFrom = 6;
+			$passTo = 50;
 			$obj->set_rule(array(
 				'required'  =>  array('error', T_('Veuillez préciser votre nouveau mot de passe.')),
-
+				'length'    => array($passFrom, $passTo, 'error', sprintf(T_('Votre mot passe doit être composé de %d à %d caractères.'), $passFrom, $passTo))
 			));
+			$form->add('note', 'note_password', 'password', sprintf(T_('Votre mot passe doit être composé de %d à %d caractères.'), $passFrom, $passTo));
 			$form->add('label', 'label_confirmpass', 'confirmpass', T_('Confirmation :'));
 			$obj = & $form->add('password', 'confirmpass');
 			$obj->set_rule(array(
-				'required'  =>  array('error', T_('Veuillez confirmer votre mot de passe.')),
+				'compare' => array('pass', 'error', T_('Les mots de passes ne correspondent pas.'))
 
 			));
 			$form->add('submit', 'btnsubmit', T_('Définir mon mot de passe'));
 		}
 		else{
+			$title = T_('Mot de passe oublié ?');
+			
 			$form = new Form('forgetpassword');
 			$form->add('label', 'label_user', 'user', T_('Identifiant :'));
 			$obj = & $form->add('text', 'user');
@@ -55,12 +63,12 @@
 		}
 		
 		$template = new Template();
-		$template->addTitle(T_('Mot de passe oublié ?'));
+		$template->addTitle($title);
 		$template->setDescription(T_('Récupération du mot de passe.'));
 		$template->addKeywords(array(T_('mot de passe'), T_('oublié')));
 		$template->show('header_full');
 ?>
-<h1><?php echo T_('Mot de passe oublié ?'); ?></h1>
+<h1><?php echo Page::htmlEncode($title); ?></h1>
 <?php
 		$form->render();
 		$template->show('footer_full');

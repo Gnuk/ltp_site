@@ -106,6 +106,28 @@
 			}
 		}
 		
+		public function changePassword($id, $key, $pass){
+			$qb = $this->em->createQueryBuilder();
+			$qb->select(array('c'))
+				->from('\gnk\database\entities\ConfirmPassword', 'c')
+				->where('c.user = :id')
+				->andWhere('c.userkey = :ukey');
+			$qb->setParameters(array('id' => $id, 'ukey' => sha1($key)));
+			$query = $qb->getQuery();
+			$result = $query->getResult();
+			if(count($result) == 1){
+				$user = $result[0]->getUser();
+				$user->setActive(true);
+				$user->setPassword($pass);
+				$this->em->remove($result[0]);
+				$this->em->flush();
+			}
+			else{
+				$this->addError(T_('Les données ne correspondent pas'));
+				return false;
+			}
+		}
+		
 		private function sendMail(){
 			$global = Config::getWebsiteConfig();
 			if(isset($global['title'])){

@@ -30,13 +30,13 @@
 	class StatusManager extends Controller{
 		private $statuses = array();
 		private $add = false;
-		private $sendForm = false;
 		private $model;
 		
 		public function __construct(){
 			$this->loadModel('statusmanager');
 			$this->model = new \gnk\model\StatusManager();
-			$this->sendForm = $this->addStatus();
+			$this->addStatus();
+			$this->updateStatus();
 			$this->statuses = $this->model->getStatuses();
 		}
 		public function getMap($divName='carte'){
@@ -86,11 +86,15 @@
 		}
 		
 		public function getEditForm(){
+			$message = '';
 			Module::load('form');
 			$form = new Form('statuses');
 			
 			$form->add('label', 'label_message', 'message', T_('Message :'));
-			$obj = & $form->add('textarea', 'message');
+			if(isset($_GET['edit'])){
+				$message = $this->model->getStatusMessage($_GET['edit']);
+			}
+			$obj = & $form->add('textarea', 'message', Page::htmlEncode($message));
 			$obj->set_rule(array(
 				'required'  =>  array('error', T_('Vous devez ajouter un message.')),
 
@@ -119,14 +123,10 @@
 		* @todo Implémenter l'édition d'un statut
 		*/
 		public function updateStatus(){
-			if(isset($_POST['message']) 
-				AND isset($_POST['longitude']) 
-				AND is_numeric($_POST['longitude']) 
-				AND isset($_POST['latitude']) 
-				AND is_numeric($_POST['latitude']) 
+			if(isset($_POST['message'])
 				AND isset($_GET['edit']))
 			{
-				return true;
+				return $this->model->editStatus($_GET['edit'], $_POST['message']);
 			}
 			return false;
 		}

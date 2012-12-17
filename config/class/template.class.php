@@ -10,6 +10,7 @@
 		private $template;
 		private $link;
 		private $websiteConfig = array();
+		private $websiteValues = array();
 		
 		/**
 		* Constructeur du Template
@@ -26,6 +27,10 @@
 			$this->getWebsiteParams();
 			$this->menu = Config::getConfigFile(LINK_USERCONFIG . 'menu.conf.php');
 			$this->rights = Page::getRights();
+		}
+		
+		public function getWebsiteValue($val){
+			return $this->websiteValues[$val];
 		}
 		
 		/**
@@ -78,7 +83,7 @@
 			else{
 				$this->websiteConfig = Config::getConfigFile($configFile);
 			}
-			
+			$this->websiteValues = Config::getConfigFile($configFile);
 		}
 		
 		/**

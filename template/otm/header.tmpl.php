@@ -21,6 +21,7 @@
 */
 	use \gnk\config\Page;
 	use \gnk\config\Config;
+	use \gnk\config\Template;
 ?>
 			<h1>
 				<a href="<?php echo Page::defaultPageLink();?>">
@@ -32,6 +33,22 @@
 					else{
 						echo Page::htmlEncode(T_('Mon site'));
 					}?>" />
+					<span id="sitetitleinfo">
+						<span class="sitetitle">
+						<?php
+						if(isset($global['title'])){
+							echo Page::htmlEncode($global['title']);
+						}
+						else{
+							echo Page::htmlEncode(T_('Mon site'));
+						}?>
+						</span>
+						<span class="sitedesc">
+						<?php
+							echo $this->getWebsiteValue('description')
+						?>
+						</span>
+					</span>
 				</a>
 			</h1>
 			<nav id="menu">

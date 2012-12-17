@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-12 10:52+0100\n"
-"PO-Revision-Date: 2012-12-12 14:05+0100\n"
+"POT-Creation-Date: 2012-12-12 14:18+0100\n"
+"PO-Revision-Date: 2012-12-12 16:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -81,16 +81,16 @@ msgstr "404 ایراد "
 msgid "Veuillez créer une page error404.html à la racine"
 msgstr " درست کنید، ممنون error404.html فایل "
 
-#: ../../../controller/friendsmanager.controller.php:46
+#: ../../../controller/friendsmanager.controller.php:50
 msgid "Utilisateur : "
 msgstr "کاربر"
 
-#: ../../../controller/friendsmanager.controller.php:49
+#: ../../../controller/friendsmanager.controller.php:53
 #: ../../../pages/home.page.php:40
 msgid "Vous indiquer votre identifiant."
 msgstr "نام کاربری خود را وارد کنید"
 
-#: ../../../controller/friendsmanager.controller.php:52
+#: ../../../controller/friendsmanager.controller.php:56
 msgid "Ajouter"
 msgstr "افزودن"
 
@@ -214,23 +214,23 @@ msgstr "عوض کردن "
 msgid "Supprimer"
 msgstr "زدودن"
 
-#: ../../../controller/rest/services.class.php:46
+#: ../../../controller/rest/services.class.php:50
 #: ../../../modules/rest/services.class.php:23
 #: ../../../template/default/header.tmpl.php:13
 #: ../../../template/otm/header.tmpl.php:33
 msgid "Mon site"
 msgstr "سابت من"
 
-#: ../../../model/friendsmanager.model.php:73
+#: ../../../model/friendsmanager.model.php:106
 msgid "Vous avez déjà fait une demande d'ajout de ce contact dans votre liste"
 msgstr "شما در حال حاضر درخواست اضافه کردن مخاطب به لیست خود را دارید"
 
-#: ../../../model/friendsmanager.model.php:84
-#: ../../../model/friendsmanager.model.php:122
+#: ../../../model/friendsmanager.model.php:117
+#: ../../../model/friendsmanager.model.php:156
 msgid "Cet utilisateur n'existe pas sur ce site"
 msgstr "چنین کاربری در لیست نداریم"
 
-#: ../../../model/friendsmanager.model.php:111
+#: ../../../model/friendsmanager.model.php:145
 msgid "Cet utilisateur peut déjà vous voir"
 msgstr "این کاربر میتواند شما را ببیند"
 
@@ -281,7 +281,7 @@ msgstr "نام نویسی خود را با کیلک بر تمام کنید"
 msgid "Ou l'annuler en cliquant sur"
 msgstr "با کلیک بر کنسل کنید"
 
-#: ../../../model/statusmanager.model.php:64
+#: ../../../model/statusmanager.model.php:66
 msgid "L'utilisateur n'existe pas"
 msgstr "کاربر مورد نظر موجود نیست"
 
@@ -311,12 +311,20 @@ msgid "Mes Amis"
 msgstr "دوستهای من"
 
 #: ../../../pages/friends.page.php:60
+msgid "Vous n'avez encore aucun amis"
+msgstr "شما هم اکنون هیچ دوستی ندارید"
+
+#: ../../../pages/friends.page.php:67
 msgid "Demandes en cours"
 msgstr "درخواست شما در حال بررسی می باشد"
 
-#: ../../../pages/friends.page.php:67
+#: ../../../pages/friends.page.php:84
 msgid "Me voient"
 msgstr "خودمو قایم کنم"
+
+#: ../../../pages/friends.page.php:90
+msgid "Veulent me voir"
+msgstr "می خواهید من را ببینید"
 
 #: ../../../pages/home.page.php:47
 msgid "Veuillez indiquer votre mot de passe."
@@ -442,6 +450,10 @@ msgstr "جایگاههای من"
 msgid "Revenir aux statuts"
 msgstr "برگشت به جایگاهها"
 
+#: ../../../pages/statuses.page.php:62
+msgid "Ajouter un statut"
+msgstr "جایگاه خود را مشخص کنید"
+
 #: ../../../template/default/footer.tmpl.php:1
 msgid "Copyright © 2012 GNK Website"
 msgstr "© 2012 GNK Website کپی رایت "
@@ -452,7 +464,7 @@ msgstr "تمام حقوق محفوظ"
 
 #: ../../../template/otm/footer.tmpl.php:32
 msgid "Le code source de ce site est sous licence"
-msgstr "کد برنامه تحت لیسانس است"
+msgstr "لیسانس کد برنامه"
 
 #: ../../../userconfig/menu.conf.php:12
 msgid "Mot de passe oublié ?"

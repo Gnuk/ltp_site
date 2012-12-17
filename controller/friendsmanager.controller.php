@@ -35,9 +35,9 @@ class FriendsManager extends Controller{
 		$this->loadModel('friendsmanager');
  		$this->model = new \gnk\model\FriendsManager();
 		$this->addFriend();
-		echo '<pre>';
-		$this->model->getFriends();
-		echo '</pre>';
+// 		echo '<pre>';
+// 		$this->model->getFriends();
+// 		echo '</pre>';
 	}
 	
 	/**

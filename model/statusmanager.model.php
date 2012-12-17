@@ -50,6 +50,46 @@
 			return $result;
 		}
 		
+		public function editStatus($id, $message){
+			$qb = $this->em->createQueryBuilder();
+			$qb->select(array('s'))
+				->from('\gnk\database\entities\Statuses', 's')
+				->where('s.user = :user')
+				->andWhere('s = :id')
+				->orderBy('s.date', 'DESC')
+				->setMaxResults(5);
+			$qb->setParameters(array('user' => $this->id, 'id' => $id));
+			$query = $qb->getQuery();
+			$result = $query->getResult();
+			if(count($result) == 1){
+				$result[0]->setMessage($message);
+				$this->em->flush();
+			}
+			else{
+				$this->addError(T_('Impossible d\'éditer ce statut, peut-être ne vous appartient-t-il pas ?'));
+				return false;
+			}
+		}
+		
+		public function getStatusMessage($id){
+			$qb = $this->em->createQueryBuilder();
+			$qb->select(array('s.message'))
+				->from('\gnk\database\entities\Statuses', 's')
+				->where('s.user = :user')
+				->andWhere('s = :id')
+				->orderBy('s.date', 'DESC')
+				->setMaxResults(5);
+			$qb->setParameters(array('user' => $this->id, 'id' => $id));
+			$query = $qb->getQuery();
+			$result = $query->getResult();
+			if(count($result) == 1){
+				return $result[0]['message'];
+			}
+			else{
+				return '';
+			}
+		}
+		
 		public function addStatus($message, $longitude, $latitude){
 			$this->message = $message;
 			$this->longitude = $longitude;

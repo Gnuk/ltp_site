@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-17 08:45+0100\n"
-"PO-Revision-Date: 2012-12-17 08:45+0100\n"
+"POT-Creation-Date: 2012-12-17 08:47+0100\n"
+"PO-Revision-Date: 2012-12-17 09:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,7 @@ msgstr "ورود به سیستم"
 
 #: ../../../controller/inscription.controller.php:123
 msgid "Vous devez préciser un identifiant."
-msgstr "شما باید، یک نام کاربری داشته باشید"
+msgstr "شما باید یک نام کاربری وارد کنید"
 
 #: ../../../controller/inscription.controller.php:128
 msgid "Adresse de messagerie électronique :"
@@ -120,8 +120,8 @@ msgid ""
 "Veuillez entrer une adresse de messagerie électronique, vous recevrez "
 "message électronique pour valider votre compte."
 msgstr ""
-" الکترونیکی خود را برای ادامه چک کنید  یک نام آدرس پست الکترونیکی وارد کنید،"
-"سپس آدرس"
+"یک نام آدرس پست الکترونیکی وارد کنید سپس آدرس الکترونیکی خود را برای ادامه "
+"چک کنید "
 
 #: ../../../controller/inscription.controller.php:139
 msgid "Langue :"
@@ -156,7 +156,7 @@ msgstr "آیا شما یک انسان هستید؟"
 
 #: ../../../controller/inscription.controller.php:165
 msgid "Vous devez entrer les caractères de couleur noire"
-msgstr "شما باید سیاه باشد کاراکترهای"
+msgstr "کاراکترهای شما باید سیاه باشد "
 
 #: ../../../controller/inscription.controller.php:167
 msgid "Les caractères ne correspondent pas !"
@@ -194,7 +194,7 @@ msgstr "شما  باید یک پهنا  وارد کنید"
 
 #: ../../../controller/statusmanager.controller.php:84
 msgid "Indiquer le statut"
-msgstr "جایگاه خود را مشخص کنید"
+msgstr "جایگاه  خود را مشخص کنید"
 
 #: ../../../controller/statusmanager.controller.php:99
 msgid "Modifier le statut"
@@ -275,31 +275,35 @@ msgid "Bienvenue"
 msgstr "خوش آمدید"
 
 #: ../../../model/inscription.model.php:190
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Vous pouvez terminer votre inscription en cliquant sur : \n"
 "%s"
-msgstr "نام نویسی خود را با کیلک بر تمام کنید"
+msgstr ""
+"نام نویسی خود را با کیلک بر تمام کنید : \n"
+"%s"
 
 #: ../../../model/inscription.model.php:192
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Ou l'annuler en cliquant sur : \n"
 "%s"
-msgstr "با کلیک بر کنسل کنید"
+msgstr ""
+"با کلیک بر کنسل کنید \n"
+"%s"
 
 #: ../../../model/inscription.model.php:196
 #, php-format
 msgid "L'équipe du site %s"
-msgstr ""
+msgstr "تیم سایت %s "
 
 #: ../../../model/inscription.model.php:199
 msgid "L'équipe du site"
-msgstr ""
+msgstr "تیم سایت"
 
 #: ../../../model/inscription.model.php:201
 msgid "Merci de ne pas répondre à ce mail auto généré"
-msgstr ""
+msgstr "به این پست الکترونیکی پاسخ ندهید"
 
 #: ../../../model/statusmanager.model.php:65
 msgid "L'utilisateur n'existe pas"
@@ -348,11 +352,11 @@ msgstr "می خواهید من را ببینید"
 
 #: ../../../pages/home.page.php:33
 msgid "À propos de vous"
-msgstr ""
+msgstr "درباره شما"
 
 #: ../../../pages/home.page.php:34
 msgid "Il semble que vous êtes ici"
-msgstr ""
+msgstr "شما اینجا هستید"
 
 #: ../../../pages/home.page.php:50
 msgid "Veuillez indiquer votre mot de passe."
@@ -373,7 +377,7 @@ msgstr " %s خوش آمدید  "
 
 #: ../../../pages/home.page.php:63
 msgid "Se déconnecter"
-msgstr "خارج شدن"
+msgstr "بستن برنامه"
 
 #: ../../../pages/home.page.php:68
 msgid "Connexion"
@@ -410,14 +414,14 @@ msgstr "یک ایراد ثبت نشده رخ داده است   "
 #: ../../../pages/licenses.page.php:25 ../../../pages/licenses.page.php:29
 #: ../../../pages/phpinfo.page.php:41 ../../../template/otm/footer.tmpl.php:26
 msgid "À propos"
-msgstr ""
+msgstr "درباره"
 
 #: ../../../pages/licenses.page.php:32
 msgid ""
 "LocalizeTeaPot comporte de nombreuses licences sur son contenu et sur ses "
 "sources, vous trouverez dans cette partie du site toutes les informations "
 "relatives à ces licences"
-msgstr "لیسانس و منابع برنامه پافتن دوسته را اینجا بیابید"
+msgstr "لیسانس و منابع برنامه پافتن دوستها را اینجا بیابید"
 
 #: ../../../pages/licenses.page.php:36
 msgid "Serveur"
@@ -440,9 +444,9 @@ msgid "Code source du site"
 msgstr "کد منبع وب سایت"
 
 #: ../../../pages/licenses.page.php:45
-#, fuzzy, php-format
+#, php-format
 msgid "Vous trouverez les sources du serveur à l'adresse suivante : <br />%s"
-msgstr "منابع سرور را اینجا بیابید"
+msgstr "منابع سرور را اینجا بیابید <br />%s"
 
 #: ../../../pages/licenses.page.php:51
 msgid "Client"
@@ -457,14 +461,14 @@ msgid "Code source du client Android"
 msgstr "کد  برنامه آندروید"
 
 #: ../../../pages/licenses.page.php:59
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Vous trouverez les sources du client Android à l'adresse suivante : <br />%s"
-msgstr "منابع برای کاربران آندروید را اینجا بیابید"
+msgstr "منابع برای کاربران آندروید را اینجا بیابید <br />%s"
 
 #: ../../../pages/statuses.page.php:37 ../../../userconfig/menu.conf.php:20
 msgid "Statuts"
-msgstr "جایگاهها"
+msgstr "جایگاه"
 
 #: ../../../pages/statuses.page.php:38
 msgid "Gestion des statuts."
@@ -487,9 +491,9 @@ msgid "Ajouter un statut"
 msgstr "جایگاه خود را مشخص کنید"
 
 #: ../../../template/otm/footer.tmpl.php:34
-#, fuzzy, php-format
+#, php-format
 msgid "Le code source de ce site est sous licence %s et son contenu sous %s"
-msgstr "لیسانس کد برنامه"
+msgstr "  %s و لیسانس محتویات برنامه  %s لیسانس کد برنامه"
 
 #: ../../../userconfig/menu.conf.php:12
 msgid "Mot de passe oublié ?"
@@ -497,7 +501,7 @@ msgstr "رمر را از یاد برده اید"
 
 #: ../../../userconfig/website.conf.php:3
 msgid "Retrouve tous tes amis (pour le thé)"
-msgstr "پیدا کردن دوستها (برای یک چایخوری)"
+msgstr "پیـــدا  کــردن  دوستــــها "
 
 #: ../../../userconfig/website.conf.php:4
 msgid "localiser"

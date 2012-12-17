@@ -41,7 +41,7 @@
 			$qb = $this->em->createQueryBuilder();
 			$qb->select(array('u'))
 				->from('\gnk\database\entities\Users', 'u')
-				->where('u.login = :login');
+				->where('u.login LIKE :login');
 			$qb->setParameters(array('login' => $login));
 			$query = $qb->getQuery();
 			$result = $query->getResult();

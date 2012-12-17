@@ -51,7 +51,7 @@
 			if(isset($_GET['add']) OR isset($_GET['edit'])){
 ?>
 			<ul class="action">
-				<li><a href="<?php echo Page::getLink(); ?>"><?php echo T_('Revenir aux statuts');?></a></li>
+				<li><a href="<?php echo Page::getLink(); ?>"><?php echo Page::getImage('back', T_('Revenir aux statuts'), 16) . ' ' . T_('Revenir aux statuts');?></a></li>
 			</ul>
 <?php
 				$form->render();
@@ -59,7 +59,7 @@
 			else{
 ?>
 			<ul class="action">
-				<li><a href="<?php echo Page::getLink(array('add' => '')) ; ?>"><?php echo T_('Ajouter un statut'); ?></a></li>
+				<li><a href="<?php echo Page::getLink(array('add' => '')) ; ?>"><?php echo Page::getImage('add', T_('Ajouter un statut'), 16) . ' ' . T_('Ajouter un statut');?></a></li>
 			</ul>
 <?php
 			}
@@ -75,12 +75,12 @@
 						<li>
 							
 							<a href="<?php echo Page::getLink(array('edit' => $stat['id']));?>">
-								<?php echo T_('Éditer');?>
+								<?php echo Page::getImage('edit', T_('Éditer'), 16);?>
 							</a>
 						</li>
 						<li>
 							<a href="<?php echo Page::getLink(array('delete' => $stat['id']));?>">
-								<?php echo T_('Supprimer');?>
+								<?php echo Page::getImage('delete', T_('Supprimer'), 16);?>
 							</a>
 						</li>
 					</li>

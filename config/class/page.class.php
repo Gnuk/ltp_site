@@ -396,6 +396,19 @@ class Page{
 		return self::getFilePath() . '/../' . $link;
 	}
 	
+	public static function getUrlImage($name, $size = 16){
+		if(is_file(LINK_IMAGES . $size . '/' . $name)){
+			return self::rewriteLink(LINKR_IMAGES . $size . '/' . $name);
+		}
+		else{
+			return '';
+		}
+	}
+	
+	public static function getImage($name, $text, $size = 16){
+		return '<img src="'.self::getUrlImage($name.'.png', $size).'" alt="'.Page::htmlEncode($text).'" />';
+	}
+	
 	
 	private static function getFilePath(){
 		if(isset($_SERVER['PATH_INFO'])){

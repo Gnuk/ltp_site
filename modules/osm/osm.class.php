@@ -45,12 +45,6 @@ class Osm{
 		$this->marker[]=$marker;
 	}
 	
-	public function getLongitude(){
-		return $this->defaultLon;
-	}
-	public function getLatitude(){
-		return $this->defaultLat;
-	}
 	private static function loadRequired(){
 		if(!self::$loadRequired){
 			Page::setJS(array(
@@ -83,6 +77,8 @@ class Osm{
         var projmerc = new OpenLayers.Projection("EPSG:900913");
         
         var locationPickerPoint = new OpenLayers.Geometry.Point(center.lon, center.lat);
+        document.getElementById("'.$formLat.'").value = dlat;
+		document.getElementById("'.$formLon.'").value = dlon;
         var locationPickerMarkerStyle = {externalGraphic: \''.Page::rewriteLink(Module::getRLink('osm') . 'images/poi.png').'\', graphicHeight: 37, graphicWidth: 32, graphicYOffset: -37, graphicXOffset: -16 };
         var locationPickerVector = new OpenLayers.Feature.Vector(locationPickerPoint, null, locationPickerMarkerStyle);
         locationPickerLayer.addFeatures(locationPickerVector);
@@ -124,6 +120,7 @@ class Osm{
 			$latitude = $this->defaultLat;
 		}
 		$js='
+		function haveMap(dlon, dlat){
 		var options = {
 			controls: [
 			new OpenLayers.Control.Navigation(),
@@ -138,7 +135,7 @@ class Osm{
 		map.addLayer(new OpenLayers.Layer.OSM.TransportMap("Transport"));
 		AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, { \'autoSize\': true});
 		
-		var center = new OpenLayers.LonLat('. $this->defaultLon . ', ' . $this->defaultLat .').transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+		var center = new OpenLayers.LonLat(dlon, dlat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
 		var zoom='. $this->defaultZoom.';
 		';
 		foreach($this->marker AS $number => $marker){
@@ -181,6 +178,24 @@ class Osm{
 			$js .= '
 			map.setCenter (center, zoom);';
 		}
+		$js .= '
+		}
+		
+		function successCallback(position){
+			haveMap(position.coords.longitude , position.coords.latitude);
+		}; 
+		
+		function errorCallback(error){
+			haveMap('. $this->defaultLon . ', ' . $this->defaultLat .');
+		};
+		
+		if(navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {enableHighAccuracy : true, timeout:10000, maximumAge:600000});
+		}
+		else {
+			haveMap('. $this->defaultLon . ', ' . $this->defaultLat .');
+		}
+		';
 		return $js;
 	}
 	

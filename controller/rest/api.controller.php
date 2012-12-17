@@ -19,12 +19,16 @@
 * along with LocalizeTeaPot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace gnk\controller\rest;
 use \gnk\config\Module;
 use \gnk\config\Model;
 use \gnk\config\Page;
 use \gnk\modules\rest\Rest;
 use \gnk\controller\rest\services\User;
+use \gnk\controller\rest\services\Friends;
 use \gnk\controller\rest\services\Statuses;
+use \gnk\controller\rest\services\Status;
+use \gnk\controller\rest\services\Track;
 use \gnk\model\RestManager;
 Module::load('rest');
 Model::load('restmanager');
@@ -45,13 +49,49 @@ class Api extends Rest{
 				case 'statuses':
 					$this->launchStatuses();
 					break;
+				case 'status':
+					$this->launchStatuses();
+					break;
+				case 'friends':
+					$this->launchFriends();
+					break;
+				case 'track':
+					$this->launchTrack();
+					break;
 			}
 		}
 	}
 	
 	public function launchFriends(){
 		if($this->getMethod() == 'get'){
-			# NOT IMPLEMENTED
+			if(isset($this->login) AND isset($this->password)){
+				if(count($user = $this->model->getUserProfile($this->login, $this->password)) == 1){
+					$friends = $this->model->getFriends($user[0]['id']);
+					if(count($friends) > 0){
+						$rest = new Friends($friends);
+						$this->setArray($rest->toArray());
+						$this->get();
+					}
+					else{
+						/**
+						* Aucun contenu
+						*/
+						Page::setHTTPCode(204);
+					}
+				}
+				else{
+					/**
+					* Authentification refusée
+					*/
+					Page::setHTTPCode(403);
+				}
+			}
+			else{
+				/**
+				* Page introuvable
+				*/
+				Page::setHTTPCode(404);
+			}
 		}
 	}
 	
@@ -89,8 +129,12 @@ class Api extends Rest{
 				Page::setHTTPCode(404);
 			}
 		}
-		if($this->getMethod() == 'post'){
+		else if($this->getMethod() == 'post'){
+			Page::setHTTPCode(404);
 			echo 'Pas implémenté';
+		}
+		else{
+			Page::setHTTPCode(404);
 		}
 	}
 	
@@ -100,8 +144,8 @@ class Api extends Rest{
 	public function launchStatuses(){
 		if($this->getMethod() == 'get'){
 			if(isset($this->login) AND isset($this->password)){
-				if(count($this->model->getUserProfile($this->login, $this->password)) == 1){
-					$statuses = $this->model->getStatuses($this->login, $this->password);
+				if(count($user = $this->model->getUserProfile($this->login, $this->password)) == 1){
+					$statuses = $this->model->getStatuses($user[0]['id']);
 					if(count($statuses) > 0){
 						$rest = new Statuses($statuses);
 						$this->setArray($rest->toArray());
@@ -128,8 +172,72 @@ class Api extends Rest{
 				Page::setHTTPCode(404);
 			}
 		}
-		if($this->getMethod() == 'post'){
-			echo 'Pas implémenté';
+		else if($this->getMethod() == 'post'){
+			if(isset($this->login) AND isset($this->password)){
+				if(count($user = $this->model->getUser($this->login, $this->password)) == 1){
+					$this->recieve();
+					$array = $this->getArray();
+					if($status = Status::createStatus($array, $user[0])){
+						$status->save();
+					}
+					else{
+						/**
+						* Requête malformée
+						*/
+						Page::setHTTPCode(400);
+					}
+				}
+				else{
+					/**
+					* Authentification refusée
+					*/
+					Page::setHTTPCode(403);
+				}
+			}
+			else{
+				/**
+				* Page introuvable
+				*/
+				Page::setHTTPCode(404);
+			}
+		}
+		else{
+			Page::setHTTPCode(404);
+		}
+	}
+	
+	public function launchTrack(){
+		if($this->getMethod() == 'put'){
+			if(isset($this->login) AND isset($this->password)){
+				if(count($user = $this->model->getUser($this->login, $this->password)) == 1){
+					$this->recieve();
+					$array = $this->getArray();
+					if($track = Track::createTrack($array, $user[0])){
+						$track->save();
+					}
+					else{
+						/**
+						* Requête malformée
+						*/
+						Page::setHTTPCode(400);
+					}
+				}
+				else{
+					/**
+					* Authentification refusée
+					*/
+					Page::setHTTPCode(403);
+				}
+			}
+			else{
+				/**
+				* Page introuvable
+				*/
+				Page::setHTTPCode(404);
+			}
+		}
+		else{
+			Page::setHTTPCode(404);
 		}
 	}
 }

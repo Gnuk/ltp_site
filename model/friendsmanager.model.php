@@ -45,8 +45,8 @@ class FriendsManager extends Model{
 			->from('\gnk\database\entities\Users', 'u')
 			->leftJoin('u.wantme', 'w')
 			->leftJoin('u.seeme', 's')
-			->where('w.want = :id')
-			->andWhere('s.user IS NULL');
+			->where('w.want = :id');
+// 			->andWhere('s.user IS NULL');
 		$qb->setParameters(array('id' => $this->myId));
 		$query = $qb->getQuery();
 		$result = $query->getResult();
@@ -65,8 +65,8 @@ class FriendsManager extends Model{
 			->from('\gnk\database\entities\Users', 'u')
 			->leftJoin('u.wanted', 'w')
 			->leftJoin('u.isee', 's')
-			->where('w.user = :id')
-			->andWhere('s.user IS NULL');
+			->where('w.user = :id');
+// 			->andWhere('s.user IS NULL');
 		$qb->setParameters(array('id' => $this->myId));
 		$query = $qb->getQuery();
 		$result = $query->getResult();
@@ -181,7 +181,7 @@ class FriendsManager extends Model{
 		$qb = $em->createQueryBuilder();
 		$qb->select(array('u'))
 			->from('\gnk\database\entities\Users', 'u')
-			->where('u.login = :name');
+			->where('u.login LIKE :name');
 		$qb->setParameters(array('name' => $name));
 		$query = $qb->getQuery();
 		$result = $query->getResult();

@@ -28,7 +28,7 @@
 		$controller = new \gnk\controller\StatusManager();
 		$osm = $controller->getMap('status_map');
 		if(isset($_GET['add'])){
-			$form = $controller->getAddForm($osm->getLongitude(), $osm->getLatitude());
+			$form = $controller->getAddForm();
 		}
 		else if(isset($_GET['edit'])){
 			$form = $controller->getEditForm();
@@ -69,7 +69,7 @@
 				<section>
 					<h1><?php echo Page::htmlEncode(date_format($stat['date'], "d/m/Y H:i:s"));?></h1>
 					<p>
-						<?php echo Page::htmlEncode($stat['message']);?>
+						<?php echo Page::htmlBREncode($stat['message']);?>
 					</p>
 					<ul>
 						<li>

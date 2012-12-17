@@ -13,6 +13,7 @@ class Rest{
 	protected $login;
 	protected $password;
 	private $method;
+	
 	public function __construct(){
 		$this->method = strtolower($_SERVER['REQUEST_METHOD']);
 		$this->getUserInfo();
@@ -63,6 +64,18 @@ class Rest{
 		}
 	}
 	
+	public function recieve(){
+		$data = file_get_contents("php://input");
+		if(isset($this->format)){
+			if($this->format == 'json'){
+				$this->recieveJson($data);
+			}
+			else if($this->format == 'xml'){
+				$this->recieveXML($data);
+			}
+		}
+	}
+	
 	private function getJson(){
 		if(count($this->array) > 0){
 			header('Content-Type: application/json');
@@ -72,6 +85,18 @@ class Rest{
 	
 	private function getXML($array){
 		/** TODO */
+	}
+	
+	private function recieveJson($data){
+		$this->array = json_decode($data, true);
+	}
+	
+	private function recieveXML($array){
+		/** TODO */
+	}
+	
+	public function getArray(){
+		return $this->array;
 	}
 }
 

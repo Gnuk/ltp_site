@@ -1,1 +1,4 @@
-			<p><?php echo T_('Copyright © 2012 GNK Website'); ?></p>
+<?php
+	use \gnk\config\Config;
+?>
+	<p><?php echo 'Copyright © '.Config::getYear().' GNK Website'; ?></p>

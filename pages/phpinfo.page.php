@@ -19,5 +19,41 @@
 * along with LocalizeTeaPot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-	phpinfo(INFO_CONFIGURATION);
+	use \gnk\config\Page;
+	use \gnk\config\Template;
+
+	require_once(LINK_LIB.'geoip/geoipcity.inc');
+	require_once(LINK_LIB.'geoip/geoipregionvars.php');
+	$gi = geoip_open(LINK_DATABASE.'geoip/GeoLiteCity.dat',GEOIP_STANDARD);
+	
+	$record = geoip_record_by_addr($gi,$_SERVER['REMOTE_ADDR']);
+	if(!empty($record)){
+		echo $record->country_name . "\n";
+		echo $GEOIP_REGION_NAME[$record->country_code][$record->region] . "\n";
+		echo $record->city . "\n";
+		echo $record->postal_code . "\n";
+		echo $record->latitude . "\n";
+		echo $record->longitude . "\n";
+	}
+
+	geoip_close($gi);
+	$template = new Template();
+	$template->addTitle(T_('À propos'));
+	$template->show('header_full');
+?>
+<input type="text" name="lat" id="lat" /> 
+<input type="text" name="lng" id="lng" />
+<script>
+if(navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position)
+  {
+	document.getElementById("lat").value = position.coords.latitude;
+	document.getElementById("lng").value = position.coords.longitude;
+  });
+} else {
+  alert('geoloc disabled');
+}
+</script>
+<?php
+	$template->show('footer_full');
 ?>

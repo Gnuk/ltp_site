@@ -23,11 +23,13 @@
 	use \gnk\config\Page;
 ?>
 			<p>
-				Copyright © <?php echo Config::getYear(); ?> OpenTeamMap | <a href="<?php echo Page::createPageLink('licenses'); ?>"><?php echo T_('Droits d\'auteur');?></a>
+				Copyright © <?php echo Config::getYear(); ?> OpenTeamMap | <a href="<?php echo Page::createPageLink('licenses'); ?>"><?php echo T_('À propos');?></a>
 			</p>
 			<p>
 				<?php
 					$licence = Config::getLicense();
+					$contentLicence = Config::getContentLicense();
 					$htmlLicense = '<a href="'.$licence['url'].'" title="'.$licence['name'].'">'.$licence['name'].'</a>';
-					echo T_('Le code source de ce site est sous licence') . ' ' . $htmlLicense; ?>
+					$htmlContentLicense = '<a href="'.$contentLicence['url'].'" title="'.$contentLicence['name'].'">'.$contentLicence['name'].'</a>';
+					echo sprintf(T_('Le code source de ce site est sous licence %s et son contenu sous %s'), $htmlLicense, $htmlContentLicense); ?>
 			</p>

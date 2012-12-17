@@ -24,6 +24,7 @@ namespace gnk\model;
 use \gnk\config\Model;
 
 class RestManager extends Model{
+	private $maxRestult = 30;
 		
 	/**
 	* Constructeur
@@ -32,31 +33,64 @@ class RestManager extends Model{
 		parent::__construct();
 	}
 	
-	function getUserProfile($login, $password){
+	public function getUser($login, $password){
 		$qb = $this->em->createQueryBuilder();
-		$qb->select(array('u.id', 'u.login', 'u.language', 'u.mail'))
+		$qb->select(array('u'))
 			->from('\gnk\database\entities\Users', 'u')
 			->where('u.login LIKE ?1')
-			->andWhere('u.password LIKE ?2');
-		$qb->setParameters(array(1 => $login, 2 => sha1($password)));
+			->andWhere('u.active = ?2')
+			->andWhere('u.password LIKE ?3');
+		$qb->setParameters(array(1 => $login, 2 => true, 3 => sha1($password)));
 		$query = $qb->getQuery();
 		$result = $query->getResult();
 		return $result;
 	}
 	
-	function getStatuses($login, $password){
+	public function getUserProfile($login, $password){
+		$qb = $this->em->createQueryBuilder();
+		$qb->select(array('u.id', 'u.login', 'u.language', 'u.mail'))
+			->from('\gnk\database\entities\Users', 'u')
+			->where('u.login LIKE ?1')
+			->andWhere('u.active = ?2')
+			->andWhere('u.password LIKE ?3');
+		$qb->setParameters(array(1 => $login, 2 => true, 3 => sha1($password)));
+		$query = $qb->getQuery();
+		$result = $query->getResult();
+		return $result;
+	}
+	
+	public function getStatuses($id){
 		$qb = $this->em->createQueryBuilder();
 		$qb->select(array('s.longitude', 's.latitude', 's.message', 's.date'))
 			->from('\gnk\database\entities\Statuses', 's')
 			->leftJoin('\gnk\database\entities\Users', 'u', 'WITH', 's.user = u.id')
-			->where('u.login LIKE ?1')
-			->andWhere('u.password LIKE ?2')
+			->where('u = ?1')
 			->orderBy('s.date', 'DESC')
-			->setMaxResults(30);
-		$qb->setParameters(array(1 => $login, 2 => sha1($password)));
+			->setMaxResults($this->maxRestult);
+		$qb->setParameters(array(1 => $id));
 		$query = $qb->getQuery();
 		$result = $query->getResult();
 		return $result;
+	}
+	
+	public function getFriends($id){
+		$qb = $this->em->createQueryBuilder();
+		$qb->select(array('u.id', 'u.login', 'u.longitude', 'u.latitude', 'u.trackdate'))
+			->from('\gnk\database\entities\Users', 'u')
+			->leftJoin('u.wanted', 'w')
+			->leftJoin('u.isee', 's')
+			->where('w.user = :id')
+			->andWhere('w.user = s.seeme')
+			->orderBy('u.login', 'ASC');
+		$qb->setParameters(array('id' => $id));
+		$query = $qb->getQuery();
+		$result = $query->getResult();
+		if(count($result) > 0){
+			return $result;
+ 		}
+ 		else{
+			return array();
+ 		}
 	}
 }
 ?>

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-12 14:18+0100\n"
-"PO-Revision-Date: 2012-12-12 16:16+0100\n"
+"POT-Creation-Date: 2012-12-17 08:45+0100\n"
+"PO-Revision-Date: 2012-12-17 08:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,38 +16,38 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: ./../../..\n"
 
-#: ../../../config/class/config.class.php:198
+#: ../../../config/class/config.class.php:209
 msgid "Locales initialisées"
 msgstr "مقدار دهی اولیه"
 
-#: ../../../config/class/config.class.php:208
+#: ../../../config/class/config.class.php:219
 msgid "Déconnexion"
 msgstr "بیرون آمدن"
 
-#: ../../../config/class/config.class.php:213
+#: ../../../config/class/config.class.php:224
 msgid "Tentative de connexion"
 msgstr "کوشش برای وارد شدن به برنامه"
 
-#: ../../../config/class/config.class.php:217
+#: ../../../config/class/config.class.php:228
 msgid "Anonymous"
 msgstr "ناشناس"
 
-#: ../../../config/class/config.class.php:270
+#: ../../../config/class/config.class.php:281
 msgid "Votre identifiant ou/et votre mot de passe est erroné"
 msgstr "نام کاربری یا رمز ورود نادرست است "
 
-#: ../../../config/class/config.class.php:296
+#: ../../../config/class/config.class.php:307
 #, php-format
 msgid "Fichier %s chargé"
 msgstr " بارشده %s  فایل  "
 
-#: ../../../config/class/config.class.php:300
+#: ../../../config/class/config.class.php:311
 #, php-format
 msgid "Le fichier \"%s\" est absent, peut-être que Doctrine n'est pas installé"
 msgstr ""
 "  مورد نظر در دسترس نیست، ممکن است فایل« دکترین» نصب نشده باشد \"%s\"فایل "
 
-#: ../../../config/class/config.class.php:304
+#: ../../../config/class/config.class.php:315
 #, php-format
 msgid "La bibliothèque Doctrine \"%s\" est absente"
 msgstr " در دسترس نیست \"%s\"  کتابخانه دکتری"
@@ -86,7 +86,7 @@ msgid "Utilisateur : "
 msgstr "کاربر"
 
 #: ../../../controller/friendsmanager.controller.php:53
-#: ../../../pages/home.page.php:40
+#: ../../../pages/home.page.php:43
 msgid "Vous indiquer votre identifiant."
 msgstr "نام کاربری خود را وارد کنید"
 
@@ -95,7 +95,7 @@ msgid "Ajouter"
 msgstr "افزودن"
 
 #: ../../../controller/inscription.controller.php:112
-#: ../../../pages/home.page.php:37
+#: ../../../pages/home.page.php:40
 msgid "Identifiant : "
 msgstr "ورود به سیستم"
 
@@ -128,7 +128,7 @@ msgid "Langue :"
 msgstr "زبان"
 
 #: ../../../controller/inscription.controller.php:144
-#: ../../../pages/home.page.php:44
+#: ../../../pages/home.page.php:47
 msgid "Mot de passe : "
 msgstr "رمز"
 
@@ -214,10 +214,11 @@ msgstr "عوض کردن "
 msgid "Supprimer"
 msgstr "زدودن"
 
-#: ../../../controller/rest/services.class.php:50
+#: ../../../controller/rest/services.class.php:53
 #: ../../../modules/rest/services.class.php:23
 #: ../../../template/default/header.tmpl.php:13
-#: ../../../template/otm/header.tmpl.php:33
+#: ../../../template/otm/header.tmpl.php:34
+#: ../../../template/otm/header.tmpl.php:43
 msgid "Mon site"
 msgstr "سابت من"
 
@@ -273,23 +274,42 @@ msgstr "  %s خوش آمدید به "
 msgid "Bienvenue"
 msgstr "خوش آمدید"
 
-#: ../../../model/inscription.model.php:173
-msgid "Vous pouvez terminer votre inscription en cliquant sur"
+#: ../../../model/inscription.model.php:190
+#, fuzzy, php-format
+msgid ""
+"Vous pouvez terminer votre inscription en cliquant sur : \n"
+"%s"
 msgstr "نام نویسی خود را با کیلک بر تمام کنید"
 
 #: ../../../model/inscription.model.php:192
-msgid "Ou l'annuler en cliquant sur"
+#, fuzzy, php-format
+msgid ""
+"Ou l'annuler en cliquant sur : \n"
+"%s"
 msgstr "با کلیک بر کنسل کنید"
 
-#: ../../../model/statusmanager.model.php:66
+#: ../../../model/inscription.model.php:196
+#, php-format
+msgid "L'équipe du site %s"
+msgstr ""
+
+#: ../../../model/inscription.model.php:199
+msgid "L'équipe du site"
+msgstr ""
+
+#: ../../../model/inscription.model.php:201
+msgid "Merci de ne pas répondre à ce mail auto généré"
+msgstr ""
+
+#: ../../../model/statusmanager.model.php:65
 msgid "L'utilisateur n'existe pas"
 msgstr "کاربر مورد نظر موجود نیست"
 
-#: ../../../modules/osm/osm.class.php:73
+#: ../../../modules/osm/osm.class.php:67
 msgid "Veuillez activer javascript pour voir la carte"
 msgstr "جاوا اسکریپ را فعال کنید"
 
-#: ../../../modules/osm/osm.class.php:79
+#: ../../../modules/osm/osm.class.php:73
 msgid "Sélecteur de localisation"
 msgstr "انتخابگر موقعیت"
 
@@ -326,36 +346,44 @@ msgstr "خودمو قایم کنم"
 msgid "Veulent me voir"
 msgstr "می خواهید من را ببینید"
 
-#: ../../../pages/home.page.php:47
+#: ../../../pages/home.page.php:33
+msgid "À propos de vous"
+msgstr ""
+
+#: ../../../pages/home.page.php:34
+msgid "Il semble que vous êtes ici"
+msgstr ""
+
+#: ../../../pages/home.page.php:50
 msgid "Veuillez indiquer votre mot de passe."
 msgstr "رمز خود را وارد کنید"
 
-#: ../../../pages/home.page.php:50
+#: ../../../pages/home.page.php:53
 msgid "Se connecter"
 msgstr "ورود"
 
-#: ../../../pages/home.page.php:52 ../../../userconfig/menu.conf.php:4
+#: ../../../pages/home.page.php:55 ../../../userconfig/menu.conf.php:4
 msgid "Accueil"
 msgstr "خانه"
 
-#: ../../../pages/home.page.php:59
+#: ../../../pages/home.page.php:62
 #, php-format
 msgid "Bienvenue %s"
 msgstr " %s خوش آمدید  "
 
-#: ../../../pages/home.page.php:60
+#: ../../../pages/home.page.php:63
 msgid "Se déconnecter"
 msgstr "خارج شدن"
 
-#: ../../../pages/home.page.php:65
+#: ../../../pages/home.page.php:68
 msgid "Connexion"
 msgstr "وارد شدن"
 
-#: ../../../pages/home.page.php:82
+#: ../../../pages/home.page.php:85
 msgid "Mot de passe oublié"
 msgstr "رمز را از یاد برده اید؟"
 
-#: ../../../pages/home.page.php:82
+#: ../../../pages/home.page.php:85
 msgid "S'inscrire"
 msgstr "نام نویسی "
 
@@ -380,8 +408,9 @@ msgid "Une erreur non répertoriée est survenue."
 msgstr "یک ایراد ثبت نشده رخ داده است   "
 
 #: ../../../pages/licenses.page.php:25 ../../../pages/licenses.page.php:29
-msgid "Droit d'auteur"
-msgstr "تمام حقوق محفوظ"
+#: ../../../pages/phpinfo.page.php:41 ../../../template/otm/footer.tmpl.php:26
+msgid "À propos"
+msgstr ""
 
 #: ../../../pages/licenses.page.php:32
 msgid ""
@@ -406,29 +435,32 @@ msgstr ""
 "برای منابع گرافیکی و محتویات صفحات استفاده شده است Creative Commons BY SA "
 "3.0  لیسانس "
 
-#: ../../../pages/licenses.page.php:43
-msgid "Vous trouverez les sources du serveur à l'adresse suivante :"
-msgstr "منابع سرور را اینجا بیابید"
-
 #: ../../../pages/licenses.page.php:44
 msgid "Code source du site"
 msgstr "کد منبع وب سایت"
 
-#: ../../../pages/licenses.page.php:49
+#: ../../../pages/licenses.page.php:45
+#, fuzzy, php-format
+msgid "Vous trouverez les sources du serveur à l'adresse suivante : <br />%s"
+msgstr "منابع سرور را اینجا بیابید"
+
+#: ../../../pages/licenses.page.php:51
 msgid "Client"
 msgstr "کاربر"
 
-#: ../../../pages/licenses.page.php:51
+#: ../../../pages/licenses.page.php:53
 msgid "Utilisation de la licence CeCILL v2 pour les sources"
 msgstr "برای منابع CeCILL v2  لیسانس "
 
-#: ../../../pages/licenses.page.php:55
-msgid "Vous trouverez les sources du client Android à l'adresse suivante :"
-msgstr "منابع برای کاربران آندروید را اینجا بیابید"
-
-#: ../../../pages/licenses.page.php:56
+#: ../../../pages/licenses.page.php:58
 msgid "Code source du client Android"
 msgstr "کد  برنامه آندروید"
+
+#: ../../../pages/licenses.page.php:59
+#, fuzzy, php-format
+msgid ""
+"Vous trouverez les sources du client Android à l'adresse suivante : <br />%s"
+msgstr "منابع برای کاربران آندروید را اینجا بیابید"
 
 #: ../../../pages/statuses.page.php:37 ../../../userconfig/menu.conf.php:20
 msgid "Statuts"
@@ -454,16 +486,9 @@ msgstr "برگشت به جایگاهها"
 msgid "Ajouter un statut"
 msgstr "جایگاه خود را مشخص کنید"
 
-#: ../../../template/default/footer.tmpl.php:1
-msgid "Copyright © 2012 GNK Website"
-msgstr "© 2012 GNK Website کپی رایت "
-
-#: ../../../template/otm/footer.tmpl.php:26
-msgid "Droits d'auteur"
-msgstr "تمام حقوق محفوظ"
-
-#: ../../../template/otm/footer.tmpl.php:32
-msgid "Le code source de ce site est sous licence"
+#: ../../../template/otm/footer.tmpl.php:34
+#, fuzzy, php-format
+msgid "Le code source de ce site est sous licence %s et son contenu sous %s"
 msgstr "لیسانس کد برنامه"
 
 #: ../../../userconfig/menu.conf.php:12
@@ -485,3 +510,12 @@ msgstr "کارت"
 #: ../../../userconfig/website.conf.php:4
 msgid "position"
 msgstr "جایگاه"
+
+#~ msgid "Droit d'auteur"
+#~ msgstr "تمام حقوق محفوظ"
+
+#~ msgid "Copyright © 2012 GNK Website"
+#~ msgstr "© 2012 GNK Website کپی رایت "
+
+#~ msgid "Droits d'auteur"
+#~ msgstr "تمام حقوق محفوظ"

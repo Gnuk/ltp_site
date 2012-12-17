@@ -165,12 +165,11 @@
 		private function getMessage(){
 			$global = Config::getWebsiteConfig();
 			if(isset($global['title'])){
-				$this->message = sprintf(T_("Bienvenue sur %s"), $global['title']) . "\n";
+				$this->message = sprintf(T_("Bienvenue sur %s"), $global['title']) . "\n\n";
 			}
 			else{
 				$this->message = T_("Bienvenue") . "\n";
 			}
-			$this->message .= T_('Vous pouvez terminer votre inscription en cliquant sur')."\n";
 			$url = 'http';
 			if(isset($_SERVER['HTTPS'])){
 				$url .= 's';
@@ -188,9 +187,18 @@
 				$url .= '?';
 			}
 			$url .= 'id='.$this->id.'&key='.$this->key;
-			$this->message .= $url . "\n";
-			$this->message .= T_('Ou l\'annuler en cliquant sur') . "\n";
-			$this->message .= $url . '&unsubscribe';
+			$this->message .= sprintf(T_("Vous pouvez terminer votre inscription en cliquant sur : \n%s"), $url);
+			$this->message .= "\n";
+			$this->message .= sprintf(T_("Ou l'annuler en cliquant sur : \n%s"), $url.'&unsubscribe');
+			$this->message .= "\n\n";
+			$this->message .= "---------\n";
+			if(isset($global['title'])){
+				$this->message .= sprintf(T_('L\'équipe du site %s'), $global['title']) . "\n";
+			}
+			else{
+				$this->message .= T_('L\'équipe du site') . "\n";
+			}
+			$this->message .= T_('Merci de ne pas répondre à ce mail auto généré');
 		}
 	}
 ?>

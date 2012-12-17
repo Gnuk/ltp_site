@@ -27,14 +27,32 @@
 	if(Page::haveRights()){
 		$controller = new \gnk\controller\PasswordManager();
 		Module::load('form');
-		$form = new Form('forgetpassword');
-		$form->add('label', 'label_user', 'user', T_('Identifiant :'));
-		$obj = & $form->add('text', 'user');
-		$obj->set_rule(array(
-			'required'  =>  array('error', T_('Veuillez préciser votre identifiant.')),
+		if($controller->isConfirm()){
+			$form = new Form('changepassword');
+			$form->add('label', 'label_pass', 'pass', T_('Mot de passe :'));
+			$obj = & $form->add('password', 'pass');
+			$obj->set_rule(array(
+				'required'  =>  array('error', T_('Veuillez préciser votre nouveau mot de passe.')),
 
-		));
-		$form->add('submit', 'btnsubmit', T_('Récupérer mon mot de passe'));
+			));
+			$form->add('label', 'label_confirmpass', 'confirmpass', T_('Confirmation :'));
+			$obj = & $form->add('password', 'confirmpass');
+			$obj->set_rule(array(
+				'required'  =>  array('error', T_('Veuillez confirmer votre mot de passe.')),
+
+			));
+			$form->add('submit', 'btnsubmit', T_('Définir mon mot de passe'));
+		}
+		else{
+			$form = new Form('forgetpassword');
+			$form->add('label', 'label_user', 'user', T_('Identifiant :'));
+			$obj = & $form->add('text', 'user');
+			$obj->set_rule(array(
+				'required'  =>  array('error', T_('Veuillez préciser votre identifiant.')),
+
+			));
+			$form->add('submit', 'btnsubmit', T_('Récupérer mon mot de passe'));
+		}
 		
 		$template = new Template();
 		$template->addTitle(T_('Mot de passe oublié ?'));

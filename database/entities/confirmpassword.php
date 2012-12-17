@@ -25,4 +25,8 @@ class ConfirmPassword
 	public function getUser(){
 		return $this->user;
 	}
+	
+	public function setUserKey($key){
+		$this->userkey = sha1($key);
+	}
 }

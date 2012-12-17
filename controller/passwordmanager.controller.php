@@ -29,9 +29,20 @@
 			$this->model = new \gnk\model\PasswordManager();
 			$this->sendPassword();
 		}
+		
 		public function sendPassword(){
 			if(isset($_POST['user'])){
 				$this->model->sendPassword($_POST['user']);
+			}
+			return false;
+		}
+		
+		public function isConfirm(){
+			if(
+				isset($_GET['id'])
+				AND isset($_GET['key'])
+			){
+				return $this->model->isConfirm($_GET['id'], $_GET['key']);
 			}
 			return false;
 		}

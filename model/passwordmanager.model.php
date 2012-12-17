@@ -55,6 +55,21 @@
 			}
 		}
 		
+		public function isConfirm($id, $key){
+			$qb = $this->em->createQueryBuilder();
+			$qb->select($qb->expr()->count('c'))
+				->from('\gnk\database\entities\ConfirmPassword', 'c')
+				->where('c.user = :id')
+				->andWhere('c.userkey = :ukey');
+			$qb->setParameters(array('id' => $id, 'ukey' => sha1($key)));
+			$query = $qb->getQuery();
+			$result = $query->getSingleResult();
+			if($result[1] == 1){
+				return true;
+			}
+			return false;
+		}
+		
 		private function getConfirm(){
 			$qb = $this->em->createQueryBuilder();
 			$qb->select(array('c'))
@@ -65,6 +80,7 @@
 			$result = $query->getResult();
 			if(count($result) == 1){
 				$confirm = $result[0];
+				$confirm->setUserKey($this->key);
 			}
 			else{
 				$confirm = new ConfirmPassword($this->user, $this->key);

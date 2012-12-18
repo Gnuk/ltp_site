@@ -46,10 +46,21 @@
 				$friends = $controller->getFriends();
 				if(count($friends) > 0){
 					echo '<table>';
+					echo '<tr>';
+					echo '<th>'.Page::htmlEncode(T_('Nom')).'</th>';
+					echo '<th>'.Page::htmlEncode(T_('Dernier statut')).'</th>';
+					echo '</tr>';
 					foreach($friends AS $nFriend => $friend){
 						echo '<tr>';
-						echo '<td>'.$friend['login'].'</td>';
-						echo '<td>'.$friend['mail'].'</td>';
+						echo '<td>'.Page::htmlEncode($friend['login']).'</td>';
+						echo '<td>';
+						if($friend['status']){
+							echo Page::htmlEncode($friend['status']);
+						}
+						else{
+							echo Page::htmlEncode(T_('Aucun de statut'));
+						}
+						echo '</td>';
 						echo '</tr>';
 					}
 					echo '</table>';
@@ -73,7 +84,7 @@
 					echo '<table>';
 					foreach($wanted AS $nWanted => $want){
 						echo '<tr>';
-						echo '<td>'.$want['login'].'</td>';
+						echo '<td>'.Page::htmlEncode($want['login']).'</td>';
 						echo '</tr>';
 					}
 					echo '</table>';
@@ -94,7 +105,7 @@
 					echo '<table>';
 					foreach($seeme AS $nSeeme => $see){
 						echo '<tr>';
-						echo '<td>'.$see['login'].'</td>';
+						echo '<td>'.Page::htmlEncode($see['login']).'</td>';
 						echo '</tr>';
 					}
 					echo '</table>';

@@ -49,13 +49,20 @@ class Friends extends \gnk\controller\rest\Services{
 		if(count($this->serviceArray) == 0){
 			parent::toArray();
 			foreach($this->friends AS $nFriend => $friend){
-				$this->serviceArray['ltp']['friends'][$nFriend]['username'] = $friend['login'];
-				if(isset($friend['longitude']) AND isset($friend['latitude'])){
-					$this->serviceArray['ltp']['friends'][$nFriend]['lon'] = $friend['longitude'];
-					$this->serviceArray['ltp']['friends'][$nFriend]['lat'] = $friend['latitude'];
+				$longitude = $friend->getLongitude();
+				$latitude = $friend->getLatitude();
+				$statuses = $friend->getStatuses();
+				$trackdate = $friend->getTrackdate();
+				$this->serviceArray['ltp']['friends'][$nFriend]['username'] = $friend->getLogin();
+				if(isset($longitude) AND isset($latitude)){
+					$this->serviceArray['ltp']['friends'][$nFriend]['lon'] = $longitude;
+					$this->serviceArray['ltp']['friends'][$nFriend]['lat'] = $latitude;
 				}
-				if(isset($friend['trackdate'])){
-					$this->serviceArray['ltp']['friends'][$nFriend]['time'] = $friend['trackdate']->format('Y-m-d\TH:i:sP');
+				if(is_object($statuses->last())){
+					$this->serviceArray['ltp']['friends'][$nFriend]['content'] = $statuses->last()->getMessage();
+				}
+				if(isset($trackdate)){
+					$this->serviceArray['ltp']['friends'][$nFriend]['time'] = $trackdate->format('Y-m-d\TH:i:sP');
 				}
 			}
 		}

@@ -97,7 +97,12 @@ class FriendsManager extends Controller{
 		while(isset($list[$i])){
 			$user = $list[$i];
 			$friends[$i]['login'] = $user->getLogin();
-			$friends[$i]['mail'] = $user->getMail();
+			if($user->getStatuses()->isEmpty()){
+				$friends[$i]['status'] = false;
+			}
+			else{
+				$friends[$i]['status'] = $user->getStatuses()->last()->getMessage();
+			}
 			$i++;
 		}
 		return $friends;

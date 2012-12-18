@@ -75,7 +75,7 @@ class RestManager extends Model{
 	
 	public function getFriends($id){
 		$qb = $this->em->createQueryBuilder();
-		$qb->select(array('u.id', 'u.login', 'u.longitude', 'u.latitude', 'u.trackdate'))
+		$qb->select(array('u'))
 			->from('\gnk\database\entities\Users', 'u')
 			->leftJoin('u.wanted', 'w')
 			->leftJoin('u.isee', 's')

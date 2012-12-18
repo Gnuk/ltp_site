@@ -59,7 +59,7 @@ class Users
 	private $isee;
 
 	/**
-	* @OneToMany(targetEntity="Statuses", mappedBy="id")
+	* @OneToMany(targetEntity="Statuses", mappedBy="user")
 	*/
 	private $statuses;
 	
@@ -127,5 +127,17 @@ class Users
 	
 	public function getLanguage(){
 		return $this->language;
+	}
+	
+	public function getLongitude(){
+		return $this->longitude;
+	}
+	
+	public function getLatitude(){
+		return $this->latitude;
+	}
+	
+	public function getTrackDate(){
+		return $this->trackdate;
 	}
 }

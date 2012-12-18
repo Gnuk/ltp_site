@@ -11,7 +11,10 @@ class FriendsWanted
 {
 	/** @Id @ManyToOne(targetEntity="Users") @JoinColumn(name="user_id", referencedColumnName="id") **/
 	protected $user;
-	/** @Id @ManyToOne(targetEntity="Users") @JoinColumn(name="want_id", referencedColumnName="id") **/
+	/** @Id
+	* @ManyToOne(targetEntity="Users")
+	* @JoinColumn(name="want_id", referencedColumnName="id")
+	*/
 	protected $want;
 	
 	public function __construct($user, $want){

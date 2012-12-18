@@ -57,6 +57,7 @@
 					echo '<tr>';
 					echo '<th>'.Page::htmlEncode(T_('Nom')).'</th>';
 					echo '<th>'.Page::htmlEncode(T_('Dernier statut')).'</th>';
+					echo '<th>'.Page::htmlEncode(T_('Actions')).'</th>';
 					echo '</tr>';
 					foreach($friends AS $nFriend => $friend){
 						echo '<tr>';
@@ -68,6 +69,9 @@
 						else{
 							echo Page::htmlEncode(T_('Aucun de statut'));
 						}
+						echo '</td>';
+						echo '<td>';
+						echo '<a href="'. Page::getLink(array('delWant' => $friend['id'])) .'">'.Page::getImage('delete', T_('Supprimer de ma liste'), 16) . '</a>';
 						echo '</td>';
 						echo '</tr>';
 					}
@@ -90,9 +94,16 @@
 				$wanted = $controller->getWanted();
 				if(count($wanted) > 0){
 					echo '<table>';
+					echo '<tr>';
+					echo '<th>'.Page::htmlEncode(T_('Nom')).'</th>';
+					echo '<th>'.Page::htmlEncode(T_('Actions')).'</th>';
+					echo '</tr>';
 					foreach($wanted AS $nWanted => $want){
 						echo '<tr>';
 						echo '<td>'.Page::htmlEncode($want['login']).'</td>';
+						echo '<td>';
+						echo '<a href="'. Page::getLink(array('delWant' => $want['id'])) .'">'.Page::getImage('delete', T_('Supprimer de ma liste'), 16) . '</a>';
+						echo '</td>';
 						echo '</tr>';
 					}
 					echo '</table>';

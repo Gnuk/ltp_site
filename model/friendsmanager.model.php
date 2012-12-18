@@ -39,16 +39,18 @@ class FriendsManager extends Model{
 	}
 	
 	public function getWantMe(){
-		$em = $this->em;
-		$qb = $em->createQueryBuilder();
+		$seer = $this->getSeerId();
+		$qb = $this->em->createQueryBuilder();
 		$qb->select(array('u'))
 			->from('\gnk\database\entities\Users', 'u')
 			->leftJoin('u.wantme', 'w')
-			->leftJoin('u.seeme', 's')
 			->where('w.want = :id');
-// 			->andWhere('s.user IS NULL');
+		if(count($seer) > 0){
+			$qb->andWhere($qb->expr()->notIn('w.want', $seer));
+		}
 		$qb->setParameters(array('id' => $this->myId));
 		$query = $qb->getQuery();
+ 		$query->setParameters(array('id' => $this->myId));
 		$result = $query->getResult();
 		if(count($result) > 0){
 			return $result;
@@ -58,15 +60,28 @@ class FriendsManager extends Model{
  		}
 	}
 	
+	private function getSeerId(){
+		$res = array();
+		$qb = $this->em->createQueryBuilder();
+		$qb->select(array('s'))
+			->from('\gnk\database\entities\FriendsSeeMe', 's')
+			->where('s.user = :id');
+		$query = $qb->getQuery();
+ 		$query->setParameters(array('id' => $this->myId));
+ 		$result = $query->getResult();
+ 		foreach($result AS $nResu => $resu){
+			$res[] = $resu->getUser()->getId();
+ 		}
+ 		return $res;
+	}
+	
 	public function getWanted(){
 		$em = $this->em;
 		$qb = $em->createQueryBuilder();
 		$qb->select(array('u'))
 			->from('\gnk\database\entities\Users', 'u')
 			->leftJoin('u.wanted', 'w')
-			->leftJoin('u.isee', 's')
 			->where('w.user = :id');
-// 			->andWhere('s.user IS NULL');
 		$qb->setParameters(array('id' => $this->myId));
 		$query = $qb->getQuery();
 		$result = $query->getResult();

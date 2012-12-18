@@ -10,9 +10,15 @@ require_once(realpath(dirname(__FILE__)) . '/users.php');
 */
 class FriendsSeeMe
 {
-	/** @Id @ManyToOne(targetEntity="Users") @JoinColumn(name="user_id", referencedColumnName="id") **/
+	/**
+	* @Id
+	* @ManyToOne(targetEntity="Users")
+	* @JoinColumn(name="user_id", referencedColumnName="id") **/
 	protected $user;
-	/** @Id @ManyToOne(targetEntity="Users") @JoinColumn(name="seeme_id", referencedColumnName="id") **/
+	/**
+	* @Id
+	* @ManyToOne(targetEntity="Users") @JoinColumn(name="seeme_id", referencedColumnName="id")
+	*/
 	protected $seeme;
 	
 	public function __construct($user, $seeme){

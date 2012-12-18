@@ -105,6 +105,7 @@ class FriendsManager extends Controller{
 			$user = $list[$i];
 			$longitude = $user->getLongitude();
 			$latitude = $user->getLatitude();
+			$friends[$i]['id'] = $user->getId();
 			$friends[$i]['login'] = $user->getLogin();
 			if(isset($longitude) AND isset($latitude)){
 				$friends[$i]['lon'] = $longitude;
@@ -156,6 +157,7 @@ class FriendsManager extends Controller{
 		
 		while(isset($list[$i])){
 			$user = $list[$i];
+			$friends[$i]['id'] = $user->getId();
 			$friends[$i]['login'] = $user->getLogin();
 			$i++;
 		}
@@ -169,6 +171,7 @@ class FriendsManager extends Controller{
 		
 		while(isset($list[$i])){
 			$user = $list[$i];
+			$friends[$i]['id'] = $user->getId();
 			$friends[$i]['login'] = $user->getLogin();
 			$i++;
 		}

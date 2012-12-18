@@ -97,11 +97,11 @@ class FriendsManager extends Controller{
 		while(isset($list[$i])){
 			$user = $list[$i];
 			$friends[$i]['login'] = $user->getLogin();
-			if($user->getStatuses()->isEmpty()){
-				$friends[$i]['status'] = false;
+			if(is_object($user->getStatuses()->last())){
+				$friends[$i]['status'] = $user->getStatuses()->last()->getMessage();
 			}
 			else{
-				$friends[$i]['status'] = $user->getStatuses()->last()->getMessage();
+				$friends[$i]['status'] = false;
 			}
 			$i++;
 		}

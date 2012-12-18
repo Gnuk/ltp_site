@@ -27,14 +27,12 @@
 	use \gnk\config\Template;
 	use \gnk\modules\form\Form;
 	if(Page::haveRights()){
-		if(Config::isUser()){
-			Module::load('osm');
-			$osm = new Osm('carte');
-			$markers = new Marker(T_('À propos de vous'));
-			$markers->add(null, null, '<p>'.Page::htmlBREncode(T_('Il semble que vous êtes ici')).'</p>');
-			$osm->addMarker($markers);
-			$osm->setJS();
-		}
+		Module::load('osm');
+		$osm = new Osm('carte');
+		$markers = new Marker(T_('À propos de vous'));
+		$markers->add(null, null, '<p>'.Page::htmlBREncode(T_('Il semble que vous êtes ici')).'</p>');
+		$osm->addMarker($markers);
+		$osm->setJS();
 		Module::load('form');
 		$form = new Form('form', $method = 'POST', $action = Page::getLink(array('connection' => null), true, false));
 		$form->add('label', 'label_login', 'login', T_('Identifiant : '));
@@ -65,7 +63,7 @@
 		}
 		else{
 ?>
-				<h1><?php echo T_('Connexion');?></h1>
+				<h1><?php echo T_('Bienvenue sur LocalizeTeaPot');?></h1>
 <?php
 			if($form->validate()){
 				if(count($info = Config::getInfo())){ ?>
@@ -79,12 +77,40 @@
 <?php
 				}
 			}
+?>
+				<section id="homeDescription">
+					<div id="homePhone">
+						<?php $osm->showDiv() ?>
+					</div>
+					<div id="homeDesc">
+						<p>
+<?php
+			echo T_('LoacalizeTeaPot est une application qui vous permet localiser tout vos amis, partout dans le monde, en quelques clics! 
+Envie de retrouver vos amis autour d’une bonne tasse de thé? Connectez vous dès maintenant pour voir qui est proche de vous!');
+?>
+						</p>
+						<p>
+<?php
+			echo sprintf(T_('Pas encore inscrit? Créez votre compte via l’onglet Inscription ci-dessus ou en cliquant juste %sici%s !'), '<a href="'. Page::createPageLink('inscription').'">', '</a>');
+?>
+						</p>
+						<p>
+<?php
+
+			echo T_('Vous voulez emportez vos amis partout avec vous? Téléchargez l’application Android, LocalizeTeaPot sans plus tarder !');
+?>
+						</p>
+					</div>
+				</section>
+				<section id="homeLogin">
+<?php
 			$form->render();
 ?>
-				<p>
-					<a href="<?php echo Page::createPageLink('forgetpassword'); ?>" title="<?php echo Page::htmlEncode(T_('Mot de passe oublié')); ?>"><?php echo Page::htmlEncode(T_('Mot de passe oublié')); ?></a> |
-					<a href="<?php echo Page::createPageLink('inscription'); ?>" title="<?php echo Page::htmlEncode(T_('S\'inscrire')); ?>"><?php echo Page::htmlEncode(T_('S\'inscrire')); ?></a>
-				</p>
+					<p>
+						<a href="<?php echo Page::createPageLink('forgetpassword'); ?>" title="<?php echo Page::htmlEncode(T_('Mot de passe oublié')); ?>"><?php echo Page::htmlEncode(T_('Mot de passe oublié')); ?></a> |
+						<a href="<?php echo Page::createPageLink('inscription'); ?>" title="<?php echo Page::htmlEncode(T_('S\'inscrire')); ?>"><?php echo Page::htmlEncode(T_('S\'inscrire')); ?></a>
+					</p>
+				</section>
 <?php
 		}
 		if(Config::isUser()){

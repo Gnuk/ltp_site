@@ -41,6 +41,20 @@
 ?>
 	<article>
 		<h1><?php echo T_("Mes statuts");?></h1>
+<?php
+
+			if(isset($_GET['delete']) AND !isset($_GET['confirm'])){
+?>
+		<div class="delete">
+			<p>Voulez-vous supprimer ce statut ?</p>
+			<ul>
+				<li><a href="<?php echo Page::getLink().'?delete='.$_GET['delete'] . '&amp;confirm'; ?>">Oui</a></li>
+				<li><a href="<?php echo Page::getLink() ;?>">Non</a></li>
+			</ul>
+		</div>
+<?php
+			}
+?>
 		<div id="status">
 <?php
 			$osm->showDiv();
@@ -63,7 +77,7 @@
 			</ul>
 <?php
 			}
-			if(!isset($_GET['add']) AND !isset($_GET['edit'])){
+			if(!isset($_GET['edit'])){
 				foreach($controller->getStatuses() as $nStatus => $stat){
 ?>
 				<section>

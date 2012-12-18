@@ -37,6 +37,7 @@
 			$this->model = new \gnk\model\StatusManager();
 			$this->addStatus();
 			$this->updateStatus();
+			$this->delStatus();
 			$this->statuses = $this->model->getStatuses();
 		}
 		public function getMap($divName='carte'){
@@ -146,6 +147,15 @@
 				return $this->add;
 			}
 			return false;
+		}
+		
+		public function delStatus(){
+			if(
+				isset($_GET['delete'])
+				AND isset($_GET['confirm'])
+			){
+				return $this->model->delStatus($_GET['delete']);
+			}
 		}
 	}
 ?>

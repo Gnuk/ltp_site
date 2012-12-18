@@ -121,5 +121,26 @@
 			}
 			return false;
 		}
+		
+		public function delStatus($id){
+			$this->getUser();
+			$qb = $this->em->createQueryBuilder();
+			$qb->select(array('s'))
+				->from('\gnk\database\entities\Statuses', 's')
+				->where('s.id = :id')
+				->andWhere('s.user = :user');
+			$qb->setParameters(array('id' => $id, 'user' => $this->user));
+			$query = $qb->getQuery();
+			$result = $query->getResult();
+			if(count($result) == 1){
+				$this->em->remove($result[0]);
+				$this->em->flush();
+				return true;
+			}
+			else{
+				$this->addError(T_('Impossible de supprimer ce message'));
+				return false;
+			}
+		}
 	}
 ?>

@@ -7,12 +7,52 @@ body
 	font-size:75%;
 	line-height:1.5;
 	background-color: #DDDDDD;
+	padding: 0px;
+	margin: 0px;
 }
 
 body>header>h1>img{
 	display: inline-block;
 	vertical-align: bottom;
 }
+
+.delete{
+	text-align: center;
+	background-color: #333;
+	border-radius: 5px;
+	color: #fff;
+	box-shadow: inset 0px 0px 5px #fff, 0px 0px 5px rgba(0,0,0,0.5);
+ 	border: 2px solid #fff;
+	margin: 10px;
+}
+
+.delete>p{
+	text-align: center;
+	margin: 0px;
+}
+
+.delete>ul{
+	display:inline-block;
+	margin: 0px;
+	padding: 0px;
+}
+.delete>ul>li{
+	list-style-type: none;
+	display: inline-block;
+}
+.delete>ul>li>a{
+	color: #fff;
+	display: inline-block;
+	padding: 2px;
+	margin: 5px;
+	border: 1px solid transparent;
+}
+.delete>ul>li>a:hover{
+	background-color: #555;
+	border-radius: 2px;
+	border: 1px solid #fff;
+}
+
 
 #sitetitleinfo{
 	display: inline-block;
@@ -39,10 +79,12 @@ body>header>h1>img{
 }
 
 #menu{
-	margin: 0px -10px;
+/* 	margin: 0px -10px; */
 	padding: 0px 5px;
 	background: #2565d0;
 	border-radius: 5px 5px 0px 0px;
+	border: 1px solid #acf;
+	box-shadow: inset 0px 0px 5px #acf, 0px 0px 10px rgba(0,0,0,0.5);
 }
 
 #menu>ul>li>a.active{
@@ -114,10 +156,11 @@ div#corps, body>header, body>footer{
 	margin: auto;
 	padding: 0px;
 }
+
 div#corps{
 	background-color: #fff;
 	padding: 10px;
-	border-radius: 0px 0px 10px 10px;
+	border-radius: 10px;
 	box-shadow:0px 0px 5px 5px rgba(0,0,0,0.2);
 }
 

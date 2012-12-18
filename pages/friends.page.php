@@ -25,8 +25,13 @@
 	
 	if(Page::haveRights(3)){
 		$controller = new \gnk\controller\FriendsManager();
+		
+		$osm = $controller->getMapFriends('friendmap');
+		
 		$formWant = $controller->getForm('want');
 		$formSeeMe = $controller->getForm('seeme');
+		
+		
 		$template = new Template();
 		$template->addTitle(T_('Amis'));
 		$template->setDescription(T_('Gestion des amis.'));
@@ -40,6 +45,9 @@
 					Page::displayErrors($errors);
 				}
 			?>
+		<?php
+			$osm->showDiv();
+		?>
 		<section id="myfriends">
 			<h2><?php echo T_('Mes Amis') ;?></h2>
 			<?php

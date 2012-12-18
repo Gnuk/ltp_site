@@ -80,7 +80,8 @@
 			if(!isset($_GET['edit'])){
 				$statusesList = $controller->getStatuses();
 				if(isset($_GET['add'])){
-					$stat = $statusesList[0];
+					if(isset($statusesList[0])){
+						$stat = $statusesList[0];
 ?>
 				<section>
 					<h1><?php echo Page::htmlEncode(date_format($stat['date'], "d/m/Y H:i:s"));?></h1>
@@ -102,6 +103,7 @@
 					</li>
 				</section>
 <?php
+					}
 				}
 				else{
 					foreach($controller->getStatuses() as $nStatus => $stat){

@@ -23,6 +23,8 @@ use \gnk\config\Page;
 use \gnk\config\Controller;
 use \gnk\config\Module;
 use \gnk\modules\form\Form;
+use \gnk\modules\osm\Osm;
+use \gnk\modules\osm\Marker;
 
 /**
 * Contrôleur des amis
@@ -35,6 +37,7 @@ class FriendsManager extends Controller{
 		$this->loadModel('friendsmanager');
  		$this->model = new \gnk\model\FriendsManager();
 		$this->addFriend();
+		$this->haveFriends();
 // 		echo '<pre>';
 // 		$this->model->getFriends();
 // 		echo '</pre>';
@@ -90,13 +93,23 @@ class FriendsManager extends Controller{
 	* @param $friends la liste des contacts de l'utilisateur
 	*/
 	public function getFriends(){
+		return $this->friends;
+	}
+	
+	private function haveFriends(){
 		$list = $this->model->getFriends();
 		$i=0;
 		$friends = array();
 		
 		while(isset($list[$i])){
 			$user = $list[$i];
+			$longitude = $user->getLongitude();
+			$latitude = $user->getLatitude();
 			$friends[$i]['login'] = $user->getLogin();
+			if(isset($longitude) AND isset($latitude)){
+				$friends[$i]['lon'] = $longitude;
+				$friends[$i]['lat'] = $latitude;
+			}
 			if(is_object($user->getStatuses()->last())){
 				$friends[$i]['status'] = $user->getStatuses()->last()->getMessage();
 			}
@@ -105,7 +118,35 @@ class FriendsManager extends Controller{
 			}
 			$i++;
 		}
-		return $friends;
+		$this->friends = $friends;
+	}
+	
+	public function getMapFriends($name){
+		$isFriend = false;
+		Module::load('osm');
+		$osm = new Osm($name);
+		$marker = new Marker(T_('Mes amis'));
+		foreach($this->friends AS $nFriend => $friend){
+			if(
+				isset($friend['lon'])
+				AND isset($friend['lat'])
+			){
+				$isFriend = true;
+				if($friend['status']){
+					$html = '<h1>'.Page::htmlBREncode($friend['login']).'</h1>';
+					$html .= '<p>'.Page::htmlBREncode($friend['status']).'</p>';
+					$marker->add($friend['lon'], $friend['lat'], $html);
+				}
+				else{
+					$marker->add($friend['lon'], $friend['lat']);
+				}
+			}
+		}
+		if($isFriend){
+			$osm->addMarker($marker);
+		}
+		$osm->setJS();
+		return $osm;
 	}
 	
 	public function getWanted(){

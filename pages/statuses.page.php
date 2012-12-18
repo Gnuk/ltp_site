@@ -78,7 +78,9 @@
 <?php
 			}
 			if(!isset($_GET['edit'])){
-				foreach($controller->getStatuses() as $nStatus => $stat){
+				$statusesList = $controller->getStatuses();
+				if(isset($_GET['add'])){
+					$stat = $statusesList[0];
 ?>
 				<section>
 					<h1><?php echo Page::htmlEncode(date_format($stat['date'], "d/m/Y H:i:s"));?></h1>
@@ -100,6 +102,31 @@
 					</li>
 				</section>
 <?php
+				}
+				else{
+					foreach($controller->getStatuses() as $nStatus => $stat){
+?>
+				<section>
+					<h1><?php echo Page::htmlEncode(date_format($stat['date'], "d/m/Y H:i:s"));?></h1>
+					<p>
+						<?php echo Page::htmlBREncode($stat['message']);?>
+					</p>
+					<ul>
+						<li>
+							
+							<a href="<?php echo Page::getLink(array('edit' => $stat['id']));?>">
+								<?php echo Page::getImage('edit', T_('Éditer'), 16);?>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo Page::getLink(array('delete' => $stat['id']));?>">
+								<?php echo Page::getImage('delete', T_('Supprimer'), 16);?>
+							</a>
+						</li>
+					</li>
+				</section>
+<?php
+					}
 				}
 			}
 		?>

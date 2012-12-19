@@ -24,7 +24,7 @@ class Statuses
     protected $message;
 	/** @Column(type="datetime") **/
     protected $date;
-    /** @ManyToOne(targetEntity="Users") @JoinColumn(name="user_id", referencedColumnName="id") **/
+    /** @ManyToOne(targetEntity="Users") @JoinColumn(name="user_id", referencedColumnName="id", nullable=false) **/
     protected $user;
     
     public function __construct(Users $user, $message, $longitude, $latitude)

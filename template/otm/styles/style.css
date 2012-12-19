@@ -79,7 +79,6 @@ body>header>h1>img{
 }
 
 #menu{
-/* 	margin: 0px -10px; */
 	padding: 0px 15px;
 	margin: 0px -10px;
 	background: #2565d0;
@@ -270,6 +269,7 @@ ul.form_error, ul.form_info, ul.form_valid{
 	width: 450px;
 }
 
+
 #statuses{
 	display: inline-block;
 	width: 450px;
@@ -313,6 +313,43 @@ ul.form_error, ul.form_info, ul.form_valid{
 }
 #status li{
 	display: inline-block;
+}
+
+#friends_map{
+	vertical-align: bottom;
+	display: inline-block;
+	height: 350px;
+	width: 460px;
+}
+
+#friendsMapzone{
+	vertical-align: bottom;
+	display: inline-block;
+}
+
+#myfriends, #friendsiwant, #friendsseeme, #friendswantme{
+	vertical-align: top;
+	display: inline-block;
+	width: 450px;
+	margin: 5px 10px;
+}
+
+#friends table{
+	width: 100%;
+	text-align: center;
+}
+
+#friends table th{
+	background-color: #2565d0;
+	color: #fff;
+}
+
+#friends table{
+	border-collapse: collapse;
+	border: solid 2px #2565d0;
+}
+#friends table td{
+	border:solid 1px #2565d0;
 }
 
 /* CSS Liens du site */

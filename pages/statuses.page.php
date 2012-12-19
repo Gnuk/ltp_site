@@ -46,9 +46,9 @@
 			if(isset($_GET['delete']) AND !isset($_GET['confirm'])){
 ?>
 		<div class="delete">
-			<p>Voulez-vous supprimer ce statut ?</p>
+			<p><?php echo T_('Voulez-vous supprimer ce statut ?'); ?></p>
 			<ul>
-				<li><a href="<?php echo Page::getLink().'?delete='.$_GET['delete'] . '&amp;confirm'; ?>">Oui</a></li>
+				<li><a href="<?php echo Page::getLink(array('delete' => $_GET['delete'], 'confirm' => '')); ?>">Oui</a></li>
 				<li><a href="<?php echo Page::getLink() ;?>">Non</a></li>
 			</ul>
 		</div>

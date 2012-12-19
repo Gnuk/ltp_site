@@ -26,7 +26,7 @@
 	if(Page::haveRights(3)){
 		$controller = new \gnk\controller\FriendsManager();
 		
-		$osm = $controller->getMapFriends('friendmap');
+		$osm = $controller->getMapFriends('friends_map');
 		
 		$formWant = $controller->getForm('want');
 		$formSeeMe = $controller->getForm('seeme');
@@ -38,16 +38,38 @@
 		$template->addKeywords(array(T_('amis')));
 		$template->show('header_full');
 ?>
-	<article>
+	<article id="friends">
 		<h1><?php echo T_("Amis");?></h1>
-			<?php
-				if(count($errors = $controller->getModelErrors()) > 0){
+<?php
+			if(count($errors = $controller->getModelErrors()) > 0){
 					Page::displayErrors($errors);
+			}
+			if((isset($_GET['delWant']) OR isset($_GET['delSee'])) AND !isset($_GET['confirm'])){
+				if(isset($_GET['delWant'])){
+					$delAction = $_GET['delWant'];
+					$delText = T_('Voulez-vous supprimer cette personne de votre liste d\'amis ?');
 				}
-			?>
+				else{
+					$delAction = $_GET['delSee'];
+					$delText = T_('Voulez-vous empêcher cette personne de vous voir ?');
+				}
+?>
+		<div class="delete">
+			<p><?php echo $delText;?></p>
+			<ul>
+				<li><a href="<?php echo Page::getLink(array('delete' => $delAction, 'confirm' => '')); ?>">Oui</a></li>
+				<li><a href="<?php echo Page::getLink() ;?>">Non</a></li>
+			</ul>
+		</div>
+<?php
+			}
+?>
+		<section id="friendsMapzone">
+		<h2><?php echo T_("La carte");?></h1>
 		<?php
 			$osm->showDiv();
 		?>
+		</section>
 		<section id="myfriends">
 			<h2><?php echo T_('Mes Amis') ;?></h2>
 			<?php
@@ -87,7 +109,7 @@
 			?>
 		</section>
 		<section id="friendsiwant">
-			<h2><?php echo T_('Demandes en cours') ;?></h2>
+			<h2><?php echo T_('Mes demandes en cours') ;?></h2>
 			<?php
 				$formWant->render();
 				
@@ -111,12 +133,16 @@
 			?>
 		</section>
 		<section id="friendsseeme">
-			<h2><?php echo T_('Me voient') ;?></h2>
+			<h2><?php echo T_('Ceux qui me voient') ;?></h2>
 			<?php
 				$formSeeMe->render();
 				$seeme = $controller->getSeeMe();
 				if(count($seeme) > 0){
 					echo '<table>';
+					echo '<tr>';
+					echo '<th>'.Page::htmlEncode(T_('Nom')).'</th>';
+					echo '<th>'.Page::htmlEncode(T_('Actions')).'</th>';
+					echo '</tr>';
 					foreach($seeme AS $nSeeme => $see){
 						echo '<tr>';
 						echo '<td>'.Page::htmlEncode($see['login']).'</td>';
@@ -129,21 +155,29 @@
 				}
 			?>
 		</section>
-		<section id="friendswantme">
-			<h2><?php echo T_('Veulent me voir') ;?></h2>
 			<?php
 				$wantme = $controller->getWantMe();
-				if(count($seeme) > 0){
+				if(count($wantme) > 0){
+?>
+		<section id="friendswantme">
+			<h2><?php echo T_('Ceux qui veulent me voir') ;?></h2>
+<?php
 					echo '<table>';
+					echo '<tr>';
+					echo '<th>'.Page::htmlEncode(T_('Nom')).'</th>';
+					echo '<th>'.Page::htmlEncode(T_('Actions')).'</th>';
+					echo '</tr>';
 					foreach($wantme AS $nWantm => $wantm){
 						echo '<tr>';
 						echo '<td>'.Page::htmlEncode($wantm['login']).'</td>';
 						echo '</tr>';
 					}
 					echo '</table>';
+?>
+		</section>
+<?php
 				}
 			?>
-		</section>
 	</article>
 <?php
 		$template->show('footer_full');

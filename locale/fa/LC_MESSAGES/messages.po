@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-19 13:43+0100\n"
-"PO-Revision-Date: 2012-12-19 13:45+0100\n"
+"PO-Revision-Date: 2012-12-19 13:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -537,7 +537,7 @@ msgstr "بستن برنامه"
 
 #: ../../../pages/home.page.php:66
 msgid "Bienvenue sur LocalizeTeaPot"
-msgstr "  %s خوش آمدید به "
+msgstr " LocalizeTeaPot به برنامه پیدا کردن دوستها حوش آمدید"
 
 #: ../../../pages/home.page.php:100
 msgid "Vous êtes maintenant sur l'interface utilisateur de LocalizeTeaPot"

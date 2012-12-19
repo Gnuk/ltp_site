@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-17 08:47+0100\n"
-"PO-Revision-Date: 2012-12-17 09:30+0100\n"
+"POT-Creation-Date: 2012-12-19 11:10+0100\n"
+"PO-Revision-Date: 2012-12-19 13:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -81,21 +81,25 @@ msgstr "404 ایراد "
 msgid "Veuillez créer une page error404.html à la racine"
 msgstr " درست کنید، ممنون error404.html فایل "
 
-#: ../../../controller/friendsmanager.controller.php:50
+#: ../../../controller/friendsmanager.controller.php:51
 msgid "Utilisateur : "
 msgstr "کاربر"
 
-#: ../../../controller/friendsmanager.controller.php:53
-#: ../../../pages/home.page.php:43
+#: ../../../controller/friendsmanager.controller.php:54
+#: ../../../pages/home.page.php:41
 msgid "Vous indiquer votre identifiant."
 msgstr "نام کاربری خود را وارد کنید"
 
-#: ../../../controller/friendsmanager.controller.php:56
+#: ../../../controller/friendsmanager.controller.php:57
 msgid "Ajouter"
 msgstr "افزودن"
 
+#: ../../../controller/friendsmanager.controller.php:127
+msgid "Mes amis"
+msgstr "دوستهای من"
+
 #: ../../../controller/inscription.controller.php:112
-#: ../../../pages/home.page.php:40
+#: ../../../pages/home.page.php:38
 msgid "Identifiant : "
 msgstr "ورود به سیستم"
 
@@ -128,7 +132,7 @@ msgid "Langue :"
 msgstr "زبان"
 
 #: ../../../controller/inscription.controller.php:144
-#: ../../../pages/home.page.php:47
+#: ../../../pages/home.page.php:45
 msgid "Mot de passe : "
 msgstr "رمز"
 
@@ -138,6 +142,8 @@ msgstr "رمز را وارد کنید"
 
 #: ../../../controller/inscription.controller.php:150
 #: ../../../controller/inscription.controller.php:152
+#: ../../../pages/forgetpassword.page.php:41
+#: ../../../pages/forgetpassword.page.php:43
 #, php-format
 msgid "Votre mot passe doit être composé de %d à %d caractères."
 msgstr "باشد %d تا %d رمز شما باید ترکیبی از "
@@ -147,6 +153,7 @@ msgid "Confirmation de mot de passe :"
 msgstr "تایید رمز عبور"
 
 #: ../../../controller/inscription.controller.php:158
+#: ../../../pages/forgetpassword.page.php:47
 msgid "Les mots de passes ne correspondent pas."
 msgstr "رمزهای عبور با هم مطابقت ندارند"
 
@@ -166,51 +173,51 @@ msgstr "کاراکترها نادرست هستند"
 msgid "S'enregistrer"
 msgstr "ذخیره"
 
-#: ../../../controller/statusmanager.controller.php:63
-#: ../../../controller/statusmanager.controller.php:92
+#: ../../../controller/statusmanager.controller.php:64
+#: ../../../controller/statusmanager.controller.php:94
 msgid "Message :"
 msgstr "پیام"
 
-#: ../../../controller/statusmanager.controller.php:66
-#: ../../../controller/statusmanager.controller.php:95
+#: ../../../controller/statusmanager.controller.php:67
+#: ../../../controller/statusmanager.controller.php:100
 msgid "Vous devez ajouter un message."
 msgstr "شما باید یک پیام اضافه کنید"
 
-#: ../../../controller/statusmanager.controller.php:70
+#: ../../../controller/statusmanager.controller.php:71
 msgid "Longitude :"
 msgstr "درازا و پهنای جغرافیایی"
 
-#: ../../../controller/statusmanager.controller.php:73
+#: ../../../controller/statusmanager.controller.php:74
 msgid "Vous devez indiquer une longitude."
 msgstr "شما  باید یک درازا  وارد کنید"
 
-#: ../../../controller/statusmanager.controller.php:77
+#: ../../../controller/statusmanager.controller.php:78
 msgid "Latitude :"
 msgstr "پهنا"
 
-#: ../../../controller/statusmanager.controller.php:80
+#: ../../../controller/statusmanager.controller.php:81
 msgid "Vous devez indiquer une latitude."
 msgstr "شما  باید یک پهنا  وارد کنید"
 
-#: ../../../controller/statusmanager.controller.php:84
+#: ../../../controller/statusmanager.controller.php:85
 msgid "Indiquer le statut"
 msgstr "جایگاه  خود را مشخص کنید"
 
-#: ../../../controller/statusmanager.controller.php:99
+#: ../../../controller/statusmanager.controller.php:104
 msgid "Modifier le statut"
 msgstr "جابجا کردن جایگاه"
 
-#: ../../../controller/statusmanager.controller.php:104
+#: ../../../controller/statusmanager.controller.php:109
 msgid "Statuses"
 msgstr "جایگاه"
 
-#: ../../../controller/statusmanager.controller.php:106
-#: ../../../pages/statuses.page.php:78
+#: ../../../controller/statusmanager.controller.php:111
+#: ../../../pages/statuses.page.php:95 ../../../pages/statuses.page.php:120
 msgid "Éditer"
 msgstr "عوض کردن "
 
-#: ../../../controller/statusmanager.controller.php:106
-#: ../../../pages/statuses.page.php:83
+#: ../../../controller/statusmanager.controller.php:111
+#: ../../../pages/statuses.page.php:100 ../../../pages/statuses.page.php:125
 msgid "Supprimer"
 msgstr "زدودن"
 
@@ -222,18 +229,27 @@ msgstr "زدودن"
 msgid "Mon site"
 msgstr "سابت من"
 
-#: ../../../model/friendsmanager.model.php:106
+#: ../../../model/friendsmanager.model.php:152
 msgid "Vous avez déjà fait une demande d'ajout de ce contact dans votre liste"
 msgstr "شما در حال حاضر درخواست اضافه کردن مخاطب به لیست خود را دارید"
 
-#: ../../../model/friendsmanager.model.php:117
-#: ../../../model/friendsmanager.model.php:156
+#: ../../../model/friendsmanager.model.php:163
+#: ../../../model/friendsmanager.model.php:202
 msgid "Cet utilisateur n'existe pas sur ce site"
 msgstr "چنین کاربری در لیست نداریم"
 
-#: ../../../model/friendsmanager.model.php:145
+#: ../../../model/friendsmanager.model.php:191
 msgid "Cet utilisateur peut déjà vous voir"
 msgstr "این کاربر میتواند شما را ببیند"
+
+#: ../../../model/friendsmanager.model.php:264
+#: ../../../model/friendsmanager.model.php:287
+msgid "Impossible de supprimer cette personne"
+msgstr "امکان حذف این پیام فراهم نیست"
+
+#: ../../../model/friendsmanager.model.php:292
+msgid "Cette personne n'existe pas"
+msgstr "کاربر مورد نظر موجود نیست"
 
 #: ../../../model/inscription.model.php:81
 msgid "Vous pouvez maintenant vous connecter"
@@ -293,21 +309,80 @@ msgstr ""
 "%s"
 
 #: ../../../model/inscription.model.php:196
+#: ../../../model/passwordmanager.model.php:164
 #, php-format
 msgid "L'équipe du site %s"
 msgstr "تیم سایت %s "
 
 #: ../../../model/inscription.model.php:199
+#: ../../../model/passwordmanager.model.php:167
 msgid "L'équipe du site"
 msgstr "تیم سایت"
 
 #: ../../../model/inscription.model.php:201
+#: ../../../model/passwordmanager.model.php:169
 msgid "Merci de ne pas répondre à ce mail auto généré"
 msgstr "به این پست الکترونیکی پاسخ ندهید"
 
-#: ../../../model/statusmanager.model.php:65
+#: ../../../model/passwordmanager.model.php:53
+msgid "Aucun utilisateur n'a ce login"
+msgstr "چنین کاربری در لیست نداریم"
+
+#: ../../../model/passwordmanager.model.php:104
+msgid "L'envoi du mail a échoué, veuillez retenter une nouvelle fois"
+msgstr "دوباره آدرس پست الکترونیکی را وارد کنید"
+
+#: ../../../model/passwordmanager.model.php:126
+msgid "Les données ne correspondent pas"
+msgstr "کاراکترها نادرست هستند"
+
+#: ../../../model/passwordmanager.model.php:134
+#, php-format
+msgid "Récupération du mot de passe de  %s"
+msgstr " %s  تایید رمز عبور برای "
+
+#: ../../../model/passwordmanager.model.php:135
+#, php-format
+msgid "Vous avez demandé de récupérer le mot de passe de  %s"
+msgstr "رمز عبور را برای کاربر  %s  درخواست کرده اید"
+
+#: ../../../model/passwordmanager.model.php:138
+msgid "Récupération du mot de passe"
+msgstr "تایید رمز عبور"
+
+#: ../../../model/passwordmanager.model.php:139
+msgid "Demande de récupération de mot de passe"
+msgstr "تایید رمز عبور"
+
+#: ../../../model/passwordmanager.model.php:158
+#, php-format
+msgid ""
+"Vous pouvez modifier votre mot de passe en cliquant sur : \n"
+"%s"
+msgstr ""
+"نام نویسی خود را با کیلک بر تمام کنید : \n"
+"%s"
+
+#: ../../../model/passwordmanager.model.php:160
+#, php-format
+msgid ""
+"Ou annuler la demande de récupération en cliquant sur : \n"
+"%s"
+msgstr ""
+"با کلیک بر کنسل کنید \n"
+"%s"
+
+#: ../../../model/statusmanager.model.php:69
+msgid "Impossible d'éditer ce statut, peut-être ne vous appartient-t-il pas ?"
+msgstr " است وضعیت غیر قابل  تغییر دادن"
+
+#: ../../../model/statusmanager.model.php:105
 msgid "L'utilisateur n'existe pas"
 msgstr "کاربر مورد نظر موجود نیست"
+
+#: ../../../model/statusmanager.model.php:141
+msgid "Impossible de supprimer ce message"
+msgstr "امکان حذف این پیام فراهم نیست"
 
 #: ../../../modules/osm/osm.class.php:67
 msgid "Veuillez activer javascript pour voir la carte"
@@ -317,77 +392,188 @@ msgstr "جاوا اسکریپ را فعال کنید"
 msgid "Sélecteur de localisation"
 msgstr "انتخابگر موقعیت"
 
-#: ../../../pages/friends.page.php:31 ../../../pages/friends.page.php:37
+#: ../../../pages/forgetpassword.page.php:32
+msgid "Définition du nouveau mot de passe"
+msgstr "تایید رمز عبور"
+
+#: ../../../pages/forgetpassword.page.php:35
+msgid "Mot de passe :"
+msgstr "رمز"
+
+#: ../../../pages/forgetpassword.page.php:40
+msgid "Veuillez préciser votre nouveau mot de passe."
+msgstr "رمز خود را وارد کنید"
+
+#: ../../../pages/forgetpassword.page.php:44
+msgid "Confirmation :"
+msgstr "تایید نام نویسی"
+
+#: ../../../pages/forgetpassword.page.php:50
+msgid "Définir mon mot de passe"
+msgstr "تایید رمز عبور"
+
+#: ../../../pages/forgetpassword.page.php:53
+#: ../../../userconfig/menu.conf.php:12
+msgid "Mot de passe oublié ?"
+msgstr "رمر را از یاد برده اید"
+
+#: ../../../pages/forgetpassword.page.php:56
+msgid "Identifiant :"
+msgstr "ورود به سیستم"
+
+#: ../../../pages/forgetpassword.page.php:59
+msgid "Veuillez préciser votre identifiant."
+msgstr "شما باید یک نام کاربری وارد کنید"
+
+#: ../../../pages/forgetpassword.page.php:62
+msgid "Récupérer mon mot de passe"
+msgstr "بازیابی رمز"
+
+#: ../../../pages/forgetpassword.page.php:67
+msgid "Récupération du mot de passe."
+msgstr "تایید رمز عبور"
+
+#: ../../../pages/forgetpassword.page.php:68
+msgid "mot de passe"
+msgstr "رمز"
+
+#: ../../../pages/forgetpassword.page.php:68
+msgid "oublié"
+msgstr "فراموش شده"
+
+#: ../../../pages/friends.page.php:36 ../../../pages/friends.page.php:42
 #: ../../../userconfig/menu.conf.php:16
 msgid "Amis"
 msgstr "دوستها"
 
-#: ../../../pages/friends.page.php:32
+#: ../../../pages/friends.page.php:37
 msgid "Gestion des amis."
 msgstr "دوستها مدیریت "
 
-#: ../../../pages/friends.page.php:33 ../../../userconfig/website.conf.php:4
+#: ../../../pages/friends.page.php:38 ../../../userconfig/website.conf.php:4
 msgid "amis"
 msgstr "دوستها"
 
-#: ../../../pages/friends.page.php:44
+#: ../../../pages/friends.page.php:51
+msgid "Voulez-vous supprimer cette personne de votre liste d'amis ?"
+msgstr "می خواهید این فرد را حذف کنید"
+
+#: ../../../pages/friends.page.php:56
+msgid "Voulez-vous empêcher cette personne de vous voir ?"
+msgstr "این فرد شما را نبیند"
+
+#: ../../../pages/friends.page.php:70
+msgid "La carte"
+msgstr "کارت"
+
+#: ../../../pages/friends.page.php:76
 msgid "Mes Amis"
 msgstr "دوستهای من"
 
-#: ../../../pages/friends.page.php:60
+#: ../../../pages/friends.page.php:82 ../../../pages/friends.page.php:122
+#: ../../../pages/friends.page.php:145 ../../../pages/friends.page.php:169
+msgid "Nom"
+msgstr "نام"
+
+#: ../../../pages/friends.page.php:83
+msgid "Dernier statut"
+msgstr "جایگاه  خود را مشخص کنید"
+
+#: ../../../pages/friends.page.php:84 ../../../pages/friends.page.php:123
+#: ../../../pages/friends.page.php:146
+msgid "Actions"
+msgstr "واکنش"
+
+#: ../../../pages/friends.page.php:94
+msgid "Aucun de statut"
+msgstr "جایگاه خود را مشخص کنید"
+
+#: ../../../pages/friends.page.php:98 ../../../pages/friends.page.php:129
+#: ../../../pages/friends.page.php:152
+msgid "Supprimer de ma liste"
+msgstr "زدودن"
+
+#: ../../../pages/friends.page.php:107
 msgid "Vous n'avez encore aucun amis"
 msgstr "شما هم اکنون هیچ دوستی ندارید"
 
-#: ../../../pages/friends.page.php:67
-msgid "Demandes en cours"
+#: ../../../pages/friends.page.php:114
+msgid "Mes demandes en cours"
 msgstr "درخواست شما در حال بررسی می باشد"
 
-#: ../../../pages/friends.page.php:84
-msgid "Me voient"
-msgstr "خودمو قایم کنم"
+#: ../../../pages/friends.page.php:138
+msgid "Ceux qui me voient"
+msgstr "این افراد من را ببینند"
 
-#: ../../../pages/friends.page.php:90
-msgid "Veulent me voir"
+#: ../../../pages/friends.page.php:165
+msgid "Ceux qui veulent me voir"
 msgstr "می خواهید من را ببینید"
 
-#: ../../../pages/home.page.php:33
+#: ../../../pages/home.page.php:32
 msgid "À propos de vous"
 msgstr "درباره شما"
 
-#: ../../../pages/home.page.php:34
+#: ../../../pages/home.page.php:33
 msgid "Il semble que vous êtes ici"
 msgstr "شما اینجا هستید"
 
-#: ../../../pages/home.page.php:50
+#: ../../../pages/home.page.php:48
 msgid "Veuillez indiquer votre mot de passe."
 msgstr "رمز خود را وارد کنید"
 
-#: ../../../pages/home.page.php:53
+#: ../../../pages/home.page.php:51
 msgid "Se connecter"
 msgstr "ورود"
 
-#: ../../../pages/home.page.php:55 ../../../userconfig/menu.conf.php:4
+#: ../../../pages/home.page.php:53 ../../../userconfig/menu.conf.php:4
 msgid "Accueil"
 msgstr "خانه"
 
-#: ../../../pages/home.page.php:62
+#: ../../../pages/home.page.php:60
 #, php-format
 msgid "Bienvenue %s"
 msgstr " %s خوش آمدید  "
 
-#: ../../../pages/home.page.php:63
+#: ../../../pages/home.page.php:61
 msgid "Se déconnecter"
 msgstr "بستن برنامه"
 
-#: ../../../pages/home.page.php:68
-msgid "Connexion"
-msgstr "وارد شدن"
+#: ../../../pages/home.page.php:66
+msgid "Bienvenue sur LocalizeTeaPot"
+msgstr "  %s خوش آمدید به "
 
-#: ../../../pages/home.page.php:85
+#: ../../../pages/home.page.php:88
+msgid ""
+"LoacalizeTeaPot est une application qui vous permet localiser tout vos amis, "
+"partout dans le monde, en quelques clics! \n"
+"Envie de retrouver vos amis autour d’une bonne tasse de thé? Connectez vous "
+"dès maintenant pour voir qui est proche de vous!"
+msgstr ""
+"برنامه پیدا کردن دوستان،برنامه ای است که به شما اجازه میدهد تا به راحتی "
+"دوستهایتان را در سراسر گیتی تنهابا یک کلیک بیابید  \n"
+"خیلی دوست دارید که با دوستهای خود یک فنجان چای بنوشید به ما بپیوندید"
+
+#: ../../../pages/home.page.php:94
+#, php-format
+msgid ""
+"Pas encore inscrit? Créez votre compte via l’onglet Inscription ci-dessus ou "
+"en cliquant juste %sici%s !"
+msgstr ""
+"  ایجاد کنید %s  %s هنوز ثبت نام نکرده اید؟ حساب کاربری خود را با کلیک بر"
+
+#: ../../../pages/home.page.php:100
+msgid ""
+"Vous voulez emportez vos amis partout avec vous? Téléchargez l’application "
+"Android, LocalizeTeaPot sans plus tarder !"
+msgstr ""
+"  نصب کنیدAndroid دوست دارید دوستان خود را همه جا پیدا کنید؟ این برنامه را "
+"می توانید برسیستم"
+
+#: ../../../pages/home.page.php:110
 msgid "Mot de passe oublié"
 msgstr "رمز را از یاد برده اید؟"
 
-#: ../../../pages/home.page.php:85
+#: ../../../pages/home.page.php:111
 msgid "S'inscrire"
 msgstr "نام نویسی "
 
@@ -482,11 +668,15 @@ msgstr "جایگاهها"
 msgid "Mes statuts"
 msgstr "جایگاههای من"
 
-#: ../../../pages/statuses.page.php:54
+#: ../../../pages/statuses.page.php:49
+msgid "Voulez-vous supprimer ce statut ?"
+msgstr "می خواهید جایگاه خود را حذف کنید؟"
+
+#: ../../../pages/statuses.page.php:68
 msgid "Revenir aux statuts"
 msgstr "برگشت به جایگاهها"
 
-#: ../../../pages/statuses.page.php:62
+#: ../../../pages/statuses.page.php:76
 msgid "Ajouter un statut"
 msgstr "جایگاه خود را مشخص کنید"
 
@@ -494,10 +684,6 @@ msgstr "جایگاه خود را مشخص کنید"
 #, php-format
 msgid "Le code source de ce site est sous licence %s et son contenu sous %s"
 msgstr "  %s و لیسانس محتویات برنامه  %s لیسانس کد برنامه"
-
-#: ../../../userconfig/menu.conf.php:12
-msgid "Mot de passe oublié ?"
-msgstr "رمر را از یاد برده اید"
 
 #: ../../../userconfig/website.conf.php:3
 msgid "Retrouve tous tes amis (pour le thé)"
@@ -514,6 +700,12 @@ msgstr "کارت"
 #: ../../../userconfig/website.conf.php:4
 msgid "position"
 msgstr "جایگاه"
+
+#~ msgid "Me voient"
+#~ msgstr "خودمو قایم کنم"
+
+#~ msgid "Connexion"
+#~ msgstr "وارد شدن"
 
 #~ msgid "Droit d'auteur"
 #~ msgstr "تمام حقوق محفوظ"

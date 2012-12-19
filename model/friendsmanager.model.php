@@ -267,29 +267,21 @@ class FriendsManager extends Model{
 	}
 	
 	public function delSee($id){
-		$me = $this->getUsersFromId($this->myId);
-		$other = $this->getUsersFromId($id);
-		if(count($me) == 1 AND count($other) == 1){
-			$qb = $this->em->createQueryBuilder();
-			$qb->select(array('f'))
-				->from('\gnk\database\entities\FriendsSeeMe', 'f')
-				->where('f.user = :user')
-				->andWhere('f.seeme = :see');
-			$qb->setParameters(array('user' => $me[0], 'see' => $other[0]));
-			$query = $qb->getQuery();
-			$result = $query->getResult();
-			if(count($result) == 1){
-				$this->em->remove($result[0]);
-				$this->em->flush();
-				return true;
-			}
-			else{
-				$this->addError(T_('Impossible de supprimer cette personne'));
-				return false;
-			}
+		$qb = $this->em->createQueryBuilder();
+		$qb->select(array('f'))
+			->from('\gnk\database\entities\FriendsSeeMe', 'f')
+			->where('f.user = :user')
+			->andWhere('f.seeme = :see');
+		$qb->setParameters(array('user' => $this->myId, 'see' => $id));
+		$query = $qb->getQuery();
+		$result = $query->getResult();
+		if(count($result) == 1){
+			$this->em->remove($result[0]);
+			$this->em->flush();
+			return true;
 		}
 		else{
-			$this->addError(T_('Cette personne n\'existe pas'));
+			$this->addError(T_('Impossible de supprimer cette personne'));
 			return false;
 		}
 	}

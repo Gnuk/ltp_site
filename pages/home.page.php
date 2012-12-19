@@ -79,29 +79,61 @@
 			}
 ?>
 				<section id="homeDescription">
+<?php
+		}
+		if(Config::isUser()){
+?>
+				<section id="homeConnectedDescription">
+<?php
+		}
+		
+?>
 					<div id="homePhone">
 						<?php $osm->showDiv() ?>
 					</div>
 					<div id="homeDesc">
+<?php
+		if(Config::isUser()){
+?>
 						<p>
 <?php
-			echo T_('LoacalizeTeaPot est une application qui vous permet localiser tout vos amis, partout dans le monde, en quelques clics! 
-Envie de retrouver vos amis autour d’une bonne tasse de thé? Connectez vous dès maintenant pour voir qui est proche de vous!');
+			echo T_('Vous êtes maintenant sur l\'interface utilisateur de LocalizeTeaPot');
+?>
+						</p>
+						<p><?php echo T_('Vous pouvez');?></p>
+						<ul>
+							<li><a href="<?php echo Page::createPageLink('friends') ?>" title="<?php echo Page::htmlEncode(T_('Trouver vos Amis')); ?>"><?php echo Page::htmlEncode(T_('Trouver vos Amis')); ?></a></li>
+							<li><a href="<?php echo Page::createPageLink('statuses') ?>" title="<?php echo Page::htmlEncode(T_('Accéder à vos statuts')); ?>"><?php echo Page::htmlEncode(T_('Accéder à vos statuts')); ?></a></li>
+						</ul>
+<?php
+		}
+		else{
+?>
+						<p>
+<?php
+			echo T_('LoacalizeTeaPot est une application qui vous permet localiser tout vos amis, partout dans le monde, en quelques clics ! 
+Envie de retrouver vos amis autour d’une bonne tasse de thé ? Connectez vous dès maintenant pour voir qui est proche de vous!');
 ?>
 						</p>
 						<p>
 <?php
-			echo sprintf(T_('Pas encore inscrit? Créez votre compte via l’onglet Inscription ci-dessus ou en cliquant juste %sici%s !'), '<a href="'. Page::createPageLink('inscription').'">', '</a>');
+			echo sprintf(T_('Pas encore inscrit ? Créez votre compte via l’onglet Inscription ci-dessus ou en cliquant juste %sici%s !'), '<a href="'. Page::createPageLink('inscription').'">', '</a>');
 ?>
 						</p>
 						<p>
 <?php
 
-			echo T_('Vous voulez emportez vos amis partout avec vous? Téléchargez l’application Android, LocalizeTeaPot sans plus tarder !');
+			echo T_('Vous voulez emportez vos amis partout avec vous ? Téléchargez l’application Android, LocalizeTeaPot sans plus tarder !');
 ?>
 						</p>
+<?php
+		}
+?>
 					</div>
 				</section>
+<?php
+		if(!Config::isUser()){
+?>
 				<section id="homeLogin">
 <?php
 			$form->render();
@@ -112,9 +144,6 @@ Envie de retrouver vos amis autour d’une bonne tasse de thé? Connectez vous d
 					</p>
 				</section>
 <?php
-		}
-		if(Config::isUser()){
-			$osm->showDiv();
 		}
 		?>
 			</article>

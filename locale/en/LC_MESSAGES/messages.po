@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-19 11:35+0100\n"
-"PO-Revision-Date: 2012-12-19 11:43+0100\n"
+"POT-Creation-Date: 2012-12-19 13:11+0100\n"
+"PO-Revision-Date: 2012-12-19 13:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: Open Team MAP\n"
 "MIME-Version: 1.0\n"
@@ -17,37 +17,33 @@ msgstr ""
 
 #: ../../../model/friendsmanager.model.php:152
 msgid "Vous avez déjà fait une demande d'ajout de ce contact dans votre liste"
-msgstr ""
+msgstr "You already made a request to add the contact to your list"
 
 #: ../../../model/friendsmanager.model.php:163
 #: ../../../model/friendsmanager.model.php:202
 msgid "Cet utilisateur n'existe pas sur ce site"
-msgstr ""
+msgstr "This user does not exist on this website"
 
 #: ../../../model/friendsmanager.model.php:191
 msgid "Cet utilisateur peut déjà vous voir"
 msgstr "This user already see you"
 
 #: ../../../model/friendsmanager.model.php:264
-#: ../../../model/friendsmanager.model.php:287
+#: ../../../model/friendsmanager.model.php:284
 msgid "Impossible de supprimer cette personne"
-msgstr ""
-
-#: ../../../model/friendsmanager.model.php:292
-msgid "Cette personne n'existe pas"
-msgstr ""
+msgstr "Can not delete this person"
 
 #: ../../../model/statusmanager.model.php:69
 msgid "Impossible d'éditer ce statut, peut-être ne vous appartient-t-il pas ?"
-msgstr ""
+msgstr "Can not edit the status, maybe not yours does not it?"
 
 #: ../../../model/statusmanager.model.php:105
 msgid "L'utilisateur n'existe pas"
-msgstr ""
+msgstr "This user does not exist"
 
 #: ../../../model/statusmanager.model.php:141
 msgid "Impossible de supprimer ce message"
-msgstr ""
+msgstr "Unable to delete this message"
 
 #: ../../../model/inscription.model.php:81
 msgid "Vous pouvez maintenant vous connecter"
@@ -112,25 +108,25 @@ msgstr ""
 #: ../../../model/passwordmanager.model.php:164
 #, php-format
 msgid "L'équipe du site %s"
-msgstr ""
+msgstr "%s team website"
 
 #: ../../../model/inscription.model.php:199
 #: ../../../model/passwordmanager.model.php:167
 msgid "L'équipe du site"
-msgstr ""
+msgstr "Team website"
 
 #: ../../../model/inscription.model.php:201
 #: ../../../model/passwordmanager.model.php:169
 msgid "Merci de ne pas répondre à ce mail auto généré"
-msgstr ""
+msgstr "Thank you not reply to this email auto generated"
 
 #: ../../../model/passwordmanager.model.php:53
 msgid "Aucun utilisateur n'a ce login"
-msgstr ""
+msgstr "No user have that login"
 
 #: ../../../model/passwordmanager.model.php:104
 msgid "L'envoi du mail a échoué, veuillez retenter une nouvelle fois"
-msgstr ""
+msgstr "Sending email failed, please retry again"
 
 #: ../../../model/passwordmanager.model.php:126
 msgid "Les données ne correspondent pas"
@@ -144,7 +140,7 @@ msgstr "%s's password recovery"
 #: ../../../model/passwordmanager.model.php:135
 #, php-format
 msgid "Vous avez demandé de récupérer le mot de passe de  %s"
-msgstr ""
+msgstr "You asked to retrieve %s's password"
 
 #: ../../../model/passwordmanager.model.php:138
 msgid "Récupération du mot de passe"
@@ -169,6 +165,8 @@ msgid ""
 "Ou annuler la demande de récupération en cliquant sur : \n"
 "%s"
 msgstr ""
+"Or cancel the recovery request by clicking on : \n"
+"%s"
 
 #: ../../../userconfig/website.conf.php:3
 msgid "Retrouve tous tes amis (pour le thé)"
@@ -213,7 +211,7 @@ msgstr "Statuses"
 #: ../../../controller/statusmanager.controller.php:64
 #: ../../../controller/statusmanager.controller.php:94
 msgid "Message :"
-msgstr ""
+msgstr "Message :"
 
 #: ../../../controller/statusmanager.controller.php:67
 #: ../../../controller/statusmanager.controller.php:100
@@ -222,7 +220,7 @@ msgstr "You must add a message."
 
 #: ../../../controller/statusmanager.controller.php:71
 msgid "Longitude :"
-msgstr ""
+msgstr "Longitude :"
 
 #: ../../../controller/statusmanager.controller.php:74
 msgid "Vous devez indiquer une longitude."
@@ -230,7 +228,7 @@ msgstr "You must specify a longitude."
 
 #: ../../../controller/statusmanager.controller.php:78
 msgid "Latitude :"
-msgstr ""
+msgstr "Latitude :"
 
 #: ../../../controller/statusmanager.controller.php:81
 msgid "Vous devez indiquer une latitude."
@@ -238,21 +236,21 @@ msgstr "You must specify a latitude."
 
 #: ../../../controller/statusmanager.controller.php:85
 msgid "Indiquer le statut"
-msgstr ""
+msgstr "Indicate the status"
 
 #: ../../../controller/statusmanager.controller.php:104
 msgid "Modifier le statut"
-msgstr ""
+msgstr "Edit the status"
 
 #: ../../../controller/statusmanager.controller.php:111
 #: ../../../pages/statuses.page.php:95 ../../../pages/statuses.page.php:120
 msgid "Éditer"
-msgstr ""
+msgstr "Edit"
 
 #: ../../../controller/statusmanager.controller.php:111
 #: ../../../pages/statuses.page.php:100 ../../../pages/statuses.page.php:125
 msgid "Supprimer"
-msgstr ""
+msgstr "Delete"
 
 #: ../../../controller/friendsmanager.controller.php:51
 msgid "Utilisateur : "
@@ -265,7 +263,7 @@ msgstr "Please enter your login."
 
 #: ../../../controller/friendsmanager.controller.php:57
 msgid "Ajouter"
-msgstr ""
+msgstr "Add"
 
 #: ../../../controller/friendsmanager.controller.php:127
 msgid "Mes amis"
@@ -359,18 +357,18 @@ msgstr "Please enable javascript to view the map"
 
 #: ../../../modules/osm/osm.class.php:73
 msgid "Sélecteur de localisation"
-msgstr ""
+msgstr "Location picker"
 
 #: ../../../template/otm/footer.tmpl.php:26
 #: ../../../pages/licenses.page.php:25 ../../../pages/licenses.page.php:29
 #: ../../../pages/phpinfo.page.php:41
 msgid "À propos"
-msgstr ""
+msgstr "About"
 
 #: ../../../template/otm/footer.tmpl.php:34
 #, php-format
 msgid "Le code source de ce site est sous licence %s et son contenu sous %s"
-msgstr ""
+msgstr "The source code of this website is on %s license and his content on %s"
 
 #: ../../../config/class/debug.class.php:71
 msgid "Débogage"
@@ -442,47 +440,53 @@ msgid ""
 "sources, vous trouverez dans cette partie du site toutes les informations "
 "relatives à ces licences"
 msgstr ""
+"LocalizeTeaPot has many licenses on its content and its sources, you will "
+"find in this part of the site all information relating to these licenses"
 
 #: ../../../pages/licenses.page.php:36
 msgid "Serveur"
-msgstr ""
+msgstr "Server"
 
 #: ../../../pages/licenses.page.php:38
 msgid "Utilisation de la licence AGPL v3 pour les sources"
-msgstr ""
+msgstr "Using AGPL v3 license for source code"
 
 #: ../../../pages/licenses.page.php:39
 msgid ""
 "Utilisation de la licence Creative Commons BY SA 3.0 pour les ressources "
 "graphiques et le contenu des pages"
 msgstr ""
+"Use Creative Commons BY SA 3.0 license for graphics and resources page "
+"content"
 
 #: ../../../pages/licenses.page.php:44
 msgid "Code source du site"
-msgstr ""
+msgstr "Website source code"
 
 #: ../../../pages/licenses.page.php:45
 #, php-format
 msgid "Vous trouverez les sources du serveur à l'adresse suivante : <br />%s"
-msgstr ""
+msgstr "You can find the server sources at the following address : <br />%s"
 
 #: ../../../pages/licenses.page.php:51
 msgid "Client"
-msgstr ""
+msgstr "Client"
 
 #: ../../../pages/licenses.page.php:53
 msgid "Utilisation de la licence CeCILL v2 pour les sources"
-msgstr ""
+msgstr "Using the CeCILL v2 license for source code"
 
 #: ../../../pages/licenses.page.php:58
 msgid "Code source du client Android"
-msgstr ""
+msgstr "Source code of the Android client"
 
 #: ../../../pages/licenses.page.php:59
 #, php-format
 msgid ""
 "Vous trouverez les sources du client Android à l'adresse suivante : <br />%s"
 msgstr ""
+"You can find the sources of Android client at the following address : <br />"
+"%s"
 
 #: ../../../pages/inscription.page.php:32
 msgid "Inscription à LocalizeTeaPot."
@@ -506,7 +510,7 @@ msgstr "An error unlisted has occurred."
 
 #: ../../../pages/statuses.page.php:38
 msgid "Gestion des statuts."
-msgstr ""
+msgstr "Management of statuses."
 
 #: ../../../pages/statuses.page.php:39
 msgid "statuts"
@@ -518,15 +522,15 @@ msgstr "My statuses"
 
 #: ../../../pages/statuses.page.php:49
 msgid "Voulez-vous supprimer ce statut ?"
-msgstr ""
+msgstr "Do you want to remove this status ?"
 
 #: ../../../pages/statuses.page.php:68
 msgid "Revenir aux statuts"
-msgstr ""
+msgstr "Back to statuses"
 
 #: ../../../pages/statuses.page.php:76
 msgid "Ajouter un statut"
-msgstr ""
+msgstr "Add a status"
 
 #: ../../../pages/forgetpassword.page.php:32
 msgid "Définition du nouveau mot de passe"
@@ -558,7 +562,7 @@ msgstr "You must specify your login."
 
 #: ../../../pages/forgetpassword.page.php:62
 msgid "Récupérer mon mot de passe"
-msgstr ""
+msgstr "Retrieve my forgotten password"
 
 #: ../../../pages/forgetpassword.page.php:67
 msgid "Récupération du mot de passe."
@@ -570,19 +574,19 @@ msgstr "password"
 
 #: ../../../pages/forgetpassword.page.php:68
 msgid "oublié"
-msgstr ""
+msgstr "forget"
 
 #: ../../../pages/friends.page.php:37
 msgid "Gestion des amis."
-msgstr ""
+msgstr "Management of friends."
 
 #: ../../../pages/friends.page.php:51
 msgid "Voulez-vous supprimer cette personne de votre liste d'amis ?"
-msgstr ""
+msgstr "Do you want to remove this person from your friends list ?"
 
 #: ../../../pages/friends.page.php:56
 msgid "Voulez-vous empêcher cette personne de vous voir ?"
-msgstr ""
+msgstr "Do you want to stop that person see you ?"
 
 #: ../../../pages/friends.page.php:70
 msgid "La carte"
@@ -595,49 +599,49 @@ msgstr "My Friends"
 #: ../../../pages/friends.page.php:82 ../../../pages/friends.page.php:122
 #: ../../../pages/friends.page.php:145 ../../../pages/friends.page.php:169
 msgid "Nom"
-msgstr ""
+msgstr "Name"
 
 #: ../../../pages/friends.page.php:83
 msgid "Dernier statut"
-msgstr ""
+msgstr "Last status"
 
 #: ../../../pages/friends.page.php:84 ../../../pages/friends.page.php:123
 #: ../../../pages/friends.page.php:146
 msgid "Actions"
-msgstr ""
+msgstr "Actions"
 
 #: ../../../pages/friends.page.php:94
 msgid "Aucun de statut"
-msgstr ""
+msgstr "No statuses"
 
 #: ../../../pages/friends.page.php:98 ../../../pages/friends.page.php:129
 #: ../../../pages/friends.page.php:152
 msgid "Supprimer de ma liste"
-msgstr ""
+msgstr "Remove from my list"
 
 #: ../../../pages/friends.page.php:107
 msgid "Vous n'avez encore aucun amis"
-msgstr ""
+msgstr "You don't have any friends"
 
 #: ../../../pages/friends.page.php:114
 msgid "Mes demandes en cours"
-msgstr ""
+msgstr "Current requests"
 
 #: ../../../pages/friends.page.php:138
 msgid "Ceux qui me voient"
-msgstr ""
+msgstr "Those who see me"
 
 #: ../../../pages/friends.page.php:165
 msgid "Ceux qui veulent me voir"
-msgstr ""
+msgstr "Those who want to see me"
 
 #: ../../../pages/home.page.php:32
 msgid "À propos de vous"
-msgstr ""
+msgstr "About you"
 
 #: ../../../pages/home.page.php:33
 msgid "Il semble que vous êtes ici"
-msgstr ""
+msgstr "You seems to be here"
 
 #: ../../../pages/home.page.php:48
 msgid "Veuillez indiquer votre mot de passe."
@@ -662,11 +666,11 @@ msgstr "Welcome to LocalizeTeaPot"
 
 #: ../../../pages/home.page.php:100
 msgid "Vous êtes maintenant sur l'interface utilisateur de LocalizeTeaPot"
-msgstr ""
+msgstr "You are now on LocalizeTeaPot user interface"
 
 #: ../../../pages/home.page.php:103
 msgid "Vous pouvez"
-msgstr ""
+msgstr "You can"
 
 #: ../../../pages/home.page.php:105
 msgid "Trouver vos Amis"
@@ -674,30 +678,36 @@ msgstr "Find all your friends"
 
 #: ../../../pages/home.page.php:106
 msgid "Accéder à vos statuts"
-msgstr ""
+msgstr "Access your statuses"
 
 #: ../../../pages/home.page.php:114
 msgid ""
 "LoacalizeTeaPot est une application qui vous permet localiser tout vos amis, "
-"partout dans le monde, en quelques clics! \n"
-"Envie de retrouver vos amis autour d’une bonne tasse de thé? Connectez vous "
+"partout dans le monde, en quelques clics ! \n"
+"Envie de retrouver vos amis autour d’une bonne tasse de thé ? Connectez vous "
 "dès maintenant pour voir qui est proche de vous!"
 msgstr ""
+"LoacalizeTeaPot is an application that allows you to locate your friends all "
+"around the world in a few clicks !\n"
+"You want to meet up with friends over a good cup of tea ? Login now to see "
+"who is close to you !"
 
 #: ../../../pages/home.page.php:120
 #, php-format
 msgid ""
-"Pas encore inscrit? Créez votre compte via l’onglet Inscription ci-dessus ou "
-"en cliquant juste %sici%s !"
+"Pas encore inscrit ? Créez votre compte via l’onglet Inscription ci-dessus "
+"ou en cliquant juste %sici%s !"
 msgstr ""
+"Not yet registered ? Create your account with the register tab above or by "
+"clicking right %shere%s !"
 
 #: ../../../pages/home.page.php:126
 msgid ""
-"Vous voulez emportez vos amis partout avec vous? Téléchargez l’application "
+"Vous voulez emportez vos amis partout avec vous ? Téléchargez l’application "
 "Android, LocalizeTeaPot sans plus tarder !"
 msgstr ""
 "You want to take your friends with you ? Download LocalizeTeaPot Android "
-"Application withour delay !"
+"Application without delay !"
 
 #: ../../../pages/home.page.php:142
 msgid "Mot de passe oublié"

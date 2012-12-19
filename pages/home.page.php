@@ -111,19 +111,19 @@
 ?>
 						<p>
 <?php
-			echo T_('LoacalizeTeaPot est une application qui vous permet localiser tout vos amis, partout dans le monde, en quelques clics! 
-Envie de retrouver vos amis autour d’une bonne tasse de thé? Connectez vous dès maintenant pour voir qui est proche de vous!');
+			echo T_('LoacalizeTeaPot est une application qui vous permet localiser tout vos amis, partout dans le monde, en quelques clics ! 
+Envie de retrouver vos amis autour d’une bonne tasse de thé ? Connectez vous dès maintenant pour voir qui est proche de vous!');
 ?>
 						</p>
 						<p>
 <?php
-			echo sprintf(T_('Pas encore inscrit? Créez votre compte via l’onglet Inscription ci-dessus ou en cliquant juste %sici%s !'), '<a href="'. Page::createPageLink('inscription').'">', '</a>');
+			echo sprintf(T_('Pas encore inscrit ? Créez votre compte via l’onglet Inscription ci-dessus ou en cliquant juste %sici%s !'), '<a href="'. Page::createPageLink('inscription').'">', '</a>');
 ?>
 						</p>
 						<p>
 <?php
 
-			echo T_('Vous voulez emportez vos amis partout avec vous? Téléchargez l’application Android, LocalizeTeaPot sans plus tarder !');
+			echo T_('Vous voulez emportez vos amis partout avec vous ? Téléchargez l’application Android, LocalizeTeaPot sans plus tarder !');
 ?>
 						</p>
 <?php

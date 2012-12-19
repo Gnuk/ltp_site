@@ -46,18 +46,20 @@
 			}
 			if((isset($_GET['delWant']) OR isset($_GET['delSee'])) AND !isset($_GET['confirm'])){
 				if(isset($_GET['delWant'])){
-					$delAction = $_GET['delWant'];
+					$delAction = 'delWant';
+					$delValue = $_GET['delWant'];
 					$delText = T_('Voulez-vous supprimer cette personne de votre liste d\'amis ?');
 				}
 				else{
-					$delAction = $_GET['delSee'];
+					$delAction = 'delSee';
+					$delValue = $_GET['delSee'];
 					$delText = T_('Voulez-vous empêcher cette personne de vous voir ?');
 				}
 ?>
 		<div class="delete">
 			<p><?php echo $delText;?></p>
 			<ul>
-				<li><a href="<?php echo Page::getLink(array('delete' => $delAction, 'confirm' => '')); ?>">Oui</a></li>
+				<li><a href="<?php echo Page::getLink(array($delAction => $delValue, 'confirm' => '')); ?>">Oui</a></li>
 				<li><a href="<?php echo Page::getLink() ;?>">Non</a></li>
 			</ul>
 		</div>
@@ -86,7 +88,7 @@
 						echo '<td>'.Page::htmlEncode($friend['login']).'</td>';
 						echo '<td>';
 						if($friend['status']){
-							echo Page::htmlEncode($friend['status']);
+							echo Page::htmlBREncode($friend['status']);
 						}
 						else{
 							echo Page::htmlEncode(T_('Aucun de statut'));
@@ -165,7 +167,6 @@
 					echo '<table>';
 					echo '<tr>';
 					echo '<th>'.Page::htmlEncode(T_('Nom')).'</th>';
-					echo '<th>'.Page::htmlEncode(T_('Actions')).'</th>';
 					echo '</tr>';
 					foreach($wantme AS $nWantm => $wantm){
 						echo '<tr>';

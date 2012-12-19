@@ -37,6 +37,7 @@ class FriendsManager extends Controller{
 		$this->loadModel('friendsmanager');
  		$this->model = new \gnk\model\FriendsManager();
 		$this->addFriend();
+		$this->delFriend();
 		$this->haveFriends();
 	}
 	
@@ -187,6 +188,20 @@ class FriendsManager extends Controller{
 			$i++;
 		}
 		return $friends;
+	}
+	public function delFriend(){
+		if(
+			isset($_GET['delWant'])
+			AND isset($_GET['confirm'])
+		){
+			return $this->model->delWant($_GET['delWant']);
+		}
+		else if(
+			isset($_GET['delSee'])
+			AND isset($_GET['confirm'])
+		){
+			return $this->model->delSee($_GET['delSee']);
+		}
 	}
 }
 

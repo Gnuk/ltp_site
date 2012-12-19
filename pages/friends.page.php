@@ -114,17 +114,30 @@
 			<h2><?php echo T_('Me voient') ;?></h2>
 			<?php
 				$formSeeMe->render();
-			?>
-		</section>
-		<section id="friendswantme">
-			<h2><?php echo T_('Veulent me voir') ;?></h2>
-			<?php
-				$seeme = $controller->getWantMe();
+				$seeme = $controller->getSeeMe();
 				if(count($seeme) > 0){
 					echo '<table>';
 					foreach($seeme AS $nSeeme => $see){
 						echo '<tr>';
 						echo '<td>'.Page::htmlEncode($see['login']).'</td>';
+						echo '<td>';
+						echo '<a href="'. Page::getLink(array('delSee' => $see['id'])) .'">'.Page::getImage('delete', T_('Supprimer de ma liste'), 16) . '</a>';
+						echo '</td>';
+						echo '</tr>';
+					}
+					echo '</table>';
+				}
+			?>
+		</section>
+		<section id="friendswantme">
+			<h2><?php echo T_('Veulent me voir') ;?></h2>
+			<?php
+				$wantme = $controller->getWantMe();
+				if(count($seeme) > 0){
+					echo '<table>';
+					foreach($wantme AS $nWantm => $wantm){
+						echo '<tr>';
+						echo '<td>'.Page::htmlEncode($wantm['login']).'</td>';
 						echo '</tr>';
 					}
 					echo '</table>';

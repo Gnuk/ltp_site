@@ -38,9 +38,6 @@ class FriendsManager extends Controller{
  		$this->model = new \gnk\model\FriendsManager();
 		$this->addFriend();
 		$this->haveFriends();
-// 		echo '<pre>';
-// 		$this->model->getFriends();
-// 		echo '</pre>';
 	}
 	
 	/**
@@ -166,6 +163,20 @@ class FriendsManager extends Controller{
 	
 	public function getWantMe(){
 		$list = $this->model->getWantMe();
+		$i=0;
+		$friends = array();
+		
+		while(isset($list[$i])){
+			$user = $list[$i];
+			$friends[$i]['id'] = $user->getId();
+			$friends[$i]['login'] = $user->getLogin();
+			$i++;
+		}
+		return $friends;
+	}
+	
+	public function getSeeMe(){
+		$list = $this->model->getSeeMe();
 		$i=0;
 		$friends = array();
 		

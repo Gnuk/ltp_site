@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LocalizeTeaPot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-19 11:10+0100\n"
-"PO-Revision-Date: 2012-12-19 13:37+0100\n"
+"POT-Creation-Date: 2012-12-19 13:43+0100\n"
+"PO-Revision-Date: 2012-12-19 13:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -208,7 +208,8 @@ msgid "Modifier le statut"
 msgstr "جابجا کردن جایگاه"
 
 #: ../../../controller/statusmanager.controller.php:109
-msgid "Statuses"
+#: ../../../pages/statuses.page.php:37 ../../../userconfig/menu.conf.php:20
+msgid "Statuts"
 msgstr "جایگاه"
 
 #: ../../../controller/statusmanager.controller.php:111
@@ -243,13 +244,9 @@ msgid "Cet utilisateur peut déjà vous voir"
 msgstr "این کاربر میتواند شما را ببیند"
 
 #: ../../../model/friendsmanager.model.php:264
-#: ../../../model/friendsmanager.model.php:287
+#: ../../../model/friendsmanager.model.php:284
 msgid "Impossible de supprimer cette personne"
 msgstr "امکان حذف این پیام فراهم نیست"
-
-#: ../../../model/friendsmanager.model.php:292
-msgid "Cette personne n'existe pas"
-msgstr "کاربر مورد نظر موجود نیست"
 
 #: ../../../model/inscription.model.php:81
 msgid "Vous pouvez maintenant vous connecter"
@@ -542,38 +539,54 @@ msgstr "بستن برنامه"
 msgid "Bienvenue sur LocalizeTeaPot"
 msgstr "  %s خوش آمدید به "
 
-#: ../../../pages/home.page.php:88
+#: ../../../pages/home.page.php:100
+msgid "Vous êtes maintenant sur l'interface utilisateur de LocalizeTeaPot"
+msgstr "شما هم اکنون وارد برنامه شده اید "
+
+#: ../../../pages/home.page.php:103
+msgid "Vous pouvez"
+msgstr "شما می توانید"
+
+#: ../../../pages/home.page.php:105
+msgid "Trouver vos Amis"
+msgstr "یافتن دوستها"
+
+#: ../../../pages/home.page.php:106
+msgid "Accéder à vos statuts"
+msgstr "دسترسی به وضعیت"
+
+#: ../../../pages/home.page.php:114
 msgid ""
 "LoacalizeTeaPot est une application qui vous permet localiser tout vos amis, "
-"partout dans le monde, en quelques clics! \n"
-"Envie de retrouver vos amis autour d’une bonne tasse de thé? Connectez vous "
+"partout dans le monde, en quelques clics ! \n"
+"Envie de retrouver vos amis autour d’une bonne tasse de thé ? Connectez vous "
 "dès maintenant pour voir qui est proche de vous!"
 msgstr ""
 "برنامه پیدا کردن دوستان،برنامه ای است که به شما اجازه میدهد تا به راحتی "
 "دوستهایتان را در سراسر گیتی تنهابا یک کلیک بیابید  \n"
 "خیلی دوست دارید که با دوستهای خود یک فنجان چای بنوشید به ما بپیوندید"
 
-#: ../../../pages/home.page.php:94
+#: ../../../pages/home.page.php:120
 #, php-format
 msgid ""
-"Pas encore inscrit? Créez votre compte via l’onglet Inscription ci-dessus ou "
-"en cliquant juste %sici%s !"
+"Pas encore inscrit ? Créez votre compte via l’onglet Inscription ci-dessus "
+"ou en cliquant juste %sici%s !"
 msgstr ""
 "  ایجاد کنید %s  %s هنوز ثبت نام نکرده اید؟ حساب کاربری خود را با کلیک بر"
 
-#: ../../../pages/home.page.php:100
+#: ../../../pages/home.page.php:126
 msgid ""
-"Vous voulez emportez vos amis partout avec vous? Téléchargez l’application "
+"Vous voulez emportez vos amis partout avec vous ? Téléchargez l’application "
 "Android, LocalizeTeaPot sans plus tarder !"
 msgstr ""
 "  نصب کنیدAndroid دوست دارید دوستان خود را همه جا پیدا کنید؟ این برنامه را "
 "می توانید برسیستم"
 
-#: ../../../pages/home.page.php:110
+#: ../../../pages/home.page.php:142
 msgid "Mot de passe oublié"
 msgstr "رمز را از یاد برده اید؟"
 
-#: ../../../pages/home.page.php:111
+#: ../../../pages/home.page.php:143
 msgid "S'inscrire"
 msgstr "نام نویسی "
 
@@ -652,10 +665,6 @@ msgid ""
 "Vous trouverez les sources du client Android à l'adresse suivante : <br />%s"
 msgstr "منابع برای کاربران آندروید را اینجا بیابید <br />%s"
 
-#: ../../../pages/statuses.page.php:37 ../../../userconfig/menu.conf.php:20
-msgid "Statuts"
-msgstr "جایگاه"
-
 #: ../../../pages/statuses.page.php:38
 msgid "Gestion des statuts."
 msgstr "مدیریت جایگاهها"
@@ -700,6 +709,12 @@ msgstr "کارت"
 #: ../../../userconfig/website.conf.php:4
 msgid "position"
 msgstr "جایگاه"
+
+#~ msgid "Statuses"
+#~ msgstr "جایگاه"
+
+#~ msgid "Cette personne n'existe pas"
+#~ msgstr "کاربر مورد نظر موجود نیست"
 
 #~ msgid "Me voient"
 #~ msgstr "خودمو قایم کنم"

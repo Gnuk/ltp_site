@@ -46,7 +46,7 @@ class FriendsManager extends Model{
 			->leftJoin('u.wantme', 'w')
 			->where('w.want = :id');
 		if(count($seer) > 0){
-			$qb->andWhere($qb->expr()->notIn('w.want', $seer));
+			$qb->andWhere($qb->expr()->notIn('w.user', $seer));
 		}
 		$qb->setParameters(array('id' => $this->myId));
 		$query = $qb->getQuery();
@@ -82,7 +82,7 @@ class FriendsManager extends Model{
  		$query->setParameters(array('id' => $this->myId));
  		$result = $query->getResult();
  		foreach($result AS $nResu => $resu){
-			$res[] = $resu->getUser()->getId();
+			$res[] = $resu->getSeeMe()->getId();
  		}
  		return $res;
 	}

@@ -25,6 +25,10 @@
 	use \gnk\config\Tools;
 	use \gnk\database\entities\ConfirmPassword;
 
+	/**
+	* Gestion des mots de passes
+	* @author Anthony REY <anthony.rey@mailoo.org>
+	*/
 	class PasswordManager extends Model{
 	
 		private $user;

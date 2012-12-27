@@ -26,6 +26,7 @@
 	use \gnk\config\Config;
 	/**
 	* Classe inscription
+	* @author Anthony REY <anthony.rey@mailoo.org>
 	*/
 	class Inscription extends Controller{
 	

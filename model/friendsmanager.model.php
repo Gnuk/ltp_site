@@ -28,6 +28,7 @@ use \gnk\database\entities\FriendsSeeMe;
 
 /**
 * Modèle des amis
+* @author Anthony REY <anthony.rey@mailoo.org>
 */
 class FriendsManager extends Model{
 

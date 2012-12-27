@@ -28,6 +28,7 @@ use \gnk\modules\osm\Marker;
 
 /**
 * Contrôleur des amis
+* @author Anthony REY <anthony.rey@mailoo.org>
 */
 class FriendsManager extends Controller{
 	private $model;

@@ -23,6 +23,10 @@ namespace gnk\model;
 
 use \gnk\config\Model;
 
+/**
+* Modèle de REST
+* @author Anthony REY <anthony.rey@mailoo.org>
+*/
 class RestManager extends Model{
 	private $maxRestult = 30;
 		

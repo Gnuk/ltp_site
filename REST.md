@@ -5,7 +5,26 @@
 LocalizeTeaPot est une application permettant à ses usagers de renseigner leur position ainsi que de récupérer celles
 de leurs amis. 
 
-L'application propose une API REST pour la communication entre le client et le serveur dont voici les fonctionnalitées :
+L'application propose une API REST pour la communication entre le client et le serveur dont voici les fonctionnalités.
+
+## License
+
+Copyright (c) 2012 OpenTeamMap
+
+This file is part of LocalizeTeaPot.
+
+LocalizeTeaPot is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+LocalizeTeaPot is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with LocalizeTeaPot.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Authentification
 

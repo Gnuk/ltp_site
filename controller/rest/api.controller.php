@@ -34,6 +34,11 @@ Module::load('rest');
 Model::load('restmanager');
 require_once(LINK_CONTROLLER . 'rest/services.class.php');
 
+/**
+* Définition de l'API REST
+* @author Anthony REY <anthony.rey@mailoo.org>
+* @namespace gnk\controller\rest
+*/
 class Api extends Rest{
 	public function __construct(){
 		parent::__construct();

@@ -21,6 +21,10 @@
 	namespace gnk\controller;
 	use \gnk\config\Controller;
 	
+	/**
+	* Classe de gestion des mots de passes
+	* @author Anthony REY <anthony.rey@mailoo.org>
+	*/
 	class PasswordManager extends Controller{
 		private $model;
 		

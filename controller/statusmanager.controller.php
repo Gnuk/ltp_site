@@ -27,6 +27,10 @@
 	use \gnk\modules\osm\Marker;
 	use \gnk\modules\form\Form;
 	
+	/**
+	* Gestion des statuts
+	* @author Anthony REY <anthony.rey@mailoo.org>
+	*/
 	class StatusManager extends Controller{
 		private $statuses = array();
 		private $add = false;

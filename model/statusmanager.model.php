@@ -25,6 +25,10 @@
 	use \gnk\database\entities\Users;
 	use \gnk\database\entities\Statuses;
 	
+	/**
+	* Modèle des statuts
+	* @author Anthony REY <anthony.rey@mailoo.org>
+	*/
 	class StatusManager extends Model{
 		private $message;
 		private $longitude;

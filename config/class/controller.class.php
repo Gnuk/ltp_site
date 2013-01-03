@@ -26,6 +26,11 @@
 	* @since 23/10/2012
 	*/
 	class Controller{
+		protected $params = array();
+		
+		public function __construct(){
+			$this->params = Page::getParams();
+		}
 	
 		/**
 		* Récupère le contrôleur
@@ -40,6 +45,15 @@
 		
 		public function loadModel($name){
 			Model::load($name);
+		}
+		
+		public function getParam($n){
+			if(isset($this->params[$n])){
+				return $this->params[$n];
+			}
+			else{
+				return false;
+			}
 		}
 	}
 ?>

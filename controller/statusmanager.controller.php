@@ -33,10 +33,15 @@
 	*/
 	class StatusManager extends Controller{
 		private $statuses = array();
-		private $add = false;
+		private $addStat = false;
 		private $model;
+		private $edit = NULL;
+		private $add = false;
+		private $delete = NULL;
 		
 		public function __construct(){
+			parent::__construct();
+			$this->loadGet();
 			$this->loadModel('statusmanager');
 			$this->model = new \gnk\model\StatusManager();
 			$this->addStatus();
@@ -44,10 +49,62 @@
 			$this->delStatus();
 			$this->statuses = $this->model->getStatuses();
 		}
+		
+		public function isAdd(){
+			return $this->add;
+		}
+		
+		public function isEdit(){
+			if(isset($this->edit)){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		
+		public function isDelete($param){
+			if(isset($this->delete[$param])){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		
+		public function getDelete(){
+			if(isset($this->delete['id'])){
+				return $this->delete['id'];
+			}
+			else{
+				return 0;
+			}
+		}
+		
+		private function loadGet(){
+			if(isset($this->params[0])){
+				if($this->params[0] == 'add'){
+					$this->add = true;
+				}
+				else if($this->params[0] == 'edit'){
+					if(isset($this->params[1]) AND is_numeric($this->params[1])){
+						$this->edit = $this->params[1];
+					}
+				}
+				else if($this->params[0] == 'delete'){
+					if(isset($this->params[1]) AND is_numeric($this->params[1])){
+						$this->delete['id'] = $this->params[1];
+					}
+					if(isset($this->params[2]) AND $this->params[2] == 'confirm'){
+						$this->delete['confirm'] = true;
+					}
+				}
+			}
+		}
 		public function getMap($divName='carte'){
 			Module::load('osm');
 			$osm = new Osm($divName);
-			if(!isset($_GET['add'])){
+			if(!$this->add){
 				if(count($this->statuses) > 0){
 					$markers = $this->getMarkersStatuses();
 					$osm->addMarker($markers);
@@ -96,8 +153,8 @@
 			$form = new Form('statuses');
 			
 			$form->add('label', 'label_message', 'message', T_('Message :'));
-			if(isset($_GET['edit'])){
-				$message = $this->model->getStatusMessage($_GET['edit']);
+			if(isset($this->edit)){
+				$message = $this->model->getStatusMessage($this->edit);
 			}
 			$obj = & $form->add('textarea', 'message', Page::htmlEncode($message));
 			$obj->set_rule(array(
@@ -112,7 +169,7 @@
 		private function getMarkersStatuses(){
 			$marker = new Marker(T_('Statuts'));
 			foreach($this->statuses as $nStatus => $stat){
-				$marker->add($stat['longitude'] ,$stat['latitude'], '<p>'.Page::htmlBREncode($stat['message']).'</p><ul><li><a href="'.Page::getLink(array('edit' => $stat['id'])).'">'.Page::getImage('edit', T_('Éditer'), 16).'</a></li><li><a href="'.Page::getLink(array('delete' => $stat['id'])).'">'.Page::getImage('delete', T_('Supprimer'), 16).'</a></li></ul>');
+				$marker->add($stat['longitude'] ,$stat['latitude'], '<p>'.Page::htmlBREncode($stat['message']).'</p><ul><li><a href="'.Page::paramsLink(array('edit', $stat['id'])).'">'.Page::getImage('edit', T_('Éditer'), 16).'</a></li><li><a href="'.Page::paramsLink(array('delete' , $stat['id'])).'">'.Page::getImage('delete', T_('Supprimer'), 16).'</a></li></ul>');
 			}
 			return $marker;
 		}
@@ -129,9 +186,9 @@
 		*/
 		public function updateStatus(){
 			if(isset($_POST['message'])
-				AND isset($_GET['edit']))
+				AND isset($this->edit))
 			{
-				return $this->model->editStatus($_GET['edit'], $_POST['message']);
+				return $this->model->editStatus($this->edit, $_POST['message']);
 			}
 			return false;
 		}
@@ -145,20 +202,20 @@
 				AND is_numeric($_POST['longitude']) 
 				AND isset($_POST['latitude']) 
 				AND is_numeric($_POST['latitude']) 
-				AND !isset($_GET['edit']))
+				AND !isset($this->edit))
 			{
-				$this->add = $this->model->addStatus($_POST['message'], $_POST['longitude'], $_POST['latitude']);
-				return $this->add;
+				$this->addStat = $this->model->addStatus($_POST['message'], $_POST['longitude'], $_POST['latitude']);
+				return $this->addStat;
 			}
 			return false;
 		}
 		
 		public function delStatus(){
 			if(
-				isset($_GET['delete'])
-				AND isset($_GET['confirm'])
+				isset($this->delete['id'])
+				AND isset($this->delete['confirm'])
 			){
-				return $this->model->delStatus($_GET['delete']);
+				return $this->model->delStatus($this->delete['id']);
 			}
 		}
 	}

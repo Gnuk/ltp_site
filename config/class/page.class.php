@@ -282,6 +282,15 @@ class Page{
 		}
 	}
 	
+	public static function paramsLink($params=NULL){
+		if(isset($params)){
+			return self::createPageLink(self::$pagePath, $params);
+		}
+		else{
+			return self::createPageLink(self::$pagePath);
+		}
+	}
+	
 	/**
 	 * Retourne le lien à partir des paramètres passés dans le tableau
 	 * @param array $params

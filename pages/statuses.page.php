@@ -27,10 +27,10 @@
 	if(Page::haveRights(3)){
 		$controller = new \gnk\controller\StatusManager();
 		$osm = $controller->getMap('status_map');
-		if(isset($_GET['add'])){
+		if($controller->getParam(0) == 'add'){
 			$form = $controller->getAddForm();
 		}
-		else if(isset($_GET['edit'])){
+		else if($controller->getParam(0) == 'edit'){
 			$form = $controller->getEditForm();
 		}
 		$template = new Template();
@@ -43,13 +43,13 @@
 		<h1><?php echo T_("Mes statuts");?></h1>
 <?php
 
-			if(isset($_GET['delete']) AND !isset($_GET['confirm'])){
+			if($controller->isDelete('id') AND !$controller->isDelete('confirm')){
 ?>
 		<div class="delete">
 			<p><?php echo T_('Voulez-vous supprimer ce statut ?'); ?></p>
 			<ul>
-				<li><a href="<?php echo Page::getLink(array('delete' => $_GET['delete'], 'confirm' => '')); ?>">Oui</a></li>
-				<li><a href="<?php echo Page::getLink() ;?>">Non</a></li>
+				<li><a href="<?php echo Page::paramsLink(array('delete' , $controller->getDelete(), 'confirm')); ?>">Oui</a></li>
+				<li><a href="<?php echo Page::paramsLink() ;?>">Non</a></li>
 			</ul>
 		</div>
 <?php
@@ -61,8 +61,12 @@
 ?>
 			<div id="statuses">
 <?php
-
-			if(isset($_GET['add']) OR isset($_GET['edit'])){
+			if(
+				(
+					$controller->isAdd()
+					OR $controller->isEdit()
+				)
+			){
 ?>
 			<ul class="action">
 				<li><a href="<?php echo Page::getLink(); ?>"><?php echo Page::getImage('back', T_('Revenir aux statuts'), 16) . ' ' . T_('Revenir aux statuts');?></a></li>
@@ -73,13 +77,13 @@
 			else{
 ?>
 			<ul class="action">
-				<li><a href="<?php echo Page::getLink(array('add' => '')) ; ?>"><?php echo Page::getImage('add', T_('Ajouter un statut'), 16) . ' ' . T_('Ajouter un statut');?></a></li>
+				<li><a href="<?php echo Page::paramsLink(array('add')) ; ?>"><?php echo Page::getImage('add', T_('Ajouter un statut'), 16) . ' ' . T_('Ajouter un statut');?></a></li>
 			</ul>
 <?php
 			}
-			if(!isset($_GET['edit'])){
+			if(!$controller->isEdit()){
 				$statusesList = $controller->getStatuses();
-				if(isset($_GET['add'])){
+				if($controller->isAdd()){
 					if(isset($statusesList[0])){
 						$stat = $statusesList[0];
 ?>
@@ -91,12 +95,12 @@
 					<ul>
 						<li>
 							
-							<a href="<?php echo Page::getLink(array('edit' => $stat['id']));?>">
+							<a href="<?php echo Page::paramsLink(array('edit' , $stat['id']));?>">
 								<?php echo Page::getImage('edit', T_('Éditer'), 16);?>
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo Page::getLink(array('delete' => $stat['id']));?>">
+							<a href="<?php echo Page::paramsLink(array('delete' , $stat['id']));?>">
 								<?php echo Page::getImage('delete', T_('Supprimer'), 16);?>
 							</a>
 						</li>
@@ -116,12 +120,12 @@
 					<ul>
 						<li>
 							
-							<a href="<?php echo Page::getLink(array('edit' => $stat['id']));?>">
+							<a href="<?php echo Page::paramsLink(array('edit' , $stat['id']));?>">
 								<?php echo Page::getImage('edit', T_('Éditer'), 16);?>
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo Page::getLink(array('delete' => $stat['id']));?>">
+							<a href="<?php echo Page::paramsLink(array('delete' , $stat['id']));?>">
 								<?php echo Page::getImage('delete', T_('Supprimer'), 16);?>
 							</a>
 						</li>

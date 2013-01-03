@@ -29,6 +29,7 @@ use \gnk\database\entities\Users;
 class Page{
 	
 	private static $page = null;
+	private static $pagePath = null;
 	private static $defaultPage = 'home';
 	private static $rights = true;
 	private static $rightUser = null;
@@ -37,6 +38,8 @@ class Page{
 	private static $js = array();
 	private static $css = array();
 	private static $sourceJs = array();
+	private static $pageParams = array();
+	private static $defaultExt = 'html';
 	
 	public static function setDefaultPage($page){
 		self::$defaultPage = $page;
@@ -55,6 +58,29 @@ class Page{
 	}
 	
 	/**
+	* Retourne les paramètres de la page
+	* @param boolean $all Retourne aussi le nom de la page en premier paramètre et l'extension par défaut en dernier paramètre si vrai
+	*/
+	public static function getParams($all = false){
+		if(count(self::$pageParams)>0){
+			if($all){
+				return self::$pageParams;
+			}
+			else{
+				$array=self::$pageParams;
+				$last = count($array)-1;
+				if(isset($array[$last]) AND $last != 0 AND $array[$last] == self::$defaultExt){
+					unset($array[$last]);
+				}
+				if(isset($array[0])){
+					unset($array[0]);
+				}
+				return array_values($array);
+			}
+		}
+	}
+	
+	/**
 	* Affichage de la page demandée (La page est de la forme <page>.page.php, fonctionne aussi en récursif avec le séparateur ':' et <repertoire>_DIR)
 	* @param string $getName Le paramètre GET à viser
 	* @param string $defaultPage La page par défaut
@@ -67,6 +93,7 @@ class Page{
 			self::$defaultPage = $defaultPage;
 		}
 		self::$page = $defaultPage;
+		self::$pagePath = $defaultPage;
 		if((isset($_SERVER["PATH_INFO"]) AND is_file(self::getRewriteChemin($_SERVER["PATH_INFO"])))){
 			self::$page = self::toPageLink($_SERVER["PATH_INFO"]);
 			require_once(self::getChemin(self::$page));
@@ -87,6 +114,11 @@ class Page{
 	*/
 	private static function getChemin($pageName){
 		$explodePageName = explode(':', $pageName);
+		$lastElem = count($explodePageName)-1;
+		$pageInfos = $explodePageName[$lastElem];
+		self::$pageParams = explode('.', $pageInfos);
+		$explodePageName[$lastElem] = self::$pageParams[0];
+		self::$pagePath = implode(':', $explodePageName);
 		$implodePageName = implode('_DIR/', $explodePageName);
 		return LINK_PAGES . $implodePageName . '.page.php';
 	}
@@ -95,16 +127,31 @@ class Page{
 		return self::$getName;
 	}
 	
-	public static function getPagePath(){
-		return self::$page;
+	public static function getPagePath($all=true){
+		if($all){
+			return self::$page;
+		}
+		else{
+			return self::$pagePath;
+		}
 	}
 	
-	public static function createPageLink($path){
+	public static function createPageLink($path, $params=NULL, $ext=true, $extVal=NULL){
+		if(isset($params) AND is_array($params) AND count($params)>0){
+			$pageParams = implode('.', $params);
+			$path .= '.'.$pageParams;
+		}
 		if(self::$method == 'get'){
 			$link = self::getFilePath() . '?' . self::$getName . '=' . $path;
 		}
 		else{
 			$link = self::getFilePath() . self::toRewriteLink($path);
+		}
+		if($ext AND isset($extVal)){
+			$link .= '.'.$extVal;
+		}
+		else if($ext AND isset(self::$defaultExt)){
+			$link .= '.'.self::$defaultExt;
 		}
 		return $link;
 	}
@@ -112,7 +159,7 @@ class Page{
 	
 	
 	private static function getHere(){
-		return self::createPageLink(self::$page);
+		return self::createPageLink(self::$pagePath);
 	}
 	
 	
@@ -122,10 +169,8 @@ class Page{
 	* @return string Le lien vers la page correspondante
 	*/
 	private static function getRewriteChemin($pageName){
-		$page = preg_replace('#^\/#', '', $pageName);
-		$explodePageName = explode('/', $page);
-		$implodePageName = implode('_DIR/', $explodePageName);
-		return LINK_PAGES . $implodePageName . '.page.php';
+		$implodePageName = self::toPageLink($pageName);
+		return self::getChemin($implodePageName);
 	}
 	
 	

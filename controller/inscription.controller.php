@@ -30,7 +30,7 @@
 	*/
 	class Inscription extends Controller{
 	
-		private $params=false;
+		private $areParams=false;
 		private $confirm;
 		private $id;
 		private $key;
@@ -64,7 +64,7 @@
 		private function getParams(){
 			if(isset($_GET)){
 				if(isset($_GET['id']) AND isset($_GET['key'])){
-					$this->params = true;
+					$this->areParams = true;
 					$this->id=$_GET['id'];
 					$this->key=$_GET['key'];
 					if(isset($_GET['unsubscribe'])){

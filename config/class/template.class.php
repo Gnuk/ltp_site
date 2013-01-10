@@ -197,7 +197,7 @@
 			$link[] = $nMenu;
 			$url = implode(':', $link);
 			echo "\t".'<li>'."\n\t\t".'<a ';
-			$p=explode(':', Page::getPagePath());
+			$p=explode(':', Page::getPagePath(false));
 			$active = true;
 			foreach($link AS $kLink =>$vLink){
 				if(isset($p[$kLink]) AND $p[$kLink] != $link[$kLink]){
